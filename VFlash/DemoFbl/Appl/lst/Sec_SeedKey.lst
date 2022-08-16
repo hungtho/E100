@@ -1,0 +1,3161 @@
+
+                                   Fri Apr 10 08:31:47 2020           Page 1
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined
+                -stderr=err/Sec_SeedKey.err -elf -b1 -I../../../bsw/_common
+                -I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                -I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                -I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                -Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                -Igendata -Iinclude -IC:\ghs\comp_201754\lib\ppc5514
+                -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\Sec_SeedKey.dbo
+                -source=Sec_SeedKey.c -o obj\gh_000084c1.o
+                -list=lst/Sec_SeedKey.lst
+                C:\Users\owner\AppData\Local\Temp\gh_000084c1.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_000084c1.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/Sec_SeedKey.lst
+                             6	#		-stderr=err/Sec_SeedKey.err -c -vle
+                             7	#		-DC_ENABLE_INSTRUCTION_SET_VLE -D__vle --prototype_warnings
+                             8	#		-Odebug -Osize -Ospace -G -dual_debug -nofloatio -cpu=ppc560xp
+                             9	#		-noobj -DRAM_48K -inline_prologue -pragma_asm_inline -noSPE
+                            10	#		--no_exceptions --no_commons -nokeeptempfiles -pnone
+                            11	#		--incorrect_pragma_warnings --slash_comment --long_long
+                            12	#		-preprocess_assembly_files -passsource -I../../../bsw/_common
+                            13	#		-I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                            14	#		-I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                            15	#		-I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                            16	#		-Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                            17	#		-Igendata -Iinclude ../../../BSW/SecMod/Sec_SeedKey.c
+                            18	#Source File:   ../../../BSW/SecMod/Sec_SeedKey.c
+                            19	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            20	#Compile Date:  Fri Apr 10 08:31:47 2020
+                            21	#Host OS:       Win32
+                            22	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            23	#Release:       Compiler v2017.5.4
+                            24	#Revision Date: Wed Oct 04 11:39:37 2017
+                            25	#Release Date:  Wed Oct 04 09:00:05 2017
+                            26	# ecom  -g -w -OMS
+                            27	
+                            28	#1: /**********************************************************************************************************************
+                            29	#2:  *  FILE DESCRIPTION
+                            30	#3:  *  -----------------------------------------------------------------------------------------------------------------*/
+                            31	#4: /** \file
+                            32	#5:  *  \brief        Implementation of the HIS security module - Seed/key authentication
+                            33	#6:  *
+                            34	#7:  *  \description  Offers challenge/response authentication interface
+                            35	#8:  *  -------------------------------------------------------------------------------------------------------------------
+                            36	#9:  *  COPYRIGHT
+                            37	#10:  *  -------------------------------------------------------------------------------------------------------------------
+                            38	#11:  *  \par Copyright
+                            39	#12:  *  \verbatim
+                            40	#13:  *  Copyright (c) 2018 by Vector Informatik GmbH.                                                  All rights reserved.
+                            41	#14:  *
+
+                                   Fri Apr 10 08:31:47 2020           Page 2
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                            42	#15:  *                This software is copyright protected and proprietary to Vector Informatik GmbH.
+                            43	#16:  *                Vector Informatik GmbH grants to you only those rights as set out in the license conditions.
+                            44	#17:  *                All other rights remain with Vector Informatik GmbH.
+                            45	#18:  *  \endverbatim
+                            46	#19:  */
+                            47	#20: /*********************************************************************************************************************/
+                            48	#22: /***********************************************************************************************************************
+                            49	#23:  *  AUTHOR IDENTITY
+                            50	#24:  *  --------------------------------------------------------------------------------------------------------------------
+                            51	#25:  *  Name                          Initials      Company
+                            52	#26:  *  --------------------------------------------------------------------------------------------------------------------
+                            53	#27:  *  Joern Herwig                  JHg           Vector Informatik GmbH
+                            54	#28:  *  Christian Baeuerle            CB            Vector Informatik GmbH
+                            55	#29:  *  Ralf Haegenlaeuer             HRf           Vector Informatik GmbH
+                            56	#30:  *  --------------------------------------------------------------------------------------------------------------------
+                            57	#31:  *  REVISION HISTORY
+                            58	#32:  *  --------------------------------------------------------------------------------------------------------------------
+                            59	#33:  *  Version    Date        Author  Change Id        Description
+                            60	#34:  *  --------------------------------------------------------------------------------------------------------------------
+                            61	#35:  *  01.00.00   2013-06-20  JHg     ESCAN00068213    Initial release based on FblSecMod_Vector 02.02.00
+                            62	#36:  *  02.00.00   2013-11-08  JHg     ESCAN00071177    Major refactoring
+                            63	#37:  *                                                   Moved to separate sub-package
+                            64	#38:  *                                                   Renamed file name (was SecMSK.c)
+                            65	#39:  *                                                   Split into source and library parts
+                            66	#40:  *                                                   Added extended seed/key API (externally provided key and workspace)
+                            67	#41:  *                                                   Added extended seed and key types
+                            68	#42:  *                                                   Unified handling of default and extended seed/key variants
+                            69	#43:  *                                                   API version defined at integration time
+                            70	#44:  *  02.00.01   2014-01-20  JHg     ESCAN00073010    Resolved compiler warnings
+                            71	#45:  *  02.01.00   2014-05-28  JHg     ESCAN00075895    No changes
+                            72	#46:  *  02.02.00   2014-09-18  JHg     ESCAN00078475    No changes
+                            73	#47:  *  02.03.00   2015-02-09  CB      ESCAN00079854    Changed DAG seed-key constants
+                            74	#48:  *  03.00.00   2015-11-03  JHg     ESCAN00086163    Vendor specific algorithms moved to callout SecM_ComputeKeyVendor
+                            75	#49:  *  03.01.00   2016-06-29  JHg     ESCAN00089876    Extended seed/key API changed to compile-time switch
+                            76	#50:  *                         JHg     ESCAN00090732    Added support for FIPS-186 PRNG
+                            77	#51:  *                                                  Added entropy pool with option for explicit passing of entropy
+                            78	#52:  *  03.01.01   2016-07-04  JHg     ESCAN00090820    Only pass entropy pool to random generator when configured
+                            79	#53:  *  03.01.02   2017-01-23  HRf     ESCAN00093667    No changes
+                            80	#54:  *  03.02.00   2017-05-09  JHg     ESCAN00096092    Added API for external key comparision
+                            81	#55:  *                         JHg     ESCAN00095087    No changes
+                            82	#56:  *  03.02.01   2018-01-25  JHg     ESCAN00098131    No changes
+                            83	#57:  **********************************************************************************************************************/
+                            84	#59: /***********************************************************************************************************************
+                            85	#60:  *  INCLUDES
+                            86	#61:  **********************************************************************************************************************/
+                            87	#63: /* Security module configuration settings */
+                            88	#64: #include "Sec_Inc.h"       /* PRQA S 0883 */ /* MD_SecInc_0883 */
+                            89	#66: /* Global definitions for security module */
+                            90	#67: #include "Sec_Types.h"
+                            91	#69: /* Interfaces of seed-key */
+                            92	#70: #include "Sec_SeedKey.h"   /* PRQA S 0883 */ /* MD_SecInc_0883 */
+                            93	#72: #include "Sec.h"           /* PRQA S 0883 */ /* MD_SecInc_0883 */
+                            94	#75: /***********************************************************************************************************************
+                            95	#76:  *   VERSION
+                            96	#77:  **********************************************************************************************************************/
+                            97	#79: #if ( SYSSERVICE_SECMODHIS_SEEDKEY_VERSION != 0x0302u ) || \
+
+                                   Fri Apr 10 08:31:47 2020           Page 3
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                            98	#80:     ( SYSSERVICE_SECMODHIS_SEEDKEY_RELEASE_VERSION != 0x01u )
+                            99	#81: # error "Error in SEC_SEEDKEY.C: Source and header file are inconsistent!"
+                           100	#82: #endif
+                           101	#84: /* Interface version compatibility check */
+                           102	#85: # if defined( SECACCESS_API_REFERENCE_VERSION_MAJOR ) && \
+                           103	#86:      defined( SECACCESS_API_REFERENCE_VERSION_MINOR )
+                           104	#87: # else
+                           105	#88: #   error "Error in Sec_SeedKey.c: Interface version requirements not defined!"
+                           106	#89: # endif
+                           107	#91: # if ( SECACCESS_API_REFERENCE_VERSION_MAJOR != SECACCESS_API_VERSION_MAJOR) || \
+                           108	#92:      ( SECACCESS_API_REFERENCE_VERSION_MINOR > SECACCESS_API_VERSION_MINOR)
+                           109	#93: #  error "Error in Sec_SeedKey.c: Interface version compatibility check failed!"
+                           110	#94: # endif
+                           111	#96: /**********************************************************************************************************************
+                           112	#97:  *  DEFINES
+                           113	#98:  *********************************************************************************************************************/
+                           114	#100: /* PRQA S 3453 TAG_SecSeeKey_3453_1 */ /* MD_CBD_19.7 */
+                           115	#102: #if defined( SEC_ENABLE_SEED_KEY_PRNG_LCG )
+                           116	#103: /** LCG parameters for random number generator (taken from BCPL language) */
+                           117	#104: # define SEC_LCG_RANDOM_MULTIPLIER  2147001325ul
+                           118	#105: # define SEC_LCG_RANDOM_INCREMENT    715136305ul
+                           119	#106: #endif /* SEC_ENABLE_SEED_KEY_PRNG_LCG */
+                           120	#108: /* Clear by default */
+                           121	#109: #if defined( SEC_COMPARE_SIZE )
+                           122	#110: # undef SEC_COMPARE_SIZE
+                           123	#111: #endif /* SEC_COMPARE_SIZE */
+                           124	#113: /* Adaptation of seed/key comparison in SecM_CompareKey */
+                           125	#114: #if defined( SEC_ENABLE_SEED_KEY_ASYMMETRIC )
+                           126	#115: # if defined( SEC_BYTE_ARRAY_SEED )
+                           127	#116: /** Array size of compared seed */
+                           128	#117: #  define SEC_COMPARE_SIZE    SEC_SEED_LENGTH
+                           129	#118: # elif defined( SEC_WORD_ARRAY_SEED )
+                           130	#119: /** Array size of compared seed */
+                           131	#120: #  define SEC_COMPARE_SIZE    SEC_SEED_WORD_LENGTH
+                           132	#121: # endif /* SEC_<type>_ARRAY_SEED */
+                           133	#122: /** Variable to be compared with computed value */
+                           134	#123: # define SEC_COMPARE_VALUE    lastSeed
+                           135	#124: #else
+                           136	#125: # if defined( SEC_BYTE_ARRAY_KEY )
+                           137	#126: /** Array size of compared key */
+                           138	#127: #  define SEC_COMPARE_SIZE    SEC_KEY_LENGTH
+                           139	#128: # endif /* SEC_BYTE_ARRAY_KEY */
+                           140	#129: # if defined( SEC_ENABLE_SEED_KEY_EXTENDED_API )
+                           141	#130: /** Variable member to be compared with computed value */
+                           142	#131: #  define SEC_COMPARE_VALUE   key.data
+                           143	#132: # else
+                           144	#133: /** Variable to be compared with computed value */
+                           145	#134: #  define SEC_COMPARE_VALUE   key
+                           146	#135: # endif /* SEC_ENABLE_SEED_KEY_EXTENDED_API */
+                           147	#136: #endif /* SEC_ASYMMETRIC_SEED_KEY */
+                           148	#138: /** Access seed parameter directly */
+                           149	#139: # define SEC_BASE_SEED(seed)  (seed)
+                           150	#141: #if defined( SEC_ENABLE_SEED_KEY_EXTENDED_API )
+                           151	#142: /** Access base type of key parameter */
+                           152	#143: # define SEC_BASE_KEY(key)    ((key).data)
+                           153	#144: #else
+
+                                   Fri Apr 10 08:31:47 2020           Page 4
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           154	#145: /** Access key parameter directly */
+                           155	#146: # define SEC_BASE_KEY(key)    (key)
+                           156	#147: #endif /* SEC_ENABLE_SEED_KEY_EXTENDED_API */
+                           157	#149: #if defined( SEC_ENABLE_SEED_KEY_PRNG_LCG )
+                           158	#150: # define SEC_PRNG_POOL                                                                    /**< No entropy pool used */
+                           159	#151: /** Generation function of PRNG */
+                           160	#152: # define SEC_PRNG_GENERATE_RANDOM(pPool, pRandom, length)   SecM_GenerateRandomLcg((pRandom), (length))
+                           161	#153: #endif /* SEC_ENABLE_SEED_KEY_PRNG_ */
+                           162	#155: /* PRQA L:TAG_SecSeeKey_3453_1 */
+                           163	#157: /**********************************************************************************************************************
+                           164	#158:  *  LOCAL DATA TYPES AND STRUCTURES
+                           165	#159:  *********************************************************************************************************************/
+                           166	#161: /** Base type of seed/key comparison in SecM_CompareKey */
+                           167	#162: #if defined( SEC_ENABLE_SEED_KEY_ASYMMETRIC )
+                           168	#163: typedef SecM_SeedStorageType  SecM_CompareType;
+                           169	#164: #else
+                           170	#165: typedef SecM_KeyStorageType   SecM_CompareType;
+                           171	#166: #endif /* SEC_ASYMMETRIC_SEED_KEY */
+                           172	#168: /**********************************************************************************************************************
+                           173	#169:  *  LOCAL FUNCTION PROTOTYPES
+                           174	#170:  *********************************************************************************************************************/
+                           175	#172: #if defined( SEC_ENABLE_SEED_KEY_PRNG_LCG )
+                           176	#173: static SecM_WordType SecM_LcgRandom( SecM_WordType input );
+                           177	#174: static SecM_StatusType SecM_GenerateRandomLcg( V_MEMRAM1 SecM_ByteType V_MEMRAM2 V_MEMRAM3 * pRandom, SecM_LengthType length );
+                           178	#175: #endif /* SEC_ENABLE_SEED_KEY_PRNG_LCG */
+                           179	#177: #if defined( SEC_ENABLE_SEED_KEY_EXTENDED_API ) 
+                           180	#178: # if defined( SEC_ENABLE_WORKSPACE_INTERNAL )
+                           181	#179: static void SecM_SetDefaultWorkspace( SecM_VoidPtrType pContext, SecM_WorkspacePtrType pWorkspace, SecM_LengthType workspaceSize );
+                           182	#180: # endif /* SEC_ENABLE_WORKSPACE_INTERNAL */
+                           183	#181: #endif /* SEC_ENABLE_SEED_KEY_EXTENDED_API */
+                           184	#184: /***********************************************************************************************************************
+                           185	#185:  *  LOCAL DATA
+                           186	#186:  **********************************************************************************************************************/
+                           187	#189: /**********************************************************************************************************************
+                           188	#190:  *  LOCAL FUNCTIONS
+                           189	#191:  *********************************************************************************************************************/
+                           190	#193: #if defined( SEC_ENABLE_SEED_KEY_PRNG_LCG )
+                           191	#194: /***********************************************************************************************************************
+                           192	#195:  *  SecM_LcgRandom
+                           193	#196:  **********************************************************************************************************************/
+                           194	#197: /*! \brief       Pseudo random number generator based on a linear congruential generator (LCG)
+                           195	#198:  *  \details     Implementation uses a constant modulus value of 2^32
+                           196	#199:  *               Attention: The quality of the "randomness" highly depends on the choice of the multiplication and
+                           197	#200:  *               increment modifier.
+                           198	#201:  *  \param[in]   input Previous random number or seed value
+                           199	#202:  *  \return      Next random number
+                           200	#203:  **********************************************************************************************************************/
+                           201		.section ".vletext", "vax"
+                           202		.vle
+                           203		.vle
+                           204	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB063..0::
+                           205		.align	1
+                           206	..gh.f.p.3.a.1.r.0.e.0:
+                           207		.type	..gh.f.p.3.a.1.r.0.e.0,@object
+                           208		.size	..gh.f.p.3.a.1.r.0.e.0,0
+                           209		.global	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+
+                                   Fri Apr 10 08:31:47 2020           Page 5
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           210	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.:
+                           211	SecM_LcgRandom:
+                           212	#	    .bf
+                           213	.LDW01:
+                           214	#204: static SecM_WordType SecM_LcgRandom( SecM_WordType input )
+                           215	#205: {
+                           216	#206:    SecM_WordType  output;
+                           217	#208:    /* Multiplication may lead to overflow, making this equal to a modulo operation with 2^32 */
+                           218	#209:    output = (input * SEC_LCG_RANDOM_MULTIPLIER) + SEC_LCG_RANDOM_INCREMENT;
+                           219	#211:    return output;
+00000000 700fe7f9          220		e_lis	r0, 32761
+00000004 1c00a3ed          221		e_add16i	r0, r0, -23571
+00000008 0530              222		se_mullw	r0, r3
+0000000a 1c601d31          223		e_add16i	r3, r0, 7473
+0000000e 70a392a0          224		e_add2is	r3, 10912
+                           225	#	    .ef
+                           226	.LDW11:
+00000012 0004              227		se_blr
+                           228	__ghs_eofn_SecM_LcgRandom:
+                           229		.type	SecM_LcgRandom,@function
+                           230		.size	SecM_LcgRandom,$-SecM_LcgRandom
+                           231		.type	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.,@function
+                           232		.size	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.,$-SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+                           233		.align	1
+                           234	
+                           235	#function:			SecM_LcgRandom
+                           236	#stack frame size:		0
+                           237	#
+                           238	
+                           239	#input	r3	param
+                           240	
+                           241		.data
+                           242		.section ".vletext", "vax"
+                           243		.vle
+                           244		.vle
+                           245	
+                           246	#212: }
+                           247	
+                           248	#214: /***********************************************************************************************************************
+                           249	#215:  *  SecM_GenerateRandomLcg
+                           250	#216:  **********************************************************************************************************************/
+                           251	#217: /*! \brief       Generate random numbers using LCG
+                           252	#218:  *  \details     Fills the provided array with pseudo random numbers
+                           253	#219:  *  \param[out]  pRandom Buffer for generated random numbers
+                           254	#220:  *  \param[in]   length Number of random bytes to be generated
+                           255	#221:  *  \return      SECM_OK     if generation was successful
+                           256	#222:  *               SECM_NOT_OK if generation has failed (e.g. wrong parameters)
+                           257	#223:  **********************************************************************************************************************/
+                           258		.align	1
+                           259		.align	1
+                           260	..gh.f.p.4.a.1.r.0.e.1:
+                           261		.type	..gh.f.p.4.a.1.r.0.e.1,@object
+                           262		.size	..gh.f.p.4.a.1.r.0.e.1,0
+                           263		.global	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+                           264	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.:
+                           265	SecM_GenerateRandomLcg:
+
+                                   Fri Apr 10 08:31:47 2020           Page 6
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000014 182106e0          266		e_stwu	sp, -32(sp)
+00000018 0080              267		se_mflr	r0
+0000001a 1b61090c          268		e_stmw	r27, 12(sp)
+0000001e d901              269		se_stw	r0, 36(sp)
+00000020 013c              270		se_mr	r28, r3
+00000022 014f              271		se_mr	r31, r4
+                           272	#	    .bf
+                           273	.LDW21:
+                           274	#224: static SecM_StatusType SecM_GenerateRandomLcg( V_MEMRAM1 SecM_ByteType V_MEMRAM2 V_MEMRAM3 * pRandom, SecM_LengthType length )
+                           275	#225: {
+                           276	#226:    SecM_ShortFastType   index;
+                           277	#227:    SecM_ShortFastType   remainder;
+                           278	#228:    SecM_ShortFastType   byteCount;
+                           279	#229:    SecM_WordType        randomWord;
+                           280	#231:    /* Limit seed value to size of word */
+                           281	#232:    byteCount = length;
+                           282	#233:    if (byteCount > SEC_WORD_TYPE_SIZE)
+00000024 4847              283		se_li	r7, 4
+00000026 2234              284		se_cmpli	r4, 4
+00000028 7c67205e          285		iselgt	r3, r7, r4
+                           286	#234:    {
+                           287	#235:       byteCount = SEC_WORD_TYPE_SIZE;
+                           288	#236:    }
+                           289	#238:    /* Initialize current random value with initial seed value (up to 4 bytes) */
+                           290	#239:    randomWord  = SecM_GetInteger(byteCount, pRandom);
+0000002c 01c4              291		se_mr	r4, r28
+0000002e 78000001          292		e_bl	SecM_GetInteger
+00000032 013b              293		se_mr	r27, r3
+                           294	#241:    /* Remaining random bytes to be generated */
+                           295	#242:    remainder   = length;
+                           296	#244:    /* Initialize index into byte seed array */
+                           297	#245:    index       = 0u;
+00000034 480d              298		se_li	r29, 0
+                           299	#247:    /* Populate array starting with initial seed stored in random[0-3] */
+                           300	#248:    while (remainder > 0u)
+00000036 e800              301		se_b	.L50
+                           302	.L52:
+                           303	#249:    {
+                           304	#250:       /* Generate next pseudo random number */
+                           305	#251:       randomWord = SecM_LcgRandom(randomWord);
+                           306	#line251
+                           307	..lin.83d19c21..ceec626e.0_1::
+                           308	.LDWlin1:
+00000038 01b3              309		se_mr	r3, r27
+0000003a e900              310		se_bl	SecM_LcgRandom
+0000003c 223f              311		se_cmpli	r31, 4
+                           312	#253:       /* Limit serialized length to remainder */
+                           313	#254:       if (remainder < SEC_WORD_TYPE_SIZE)
+                           314	#line254
+                           315	..lin.83d19c21..ceec626e.0_2::
+                           316	.LDWlin2:
+0000003e 4847              317		se_li	r7, 4
+00000040 7fc7f85e          318		iselgt	r30, r7, r31
+00000044 013b              319		se_mr	r27, r3
+                           320	#255:       {
+                           321	#256:          byteCount = remainder;
+
+                                   Fri Apr 10 08:31:47 2020           Page 7
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           322	#257:       }
+                           323	#258:       else
+                           324	#259:       {
+                           325	#260:          byteCount = SEC_WORD_TYPE_SIZE;
+                           326	#261:       }
+                           327	#263:       /* Store serialized word in output value */
+                           328	#264:       SecM_SetInteger(byteCount, randomWord, &pRandom[index]);
+00000046 0134              329		se_mr	r4, r3
+00000048 01e3              330		se_mr	r3, r30
+0000004a 7cbcea14          331		add	r5, r28, r29
+0000004e 78000001          332		e_bl	SecM_SetInteger
+                           333	#266:       index       += SEC_WORD_TYPE_SIZE;
+00000052 06ef              334		se_sub	r31, r30
+                           335	#267:       remainder   -= byteCount;  /* PRQA S 3382 */ /* MD_SecSeedKey_3382 */
+00000054 203d              336		se_addi	r29, 4
+                           337	.L50:
+00000056 2a0f              338		se_cmpi	r31, 0
+00000058 e200              339		se_bne	.L52
+                           340	#268:    }
+                           341	#270:    /* Generation always succeeds */
+                           342	#271:    return SECM_OK;
+                           343	#line271
+                           344	..lin.83d19c21..ceec626e.0_3::
+                           345	.LDWlin3:
+0000005a 4803              346		se_li	r3, 0
+                           347	#	    .ef
+                           348	.LDW31:
+0000005c c901              349		se_lwz	r0, 36(sp)
+0000005e 1b61080c          350		e_lmw	r27, 12(sp)
+00000062 21f1              351		se_addi	sp, 32
+00000064 0090              352		se_mtlr	r0
+00000066 0004              353		se_blr
+                           354	__ghs_eofn_SecM_GenerateRandomLcg:
+                           355		.type	SecM_GenerateRandomLcg,@function
+                           356		.size	SecM_GenerateRandomLcg,$-SecM_GenerateRandomLcg
+                           357		.type	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.,@function
+                           358		.size	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.,$-SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+                           359		.align	1
+                           360	
+                           361	#function:			SecM_GenerateRandomLcg
+                           362	#stack frame size:		32
+                           363	#link area offset:		0
+                           364	#local storage area offset:	12
+                           365	#gpr save area offset:		12
+                           366	#
+                           367	#index	r29	local
+                           368	#remainder	r31	local
+                           369	#byteCount	r30	local
+                           370	#randomWord	r27	local
+                           371	
+                           372	#pRandom	r28	param
+                           373	#length	r31	param
+                           374	
+                           375		.data
+                           376		.section ".vletext", "vax"
+                           377		.vle
+
+                                   Fri Apr 10 08:31:47 2020           Page 8
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           378		.vle
+                           379	
+                           380	#272: }
+                           381	
+                           382	#273: #endif /* SEC_ENABLE_SEED_KEY_PRNG_LCG */
+                           383	#275: #if defined( SEC_ENABLE_SEED_KEY_EXTENDED_API ) 
+                           384	#276: # if defined( SEC_ENABLE_WORKSPACE_INTERNAL )
+                           385	#277: /***********************************************************************************************************************
+                           386	#278:  *  SecM_SetDefaultWorkspace
+                           387	#279:  **********************************************************************************************************************/
+                           388	#280: /*! \brief       Set the default workspace
+                           389	#281:  *  \details     Workspace referenced in passed context is either replaced unconditionally (SEC_DISABLE_WORKSPACE_EXTERNAL)
+                           390	#282:  *               or when size is set to SEC_DEFAULT_WORKSPACE_SIZE (SEC_ENABLE_WORKSPACE_EXTERNAL)
+                           391	#283:  *  \param[in,out] pContext Pointer to key parameter structure derived from SecM_ComputeKeyParamType
+                           392	#284:  *  \param[in]   pWorkspace Pointer to default workspace
+                           393	#285:  *  \param[in]   workspaceSize Size of default workspace
+                           394	#286:  **********************************************************************************************************************/
+                           395	#287: static void SecM_SetDefaultWorkspace( SecM_VoidPtrType pContext, SecM_WorkspacePtrType pWorkspace, SecM_LengthType workspaceSize )
+                           396	#288: {
+                           397	#289:    V_MEMRAM1 SecM_SeedKeyContextType V_MEMRAM2 V_MEMRAM3 * pKeyParam;
+                           398	#291:    /* Convert void pointer to base type for key parameter structures */
+                           399	#292:    pKeyParam = (V_MEMRAM1 SecM_SeedKeyContextType V_MEMRAM2 V_MEMRAM3 *)pContext;
+                           400	#294: #  if defined( SEC_ENABLE_WORKSPACE_EXTERNAL )
+                           401	#295:    /* Only overwrite workspace when not explicitly set by caller */
+                           402	#296:    if (SEC_DEFAULT_WORKSPACE_SIZE == pKeyParam->workspace.size)
+                           403	#297: #  endif /* SEC_ENABLE_WORKSPACE_EXTERNAL */
+                           404	#298:    {
+                           405	#299:       /* Store default workspace */
+                           406	#300:       pKeyParam->workspace.data = pWorkspace;
+                           407	#301:       pKeyParam->workspace.size = workspaceSize;
+                           408	#302:    }
+                           409	#303: }
+                           410	#304: # endif /* SEC_ENABLE_WORKSPACE_INTERNAL */
+                           411	#305: #endif /* SEC_ENABLE_SEED_KEY_EXTENDED_API || SEC_ENABLE_SEED_KEY_ENTROPY_POOL */
+                           412	#307: /**********************************************************************************************************************
+                           413	#308:  *  GLOBAL FUNCTIONS
+                           414	#309:  *********************************************************************************************************************/
+                           415	#312: /***********************************************************************************************************************
+                           416	#313:  *  SecM_GenerateSeed
+                           417	#314:  **********************************************************************************************************************/
+                           418	#315: /*! \brief       Calculates random seed value
+                           419	#316:  *  \detail      Uses a pseudo random number generator and an initial seed to generate a seed value
+                           420	#317:  *               In case of HIS specification 1.0.1 or earlier the last seed is stored in an internal structure.
+                           421	#318:  *  \pre         Implicit entropy: The values of seedX and seedY (default API), seed[0-3] (byte array) or seed[0] (word array)
+                           422	#319:  *                should have a random start value
+                           423	#320:  *               Explicit entropy: Entropy pool passed in seed parameter has to be initialized and must hold at least
+                           424	#321:  *                one byte of entropy
+                           425	#322:  *  \param[in,out]  Pointer to seed, where the random values shall be stored
+                           426	#323:  *  \return      SECM_OK     if generation was successful
+                           427	#324:  *               SECM_NOT_OK if generation has failed (e.g. wrong parameters)
+                           428	#325:  **********************************************************************************************************************/
+                           429		.align	1
+                           430		.align	1
+                           431	..gh.f.p.3.a.1.r.0.e.2:
+                           432		.type	..gh.f.p.3.a.1.r.0.e.2,@object
+                           433		.size	..gh.f.p.3.a.1.r.0.e.2,0
+
+                                   Fri Apr 10 08:31:47 2020           Page 9
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           434		.global	SecM_GenerateSeed
+                           435	SecM_GenerateSeed:
+00000068 182106e8          436		e_stwu	sp, -24(sp)
+0000006c 1bc10910          437		e_stmw	r30, 16(sp)
+00000070 0080              438		se_mflr	r0
+00000072 d701              439		se_stw	r0, 28(sp)
+                           440	#	    .bf
+                           441	.LDW41:
+                           442	#326: SecM_StatusType SecM_GenerateSeed( V_MEMRAM1 SecM_SeedType V_MEMRAM2 V_MEMRAM3 * seed ) /* PRQA S 3673 */ /* MD_SecSeedKey_3673_1 */
+                           443	#327: {
+                           444	#328:    SecM_StatusType result;
+                           445	#329:    V_MEMRAM1 SecM_SeedBaseType V_MEMRAM2 V_MEMRAM3 * pBaseSeed;
+                           446	#330:    V_MEMRAM1 SecM_ByteType V_MEMRAM2 V_MEMRAM3 * pRandom;
+                           447	#331: #if defined( SEC_BYTE_ARRAY_SEED )
+                           448	#332: #else
+                           449	#333:    SecM_ByteType        randomBuffer[SEC_INITIAL_SEED_LENGTH];
+                           450	#334: # if defined( SEC_WORD_ARRAY_SEED )
+                           451	#335:    SecM_ShortFastType   index;
+                           452	#336: # endif /* SEC_WORD_ARRAY_SEED */
+                           453	#337: #endif /* SEC_BYTE_ARRAY_SEED */
+                           454	#340:    /* Access seed base type through local variable */
+                           455	#341:    pBaseSeed = (V_MEMRAM1 SecM_SeedBaseType V_MEMRAM2 V_MEMRAM3 *)seed;
+00000074 c043              456		se_lwz	r4, 0(r3)
+                           457	#343: #if defined( SEC_BYTE_ARRAY_SEED )
+                           458	#344:    /* Directly store generated random numbers in seed buffer */
+                           459	#345:    pRandom = pBaseSeed;
+                           460	#346: #else
+                           461	#347:    /* Store generated random numbers in temporary buffer */
+                           462	#348:    pRandom = randomBuffer;
+                           463	#350:    /* Serialize implicit seed provided as input into temporary buffer */
+                           464	#351: #  if defined( SEC_WORD_ARRAY_SEED )
+                           465	#352:    SecM_SetInteger(SEC_INITIAL_SEED_LENGTH, pBaseSeed[0], randomBuffer);
+                           466	#353: #  else
+                           467	#354:    SecM_SetInteger(SEC_WORD_TYPE_SIZE, pBaseSeed->seedX, &randomBuffer[0u]);
+00000076 013f              468		se_mr	r31, r3
+00000078 4843              469		se_li	r3, 4
+0000007a 18a18008          470		e_addi	r5, sp, 8
+0000007e 78000001          471		e_bl	SecM_SetInteger
+                           472	#355:    SecM_SetInteger(SEC_WORD_TYPE_SIZE, pBaseSeed->seedY, &randomBuffer[SEC_WORD_TYPE_SIZE]);
+00000082 c14f              473		se_lwz	r4, 4(r31)
+00000084 18a1800c          474		e_addi	r5, sp, 12
+00000088 4843              475		se_li	r3, 4
+0000008a 78000001          476		e_bl	SecM_SetInteger
+                           477	#356: #  endif /* SEC_WORD_ARRAY_SEED */
+                           478	#357: #endif /* SEC_BYTE_ARRAY_SEED */
+                           479	#359:    {
+                           480	#360: #if defined( SEC_BYTE_ARRAY_SEED )
+                           481	#361:       /* Fill array with pseudo random numbers */
+                           482	#362:       result = SEC_PRNG_GENERATE_RANDOM(SEC_PRNG_POOL, pRandom, SEC_SEED_LENGTH);
+                           483	#364: #elif defined( SEC_WORD_ARRAY_SEED )
+                           484	#365:       /* Populate seed array */
+                           485	#366:       for (index = 0u; index < SEC_SEED_WORD_LENGTH; index++)
+                           486	#367:       {
+                           487	#368:          /* Generate next pseudo random number */
+                           488	#369:          result = SEC_PRNG_GENERATE_RANDOM(SEC_PRNG_POOL, pRandom, SEC_WORD_TYPE_SIZE);
+                           489	#371:          /* Store in output value */
+
+                                   Fri Apr 10 08:31:47 2020           Page 10
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           490	#372:          pBaseSeed[index]  = SecM_GetInteger(SEC_WORD_TYPE_SIZE, pRandom);
+                           491	#374:          if (SECM_OK != result)
+                           492	#375:          {
+                           493	#376:             break;
+                           494	#377:          }
+                           495	#378:       }
+                           496	#379: #else
+                           497	#380:       /* Generate pseudo random numbers */
+                           498	#381:       result = SEC_PRNG_GENERATE_RANDOM(SEC_PRNG_POOL, pRandom, SEC_WORD_TYPE_SIZE);
+0000008e 18618008          499		e_addi	r3, sp, 8
+00000092 4844              500		se_li	r4, 4
+00000094 e900              501		se_bl	SecM_GenerateRandomLcg
+00000096 013e              502		se_mr	r30, r3
+                           503	#382:       pBaseSeed->seedX = SecM_GetInteger(SEC_WORD_TYPE_SIZE, pRandom);
+                           504	#line382
+                           505	..lin.83d19c21..a8cd6378.0_4::
+                           506	.LDWlin4:
+00000098 18818008          507		e_addi	r4, sp, 8
+0000009c 4843              508		se_li	r3, 4
+0000009e 78000001          509		e_bl	SecM_GetInteger
+000000a2 d03f              510		se_stw	r3, 0(r31)
+                           511	#384:       if (SECM_OK == result)
+000000a4 2a0e              512		se_cmpi	r30, 0
+000000a6 e200              513		se_bne	.L169
+                           514	#385:       {
+                           515	#386:          /* Generate pseudo random numbers */
+                           516	#387:          result = SEC_PRNG_GENERATE_RANDOM(SEC_PRNG_POOL, pRandom, SEC_WORD_TYPE_SIZE);
+                           517	#line387
+                           518	..lin.83d19c21..a8cd6378.0_5::
+                           519	.LDWlin5:
+000000a8 18618008          520		e_addi	r3, sp, 8
+000000ac 4844              521		se_li	r4, 4
+000000ae e900              522		se_bl	SecM_GenerateRandomLcg
+000000b0 013e              523		se_mr	r30, r3
+                           524	#388:          pBaseSeed->seedY = SecM_GetInteger(SEC_WORD_TYPE_SIZE, pRandom);
+                           525	#line388
+                           526	..lin.83d19c21..a8cd6378.0_6::
+                           527	.LDWlin6:
+000000b2 18818008          528		e_addi	r4, sp, 8
+000000b6 4843              529		se_li	r3, 4
+000000b8 78000001          530		e_bl	SecM_GetInteger
+000000bc d13f              531		se_stw	r3, 4(r31)
+                           532	.L169:
+                           533	#390:       }
+                           534	#391: #endif /* SEC_<type>_ARRAY_SEED */
+                           535	#393:       if (SECM_OK == result)
+                           536	#394:       {
+                           537	#395:          /* Start validity timer of seed if applicable */
+                           538	#396:          SecM_StartKeyTimer();
+                           539	#397:       }
+                           540	#398:    }
+                           541	#400:    return result;
+000000be 01e3              542		se_mr	r3, r30
+                           543	#	    .ef
+                           544	.LDW51:
+000000c0 c701              545		se_lwz	r0, 28(sp)
+
+                                   Fri Apr 10 08:31:47 2020           Page 11
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000000c2 1bc10810          546		e_lmw	r30, 16(sp)
+000000c6 2171              547		se_addi	sp, 24
+000000c8 0090              548		se_mtlr	r0
+000000ca 0004              549		se_blr
+                           550		.global	__ghs_eofn_SecM_GenerateSeed
+                           551	__ghs_eofn_SecM_GenerateSeed:
+                           552		.type	SecM_GenerateSeed,@function
+                           553		.size	SecM_GenerateSeed,$-SecM_GenerateSeed
+                           554		.align	1
+                           555	
+                           556	#function:			SecM_GenerateSeed
+                           557	#stack frame size:		24
+                           558	#link area offset:		0
+                           559	#local storage area offset:	8
+                           560	#gpr save area offset:		16
+                           561	#
+                           562	#result	r30	local
+                           563	#pBaseSeed	r31	local
+                           564	#randomBuffer	8(sp)	local
+                           565	
+                           566	#seed	r3	param
+                           567	
+                           568		.data
+                           569		.section ".vletext", "vax"
+                           570		.vle
+                           571		.vle
+                           572	
+                           573	#401: }
+                           574	
+                           575	#403: #if defined( SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION )
+                           576	#404: #else
+                           577	#405: # if defined( SEC_ENABLE_SEED_KEY_ASYMMETRIC )
+                           578	#406: /***********************************************************************************************************************
+                           579	#407:  *  SecM_ComputeKey
+                           580	#408:  **********************************************************************************************************************/
+                           581	#409: /*! \brief       Calculates a seed value based on the provided key and constant value
+                           582	#410:  *  \details     API is a deviation from the HIS specification
+                           583	#411:  *               Modified to support asymmetric key calculation where only the tester is able to generate the key from
+                           584	#412:  *               the original seed value, e.g. using a private key.
+                           585	#413:  *  \pre         Function SecM_GenerateSeed must have been called at least once.
+                           586	#414:  *  \param[in]   inputKey The received key on which calculation shall be based
+                           587	#415:  *  \param[in]   constant A fixed constant used by the key calculation algorithm
+                           588	#416:  *                        Contains additional parameters (workspace, secret key) in case of extended API
+                           589	#417:  *  \param[out]  computedSeed Pointer to resulting seed as a formula of seed = f(key,k)
+                           590	#418:  *  \return      SECM_OK     if calculation was successful
+                           591	#419:  *               SECM_NOT_OK if calculation has failed (e.g. wrong parameters)
+                           592	#420:  **********************************************************************************************************************/
+                           593	#421: SecM_StatusType SecM_ComputeKey( SecM_KeyStorageType inputKey, SecM_ConstType constant,
+                           594	#422:    V_MEMRAM1 SecM_SeedStorageType V_MEMRAM2 V_MEMRAM3 * computedSeed )
+                           595	#423: {
+                           596	#424:    SecM_StatusType result;
+                           597	#426:    result = SecM_ComputeKeyVendor(inputKey, constant, computedSeed);
+                           598	#428:    return result;
+                           599	#429: }
+                           600	#430: # else
+                           601	#431: /***********************************************************************************************************************
+
+                                   Fri Apr 10 08:31:47 2020           Page 12
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           602	#432:  *  SecM_ComputeKey
+                           603	#433:  **********************************************************************************************************************/
+                           604	#434: /*! \brief       Calculates a key value based on the provided seed and constant value
+                           605	#435:  *  \pre         Function SecM_GenerateSeed must have been called at least once.
+                           606	#436:  *  \param[in]   inputSeed The random seed the key calculation shall be based on
+                           607	#437:  *  \param[in]   constant A fixed constant used by the key calculation algorithm
+                           608	#438:  *                        Contains additional parameters (workspace, secret key) in case of extended API
+                           609	#439:  *  \param[out]  computedKey Pointer to resulting key data as a formula of key = f(seed,k)
+                           610	#440:  *  \return      SECM_OK     if calculation was successful
+                           611	#441:  *               SECM_NOT_OK if calculation has failed (e.g. wrong parameters)
+                           612	#442:  **********************************************************************************************************************/
+                           613		.align	1
+                           614		.align	1
+                           615	..gh.f.p.5.a.1.r.0.e.3:
+                           616		.type	..gh.f.p.5.a.1.r.0.e.3,@object
+                           617		.size	..gh.f.p.5.a.1.r.0.e.3,0
+                           618		.global	SecM_ComputeKey
+                           619	SecM_ComputeKey:
+000000cc 0080              620		se_mflr	r0
+000000ce d101              621		se_stw	r0, 4(sp)
+000000d0 182106e8          622		e_stwu	sp, -24(sp)
+                           623	#	    .bf
+                           624	.LDW61:
+                           625	#443: SecM_StatusType SecM_ComputeKey( SecM_SeedStorageType inputSeed, SecM_ConstType constant,
+                           626	#444:    V_MEMRAM1 SecM_KeyStorageType V_MEMRAM2 V_MEMRAM3 * computedKey )
+                           627	#445: {
+                           628	#446:    SecM_StatusType result;
+                           629	#448:    result = SecM_ComputeKeyVendor(inputSeed, constant, computedKey);
+000000d4 c003              630		se_lwz	r0, 0(r3)
+000000d6 d201              631		se_stw	r0, 8(sp)
+000000d8 c103              632		se_lwz	r0, 4(r3)
+000000da 18e18008          633		e_addi	r7, sp, 8
+000000de d301              634		se_stw	r0, 12(sp)
+000000e0 0173              635		se_mr	r3, r7
+000000e2 78000001          636		e_bl	SecM_ComputeKeyVendor
+                           637	#450:    return result;
+                           638	#	    .ef
+                           639	.LDW71:
+000000e6 c701              640		se_lwz	r0, 28(sp)
+000000e8 2171              641		se_addi	sp, 24
+000000ea 0090              642		se_mtlr	r0
+000000ec 0004              643		se_blr
+                           644		.global	__ghs_eofn_SecM_ComputeKey
+                           645	__ghs_eofn_SecM_ComputeKey:
+                           646		.type	SecM_ComputeKey,@function
+                           647		.size	SecM_ComputeKey,$-SecM_ComputeKey
+                           648		.align	1
+                           649	
+                           650	#function:			SecM_ComputeKey
+                           651	#stack frame size:		24
+                           652	#link area offset:		0
+                           653	#local storage area offset:	8
+                           654	#
+                           655	
+                           656	#inputSeed	r3	param
+                           657	#constant	none	param
+
+                                   Fri Apr 10 08:31:47 2020           Page 13
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           658	#computedKey	none	param
+                           659	
+                           660		.data
+                           661		.section ".vletext", "vax"
+                           662		.vle
+                           663		.vle
+                           664	
+                           665	#451: }
+                           666	
+                           667	#452: # endif /* SEC_ENABLE_SEED_KEY_ASYMMETRIC */
+                           668	#453: #endif /* SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION */
+                           669	#455: /***********************************************************************************************************************
+                           670	#456:  *  SecM_CompareKey
+                           671	#457:  **********************************************************************************************************************/
+                           672	#458: /*! \brief       Compare received key against computed one
+                           673	#459:  *  \details     Runs the key calculation and compares the calculated key against the received key
+                           674	#460:  *  \pre         Function SecM_GenerateSeed must have been called before.
+                           675	#461:  *  \param[in]   key Key for the authorisation
+                           676	#462:  *                   Contains additional parameters (workspace, secret key) in case of extended API
+                           677	#463:  *  \param[in]   lastSeed Start value (seed) for the authorisation
+                           678	#464:  *  \return      SECM_OK if key calculation and comparison was successful
+                           679	#465:  *               SECM_NOT_OK if key calculation failed or key mismatch
+                           680	#466:  **********************************************************************************************************************/
+                           681		.align	1
+                           682		.align	1
+                           683	..gh.f.p.4.a.1.r.0.e.4:
+                           684		.type	..gh.f.p.4.a.1.r.0.e.4,@object
+                           685		.size	..gh.f.p.4.a.1.r.0.e.4,0
+                           686		.global	SecM_CompareKey
+                           687	SecM_CompareKey:
+000000ee 182106e8          688		e_stwu	sp, -24(sp)
+000000f2 0080              689		se_mflr	r0
+000000f4 d5f1              690		se_stw	r31, 20(sp)
+000000f6 d701              691		se_stw	r0, 28(sp)
+000000f8 013f              692		se_mr	r31, r3
+                           693	#	    .bf
+                           694	.LDW81:
+                           695	#467: SecM_StatusType SecM_CompareKey( SecM_KeyType key, SecM_SeedType lastSeed ) /* PRQA S 3673 */ /* MD_SecSeedKey_3673_1 */
+                           696	#468: {
+                           697	#469:    SecM_StatusType      result;
+                           698	#470:    SecM_ConstType       keyConstant;
+                           699	#471: #if defined( SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION )
+                           700	#472: #else
+                           701	#473:    SecM_CompareType     computeVal;
+                           702	#474: # if defined( SEC_COMPARE_SIZE )
+                           703	#475:    SecM_ShortFastType   index;
+                           704	#476: # endif /* SEC_COMPARE_SIZE */
+                           705	#478: /* Clear contents computed value */
+                           706	#479: # if defined( SEC_COMPARE_SIZE )
+                           707	#480:    for (index = 0u; index < SEC_COMPARE_SIZE; index++)
+                           708	#481:    {
+                           709	#482:       computeVal[index] = 0u;
+                           710	#483:    }
+                           711	#484: # else
+                           712	#485:    computeVal = 0u;
+000000fa 4800              713		se_li	r0, 0
+
+                                   Fri Apr 10 08:31:47 2020           Page 14
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000000fc d201              714		se_stw	r0, 8(sp)
+                           715	#486: # endif /* SEC_COMPARE_SIZE */
+                           716	#487: #endif /* SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION */
+                           717	#489:    /* Initialize local variables */
+                           718	#490:    result = SECM_NOT_OK;
+                           719	#492:    /* Verify validity of seed if applicable */
+                           720	#493:    if (SecM_GetKeyTimer() > 0u)
+                           721	#494:    {
+                           722	#495: #if defined( SEC_ENABLE_SEED_KEY_EXTENDED_API )
+                           723	#496:       /* Extended API used */
+                           724	#497:       /* Pass configured key constant */
+                           725	#498:       keyConstant.constant = SEC_ECU_KEY;
+                           726	#499:       /* Pass context required for calculation
+                           727	#500:          Move from key as this parameter is usually not available in SecM_ComputeKey */
+                           728	#501:       keyConstant.context  = key.context;
+                           729	#502: #else
+                           730	#503:       /* Pass configured key constant */
+                           731	#504:       keyConstant = SEC_ECU_KEY;
+                           732	#505: #endif /* SEC_ENABLE_SEED_KEY_EXTENDED_API */
+                           733	#507:       /* Run key calculation */
+                           734	#508: #if defined( SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION )
+                           735	#509:       result = SecM_CompareKeyVendor(SEC_BASE_KEY(key), SEC_BASE_SEED(lastSeed), keyConstant);
+                           736	#510: #else
+                           737	#511: # if defined( SEC_ENABLE_SEED_KEY_ASYMMETRIC )
+                           738	#512:       result = SecM_ComputeKey(SEC_BASE_KEY(key), keyConstant, &computeVal);
+                           739	#513: # else
+                           740	#514:       result = SecM_ComputeKey(SEC_BASE_SEED(lastSeed), keyConstant, &computeVal);
+000000fe c004              741		se_lwz	r0, 0(r4)
+00000100 d301              742		se_stw	r0, 12(sp)
+00000102 c104              743		se_lwz	r0, 4(r4)
+00000104 18a18008          744		e_addi	r5, sp, 8
+00000108 1861800c          745		e_addi	r3, sp, 12
+0000010c d401              746		se_stw	r0, 16(sp)
+0000010e 2c04              747		se_bmaski	r4, 0
+00000110 e900              748		se_bl	SecM_ComputeKey
+                           749	#515: # endif /* SEC_ENABLE_SEED_KEY_ASYMMETRIC */
+                           750	#517:       /* Compare provided value against computed value
+                           751	#518:          Perform full comparison regardless of current result to prevent timing analysis */
+                           752	#519: # if defined( SEC_COMPARE_SIZE )
+                           753	#520:       for (index = 0u; index < SEC_COMPARE_SIZE; index++)
+                           754	#521:       {
+                           755	#522:          if (computeVal[index] != SEC_COMPARE_VALUE[index])
+                           756	#523:          {
+                           757	#524:             /* Comparison failed report failure */
+                           758	#525:             result = SECM_NOT_OK;
+                           759	#526:          }
+                           760	#527:       }
+                           761	#528: # else
+                           762	#529:       if (computeVal != SEC_COMPARE_VALUE)
+                           763	#line529
+                           764	..lin.83d19c21..92c6bb3c.0_7::
+                           765	.LDWlin7:
+00000112 c271              766		se_lwz	r7, 8(sp)
+00000114 2c80              767		se_bmaski	r0, 8
+00000116 0cf7              768		se_cmp	r7, r31
+00000118 7c63009e          769		iseleq	r3, r3, r0
+
+                                   Fri Apr 10 08:31:47 2020           Page 15
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000011c 00c3              770		se_extzb	r3
+                           771	#530:       {
+                           772	#531:          /* Comparison failed report failure */
+                           773	#532:          result = SECM_NOT_OK;
+                           774	#533:       }
+                           775	#534: # endif /* SEC_COMPARE_SIZE */
+                           776	#535: #endif /* SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION */
+                           777	#537:       /* Invalidate seed validity */
+                           778	#538:       SecM_StopKeyTimer();
+                           779	#539:    }
+                           780	#541: #if defined( SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION )
+                           781	#542: #else
+                           782	#543:    /* Destroy temporary key (un-spy) */
+                           783	#544: # if defined( SEC_COMPARE_SIZE )
+                           784	#545:    for (index = 0u; index < SEC_COMPARE_SIZE; index++)
+                           785	#546:    {
+                           786	#547:       computeVal[index] = 0u;
+                           787	#548:    }
+                           788	#549: # else
+                           789	#550:    computeVal = 0u;
+                           790	#551: # endif
+                           791	#552: #endif /* SEC_ENABLE_SEED_KEY_EXTERNAL_COMPARISION */
+                           792	#554:    return result;
+                           793	#	    .ef
+                           794	.LDW91:
+0000011e c701              795		se_lwz	r0, 28(sp)
+00000120 c5f1              796		se_lwz	r31, 20(sp)
+00000122 2171              797		se_addi	sp, 24
+00000124 0090              798		se_mtlr	r0
+00000126 0004              799		se_blr
+                           800		.global	__ghs_eofn_SecM_CompareKey
+                           801	__ghs_eofn_SecM_CompareKey:
+                           802		.type	SecM_CompareKey,@function
+                           803		.size	SecM_CompareKey,$-SecM_CompareKey
+                           804		.align	1
+                           805	
+                           806	#function:			SecM_CompareKey
+                           807	#stack frame size:		24
+                           808	#link area offset:		0
+                           809	#local storage area offset:	8
+                           810	#gpr save area offset:		20
+                           811	#
+                           812	#result	r3	local
+                           813	#computeVal	8(sp)	local
+                           814	
+                           815	#key	r31	param
+                           816	#lastSeed	r4	param
+                           817	
+                           818		.data
+                           819		.section ".vletext", "vax"
+                           820		.vle
+                           821		.vle
+                           822	
+                           823	#555: }
+                           824		.align	1
+                           825	
+
+                                   Fri Apr 10 08:31:47 2020           Page 16
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                           826		.data
+                           827		.note ".PPC.EMB.apuinfo",""
+00000000 00000008          828		.long	0x00000008
+00000004 00000004          829		.long	4
+00000008 00000002          830		.long	0x00000002
+                           831		# "APUinfo\000"
+0000000c 41505569          832		.byte	65,80,85,105
+00000010 6e666f00          833		.byte	110,102,111,0
+00000014 01040001          834		.long	0x01040001
+                           835		.ghsnote version,20
+                           836		.ghsnote tools,3
+                           837		.ghsnote options,644
+                           838		.section ".vletext", "vax"
+                           839		.vle
+                           840		.vle
+                           841		.align	1
+                           842	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB063..0::
+                           843		.section	.debug_info
+                           844	.Ldw_begin:
+00000000 0000071e          845		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002              846		.byte	0,2
+00000006 00000000          847		.long	.Ldw_abbr_begin
+0000000a 04                848		.byte	4
+                           849		.section	.debug_abbrev
+                           850	.Ldw_abbr_begin:
+                           851		.section	.debug_info
+0000000b 01                852		.byte	1
+0000000c 00000000          853		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB063..0
+00000010 00000000          854		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB063..0
+00000014 2e2e2f2e2e2f2e2e  855		.strz	"../../../BSW/SecMod/Sec_SeedKey.c"
+0000001c 2f4253572f536563
+00000024 4d6f642f5365635f
+0000002c 536565644b65792e
+00000034 6300            
+00000036 433a5c566563746f  856		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+0000003e 725c434244313830
+00000046 303737325f443030
+0000004e 5f4d706335377878
+00000056 5c44656d6f5c4465
+0000005e 6d6f46626c5c4170
+00000066 706c00          
+00000069 4748532043203230  857		.strz	"GHS C 2017.5.4 [dual]"
+00000071 31372e352e34205b
+00000079 6475616c5d00    
+0000007f 0001              858		.byte	0,1
+00000081 00000000          859		.long	.Ldw_line_begin
+00000085 00000000          860		.long	.Ldw_macinfo_begin
+00000089 00                861		.byte	0
+                           862	
+                           863		.section	.debug_abbrev
+00000000 01                864		.byte	1
+00000001 11                865		.byte	17
+00000002 01                866		.byte	1
+00000003 1101              867		.byte	17,1
+00000005 1201              868		.byte	18,1
+00000007 0308              869		.byte	3,8
+00000009 1b08              870		.byte	27,8
+0000000b 2508              871		.byte	37,8
+0000000d 1305              872		.byte	19,5
+0000000f 1006              873		.byte	16,6
+00000011 4306              874		.byte	67,6
+00000013 420b              875		.byte	66,11
+00000015 0000              876		.byte	0,0
+                           877	
+                           878		.section	.debug_line
+                           879	.Ldw_line_begin:
+00000000 000002ae          880		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002              881		.byte	0,2
+
+                                   Fri Apr 10 08:31:47 2020           Page 17
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000006 000001a3          882		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                           883	.Ldw_lpro_begin:
+0000000a 01                884		.byte	1
+0000000b 00                885		.byte	0
+0000000c 00                886		.byte	0
+0000000d 04                887		.byte	4
+0000000e 0a                888		.byte	10
+0000000f 000101            889		.byte	0,1,1
+00000012 010100            890		.byte	1,1,0
+00000015 000001            891		.byte	0,0,1
+00000018 00                892		.byte	0
+00000019 2e2e2f2e2e2f2e2e  893		.strz	"../../../BSW/SecMod/Sec_SeedKey.c"
+00000021 2f4253572f536563
+00000029 4d6f642f5365635f
+00000031 536565644b65792e
+00000039 6300            
+0000003b 000000            894		.byte	0,0,0
+0000003e 2e2e2f2e2e2f2e2e  895		.strz	"../../../BSW/SecMod/Sec_Inc.h"
+00000046 2f4253572f536563
+0000004e 4d6f642f5365635f
+00000056 496e632e6800    
+0000005c 000000            896		.byte	0,0,0
+0000005f 67656e646174615c  897		.strz	"gendata\\v_cfg.h"
+00000067 765f6366672e6800
+0000006f 000000            898		.byte	0,0,0
+00000072 2e2e2f2e2e2f2e2e  899		.strz	"../../../bsw/_common/v_def.h"
+0000007a 2f6273772f5f636f
+00000082 6d6d6f6e2f765f64
+0000008a 65662e6800      
+0000008f 000000            900		.byte	0,0,0
+00000092 67656e646174615c  901		.strz	"gendata\\SecM_cfg.h"
+0000009a 5365634d5f636667
+000000a2 2e6800          
+000000a5 000000            902		.byte	0,0,0
+000000a8 2e2e2f2e2e2f2e2e  903		.strz	"../../../BSW/SecMod/Sec_Types.h"
+000000b0 2f4253572f536563
+000000b8 4d6f642f5365635f
+000000c0 54797065732e6800
+000000c8 000000            904		.byte	0,0,0
+000000cb 67656e646174615c  905		.strz	"gendata\\SecMPar.h"
+000000d3 5365634d5061722e
+000000db 6800            
+000000dd 000000            906		.byte	0,0,0
+000000e0 2e2e2f2e2e2f2e2e  907		.strz	"../../../bsw/secmod/SecM_inc.h"
+000000e8 2f6273772f736563
+000000f0 6d6f642f5365634d
+000000f8 5f696e632e6800  
+000000ff 000000            908		.byte	0,0,0
+00000102 2e2e2f2e2e2f2e2e  909		.strz	"../../../BSW/SecMod/Sec_SeedKey.h"
+0000010a 2f4253572f536563
+00000112 4d6f642f5365635f
+0000011a 536565644b65792e
+00000122 6800            
+00000124 000000            910		.byte	0,0,0
+00000127 696e636c7564655c  911		.strz	"include\\Sec_SeedKey_Cfg.h"
+0000012f 5365635f53656564
+00000137 4b65795f4366672e
+0000013f 6800            
+00000141 000000            912		.byte	0,0,0
+00000144 2e2e2f2e2e2f2e2e  913		.strz	"../../../BSW/SecMod/Sec.h"
+0000014c 2f4253572f536563
+00000154 4d6f642f5365632e
+0000015c 6800            
+0000015e 000000            914		.byte	0,0,0
+00000161 2e2e2f2e2e2f2e2e  915		.strz	"../../../BSW/SecMod/Sec_Crc.h"
+00000169 2f4253572f536563
+00000171 4d6f642f5365635f
+00000179 4372632e6800    
+0000017f 000000            916		.byte	0,0,0
+00000182 2e2e2f2e2e2f2e2e  917		.strz	"../../../BSW/SecMod/Sec_Verification.h"
+0000018a 2f4253572f536563
+00000192 4d6f642f5365635f
+0000019a 5665726966696361
+000001a2 74696f6e2e6800  
+000001a9 000000            918		.byte	0,0,0
+000001ac 00                919		.byte	0
+                           920	.Ldw_lpro_end:
+                           921		.section	.debug_macinfo
+                           922	.Ldw_macinfo_begin:
+                           923		.section	.debug_frame
+                           924	.LDW_5c18988:
+00000000 0000008c          925		.long	.LDW_unq_2-.LDW_unq_1
+                           926	.LDW_unq_1:
+00000004 ffffffff          927		.byte	255,255,255,255
+00000008 01                928		.byte	1
+00000009 00                929		.byte	0
+0000000a 01                930		.byte	1
+0000000b 01                931		.byte	1
+0000000c 6c                932		.byte	108
+0000000d 0c                933		.byte	12
+0000000e 01                934		.byte	1
+0000000f 00                935		.byte	0
+00000010 07                936		.byte	7
+00000011 00                937		.byte	0
+
+                                   Fri Apr 10 08:31:47 2020           Page 18
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000012 07                938		.byte	7
+00000013 01                939		.byte	1
+00000014 07                940		.byte	7
+00000015 02                941		.byte	2
+00000016 07                942		.byte	7
+00000017 03                943		.byte	3
+00000018 07                944		.byte	7
+00000019 04                945		.byte	4
+0000001a 07                946		.byte	7
+0000001b 05                947		.byte	5
+0000001c 07                948		.byte	7
+0000001d 06                949		.byte	6
+0000001e 07                950		.byte	7
+0000001f 07                951		.byte	7
+00000020 07                952		.byte	7
+00000021 08                953		.byte	8
+00000022 07                954		.byte	7
+00000023 09                955		.byte	9
+00000024 07                956		.byte	7
+00000025 0a                957		.byte	10
+00000026 07                958		.byte	7
+00000027 0b                959		.byte	11
+00000028 07                960		.byte	7
+00000029 0c                961		.byte	12
+0000002a 07                962		.byte	7
+0000002b 0d                963		.byte	13
+0000002c 07                964		.byte	7
+0000002d 0e                965		.byte	14
+0000002e 07                966		.byte	7
+0000002f 0f                967		.byte	15
+00000030 07                968		.byte	7
+00000031 10                969		.byte	16
+00000032 07                970		.byte	7
+00000033 11                971		.byte	17
+00000034 07                972		.byte	7
+00000035 12                973		.byte	18
+00000036 07                974		.byte	7
+00000037 13                975		.byte	19
+00000038 07                976		.byte	7
+00000039 14                977		.byte	20
+0000003a 07                978		.byte	7
+0000003b 15                979		.byte	21
+0000003c 07                980		.byte	7
+0000003d 16                981		.byte	22
+0000003e 07                982		.byte	7
+0000003f 17                983		.byte	23
+00000040 07                984		.byte	7
+00000041 18                985		.byte	24
+00000042 07                986		.byte	7
+00000043 19                987		.byte	25
+00000044 07                988		.byte	7
+00000045 1a                989		.byte	26
+00000046 07                990		.byte	7
+00000047 1b                991		.byte	27
+00000048 07                992		.byte	7
+00000049 1c                993		.byte	28
+
+                                   Fri Apr 10 08:31:47 2020           Page 19
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000004a 07                994		.byte	7
+0000004b 1d                995		.byte	29
+0000004c 07                996		.byte	7
+0000004d 1e                997		.byte	30
+0000004e 07                998		.byte	7
+0000004f 1f                999		.byte	31
+00000050 07               1000		.byte	7
+00000051 20               1001		.byte	32
+00000052 07               1002		.byte	7
+00000053 21               1003		.byte	33
+00000054 07               1004		.byte	7
+00000055 22               1005		.byte	34
+00000056 07               1006		.byte	7
+00000057 23               1007		.byte	35
+00000058 07               1008		.byte	7
+00000059 24               1009		.byte	36
+0000005a 07               1010		.byte	7
+0000005b 25               1011		.byte	37
+0000005c 07               1012		.byte	7
+0000005d 26               1013		.byte	38
+0000005e 07               1014		.byte	7
+0000005f 27               1015		.byte	39
+00000060 07               1016		.byte	7
+00000061 28               1017		.byte	40
+00000062 07               1018		.byte	7
+00000063 29               1019		.byte	41
+00000064 07               1020		.byte	7
+00000065 2a               1021		.byte	42
+00000066 07               1022		.byte	7
+00000067 2b               1023		.byte	43
+00000068 07               1024		.byte	7
+00000069 2c               1025		.byte	44
+0000006a 07               1026		.byte	7
+0000006b 2d               1027		.byte	45
+0000006c 07               1028		.byte	7
+0000006d 2e               1029		.byte	46
+0000006e 07               1030		.byte	7
+0000006f 2f               1031		.byte	47
+00000070 07               1032		.byte	7
+00000071 30               1033		.byte	48
+00000072 07               1034		.byte	7
+00000073 31               1035		.byte	49
+00000074 07               1036		.byte	7
+00000075 32               1037		.byte	50
+00000076 07               1038		.byte	7
+00000077 33               1039		.byte	51
+00000078 07               1040		.byte	7
+00000079 34               1041		.byte	52
+0000007a 07               1042		.byte	7
+0000007b 35               1043		.byte	53
+0000007c 07               1044		.byte	7
+0000007d 36               1045		.byte	54
+0000007e 07               1046		.byte	7
+0000007f 37               1047		.byte	55
+00000080 07               1048		.byte	7
+00000081 38               1049		.byte	56
+
+                                   Fri Apr 10 08:31:47 2020           Page 20
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000082 07               1050		.byte	7
+00000083 39               1051		.byte	57
+00000084 07               1052		.byte	7
+00000085 3a               1053		.byte	58
+00000086 07               1054		.byte	7
+00000087 3b               1055		.byte	59
+00000088 07               1056		.byte	7
+00000089 3c               1057		.byte	60
+0000008a 07               1058		.byte	7
+0000008b 3d               1059		.byte	61
+0000008c 07               1060		.byte	7
+0000008d 3e               1061		.byte	62
+0000008e 07               1062		.byte	7
+0000008f 3f               1063		.byte	63
+                          1064	.LDW_unq_2:
+                          1065		.section	.debug_info
+                          1066	.LDW_496c790:
+0000008a 27               1067		.byte	39
+0000008b 756e7369676e6564 1068		.strz	"unsigned long"
+00000093 206c6f6e6700    
+00000099 07               1069		.byte	7
+0000009a 04               1070		.byte	4
+                          1071	
+                          1072		.section	.debug_abbrev
+00000017 27               1073		.byte	39
+00000018 24               1074		.byte	36
+00000019 00               1075		.byte	0
+0000001a 0308             1076		.byte	3,8
+0000001c 3e0b             1077		.byte	62,11
+0000001e 0b0b             1078		.byte	11,11
+00000020 0000             1079		.byte	0,0
+                          1080	
+                          1081		.section	.debug_info
+                          1082	.LDW_496c6b0:
+0000009b 46               1083		.byte	70
+0000009c 00000000         1084		.long	.LDW_49aa4d8
+000000a0 01               1085		.byte	1
+                          1086	
+                          1087		.section	.debug_abbrev
+00000022 46               1088		.byte	70
+00000023 15               1089		.byte	21
+00000024 01               1090		.byte	1
+00000025 4910             1091		.byte	73,16
+00000027 270c             1092		.byte	39,12
+00000029 0000             1093		.byte	0,0
+                          1094	
+                          1095		.section	.debug_info
+                          1096	.LDW_4963530:
+000000a1 14               1097		.byte	20
+000000a2 00000000         1098		.long	.LDW_49aa4d8
+000000a6 00               1099		.byte	0
+                          1100	
+                          1101		.section	.debug_abbrev
+0000002b 14               1102		.byte	20
+0000002c 05               1103		.byte	5
+0000002d 00               1104		.byte	0
+0000002e 4910             1105		.byte	73,16
+
+                                   Fri Apr 10 08:31:47 2020           Page 21
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000030 4b0c             1106		.byte	75,12
+00000032 0000             1107		.byte	0,0
+                          1108	
+                          1109		.section	.debug_info
+000000a7 00               1110		.byte	0
+                          1111	
+                          1112	.LDW_496c608:
+000000a8 27               1113		.byte	39
+000000a9 756e7369676e6564 1114		.strz	"unsigned char"
+000000b1 206368617200    
+000000b7 08               1115		.byte	8
+000000b8 01               1116		.byte	1
+                          1117	
+                          1118	.LDW_496c7c8:
+000000b9 31               1119		.byte	49
+000000ba 00000000         1120		.long	.LDW_49aa6d0
+                          1121	
+                          1122		.section	.debug_abbrev
+00000034 31               1123		.byte	49
+00000035 0f               1124		.byte	15
+00000036 00               1125		.byte	0
+00000037 4910             1126		.byte	73,16
+00000039 0000             1127		.byte	0,0
+                          1128	
+                          1129		.section	.debug_info
+                          1130	.LDW_496c950:
+000000be 27               1131		.byte	39
+000000bf 756e7369676e6564 1132		.strz	"unsigned short"
+000000c7 2073686f727400  
+000000ce 07               1133		.byte	7
+000000cf 02               1134		.byte	2
+                          1135	
+                          1136	.LDW_496c5d0:
+000000d0 46               1137		.byte	70
+000000d1 00000000         1138		.long	.LDW_49aa728
+000000d5 01               1139		.byte	1
+                          1140	
+                          1141	.LDW_4963260:
+000000d6 14               1142		.byte	20
+000000d7 00000000         1143		.long	.LDW_496c7c8
+000000db 00               1144		.byte	0
+                          1145	
+                          1146	.LDW_49635c0:
+000000dc 14               1147		.byte	20
+000000dd 00000000         1148		.long	.LDW_49aa830
+000000e1 00               1149		.byte	0
+                          1150	
+000000e2 00               1151		.byte	0
+                          1152	
+                          1153	.LDW_496c528:
+000000e3 31               1154		.byte	49
+000000e4 00000000         1155		.long	.LDW_49aaed8
+                          1156	
+                          1157	.LDW_496c640:
+000000e8 46               1158		.byte	70
+000000e9 00000000         1159		.long	.LDW_49aa728
+000000ed 01               1160		.byte	1
+                          1161	
+
+                                   Fri Apr 10 08:31:47 2020           Page 22
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          1162	.LDW_4963410:
+000000ee 14               1163		.byte	20
+000000ef 00000000         1164		.long	.LDW_496c528
+000000f3 00               1165		.byte	0
+                          1166	
+000000f4 00               1167		.byte	0
+                          1168	
+                          1169	.LDW_496c800:
+000000f5 31               1170		.byte	49
+000000f6 00000000         1171		.long	.LDW_49aad20
+                          1172	
+                          1173	.LDW_496c480:
+000000fa 27               1174		.byte	39
+000000fb 696e7400         1175		.strz	"int"
+000000ff 05               1176		.byte	5
+00000100 04               1177		.byte	4
+                          1178	
+                          1179	.LDW_5c40fa0:
+00000101 3c               1180		.byte	60
+00000102 00               1181		.byte	0
+00000103 08               1182		.byte	8
+00000104 00000000         1183		.long	.LDW_49aa6d0
+                          1184	
+                          1185		.section	.debug_abbrev
+0000003b 3c               1186		.byte	60
+0000003c 01               1187		.byte	1
+0000003d 01               1188		.byte	1
+0000003e 090b             1189		.byte	9,11
+00000040 0b0f             1190		.byte	11,15
+00000042 4910             1191		.byte	73,16
+00000044 0000             1192		.byte	0,0
+                          1193	
+                          1194		.section	.debug_info
+00000108 34               1195		.byte	52
+00000109 00000000         1196		.long	.LDW_496c480
+0000010d 04               1197		.byte	4
+0000010e 00               1198		.byte	0
+0000010f 07               1199		.byte	7
+                          1200	
+                          1201		.section	.debug_abbrev
+00000046 34               1202		.byte	52
+00000047 21               1203		.byte	33
+00000048 00               1204		.byte	0
+00000049 4910             1205		.byte	73,16
+0000004b 0b0f             1206		.byte	11,15
+0000004d 220d             1207		.byte	34,13
+0000004f 2f0d             1208		.byte	47,13
+00000051 0000             1209		.byte	0,0
+                          1210	
+                          1211		.section	.debug_info
+00000110 00               1212		.byte	0
+                          1213	
+                          1214	.LDW_496c678:
+00000111 31               1215		.byte	49
+00000112 00000000         1216		.long	.LDW_49aac70
+                          1217	
+
+                                   Fri Apr 10 08:31:47 2020           Page 23
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          1218	.LDW_496c4b8:
+00000116 46               1219		.byte	70
+00000117 00000000         1220		.long	.LDW_49aa728
+0000011b 01               1221		.byte	1
+                          1222	
+                          1223	.LDW_4963590:
+0000011c 14               1224		.byte	20
+0000011d 00000000         1225		.long	.LDW_49aadd0
+00000121 00               1226		.byte	0
+                          1227	
+                          1228	.LDW_4963320:
+00000122 14               1229		.byte	20
+00000123 00000000         1230		.long	.LDW_49aab68
+00000127 00               1231		.byte	0
+                          1232	
+                          1233	.LDW_4963140:
+00000128 14               1234		.byte	20
+00000129 00000000         1235		.long	.LDW_496c678
+0000012d 00               1236		.byte	0
+                          1237	
+0000012e 00               1238		.byte	0
+                          1239	
+                          1240	.LDW_496c988:
+0000012f 46               1241		.byte	70
+00000130 00000000         1242		.long	.LDW_49aa728
+00000134 01               1243		.byte	1
+                          1244	
+                          1245	.LDW_4963230:
+00000135 14               1246		.byte	20
+00000136 00000000         1247		.long	.LDW_49aafe0
+0000013a 00               1248		.byte	0
+                          1249	
+                          1250	.LDW_49635f0:
+0000013b 14               1251		.byte	20
+0000013c 00000000         1252		.long	.LDW_49aaed8
+00000140 00               1253		.byte	0
+                          1254	
+00000141 00               1255		.byte	0
+                          1256	
+                          1257	.LDW_5c43ad8:
+00000142 2b               1258		.byte	43
+00000143 00000000         1259		.long	.LDW_49aa6d0
+                          1260	
+                          1261		.section	.debug_abbrev
+00000053 2b               1262		.byte	43
+00000054 26               1263		.byte	38
+00000055 00               1264		.byte	0
+00000056 4910             1265		.byte	73,16
+00000058 0000             1266		.byte	0,0
+                          1267	
+                          1268		.section	.debug_info
+                          1269	.LDW_496c3d8:
+00000147 31               1270		.byte	49
+00000148 00000000         1271		.long	.LDW_5c43ad8
+                          1272	
+                          1273	.LDW_5c467e0:
+
+                                   Fri Apr 10 08:31:47 2020           Page 24
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000014c 46               1274		.byte	70
+0000014d 00000000         1275		.long	.LDW_49aa728
+00000151 01               1276		.byte	1
+                          1277	
+                          1278	.LDW_49637a0:
+00000152 14               1279		.byte	20
+00000153 00000000         1280		.long	.LDW_49aadd0
+00000157 00               1281		.byte	0
+                          1282	
+                          1283	.LDW_4963800:
+00000158 14               1284		.byte	20
+00000159 00000000         1285		.long	.LDW_49aab68
+0000015d 00               1286		.byte	0
+                          1287	
+                          1288	.LDW_4963830:
+0000015e 14               1289		.byte	20
+0000015f 00000000         1290		.long	.LDW_496c678
+00000163 00               1291		.byte	0
+                          1292	
+00000164 00               1293		.byte	0
+                          1294	
+                          1295	.LDW_5c469a0:
+00000165 46               1296		.byte	70
+00000166 00000000         1297		.long	.LDW_49aa4d8
+0000016a 01               1298		.byte	1
+                          1299	
+                          1300	.LDW_5c48228:
+0000016b 14               1301		.byte	20
+0000016c 00000000         1302		.long	.LDW_5c43c38
+00000170 00               1303		.byte	0
+                          1304	
+                          1305	.LDW_5c480d8:
+00000171 14               1306		.byte	20
+00000172 00000000         1307		.long	.LDW_5c433f8
+00000176 00               1308		.byte	0
+                          1309	
+00000177 00               1310		.byte	0
+                          1311	
+                          1312	.LDW_5c46968:
+00000178 47               1313		.byte	71
+00000179 01               1314		.byte	1
+                          1315	
+                          1316		.section	.debug_abbrev
+0000005a 47               1317		.byte	71
+0000005b 15               1318		.byte	21
+0000005c 01               1319		.byte	1
+0000005d 270c             1320		.byte	39,12
+0000005f 0000             1321		.byte	0,0
+                          1322	
+                          1323		.section	.debug_info
+                          1324	.LDW_5c482b8:
+0000017a 14               1325		.byte	20
+0000017b 00000000         1326		.long	.LDW_5c43c38
+0000017f 00               1327		.byte	0
+                          1328	
+                          1329	.LDW_5c48378:
+
+                                   Fri Apr 10 08:31:47 2020           Page 25
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000180 14               1330		.byte	20
+00000181 00000000         1331		.long	.LDW_49aa4d8
+00000185 00               1332		.byte	0
+                          1333	
+                          1334	.LDW_5c47ef8:
+00000186 14               1335		.byte	20
+00000187 00000000         1336		.long	.LDW_5c434a8
+0000018b 00               1337		.byte	0
+                          1338	
+0000018c 00               1339		.byte	0
+                          1340	
+                          1341	.LDW_49aa678:
+0000018d 2a               1342		.byte	42
+0000018e 7675696e743800   1343		.strz	"vuint8"
+00000195 9b04             1344		.byte	155,4
+00000197 18               1345		.byte	24
+00000198 04               1346		.byte	4
+00000199 00000000         1347		.long	.LDW_496c608
+                          1348	
+                          1349		.section	.debug_abbrev
+00000061 2a               1350		.byte	42
+00000062 16               1351		.byte	22
+00000063 00               1352		.byte	0
+00000064 0308             1353		.byte	3,8
+00000066 3b0f             1354		.byte	59,15
+00000068 390f             1355		.byte	57,15
+0000006a 3a0f             1356		.byte	58,15
+0000006c 4910             1357		.byte	73,16
+0000006e 0000             1358		.byte	0,0
+                          1359	
+                          1360		.section	.debug_info
+                          1361	.LDW_49aa780:
+0000019d 2a               1362		.byte	42
+0000019e 7675696e74313600 1363		.strz	"vuint16"
+000001a6 a604             1364		.byte	166,4
+000001a8 18               1365		.byte	24
+000001a9 04               1366		.byte	4
+000001aa 00000000         1367		.long	.LDW_496c950
+                          1368	
+                          1369	.LDW_49aa480:
+000001ae 2a               1370		.byte	42
+000001af 7675696e74333200 1371		.strz	"vuint32"
+000001b7 b204             1372		.byte	178,4
+000001b9 18               1373		.byte	24
+000001ba 04               1374		.byte	4
+000001bb 00000000         1375		.long	.LDW_496c790
+                          1376	
+                          1377	.LDW_49aa6d0:
+000001bf 2a               1378		.byte	42
+000001c0 5365634d5f427974 1379		.strz	"SecM_ByteType"
+000001c8 655479706500    
+000001ce 9802             1380		.byte	152,2
+000001d0 11               1381		.byte	17
+000001d1 06               1382		.byte	6
+000001d2 00000000         1383		.long	.LDW_49aa678
+                          1384	
+                          1385	.LDW_49aa7d8:
+
+                                   Fri Apr 10 08:31:47 2020           Page 26
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000001d6 2a               1386		.byte	42
+000001d7 5365634d5f53686f 1387		.strz	"SecM_ShortType"
+000001df 72745479706500  
+000001e6 9a02             1388		.byte	154,2
+000001e8 11               1389		.byte	17
+000001e9 06               1390		.byte	6
+000001ea 00000000         1391		.long	.LDW_49aa780
+                          1392	
+                          1393	.LDW_5c434a8:
+000001ee 2a               1394		.byte	42
+000001ef 5365634d5f52616d 1395		.strz	"SecM_RamDataType"
+000001f7 4461746154797065
+000001ff 00              
+00000200 9d02             1396		.byte	157,2
+00000202 3d               1397		.byte	61
+00000203 06               1398		.byte	6
+00000204 00000000         1399		.long	.LDW_496c7c8
+                          1400	
+                          1401	.LDW_5c433f8:
+00000208 2a               1402		.byte	42
+00000209 5365634d5f436f6e 1403		.strz	"SecM_ConstRamDataType"
+00000211 737452616d446174
+00000219 615479706500    
+0000021f 9f02             1404		.byte	159,2
+00000221 3d               1405		.byte	61
+00000222 06               1406		.byte	6
+00000223 00000000         1407		.long	.LDW_496c3d8
+                          1408	
+                          1409	.LDW_49aa728:
+00000227 2a               1410		.byte	42
+00000228 5365634d5f537461 1411		.strz	"SecM_StatusType"
+00000230 7475735479706500
+00000238 ac02             1412		.byte	172,2
+0000023a 17               1413		.byte	23
+0000023b 06               1414		.byte	6
+0000023c 00000000         1415		.long	.LDW_49aa6d0
+                          1416	
+                          1417	.LDW_49aa4d8:
+00000240 2a               1418		.byte	42
+00000241 5365634d5f576f72 1419		.strz	"SecM_WordType"
+00000249 645479706500    
+0000024f ae02             1420		.byte	174,2
+00000251 11               1421		.byte	17
+00000252 06               1422		.byte	6
+00000253 00000000         1423		.long	.LDW_49aa480
+                          1424	
+                          1425	.LDW_49aa830:
+00000257 2a               1426		.byte	42
+00000258 5365634d5f4c656e 1427		.strz	"SecM_LengthType"
+00000260 6774685479706500
+00000268 b002             1428		.byte	176,2
+0000026a 18               1429		.byte	24
+0000026b 06               1430		.byte	6
+0000026c 00000000         1431		.long	.LDW_49aa7d8
+                          1432	
+                          1433	.LDW_5c43c38:
+00000270 2a               1434		.byte	42
+00000271 5365634d5f427974 1435		.strz	"SecM_ByteFastType"
+00000279 6546617374547970
+00000281 6500            
+00000283 db02             1436		.byte	219,2
+00000285 19               1437		.byte	25
+00000286 06               1438		.byte	6
+00000287 00000000         1439		.long	.LDW_49aa4d8
+                          1440	
+                          1441	.LDW_49aec38:
+
+                                   Fri Apr 10 08:31:47 2020           Page 27
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000028b 2a               1442		.byte	42
+0000028c 5365634d5f53686f 1443		.strz	"SecM_ShortFastType"
+00000294 7274466173745479
+0000029c 706500          
+0000029f dc02             1444		.byte	220,2
+000002a1 19               1445		.byte	25
+000002a2 06               1446		.byte	6
+000002a3 00000000         1447		.long	.LDW_49aa4d8
+                          1448	
+                          1449	.LDW_49aae80:
+000002a7 2a               1450		.byte	42
+000002a8 5365634d5f4b6579 1451		.strz	"SecM_KeyBaseType"
+000002b0 4261736554797065
+000002b8 00              
+000002b9 a401             1452		.byte	164,1
+000002bb 1c               1453		.byte	28
+000002bc 09               1454		.byte	9
+000002bd 00000000         1455		.long	.LDW_49aa4d8
+                          1456	
+                          1457	.LDW_49aac70:
+000002c1 2a               1458		.byte	42
+000002c2 5365634d5f4b6579 1459		.strz	"SecM_KeyStorageType"
+000002ca 53746f7261676554
+000002d2 79706500        
+000002d6 a601             1460		.byte	166,1
+000002d8 1c               1461		.byte	28
+000002d9 09               1462		.byte	9
+000002da 00000000         1463		.long	.LDW_49aae80
+                          1464	
+                          1465	.LDW_49ab198:
+000002de 43               1466		.byte	67
+000002df b901             1467		.byte	185,1
+000002e1 01               1468		.byte	1
+000002e2 09               1469		.byte	9
+000002e3 08               1470		.byte	8
+000002e4 01               1471		.byte	1
+                          1472	
+                          1473		.section	.debug_abbrev
+00000070 43               1474		.byte	67
+00000071 13               1475		.byte	19
+00000072 01               1476		.byte	1
+00000073 3b0f             1477		.byte	59,15
+00000075 390f             1478		.byte	57,15
+00000077 3a0f             1479		.byte	58,15
+00000079 0b0f             1480		.byte	11,15
+0000007b 320b             1481		.byte	50,11
+0000007d 0000             1482		.byte	0,0
+                          1483	
+                          1484		.section	.debug_info
+                          1485	.LDW_5c45548:
+000002e5 25               1486		.byte	37
+000002e6 736565645800     1487		.strz	"seedX"
+000002ec ba01             1488		.byte	186,1
+000002ee 12               1489		.byte	18
+000002ef 09               1490		.byte	9
+000002f0 00000000         1491		.long	.LDW_49aa4d8
+000002f4 0223             1492		.byte	2,35
+000002f6 00               1493		.byte	0
+000002f7 01               1494		.byte	1
+                          1495	
+                          1496		.section	.debug_abbrev
+0000007f 25               1497		.byte	37
+
+                                   Fri Apr 10 08:31:47 2020           Page 28
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000080 0d               1498		.byte	13
+00000081 00               1499		.byte	0
+00000082 0308             1500		.byte	3,8
+00000084 3b0f             1501		.byte	59,15
+00000086 390f             1502		.byte	57,15
+00000088 3a0f             1503		.byte	58,15
+0000008a 4910             1504		.byte	73,16
+0000008c 380a             1505		.byte	56,10
+0000008e 320b             1506		.byte	50,11
+00000090 0000             1507		.byte	0,0
+                          1508	
+                          1509		.section	.debug_info
+                          1510	.LDW_5c45740:
+000002f8 25               1511		.byte	37
+000002f9 736565645900     1512		.strz	"seedY"
+000002ff bb01             1513		.byte	187,1
+00000301 12               1514		.byte	18
+00000302 09               1515		.byte	9
+00000303 00000000         1516		.long	.LDW_49aa4d8
+00000307 0223             1517		.byte	2,35
+00000309 04               1518		.byte	4
+0000030a 01               1519		.byte	1
+                          1520	
+0000030b 00               1521		.byte	0
+                          1522	
+                          1523	.LDW_49aad20:
+0000030c 2a               1524		.byte	42
+0000030d 5365634d5f536565 1525		.strz	"SecM_SeedBaseType"
+00000315 6442617365547970
+0000031d 6500            
+0000031f bc01             1526		.byte	188,1
+00000321 03               1527		.byte	3
+00000322 09               1528		.byte	9
+00000323 00000000         1529		.long	.LDW_49ab198
+                          1530	
+                          1531	.LDW_49aadd0:
+00000327 2a               1532		.byte	42
+00000328 5365634d5f536565 1533		.strz	"SecM_SeedStorageType"
+00000330 6453746f72616765
+00000338 5479706500      
+0000033d be01             1534		.byte	190,1
+0000033f 1c               1535		.byte	28
+00000340 09               1536		.byte	9
+00000341 00000000         1537		.long	.LDW_49aad20
+                          1538	
+                          1539	.LDW_49aacc8:
+00000345 2a               1540		.byte	42
+00000346 5365634d5f436f6e 1541		.strz	"SecM_ConstBaseType"
+0000034e 7374426173655479
+00000356 706500          
+00000359 c101             1542		.byte	193,1
+0000035b 1c               1543		.byte	28
+0000035c 09               1544		.byte	9
+0000035d 00000000         1545		.long	.LDW_49aa4d8
+                          1546	
+                          1547	.LDW_49aab68:
+00000361 2a               1548		.byte	42
+00000362 5365634d5f436f6e 1549		.strz	"SecM_ConstType"
+0000036a 73745479706500  
+00000371 f101             1550		.byte	241,1
+00000373 1c               1551		.byte	28
+00000374 09               1552		.byte	9
+00000375 00000000         1553		.long	.LDW_49aacc8
+
+                                   Fri Apr 10 08:31:47 2020           Page 29
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          1554	
+                          1555	.LDW_49aaed8:
+00000379 2a               1556		.byte	42
+0000037a 5365634d5f536565 1557		.strz	"SecM_SeedType"
+00000382 645479706500    
+00000388 fa01             1558		.byte	250,1
+0000038a 1f               1559		.byte	31
+0000038b 09               1560		.byte	9
+0000038c 00000000         1561		.long	.LDW_49aadd0
+                          1562	
+                          1563	.LDW_49aafe0:
+00000390 2a               1564		.byte	42
+00000391 5365634d5f4b6579 1565		.strz	"SecM_KeyType"
+00000399 5479706500      
+0000039e 8a02             1566		.byte	138,2
+000003a0 1f               1567		.byte	31
+000003a1 09               1568		.byte	9
+000003a2 00000000         1569		.long	.LDW_49aac70
+                          1570	
+                          1571	.LDW_5c43348:
+000003a6 2a               1572		.byte	42
+000003a7 5365634d5f436f6d 1573		.strz	"SecM_CompareType"
+000003af 7061726554797065
+000003b7 00              
+000003b8 a501             1574		.byte	165,1
+000003ba 1f               1575		.byte	31
+000003bb 01               1576		.byte	1
+000003bc 00000000         1577		.long	.LDW_49aac70
+                          1578	
+                          1579	.LDW_5c47a10:
+000003c0 18               1580		.byte	24
+000003c1 5365634d5f436f6d 1581		.strz	"SecM_ComputeKeyVendor"
+000003c9 707574654b657956
+000003d1 656e646f7200    
+000003d7 b702             1582		.byte	183,2
+000003d9 18               1583		.byte	24
+000003da 09               1584		.byte	9
+000003db 00000000         1585		.long	.LDW_49aa728
+000003df 01               1586		.byte	1
+000003e0 00               1587		.byte	0
+000003e1 01               1588		.byte	1
+000003e2 01               1589		.byte	1
+000003e3 00               1590		.byte	0
+000003e4 01               1591		.byte	1
+                          1592	
+                          1593		.section	.debug_abbrev
+00000092 18               1594		.byte	24
+00000093 2e               1595		.byte	46
+00000094 01               1596		.byte	1
+00000095 0308             1597		.byte	3,8
+00000097 3b0f             1598		.byte	59,15
+00000099 390f             1599		.byte	57,15
+0000009b 3a0f             1600		.byte	58,15
+0000009d 4910             1601		.byte	73,16
+0000009f 3c0c             1602		.byte	60,12
+000000a1 200b             1603		.byte	32,11
+000000a3 3f0c             1604		.byte	63,12
+000000a5 320b             1605		.byte	50,11
+000000a7 4c0b             1606		.byte	76,11
+000000a9 270c             1607		.byte	39,12
+000000ab 0000             1608		.byte	0,0
+                          1609	
+
+                                   Fri Apr 10 08:31:47 2020           Page 30
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          1610		.section	.debug_info
+000003e5 00               1611		.byte	0
+                          1612	
+                          1613	.LDW_5c48cf0:
+000003e6 18               1614		.byte	24
+000003e7 5365634d5f476574 1615		.strz	"SecM_GetInteger"
+000003ef 496e746567657200
+000003f7 9401             1616		.byte	148,1
+000003f9 16               1617		.byte	22
+000003fa 0b               1618		.byte	11
+000003fb 00000000         1619		.long	.LDW_49aa4d8
+000003ff 01               1620		.byte	1
+00000400 00               1621		.byte	0
+00000401 01               1622		.byte	1
+00000402 01               1623		.byte	1
+00000403 00               1624		.byte	0
+00000404 01               1625		.byte	1
+                          1626	
+00000405 00               1627		.byte	0
+                          1628	
+                          1629	.LDW_5c48e20:
+00000406 17               1630		.byte	23
+00000407 5365634d5f536574 1631		.strz	"SecM_SetInteger"
+0000040f 496e746567657200
+00000417 9501             1632		.byte	149,1
+00000419 0d               1633		.byte	13
+0000041a 0b               1634		.byte	11
+0000041b 01               1635		.byte	1
+0000041c 00               1636		.byte	0
+0000041d 01               1637		.byte	1
+0000041e 01               1638		.byte	1
+0000041f 00               1639		.byte	0
+00000420 01               1640		.byte	1
+                          1641	
+                          1642		.section	.debug_abbrev
+000000ad 17               1643		.byte	23
+000000ae 2e               1644		.byte	46
+000000af 01               1645		.byte	1
+000000b0 0308             1646		.byte	3,8
+000000b2 3b0f             1647		.byte	59,15
+000000b4 390f             1648		.byte	57,15
+000000b6 3a0f             1649		.byte	58,15
+000000b8 3c0c             1650		.byte	60,12
+000000ba 200b             1651		.byte	32,11
+000000bc 3f0c             1652		.byte	63,12
+000000be 320b             1653		.byte	50,11
+000000c0 4c0b             1654		.byte	76,11
+000000c2 270c             1655		.byte	39,12
+000000c4 0000             1656		.byte	0,0
+                          1657	
+                          1658		.section	.debug_info
+00000421 00               1659		.byte	0
+                          1660	
+                          1661	.LDW_49aa530:
+00000422 16               1662		.byte	22
+00000423 5365634d5f4c6367 1663		.strz	"SecM_LcgRandom"
+0000042b 52616e646f6d00  
+00000432 cc01             1664		.byte	204,1
+00000434 16               1665		.byte	22
+
+                                   Fri Apr 10 08:31:47 2020           Page 31
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000435 01               1666		.byte	1
+00000436 00000000         1667		.long	.LDW_49aa4d8
+0000043a 00000000         1668		.long	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+0000043e 00000000         1669		.long	__ghs_eofn_SecM_LcgRandom
+00000442 0151             1670		.byte	1,81
+00000444 03               1671		.byte	3
+00000445 00               1672		.byte	0
+00000446 00               1673		.byte	0
+00000447 00               1674		.byte	0
+00000448 00               1675		.byte	0
+00000449 00               1676		.byte	0
+0000044a 00               1677		.byte	0
+0000044b 00               1678		.byte	0
+0000044c 01               1679		.byte	1
+0000044d 00               1680		.byte	0
+0000044e 01               1681		.byte	1
+                          1682	
+                          1683		.section	.debug_abbrev
+000000c6 16               1684		.byte	22
+000000c7 2e               1685		.byte	46
+000000c8 01               1686		.byte	1
+000000c9 0308             1687		.byte	3,8
+000000cb 3b0f             1688		.byte	59,15
+000000cd 390f             1689		.byte	57,15
+000000cf 3a0f             1690		.byte	58,15
+000000d1 4910             1691		.byte	73,16
+000000d3 1101             1692		.byte	17,1
+000000d5 1201             1693		.byte	18,1
+000000d7 400a             1694		.byte	64,10
+000000d9 8341             1695		.byte	131,65
+000000db 0f               1696		.byte	15
+000000dc 8741             1697		.byte	135,65
+000000de 0d               1698		.byte	13
+000000df 8541             1699		.byte	133,65
+000000e1 0f               1700		.byte	15
+000000e2 8641             1701		.byte	134,65
+000000e4 0d               1702		.byte	13
+000000e5 9241             1703		.byte	146,65
+000000e7 0f               1704		.byte	15
+000000e8 3c0c             1705		.byte	60,12
+000000ea 200b             1706		.byte	32,11
+000000ec 3f0c             1707		.byte	63,12
+000000ee 320b             1708		.byte	50,11
+000000f0 4c0b             1709		.byte	76,11
+000000f2 270c             1710		.byte	39,12
+000000f4 0000             1711		.byte	0,0
+                          1712	
+                          1713		.section	.debug_frame
+                          1714	.LDW_5c83288:
+00000090 00000014         1715		.long	.LDW_unq_4-.LDW_unq_3
+                          1716	.LDW_unq_3:
+00000094 00000000         1717		.long	.LDW_5c18988
+00000098 00000000         1718		.long	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+0000009c 00000014         1719		.long	__ghs_eofn_SecM_LcgRandom-SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000000a0 01               1720		.byte	1
+000000a1 00000000         1721		.long	.LDW11
+
+                                   Fri Apr 10 08:31:47 2020           Page 32
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000000a5 00               1722		.byte	0
+000000a6 00               1723		.byte	0
+000000a7 00               1724		.byte	0
+                          1725	.LDW_unq_4:
+                          1726		.section	.debug_line
+000001ad 000502           1727		.byte	0,5,2
+000001b0 00000000         1728		.long	SecM_LcgRandom..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000001b4 06               1729		.byte	6
+000001b5 03               1730		.byte	3
+000001b6 d201             1731		.byte	210,1
+000001b8 02               1732		.byte	2
+000001b9 00               1733		.byte	0
+000001ba 01               1734		.byte	1
+000001bb 06               1735		.byte	6
+000001bc 02               1736		.byte	2
+000001bd 12               1737		.byte	18
+000001be 02               1738		.byte	2
+000001bf 02               1739		.byte	2
+000001c0 000101           1740		.byte	0,1,1
+                          1741		.section	.debug_info
+                          1742	.LDW_49aa5c8:
+0000044f 11               1743		.byte	17
+00000450 696e70757400     1744		.strz	"input"
+00000456 cc01             1745		.byte	204,1
+00000458 34               1746		.byte	52
+00000459 01               1747		.byte	1
+0000045a 00000000         1748		.long	.LDW_49aa4d8
+0000045e 00               1749		.byte	0
+0000045f 0153             1750		.byte	1,83
+                          1751	
+                          1752		.section	.debug_abbrev
+000000f6 11               1753		.byte	17
+000000f7 05               1754		.byte	5
+000000f8 00               1755		.byte	0
+000000f9 0308             1756		.byte	3,8
+000000fb 3b0f             1757		.byte	59,15
+000000fd 390f             1758		.byte	57,15
+000000ff 3a0f             1759		.byte	58,15
+00000101 4910             1760		.byte	73,16
+00000103 4b0c             1761		.byte	75,12
+00000105 020a             1762		.byte	2,10
+00000107 0000             1763		.byte	0,0
+                          1764	
+                          1765		.section	.debug_info
+                          1766	.LDW_4963200:
+00000461 1f               1767		.byte	31
+00000462 00000000         1768		.long	.LDW01
+00000466 00000000         1769		.long	.LDW11
+                          1770	
+                          1771		.section	.debug_abbrev
+00000109 1f               1772		.byte	31
+0000010a 0b               1773		.byte	11
+0000010b 01               1774		.byte	1
+0000010c 1101             1775		.byte	17,1
+0000010e 1201             1776		.byte	18,1
+00000110 0000             1777		.byte	0,0
+
+                                   Fri Apr 10 08:31:47 2020           Page 33
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          1778	
+                          1779		.section	.debug_info
+                          1780	.LDW_49aa620:
+0000046a 07               1781		.byte	7
+0000046b 6f757470757400   1782		.strz	"output"
+00000472 ce01             1783		.byte	206,1
+00000474 13               1784		.byte	19
+00000475 01               1785		.byte	1
+00000476 00000000         1786		.long	.LDW_49aa4d8
+0000047a 00               1787		.byte	0
+0000047b 00               1788		.byte	0
+                          1789	
+                          1790		.section	.debug_abbrev
+00000112 07               1791		.byte	7
+00000113 34               1792		.byte	52
+00000114 00               1793		.byte	0
+00000115 0308             1794		.byte	3,8
+00000117 3b0f             1795		.byte	59,15
+00000119 390f             1796		.byte	57,15
+0000011b 3a0f             1797		.byte	58,15
+0000011d 4910             1798		.byte	73,16
+0000011f 3f0c             1799		.byte	63,12
+00000121 3c0c             1800		.byte	60,12
+00000123 0000             1801		.byte	0,0
+                          1802	
+                          1803		.section	.debug_info
+0000047c 00               1804		.byte	0
+                          1805	
+0000047d 00               1806		.byte	0
+                          1807	
+                          1808	.LDW_49aeaf0:
+0000047e 16               1809		.byte	22
+0000047f 5365634d5f47656e 1810		.strz	"SecM_GenerateRandomLcg"
+00000487 657261746552616e
+0000048f 646f6d4c636700  
+00000496 e001             1811		.byte	224,1
+00000498 18               1812		.byte	24
+00000499 01               1813		.byte	1
+0000049a 00000000         1814		.long	.LDW_49aa728
+0000049e 00000000         1815		.long	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000004a2 00000000         1816		.long	__ghs_eofn_SecM_GenerateRandomLcg
+000004a6 0151             1817		.byte	1,81
+000004a8 808080c00f       1818		.byte	128,128,128,192,15
+000004ad 0c               1819		.byte	12
+000004ae 00               1820		.byte	0
+000004af 20               1821		.byte	32
+000004b0 00               1822		.byte	0
+000004b1 00               1823		.byte	0
+000004b2 00               1824		.byte	0
+000004b3 00               1825		.byte	0
+000004b4 01               1826		.byte	1
+000004b5 00               1827		.byte	0
+000004b6 01               1828		.byte	1
+                          1829	
+                          1830		.section	.debug_frame
+                          1831	.LDW_5be9ec8:
+000000a8 00000014         1832		.long	.LDW_unq_6-.LDW_unq_5
+                          1833	.LDW_unq_5:
+
+                                   Fri Apr 10 08:31:47 2020           Page 34
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000000ac 00000000         1834		.long	.LDW_5c18988
+000000b0 00000000         1835		.long	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000000b4 00000054         1836		.long	__ghs_eofn_SecM_GenerateRandomLcg-SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000000b8 01               1837		.byte	1
+000000b9 00000000         1838		.long	.LDW31
+000000bd 00               1839		.byte	0
+000000be 00               1840		.byte	0
+000000bf 00               1841		.byte	0
+                          1842	.LDW_unq_6:
+                          1843		.section	.debug_line
+000001c3 000502           1844		.byte	0,5,2
+000001c6 00000000         1845		.long	SecM_GenerateRandomLcg..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_SeedKey.
+000001ca 06               1846		.byte	6
+000001cb 03               1847		.byte	3
+000001cc e001             1848		.byte	224,1
+000001ce 02               1849		.byte	2
+000001cf 00               1850		.byte	0
+000001d0 01               1851		.byte	1
+000001d1 03               1852		.byte	3
+000001d2 08               1853		.byte	8
+000001d3 02               1854		.byte	2
+000001d4 10               1855		.byte	16
+000001d5 01               1856		.byte	1
+000001d6 2b               1857		.byte	43
+000001d7 0c               1858		.byte	12
+000001d8 02               1859		.byte	2
+000001d9 00               1860		.byte	0
+000001da 0d               1861		.byte	13
+000001db 03               1862		.byte	3
+000001dc 06               1863		.byte	6
+000001dd 02               1864		.byte	2
+000001de 08               1865		.byte	8
+000001df 01               1866		.byte	1
+000001e0 15               1867		.byte	21
+000001e1 000502           1868		.byte	0,5,2
+000001e4 00000000         1869		.long	.LDWlin1
+000001e8 0d               1870		.byte	13
+000001e9 000502           1871		.byte	0,5,2
+000001ec 00000000         1872		.long	.LDWlin2
+000001f0 0d               1873		.byte	13
+000001f1 03               1874		.byte	3
+000001f2 07               1875		.byte	7
+000001f3 02               1876		.byte	2
+000001f4 08               1877		.byte	8
+000001f5 01               1878		.byte	1
+000001f6 02               1879		.byte	2
+000001f7 00               1880		.byte	0
+000001f8 0d               1881		.byte	13
+000001f9 3c               1882		.byte	60
+000001fa 13               1883		.byte	19
+000001fb 03               1884		.byte	3
+000001fc 6d               1885		.byte	109
+000001fd 02               1886		.byte	2
+000001fe 02               1887		.byte	2
+000001ff 01               1888		.byte	1
+00000200 000502           1889		.byte	0,5,2
+
+                                   Fri Apr 10 08:31:47 2020           Page 35
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000203 00000000         1890		.long	.LDWlin3
+00000207 03               1891		.byte	3
+00000208 14               1892		.byte	20
+00000209 02               1893		.byte	2
+0000020a 00               1894		.byte	0
+0000020b 01               1895		.byte	1
+0000020c 0d               1896		.byte	13
+0000020d 06               1897		.byte	6
+0000020e 02               1898		.byte	2
+0000020f 02               1899		.byte	2
+00000210 02               1900		.byte	2
+00000211 0c               1901		.byte	12
+00000212 000101           1902		.byte	0,1,1
+                          1903		.section	.debug_info
+                          1904	.LDW_49aeb88:
+000004b7 11               1905		.byte	17
+000004b8 7052616e646f6d00 1906		.strz	"pRandom"
+000004c0 e001             1907		.byte	224,1
+000004c2 5e               1908		.byte	94
+000004c3 01               1909		.byte	1
+000004c4 00000000         1910		.long	.LDW_496c7c8
+000004c8 00               1911		.byte	0
+000004c9 016c             1912		.byte	1,108
+                          1913	
+                          1914	.LDW_49aebe0:
+000004cb 11               1915		.byte	17
+000004cc 6c656e67746800   1916		.strz	"length"
+000004d3 e001             1917		.byte	224,1
+000004d5 77               1918		.byte	119
+000004d6 01               1919		.byte	1
+000004d7 00000000         1920		.long	.LDW_49aa830
+000004db 00               1921		.byte	0
+000004dc 016f             1922		.byte	1,111
+                          1923	
+                          1924	.LDW_49636b0:
+000004de 1f               1925		.byte	31
+000004df 00000000         1926		.long	.LDW21
+000004e3 00000000         1927		.long	.LDW31
+                          1928	
+                          1929	.LDW_49aec90:
+000004e7 06               1930		.byte	6
+000004e8 696e64657800     1931		.strz	"index"
+000004ee e201             1932		.byte	226,1
+000004f0 19               1933		.byte	25
+000004f1 01               1934		.byte	1
+000004f2 00000000         1935		.long	.LDW_49aec38
+000004f6 00               1936		.byte	0
+000004f7 00               1937		.byte	0
+000004f8 016d             1938		.byte	1,109
+                          1939	
+                          1940		.section	.debug_abbrev
+00000125 06               1941		.byte	6
+00000126 34               1942		.byte	52
+00000127 00               1943		.byte	0
+00000128 0308             1944		.byte	3,8
+0000012a 3b0f             1945		.byte	59,15
+
+                                   Fri Apr 10 08:31:47 2020           Page 36
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000012c 390f             1946		.byte	57,15
+0000012e 3a0f             1947		.byte	58,15
+00000130 4910             1948		.byte	73,16
+00000132 3f0c             1949		.byte	63,12
+00000134 3c0c             1950		.byte	60,12
+00000136 020a             1951		.byte	2,10
+00000138 0000             1952		.byte	0,0
+                          1953	
+                          1954		.section	.debug_info
+                          1955	.LDW_49aece8:
+000004fa 06               1956		.byte	6
+000004fb 72656d61696e6465 1957		.strz	"remainder"
+00000503 7200            
+00000505 e301             1958		.byte	227,1
+00000507 19               1959		.byte	25
+00000508 01               1960		.byte	1
+00000509 00000000         1961		.long	.LDW_49aec38
+0000050d 00               1962		.byte	0
+0000050e 00               1963		.byte	0
+0000050f 016f             1964		.byte	1,111
+                          1965	
+                          1966	.LDW_49ab140:
+00000511 06               1967		.byte	6
+00000512 62797465436f756e 1968		.strz	"byteCount"
+0000051a 7400            
+0000051c e401             1969		.byte	228,1
+0000051e 19               1970		.byte	25
+0000051f 01               1971		.byte	1
+00000520 00000000         1972		.long	.LDW_49aec38
+00000524 00               1973		.byte	0
+00000525 00               1974		.byte	0
+00000526 016e             1975		.byte	1,110
+                          1976	
+                          1977	.LDW_49aad78:
+00000528 06               1978		.byte	6
+00000529 72616e646f6d576f 1979		.strz	"randomWord"
+00000531 726400          
+00000534 e501             1980		.byte	229,1
+00000536 19               1981		.byte	25
+00000537 01               1982		.byte	1
+00000538 00000000         1983		.long	.LDW_49aa4d8
+0000053c 00               1984		.byte	0
+0000053d 00               1985		.byte	0
+0000053e 016b             1986		.byte	1,107
+                          1987	
+00000540 00               1988		.byte	0
+                          1989	
+00000541 00               1990		.byte	0
+                          1991	
+                          1992	.LDW_49aeee0:
+00000542 16               1993		.byte	22
+00000543 5365634d5f47656e 1994		.strz	"SecM_GenerateSeed"
+0000054b 6572617465536565
+00000553 6400            
+00000555 c602             1995		.byte	198,2
+00000557 11               1996		.byte	17
+00000558 01               1997		.byte	1
+00000559 00000000         1998		.long	.LDW_49aa728
+0000055d 00000000         1999		.long	SecM_GenerateSeed
+00000561 00000000         2000		.long	__ghs_eofn_SecM_GenerateSeed
+00000565 0151             2001		.byte	1,81
+
+                                   Fri Apr 10 08:31:47 2020           Page 37
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000567 808080800c       2002		.byte	128,128,128,128,12
+0000056c 10               2003		.byte	16
+0000056d 00               2004		.byte	0
+0000056e 18               2005		.byte	24
+0000056f 00               2006		.byte	0
+00000570 00               2007		.byte	0
+00000571 00               2008		.byte	0
+00000572 01               2009		.byte	1
+00000573 01               2010		.byte	1
+00000574 00               2011		.byte	0
+00000575 01               2012		.byte	1
+                          2013	
+                          2014		.section	.debug_frame
+                          2015	.LDW_5bbf580:
+000000c0 00000014         2016		.long	.LDW_unq_8-.LDW_unq_7
+                          2017	.LDW_unq_7:
+000000c4 00000000         2018		.long	.LDW_5c18988
+000000c8 00000000         2019		.long	SecM_GenerateSeed
+000000cc 00000064         2020		.long	__ghs_eofn_SecM_GenerateSeed-SecM_GenerateSeed
+000000d0 01               2021		.byte	1
+000000d1 00000000         2022		.long	.LDW51
+000000d5 00               2023		.byte	0
+000000d6 00               2024		.byte	0
+000000d7 00               2025		.byte	0
+                          2026	.LDW_unq_8:
+                          2027		.section	.debug_line
+00000215 000502           2028		.byte	0,5,2
+00000218 00000000         2029		.long	SecM_GenerateSeed
+0000021c 06               2030		.byte	6
+0000021d 03               2031		.byte	3
+0000021e c602             2032		.byte	198,2
+00000220 02               2033		.byte	2
+00000221 00               2034		.byte	0
+00000222 01               2035		.byte	1
+00000223 03               2036		.byte	3
+00000224 0e               2037		.byte	14
+00000225 02               2038		.byte	2
+00000226 0c               2039		.byte	12
+00000227 01               2040		.byte	1
+00000228 03               2041		.byte	3
+00000229 0d               2042		.byte	13
+0000022a 02               2043		.byte	2
+0000022b 02               2044		.byte	2
+0000022c 01               2045		.byte	1
+0000022d 3b               2046		.byte	59
+0000022e 03               2047		.byte	3
+0000022f 1a               2048		.byte	26
+00000230 02               2049		.byte	2
+00000231 0c               2050		.byte	12
+00000232 01               2051		.byte	1
+00000233 000502           2052		.byte	0,5,2
+00000236 00000000         2053		.long	.LDWlin4
+0000023a 0b               2054		.byte	11
+0000023b 3c               2055		.byte	60
+0000023c 000502           2056		.byte	0,5,2
+0000023f 00000000         2057		.long	.LDWlin5
+
+                                   Fri Apr 10 08:31:47 2020           Page 38
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000243 0b               2058		.byte	11
+00000244 0c               2059		.byte	12
+00000245 000502           2060		.byte	0,5,2
+00000248 00000000         2061		.long	.LDWlin6
+0000024c 0b               2062		.byte	11
+0000024d 3c               2063		.byte	60
+0000024e 02               2064		.byte	2
+0000024f 00               2065		.byte	0
+00000250 0d               2066		.byte	13
+00000251 0b               2067		.byte	11
+00000252 0d               2068		.byte	13
+00000253 02               2069		.byte	2
+00000254 00               2070		.byte	0
+00000255 0d               2071		.byte	13
+00000256 06               2072		.byte	6
+00000257 02               2073		.byte	2
+00000258 02               2074		.byte	2
+00000259 02               2075		.byte	2
+0000025a 0c               2076		.byte	12
+0000025b 000101           2077		.byte	0,1,1
+                          2078		.section	.debug_info
+                          2079	.LDW_49aaa60:
+00000576 11               2080		.byte	17
+00000577 7365656400       2081		.strz	"seed"
+0000057c c602             2082		.byte	198,2
+0000057e 52               2083		.byte	82
+0000057f 01               2084		.byte	1
+00000580 00000000         2085		.long	.LDW_496c528
+00000584 00               2086		.byte	0
+00000585 0153             2087		.byte	1,83
+                          2088	
+                          2089	.LDW_4963560:
+00000587 1f               2090		.byte	31
+00000588 00000000         2091		.long	.LDW41
+0000058c 00000000         2092		.long	.LDW51
+                          2093	
+                          2094	.LDW_49aae28:
+00000590 06               2095		.byte	6
+00000591 726573756c7400   2096		.strz	"result"
+00000598 c802             2097		.byte	200,2
+0000059a 14               2098		.byte	20
+0000059b 01               2099		.byte	1
+0000059c 00000000         2100		.long	.LDW_49aa728
+000005a0 00               2101		.byte	0
+000005a1 00               2102		.byte	0
+000005a2 016e             2103		.byte	1,110
+                          2104	
+                          2105	.LDW_49ab038:
+000005a4 06               2106		.byte	6
+000005a5 7042617365536565 2107		.strz	"pBaseSeed"
+000005ad 6400            
+000005af c902             2108		.byte	201,2
+000005b1 36               2109		.byte	54
+000005b2 01               2110		.byte	1
+000005b3 00000000         2111		.long	.LDW_496c800
+000005b7 00               2112		.byte	0
+000005b8 00               2113		.byte	0
+
+                                   Fri Apr 10 08:31:47 2020           Page 39
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000005b9 016f             2114		.byte	1,111
+                          2115	
+                          2116	.LDW_49ab0e8:
+000005bb 07               2117		.byte	7
+000005bc 7052616e646f6d00 2118		.strz	"pRandom"
+000005c4 ca02             2119		.byte	202,2
+000005c6 32               2120		.byte	50
+000005c7 01               2121		.byte	1
+000005c8 00000000         2122		.long	.LDW_496c7c8
+000005cc 00               2123		.byte	0
+000005cd 00               2124		.byte	0
+                          2125	
+                          2126	.LDW_49aaab8:
+000005ce 06               2127		.byte	6
+000005cf 72616e646f6d4275 2128		.strz	"randomBuffer"
+000005d7 6666657200      
+000005dc cd02             2129		.byte	205,2
+000005de 19               2130		.byte	25
+000005df 01               2131		.byte	1
+000005e0 00000000         2132		.long	.LDW_5c40fa0
+000005e4 00               2133		.byte	0
+000005e5 00               2134		.byte	0
+000005e6 0271             2135		.byte	2,113
+000005e8 08               2136		.byte	8
+                          2137	
+000005e9 00               2138		.byte	0
+                          2139	
+000005ea 00               2140		.byte	0
+                          2141	
+                          2142	.LDW_5c41028:
+000005eb 16               2143		.byte	22
+000005ec 5365634d5f436f6d 2144		.strz	"SecM_ComputeKey"
+000005f4 707574654b657900
+000005fc bb03             2145		.byte	187,3
+000005fe 11               2146		.byte	17
+000005ff 01               2147		.byte	1
+00000600 00000000         2148		.long	.LDW_49aa728
+00000604 00000000         2149		.long	SecM_ComputeKey
+00000608 00000000         2150		.long	__ghs_eofn_SecM_ComputeKey
+0000060c 0151             2151		.byte	1,81
+0000060e 00               2152		.byte	0
+0000060f 18               2153		.byte	24
+00000610 00               2154		.byte	0
+00000611 18               2155		.byte	24
+00000612 00               2156		.byte	0
+00000613 00               2157		.byte	0
+00000614 00               2158		.byte	0
+00000615 01               2159		.byte	1
+00000616 01               2160		.byte	1
+00000617 00               2161		.byte	0
+00000618 01               2162		.byte	1
+                          2163	
+                          2164		.section	.debug_frame
+                          2165	.LDW_5c2af18:
+000000d8 00000014         2166		.long	.LDW_unq_a-.LDW_unq_9
+                          2167	.LDW_unq_9:
+000000dc 00000000         2168		.long	.LDW_5c18988
+000000e0 00000000         2169		.long	SecM_ComputeKey
+
+                                   Fri Apr 10 08:31:47 2020           Page 40
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000000e4 00000022         2170		.long	__ghs_eofn_SecM_ComputeKey-SecM_ComputeKey
+000000e8 01               2171		.byte	1
+000000e9 00000000         2172		.long	.LDW71
+000000ed 00               2173		.byte	0
+000000ee 00               2174		.byte	0
+000000ef 00               2175		.byte	0
+                          2176	.LDW_unq_a:
+                          2177		.section	.debug_line
+0000025e 000502           2178		.byte	0,5,2
+00000261 00000000         2179		.long	SecM_ComputeKey
+00000265 06               2180		.byte	6
+00000266 03               2181		.byte	3
+00000267 bc03             2182		.byte	188,3
+00000269 02               2183		.byte	2
+0000026a 00               2184		.byte	0
+0000026b 01               2185		.byte	1
+0000026c 2d               2186		.byte	45
+0000026d 54               2187		.byte	84
+0000026e 02               2188		.byte	2
+0000026f 08               2189		.byte	8
+00000270 000101           2190		.byte	0,1,1
+                          2191		.section	.debug_info
+                          2192	.LDW_49aaf30:
+00000619 11               2193		.byte	17
+0000061a 696e707574536565 2194		.strz	"inputSeed"
+00000622 6400            
+00000624 bb03             2195		.byte	187,3
+00000626 37               2196		.byte	55
+00000627 01               2197		.byte	1
+00000628 00000000         2198		.long	.LDW_49aadd0
+0000062c 00               2199		.byte	0
+0000062d 0273             2200		.byte	2,115
+0000062f 00               2201		.byte	0
+                          2202	
+                          2203	.LDW_49aaf88:
+00000630 11               2204		.byte	17
+00000631 636f6e7374616e74 2205		.strz	"constant"
+00000639 00              
+0000063a bb03             2206		.byte	187,3
+0000063c 51               2207		.byte	81
+0000063d 01               2208		.byte	1
+0000063e 00000000         2209		.long	.LDW_49aab68
+00000642 00               2210		.byte	0
+00000643 0154             2211		.byte	1,84
+                          2212	
+                          2213	.LDW_49aab10:
+00000645 11               2214		.byte	17
+00000646 636f6d7075746564 2215		.strz	"computedKey"
+0000064e 4b657900        
+00000652 bc03             2216		.byte	188,3
+00000654 38               2217		.byte	56
+00000655 01               2218		.byte	1
+00000656 00000000         2219		.long	.LDW_496c678
+0000065a 00               2220		.byte	0
+0000065b 0155             2221		.byte	1,85
+                          2222	
+                          2223	.LDW_49636e0:
+0000065d 1f               2224		.byte	31
+0000065e 00000000         2225		.long	.LDW61
+
+                                   Fri Apr 10 08:31:47 2020           Page 41
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+00000662 00000000         2226		.long	.LDW71
+                          2227	
+                          2228	.LDW_49ab090:
+00000666 07               2229		.byte	7
+00000667 726573756c7400   2230		.strz	"result"
+0000066e be03             2231		.byte	190,3
+00000670 14               2232		.byte	20
+00000671 01               2233		.byte	1
+00000672 00000000         2234		.long	.LDW_49aa728
+00000676 00               2235		.byte	0
+00000677 00               2236		.byte	0
+                          2237	
+00000678 00               2238		.byte	0
+                          2239	
+00000679 00               2240		.byte	0
+                          2241	
+                          2242	.LDW_5c430c8:
+0000067a 16               2243		.byte	22
+0000067b 5365634d5f436f6d 2244		.strz	"SecM_CompareKey"
+00000683 706172654b657900
+0000068b d303             2245		.byte	211,3
+0000068d 11               2246		.byte	17
+0000068e 01               2247		.byte	1
+0000068f 00000000         2248		.long	.LDW_49aa728
+00000693 00000000         2249		.long	SecM_CompareKey
+00000697 00000000         2250		.long	__ghs_eofn_SecM_CompareKey
+0000069b 0151             2251		.byte	1,81
+0000069d 8080808008       2252		.byte	128,128,128,128,8
+000006a2 14               2253		.byte	20
+000006a3 00               2254		.byte	0
+000006a4 18               2255		.byte	24
+000006a5 00               2256		.byte	0
+000006a6 00               2257		.byte	0
+000006a7 00               2258		.byte	0
+000006a8 01               2259		.byte	1
+000006a9 01               2260		.byte	1
+000006aa 00               2261		.byte	0
+000006ab 01               2262		.byte	1
+                          2263	
+                          2264		.section	.debug_frame
+                          2265	.LDW_49a7010:
+000000f0 00000014         2266		.long	.LDW_unq_c-.LDW_unq_b
+                          2267	.LDW_unq_b:
+000000f4 00000000         2268		.long	.LDW_5c18988
+000000f8 00000000         2269		.long	SecM_CompareKey
+000000fc 0000003a         2270		.long	__ghs_eofn_SecM_CompareKey-SecM_CompareKey
+00000100 01               2271		.byte	1
+00000101 00000000         2272		.long	.LDW91
+00000105 00               2273		.byte	0
+00000106 00               2274		.byte	0
+00000107 00               2275		.byte	0
+                          2276	.LDW_unq_c:
+                          2277		.section	.debug_line
+00000273 000502           2278		.byte	0,5,2
+00000276 00000000         2279		.long	SecM_CompareKey
+0000027a 06               2280		.byte	6
+0000027b 03               2281		.byte	3
+
+                                   Fri Apr 10 08:31:47 2020           Page 42
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000027c d303             2282		.byte	211,3
+0000027e 02               2283		.byte	2
+0000027f 00               2284		.byte	0
+00000280 01               2285		.byte	1
+00000281 03               2286		.byte	3
+00000282 11               2287		.byte	17
+00000283 02               2288		.byte	2
+00000284 0c               2289		.byte	12
+00000285 01               2290		.byte	1
+00000286 03               2291		.byte	3
+00000287 08               2292		.byte	8
+00000288 02               2293		.byte	2
+00000289 04               2294		.byte	4
+0000028a 01               2295		.byte	1
+0000028b 0b               2296		.byte	11
+0000028c 03               2297		.byte	3
+0000028d 14               2298		.byte	20
+0000028e 02               2299		.byte	2
+0000028f 00               2300		.byte	0
+00000290 01               2301		.byte	1
+00000291 000502           2302		.byte	0,5,2
+00000294 00000000         2303		.long	.LDWlin7
+00000298 03               2304		.byte	3
+00000299 0f               2305		.byte	15
+0000029a 02               2306		.byte	2
+0000029b 00               2307		.byte	0
+0000029c 01               2308		.byte	1
+0000029d 3b               2309		.byte	59
+0000029e 0d               2310		.byte	13
+0000029f 02               2311		.byte	2
+000002a0 00               2312		.byte	0
+000002a1 03               2313		.byte	3
+000002a2 06               2314		.byte	6
+000002a3 02               2315		.byte	2
+000002a4 00               2316		.byte	0
+000002a5 01               2317		.byte	1
+000002a6 02               2318		.byte	2
+000002a7 00               2319		.byte	0
+000002a8 03               2320		.byte	3
+000002a9 0f               2321		.byte	15
+000002aa 02               2322		.byte	2
+000002ab 00               2323		.byte	0
+000002ac 01               2324		.byte	1
+000002ad 02               2325		.byte	2
+000002ae 0a               2326		.byte	10
+000002af 000101           2327		.byte	0,1,1
+                          2328		.section	.debug_info
+                          2329	.LDW_49aabc0:
+000006ac 11               2330		.byte	17
+000006ad 6b657900         2331		.strz	"key"
+000006b1 d303             2332		.byte	211,3
+000006b3 2f               2333		.byte	47
+000006b4 01               2334		.byte	1
+000006b5 00000000         2335		.long	.LDW_49aafe0
+000006b9 00               2336		.byte	0
+000006ba 016f             2337		.byte	1,111
+
+                                   Fri Apr 10 08:31:47 2020           Page 43
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          2338	
+                          2339	.LDW_49aac18:
+000006bc 11               2340		.byte	17
+000006bd 6c61737453656564 2341		.strz	"lastSeed"
+000006c5 00              
+000006c6 d303             2342		.byte	211,3
+000006c8 42               2343		.byte	66
+000006c9 01               2344		.byte	1
+000006ca 00000000         2345		.long	.LDW_49aaed8
+000006ce 00               2346		.byte	0
+000006cf 0274             2347		.byte	2,116
+000006d1 00               2348		.byte	0
+                          2349	
+                          2350	.LDW_4963650:
+000006d2 1f               2351		.byte	31
+000006d3 00000000         2352		.long	.LDW81
+000006d7 00000000         2353		.long	.LDW91
+                          2354	
+                          2355	.LDW_5c43a80:
+000006db 06               2356		.byte	6
+000006dc 726573756c7400   2357		.strz	"result"
+000006e3 d503             2358		.byte	213,3
+000006e5 19               2359		.byte	25
+000006e6 01               2360		.byte	1
+000006e7 00000000         2361		.long	.LDW_49aa728
+000006eb 00               2362		.byte	0
+000006ec 00               2363		.byte	0
+000006ed 0153             2364		.byte	1,83
+                          2365	
+                          2366	.LDW_5c432f0:
+000006ef 07               2367		.byte	7
+000006f0 6b6579436f6e7374 2368		.strz	"keyConstant"
+000006f8 616e7400        
+000006fc d603             2369		.byte	214,3
+000006fe 19               2370		.byte	25
+000006ff 01               2371		.byte	1
+00000700 00000000         2372		.long	.LDW_49aab68
+00000704 00               2373		.byte	0
+00000705 00               2374		.byte	0
+                          2375	
+                          2376	.LDW_5c437c0:
+00000706 06               2377		.byte	6
+00000707 636f6d7075746556 2378		.strz	"computeVal"
+0000070f 616c00          
+00000712 d903             2379		.byte	217,3
+00000714 19               2380		.byte	25
+00000715 01               2381		.byte	1
+00000716 00000000         2382		.long	.LDW_5c43348
+0000071a 00               2383		.byte	0
+0000071b 00               2384		.byte	0
+0000071c 0271             2385		.byte	2,113
+0000071e 08               2386		.byte	8
+                          2387	
+0000071f 00               2388		.byte	0
+                          2389	
+00000720 00               2390		.byte	0
+                          2391	
+00000721 00               2392		.byte	0
+                          2393	
+
+                                   Fri Apr 10 08:31:47 2020           Page 44
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+                          2394		.section	.debug_line
+                          2395	.Ldw_line_end:
+                          2396		.section	.debug_macinfo
+00000000 03               2397		.byte	3
+00000001 00               2398		.byte	0
+00000002 01               2399		.byte	1
+00000003 03               2400		.byte	3
+00000004 40               2401		.byte	64
+00000005 02               2402		.byte	2
+00000006 01               2403		.byte	1
+00000007 45               2404		.byte	69
+00000008 5f5f5345435f494e 2405		.strz	"__SEC_INC_H__ "
+00000010 435f485f5f2000  
+00000017 03               2406		.byte	3
+00000018 4c               2407		.byte	76
+00000019 03               2408		.byte	3
+0000001a 01               2409		.byte	1
+0000001b 4a               2410		.byte	74
+0000001c 435f435055545950 2411		.strz	"C_CPUTYPE_32BIT "
+00000024 455f333242495420
+0000002c 00              
+0000002d 01               2412		.byte	1
+0000002e 59               2413		.byte	89
+0000002f 435f435055545950 2414		.strz	"C_CPUTYPE_BITORDER_MSB2LSB "
+00000037 455f4249544f5244
+0000003f 45525f4d5342324c
+00000047 53422000        
+0000004b 01               2415		.byte	1
+0000004c 8901             2416		.byte	137,1
+0000004e 5647454e5f454e41 2417		.strz	"VGEN_ENABLE_CANFBL "
+00000056 424c455f43414e46
+0000005e 424c2000        
+00000062 01               2418		.byte	1
+00000063 be01             2419		.byte	190,1
+00000065 565f434f4d505f47 2420		.strz	"V_COMP_GHS_MPC5700 "
+0000006d 48535f4d50433537
+00000075 30302000        
+00000079 01               2421		.byte	1
+0000007a ca01             2422		.byte	202,1
+0000007c 4d414749435f4e55 2423		.strz	"MAGIC_NUMBER 312540478"
+00000084 4d42455220333132
+0000008c 35343034373800  
+00000093 04               2424		.byte	4
+00000094 03               2425		.byte	3
+00000095 52               2426		.byte	82
+00000096 04               2427		.byte	4
+00000097 01               2428		.byte	1
+00000098 8704             2429		.byte	135,4
+0000009a 565f4445465f5355 2430		.strz	"V_DEF_SUPPORTED_PLATFORM "
+000000a2 50504f525445445f
+000000aa 504c4154464f524d
+000000b2 2000            
+000000b4 01               2431		.byte	1
+000000b5 da06             2432		.byte	218,6
+000000b7 4c4f43414c5f494e 2433		.strz	"LOCAL_INLINE static inline"
+000000bf 4c494e4520737461
+000000c7 74696320696e6c69
+000000cf 6e6500          
+000000d2 01               2434		.byte	1
+000000d3 e406             2435		.byte	228,6
+000000d5 565f4d454d524f4d 2436		.strz	"V_MEMROM0 "
+000000dd 302000          
+000000e0 01               2437		.byte	1
+000000e1 ec06             2438		.byte	236,6
+000000e3 565f4d454d524f4d 2439		.strz	"V_MEMROM1 "
+000000eb 312000          
+000000ee 01               2440		.byte	1
+000000ef 8007             2441		.byte	128,7
+000000f1 565f4d454d524f4d 2442		.strz	"V_MEMROM2 const"
+000000f9 3220636f6e737400
+00000101 01               2443		.byte	1
+00000102 9307             2444		.byte	147,7
+00000104 565f4d454d524f4d 2445		.strz	"V_MEMROM3 "
+0000010c 332000          
+0000010f 01               2446		.byte	1
+00000110 a107             2447		.byte	161,7
+00000112 565f4d454d52414d 2448		.strz	"V_MEMRAM1 "
+0000011a 312000          
+0000011d 01               2449		.byte	1
+
+                                   Fri Apr 10 08:31:47 2020           Page 45
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000011e b507             2450		.byte	181,7
+00000120 565f4d454d52414d 2451		.strz	"V_MEMRAM2 "
+00000128 322000          
+0000012b 01               2452		.byte	1
+0000012c cc07             2453		.byte	204,7
+0000012e 565f4d454d52414d 2454		.strz	"V_MEMRAM3 "
+00000136 332000          
+00000139 04               2455		.byte	4
+0000013a 03               2456		.byte	3
+0000013b 56               2457		.byte	86
+0000013c 05               2458		.byte	5
+0000013d 01               2459		.byte	1
+0000013e 2f               2460		.byte	47
+0000013f 5345435f434c4153 2461		.strz	"SEC_CLASS_DDD 0"
+00000147 535f444444203000
+0000014f 01               2462		.byte	1
+00000150 32               2463		.byte	50
+00000151 5345435f434c4153 2464		.strz	"SEC_CLASS_VENDOR 3"
+00000159 535f56454e444f52
+00000161 203300          
+00000164 01               2465		.byte	1
+00000165 39               2466		.byte	57
+00000166 5345435f52495045 2467		.strz	"SEC_RIPEMD160 0"
+0000016e 4d44313630203000
+00000176 01               2468		.byte	1
+00000177 3a               2469		.byte	58
+00000178 5345435f53484131 2470		.strz	"SEC_SHA1 1"
+00000180 203100          
+00000183 01               2471		.byte	1
+00000184 3b               2472		.byte	59
+00000185 5345435f53484132 2473		.strz	"SEC_SHA256 2"
+0000018d 3536203200      
+00000192 01               2474		.byte	1
+00000193 43               2475		.byte	67
+00000194 5345435f4543555f 2476		.strz	"SEC_ECU_KEY 0xFFFFFFFFu"
+0000019c 4b45592030784646
+000001a4 4646464646467500
+000001ac 01               2477		.byte	1
+000001ad 44               2478		.byte	68
+000001ae 5345435f4b45595f 2479		.strz	"SEC_KEY_TIMEOUT 0"
+000001b6 54494d454f555420
+000001be 3000            
+000001c0 01               2480		.byte	1
+000001c1 48               2481		.byte	72
+000001c2 5345435f48415348 2482		.strz	"SEC_HASH_ALGORITHM SEC_SHA1"
+000001ca 5f414c474f524954
+000001d2 484d205345435f53
+000001da 48413100        
+000001de 01               2483		.byte	1
+000001df 49               2484		.byte	73
+000001e0 5345435f53454355 2485		.strz	"SEC_SECURITY_CLASS SEC_CLASS_DDD"
+000001e8 524954595f434c41
+000001f0 5353205345435f43
+000001f8 4c4153535f444444
+00000200 00              
+00000201 01               2486		.byte	1
+00000202 4f               2487		.byte	79
+00000203 5345435f454e4142 2488		.strz	"SEC_ENABLE_VERIFICATION_KEY_INTERNAL "
+0000020b 4c455f5645524946
+00000213 49434154494f4e5f
+0000021b 4b45595f494e5445
+00000223 524e414c2000    
+00000229 01               2489		.byte	1
+0000022a 50               2490		.byte	80
+0000022b 5345435f53495a45 2491		.strz	"SEC_SIZE_CHECKSUM_VENDOR 0"
+00000233 5f434845434b5355
+0000023b 4d5f56454e444f52
+00000243 203000          
+00000246 01               2492		.byte	1
+00000247 52               2493		.byte	82
+00000248 5345435f56455249 2494		.strz	"SEC_VERIFY_BYTES 64"
+00000250 46595f4259544553
+00000258 20363400        
+0000025c 01               2495		.byte	1
+0000025d 53               2496		.byte	83
+0000025e 5345435f454e4142 2497		.strz	"SEC_ENABLE_VERIFICATION_ADDRESS_LENGTH "
+00000266 4c455f5645524946
+0000026e 49434154494f4e5f
+00000276 414444524553535f
+0000027e 4c454e4754482000
+00000286 01               2498		.byte	1
+00000287 54               2499		.byte	84
+00000288 5345435f454e4142 2500		.strz	"SEC_ENABLE_CRC_TOTAL "
+00000290 4c455f4352435f54
+00000298 4f54414c2000    
+0000029e 01               2501		.byte	1
+0000029f 57               2502		.byte	87
+000002a0 5345435f5645525f 2503		.strz	"SEC_VER_SIG_OFFSET 0"
+000002a8 5349475f4f464653
+000002b0 4554203000      
+000002b5 01               2504		.byte	1
+000002b6 58               2505		.byte	88
+
+                                   Fri Apr 10 08:31:47 2020           Page 46
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000002b7 5345435f5645525f 2506		.strz	"SEC_VER_CRC_OFFSET 0"
+000002bf 4352435f4f464653
+000002c7 4554203000      
+000002cc 04               2507		.byte	4
+000002cd 03               2508		.byte	3
+000002ce 59               2509		.byte	89
+000002cf 06               2510		.byte	6
+000002d0 03               2511		.byte	3
+000002d1 4d               2512		.byte	77
+000002d2 02               2513		.byte	2
+000002d3 04               2514		.byte	4
+000002d4 01               2515		.byte	1
+000002d5 59               2516		.byte	89
+000002d6 5345435f57415443 2517		.strz	"SEC_WATCHDOG_CYCLE_COUNT (0x20u)"
+000002de 48444f475f435943
+000002e6 4c455f434f554e54
+000002ee 2028307832307529
+000002f6 00              
+000002f7 01               2518		.byte	1
+000002f8 60               2519		.byte	96
+000002f9 5345435f454e4142 2520		.strz	"SEC_ENABLE_WORKSPACE_INTERNAL "
+00000301 4c455f574f524b53
+00000309 504143455f494e54
+00000311 45524e414c2000  
+00000318 01               2521		.byte	1
+00000319 66               2522		.byte	102
+0000031a 5345435f43484543 2523		.strz	"SEC_CHECKSUM_TYPE_CRC 0u"
+00000322 4b53554d5f545950
+0000032a 455f435243203075
+00000332 00              
+00000333 01               2524		.byte	1
+00000334 6b               2525		.byte	107
+00000335 5345435f43484543 2526		.strz	"SEC_CHECKSUM_TYPE_HASH (SEC_CHECKSUM_TYPE_CRC + 1u)"
+0000033d 4b53554d5f545950
+00000345 455f484153482028
+0000034d 5345435f43484543
+00000355 4b53554d5f545950
+0000035d 455f435243202b20
+00000365 31752900        
+00000369 01               2527		.byte	1
+0000036a 71               2528		.byte	113
+0000036b 5345435f4d41435f 2529		.strz	"SEC_MAC_TYPE_HMAC 0u"
+00000373 545950455f484d41
+0000037b 4320307500      
+00000380 01               2530		.byte	1
+00000381 8601             2531		.byte	134,1
+00000383 5345435f43524333 2532		.strz	"SEC_CRC32 0u"
+0000038b 3220307500      
+00000390 01               2533		.byte	1
+00000391 8e01             2534		.byte	142,1
+00000393 5345435f43524331 2535		.strz	"SEC_CRC16 (SEC_CRC32 + 1u)"
+0000039b 3620285345435f43
+000003a3 52433332202b2031
+000003ab 752900          
+000003ae 01               2536		.byte	1
+000003af ca01             2537		.byte	202,1
+000003b1 5345435f5349474e 2538		.strz	"SEC_SIGNATURE_SCHEME_RSA_V15 0u"
+000003b9 41545552455f5343
+000003c1 48454d455f525341
+000003c9 5f56313520307500
+000003d1 01               2539		.byte	1
+000003d2 dc01             2540		.byte	220,1
+000003d4 5345434d5f4f4b20 2541		.strz	"SECM_OK 0x00u"
+000003dc 307830307500    
+000003e2 01               2542		.byte	1
+000003e3 de01             2543		.byte	222,1
+000003e5 5345434d5f4e4f54 2544		.strz	"SECM_NOT_OK 0xFFu"
+000003ed 5f4f4b2030784646
+000003f5 7500            
+000003f7 01               2545		.byte	1
+000003f8 e301             2546		.byte	227,1
+000003fa 5345435f43414c4c 2547		.strz	"SEC_CALL_TYPE "
+00000402 5f545950452000  
+00000409 01               2548		.byte	1
+0000040a 8f02             2549		.byte	143,2
+0000040c 5345435f574f5244 2550		.strz	"SEC_WORD_TYPE_SIZE 4u"
+00000414 5f545950455f5349
+0000041c 5a4520347500    
+00000422 04               2551		.byte	4
+00000423 03               2552		.byte	3
+00000424 5c               2553		.byte	92
+00000425 07               2554		.byte	7
+00000426 03               2555		.byte	3
+00000427 2f               2556		.byte	47
+00000428 08               2557		.byte	8
+00000429 04               2558		.byte	4
+0000042a 04               2559		.byte	4
+0000042b 04               2560		.byte	4
+0000042c 03               2561		.byte	3
+
+                                   Fri Apr 10 08:31:47 2020           Page 47
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000042d 46               2562		.byte	70
+0000042e 09               2563		.byte	9
+0000042f 01               2564		.byte	1
+00000430 44               2565		.byte	68
+00000431 5359535345525649 2566		.strz	"SYSSERVICE_SECMODHIS_SEEDKEY_VERSION 0x0302u"
+00000439 43455f5345434d4f
+00000441 444849535f534545
+00000449 444b45595f564552
+00000451 53494f4e20307830
+00000459 3330327500      
+0000045e 01               2567		.byte	1
+0000045f 45               2568		.byte	69
+00000460 5359535345525649 2569		.strz	"SYSSERVICE_SECMODHIS_SEEDKEY_RELEASE_VERSION 0x01u"
+00000468 43455f5345434d4f
+00000470 444849535f534545
+00000478 444b45595f52454c
+00000480 454153455f564552
+00000488 53494f4e20307830
+00000490 317500          
+00000493 01               2570		.byte	1
+00000494 49               2571		.byte	73
+00000495 5345434143434553 2572		.strz	"SECACCESS_API_VERSION_MAJOR 0x01u"
+0000049d 535f4150495f5645
+000004a5 5253494f4e5f4d41
+000004ad 4a4f522030783031
+000004b5 7500            
+000004b7 01               2573		.byte	1
+000004b8 4b               2574		.byte	75
+000004b9 5345434143434553 2575		.strz	"SECACCESS_API_VERSION_MINOR 0x02u"
+000004c1 535f4150495f5645
+000004c9 5253494f4e5f4d49
+000004d1 4e4f522030783032
+000004d9 7500            
+000004db 03               2576		.byte	3
+000004dc 55               2577		.byte	85
+000004dd 0a               2578		.byte	10
+000004de 01               2579		.byte	1
+000004df 31               2580		.byte	49
+000004e0 5345434143434553 2581		.strz	"SECACCESS_API_REFERENCE_VERSION_MAJOR 0x01u"
+000004e8 535f4150495f5245
+000004f0 464552454e43455f
+000004f8 56455253494f4e5f
+00000500 4d414a4f52203078
+00000508 30317500        
+0000050c 01               2582		.byte	1
+0000050d 33               2583		.byte	51
+0000050e 5345434143434553 2584		.strz	"SECACCESS_API_REFERENCE_VERSION_MINOR 0x00u"
+00000516 535f4150495f5245
+0000051e 464552454e43455f
+00000526 56455253494f4e5f
+0000052e 4d494e4f52203078
+00000536 30307500        
+0000053a 01               2585		.byte	1
+0000053b 3e               2586		.byte	62
+0000053c 5345435f53454544 2587		.strz	"SEC_SEED_LENGTH 8u"
+00000544 5f4c454e47544820
+0000054c 387500          
+0000054f 01               2588		.byte	1
+00000550 40               2589		.byte	64
+00000551 5345435f4b45595f 2590		.strz	"SEC_KEY_LENGTH 4u"
+00000559 4c454e4754482034
+00000561 7500            
+00000563 04               2591		.byte	4
+00000564 01               2592		.byte	1
+00000565 76               2593		.byte	118
+00000566 5345435f494e4954 2594		.strz	"SEC_INITIAL_SEED_LENGTH (SEC_WORD_TYPE_SIZE * 2u)"
+0000056e 49414c5f53454544
+00000576 5f4c454e47544820
+0000057e 285345435f574f52
+00000586 445f545950455f53
+0000058e 495a45202a203275
+00000596 2900            
+00000598 01               2595		.byte	1
+00000599 7e               2596		.byte	126
+0000059a 5345435f50524e47 2597		.strz	"SEC_PRNG_LCG 0u"
+000005a2 5f4c434720307500
+000005aa 01               2598		.byte	1
+000005ab 8301             2599		.byte	131,1
+000005ad 5345435f50524e47 2600		.strz	"SEC_PRNG_FIPS186 (SEC_PRNG_LCG + 1u)"
+000005b5 5f46495053313836
+000005bd 20285345435f5052
+000005c5 4e475f4c4347202b
+000005cd 2031752900      
+000005d2 01               2601		.byte	1
+000005d3 8901             2602		.byte	137,1
+000005d5 5345435f50524e47 2603		.strz	"SEC_PRNG SEC_PRNG_LCG"
+000005dd 205345435f50524e
+000005e5 475f4c434700    
+000005eb 01               2604		.byte	1
+000005ec 9101             2605		.byte	145,1
+000005ee 5345435f454e4142 2606		.strz	"SEC_ENABLE_SEED_KEY_PRNG_LCG "
+000005f6 4c455f534545445f
+000005fe 4b45595f50524e47
+00000606 5f4c43472000    
+0000060c 04               2607		.byte	4
+0000060d 03               2608		.byte	3
+0000060e 48               2609		.byte	72
+0000060f 0b               2610		.byte	11
+00000610 03               2611		.byte	3
+00000611 58               2612		.byte	88
+00000612 0c               2613		.byte	12
+00000613 01               2614		.byte	1
+00000614 6d               2615		.byte	109
+00000615 5345435f4352435f 2616		.strz	"SEC_CRC_TYPE SEC_CRC32"
+0000061d 5459504520534543
+00000625 5f435243333200  
+0000062c 01               2617		.byte	1
+
+                                   Fri Apr 10 08:31:47 2020           Page 48
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+0000062d 78               2618		.byte	120
+0000062e 5345435f454e4142 2619		.strz	"SEC_ENABLE_CRC_TYPE_CRC32 "
+00000636 4c455f4352435f54
+0000063e 5950455f43524333
+00000646 322000          
+00000649 04               2620		.byte	4
+0000064a 03               2621		.byte	3
+0000064b 5a               2622		.byte	90
+0000064c 0d               2623		.byte	13
+0000064d 01               2624		.byte	1
+0000064e ba01             2625		.byte	186,1
+00000650 5345435f53454355 2626		.strz	"SEC_SECURITY_CLASS_VERIFY SEC_SECURITY_CLASS"
+00000658 524954595f434c41
+00000660 53535f5645524946
+00000668 59205345435f5345
+00000670 4355524954595f43
+00000678 4c41535300      
+0000067d 01               2627		.byte	1
+0000067e c001             2628		.byte	192,1
+00000680 5345435f53454355 2629		.strz	"SEC_SECURITY_CLASS_VERIFICATION SEC_SECURITY_CLASS"
+00000688 524954595f434c41
+00000690 53535f5645524946
+00000698 49434154494f4e20
+000006a0 5345435f53454355
+000006a8 524954595f434c41
+000006b0 535300          
+000006b3 01               2630		.byte	1
+000006b4 c701             2631		.byte	199,1
+000006b6 5345435f43484543 2632		.strz	"SEC_CHECKSUM_TYPE SEC_CHECKSUM_TYPE_CRC"
+000006be 4b53554d5f545950
+000006c6 45205345435f4348
+000006ce 45434b53554d5f54
+000006d6 5950455f43524300
+000006de 01               2633		.byte	1
+000006df cd01             2634		.byte	205,1
+000006e1 5345435f4d41435f 2635		.strz	"SEC_MAC_TYPE SEC_MAC_TYPE_HMAC"
+000006e9 5459504520534543
+000006f1 5f4d41435f545950
+000006f9 455f484d414300  
+00000700 01               2636		.byte	1
+00000701 d301             2637		.byte	211,1
+00000703 5345435f5349474e 2638		.strz	"SEC_SIGNATURE_SCHEME SEC_SIGNATURE_SCHEME_RSA_V15"
+0000070b 41545552455f5343
+00000713 48454d4520534543
+0000071b 5f5349474e415455
+00000723 52455f534348454d
+0000072b 455f5253415f5631
+00000733 3500            
+00000735 01               2639		.byte	1
+00000736 fd01             2640		.byte	253,1
+00000738 5345435f454e4142 2641		.strz	"SEC_ENABLE_SECURITY_CLASS_DDD "
+00000740 4c455f5345435552
+00000748 4954595f434c4153
+00000750 535f4444442000  
+00000757 01               2642		.byte	1
+00000758 8f02             2643		.byte	143,2
+0000075a 5345435f454e4142 2644		.strz	"SEC_ENABLE_CHECKSUM_TYPE_CRC "
+00000762 4c455f434845434b
+0000076a 53554d5f54595045
+00000772 5f4352432000    
+00000778 01               2645		.byte	1
+00000779 db02             2646		.byte	219,2
+0000077b 5345435f454e4142 2647		.strz	"SEC_ENABLE_VERIFY_CHECKSUM_CRC "
+00000783 4c455f5645524946
+0000078b 595f434845434b53
+00000793 554d5f4352432000
+0000079b 04               2648		.byte	4
+0000079c 01               2649		.byte	1
+0000079d 71               2650		.byte	113
+0000079e 5365634d5f537461 2651		.strz	"SecM_StartKeyTimer() "
+000007a6 72744b657954696d
+000007ae 657228292000    
+000007b4 01               2652		.byte	1
+000007b5 72               2653		.byte	114
+000007b6 5365634d5f53746f 2654		.strz	"SecM_StopKeyTimer() "
+000007be 704b657954696d65
+000007c6 7228292000      
+000007cb 01               2655		.byte	1
+000007cc 73               2656		.byte	115
+000007cd 5365634d5f476574 2657		.strz	"SecM_GetKeyTimer() (1u)"
+000007d5 4b657954696d6572
+000007dd 2829202831752900
+000007e5 04               2658		.byte	4
+000007e6 01               2659		.byte	1
+000007e7 68               2660		.byte	104
+000007e8 5345435f4c43475f 2661		.strz	"SEC_LCG_RANDOM_MULTIPLIER 2147001325ul"
+000007f0 52414e444f4d5f4d
+000007f8 554c5449504c4945
+00000800 5220323134373030
+00000808 31333235756c00  
+0000080f 01               2662		.byte	1
+00000810 69               2663		.byte	105
+00000811 5345435f4c43475f 2664		.strz	"SEC_LCG_RANDOM_INCREMENT 715136305ul"
+00000819 52414e444f4d5f49
+00000821 4e4352454d454e54
+00000829 2037313531333633
+00000831 3035756c00      
+00000836 01               2665		.byte	1
+00000837 8601             2666		.byte	134,1
+00000839 5345435f434f4d50 2667		.strz	"SEC_COMPARE_VALUE key"
+00000841 4152455f56414c55
+00000849 45206b657900    
+0000084f 01               2668		.byte	1
+00000850 8b01             2669		.byte	139,1
+00000852 5345435f42415345 2670		.strz	"SEC_BASE_SEED(seed) (seed)"
+0000085a 5f53454544287365
+00000862 6564292028736565
+0000086a 642900          
+0000086d 01               2671		.byte	1
+0000086e 9801             2672		.byte	152,1
+00000870 5345435f50524e47 2673		.strz	"SEC_PRNG_GENERATE_RANDOM(pPool,pRandom,length) SecM_GenerateRandomLcg((pRandom), (length))"
+00000878 5f47454e45524154
+00000880 455f52414e444f4d
+00000888 2870506f6f6c2c70
+00000890 52616e646f6d2c6c
+00000898 656e677468292053
+000008a0 65634d5f47656e65
+000008a8 7261746552616e64
+000008b0 6f6d4c6367282870
+000008b8 52616e646f6d292c
+000008c0 20286c656e677468
+000008c8 292900          
+
+                                   Fri Apr 10 08:31:47 2020           Page 49
+                                   Fri Apr 10 08:31:47 2020   gh_000084c1.si
+000008cb 04               2674		.byte	4
+000008cc 00               2675		.byte	0
+                          2676		.section	.debug_abbrev
+0000013a 00               2677		.byte	0
+                          2678		.section	.debug_info
+                          2679	.Ldw_end:

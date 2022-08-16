@@ -1,0 +1,509 @@
+
+                                   Fri Apr 10 08:31:58 2020           Page 1
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined
+                -stderr=err/fbl_applvect.err -elf -b1 -I../../../bsw/_common
+                -I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                -I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                -I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                -Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                -Igendata -Iinclude -IC:\ghs\comp_201754\lib\ppc5514
+                -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\fbl_applvect.dbo
+                -source=fbl_applvect.c -o obj\gh_000085s1.o
+                -list=lst/fbl_applvect.lst
+                C:\Users\owner\AppData\Local\Temp\gh_000085s1.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_000085s1.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/fbl_applvect.lst
+                             6	#		-stderr=err/fbl_applvect.err -c -vle
+                             7	#		-DC_ENABLE_INSTRUCTION_SET_VLE -D__vle --prototype_warnings
+                             8	#		-Odebug -Osize -Ospace -G -dual_debug -nofloatio -cpu=ppc560xp
+                             9	#		-noobj -DRAM_48K -inline_prologue -pragma_asm_inline -noSPE
+                            10	#		--no_exceptions --no_commons -nokeeptempfiles -pnone
+                            11	#		--incorrect_pragma_warnings --slash_comment --long_long
+                            12	#		-preprocess_assembly_files -passsource -I../../../bsw/_common
+                            13	#		-I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                            14	#		-I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                            15	#		-I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                            16	#		-Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                            17	#		-Igendata -Iinclude ../../../BSW/Fbl/fbl_applvect.c
+                            18	#Source File:   ../../../BSW/Fbl/fbl_applvect.c
+                            19	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            20	#Compile Date:  Fri Apr 10 08:31:57 2020
+                            21	#Host OS:       Win32
+                            22	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            23	#Release:       Compiler v2017.5.4
+                            24	#Revision Date: Wed Oct 04 11:39:37 2017
+                            25	#Release Date:  Wed Oct 04 09:00:05 2017
+                            26	# ecom  -g -w -OMS
+                            27	
+                            28		.section ".APPLVECT","a"
+                            29		.align	2
+                            30		.global	ApplIntJmpTable
+00000000 a5000000           31	ApplIntJmpTable:	.byte	165,0,0,0
+00000004 00000000           32		.long	_start
+                            33		.type	ApplIntJmpTable,@object
+                            34		.size	ApplIntJmpTable,8
+                            35		.data
+                            36		.note ".PPC.EMB.apuinfo",""
+00000000 00000008           37		.long	0x00000008
+00000004 00000004           38		.long	4
+00000008 00000002           39		.long	0x00000002
+                            40		# "APUinfo\000"
+0000000c 41505569           41		.byte	65,80,85,105
+
+                                   Fri Apr 10 08:31:58 2020           Page 2
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+00000010 6e666f00           42		.byte	110,102,111,0
+00000014 01040001           43		.long	0x01040001
+                            44		.ghsnote version,20
+                            45		.ghsnote tools,3
+                            46		.ghsnote options,644
+                            47		.section ".vletext", "vax"
+                            48		.vle
+                            49		.vle
+                            50	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cfbl_applvect...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB06D..0::
+                            51	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cfbl_applvect...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB06D..0::
+                            52		.section	.debug_info
+                            53	.Ldw_begin:
+00000000 000000f8           54		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002               55		.byte	0,2
+00000006 00000000           56		.long	.Ldw_abbr_begin
+0000000a 04                 57		.byte	4
+                            58		.section	.debug_abbrev
+                            59	.Ldw_abbr_begin:
+                            60		.section	.debug_info
+0000000b 01                 61		.byte	1
+0000000c 00000000           62		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cfbl_applvect...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB06D..0
+00000010 00000000           63		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cfbl_applvect...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB06D..0
+00000014 2e2e2f2e2e2f2e2e   64		.strz	"../../../BSW/Fbl/fbl_applvect.c"
+0000001c 2f4253572f46626c
+00000024 2f66626c5f617070
+0000002c 6c766563742e6300
+00000034 433a5c566563746f   65		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+0000003c 725c434244313830
+00000044 303737325f443030
+0000004c 5f4d706335377878
+00000054 5c44656d6f5c4465
+0000005c 6d6f46626c5c4170
+00000064 706c00          
+00000067 4748532043203230   66		.strz	"GHS C 2017.5.4 [dual]"
+0000006f 31372e352e34205b
+00000077 6475616c5d00    
+0000007d 0001               67		.byte	0,1
+0000007f 00000000           68		.long	.Ldw_line_begin
+00000083 00000000           69		.long	.Ldw_macinfo_begin
+00000087 00                 70		.byte	0
+                            71	
+                            72		.section	.debug_abbrev
+00000000 01                 73		.byte	1
+00000001 11                 74		.byte	17
+00000002 01                 75		.byte	1
+00000003 1101               76		.byte	17,1
+00000005 1201               77		.byte	18,1
+00000007 0308               78		.byte	3,8
+00000009 1b08               79		.byte	27,8
+0000000b 2508               80		.byte	37,8
+0000000d 1305               81		.byte	19,5
+0000000f 1006               82		.byte	16,6
+00000011 4306               83		.byte	67,6
+00000013 420b               84		.byte	66,11
+00000015 0000               85		.byte	0,0
+                            86	
+                            87		.section	.debug_line
+                            88	.Ldw_line_begin:
+00000000 0000009f           89		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002               90		.byte	0,2
+00000006 00000099           91		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                            92	.Ldw_lpro_begin:
+0000000a 01                 93		.byte	1
+0000000b 00                 94		.byte	0
+0000000c 00                 95		.byte	0
+0000000d 04                 96		.byte	4
+0000000e 0a                 97		.byte	10
+
+                                   Fri Apr 10 08:31:58 2020           Page 3
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+0000000f 000101             98		.byte	0,1,1
+00000012 010100             99		.byte	1,1,0
+00000015 000001            100		.byte	0,0,1
+00000018 00                101		.byte	0
+00000019 2e2e2f2e2e2f2e2e  102		.strz	"../../../BSW/Fbl/fbl_applvect.c"
+00000021 2f4253572f46626c
+00000029 2f66626c5f617070
+00000031 6c766563742e6300
+00000039 000000            103		.byte	0,0,0
+0000003c 67656e646174615c  104		.strz	"gendata\\v_cfg.h"
+00000044 765f6366672e6800
+0000004c 000000            105		.byte	0,0,0
+0000004f 2e2e2f2e2e2f2e2e  106		.strz	"../../../bsw/_common/v_def.h"
+00000057 2f6273772f5f636f
+0000005f 6d6d6f6e2f765f64
+00000067 65662e6800      
+0000006c 000000            107		.byte	0,0,0
+0000006f 2e2e2f2e2e2f2e2e  108		.strz	"../../../BSW/Fbl/applvect.h"
+00000077 2f4253572f46626c
+0000007f 2f6170706c766563
+00000087 742e6800        
+0000008b 000000            109		.byte	0,0,0
+0000008e 696e636c7564655c  110		.strz	"include\\MemMap.h"
+00000096 4d656d4d61702e68
+0000009e 00              
+0000009f 000000            111		.byte	0,0,0
+000000a2 00                112		.byte	0
+                           113	.Ldw_lpro_end:
+                           114		.section	.debug_macinfo
+                           115	.Ldw_macinfo_begin:
+                           116		.section	.debug_info
+                           117	.LDW_189c4b8:
+00000088 27                118		.byte	39
+00000089 756e7369676e6564  119		.strz	"unsigned long"
+00000091 206c6f6e6700    
+00000097 07                120		.byte	7
+00000098 04                121		.byte	4
+                           122	
+                           123		.section	.debug_abbrev
+00000017 27                124		.byte	39
+00000018 24                125		.byte	36
+00000019 00                126		.byte	0
+0000001a 0308              127		.byte	3,8
+0000001c 3e0b              128		.byte	62,11
+0000001e 0b0b              129		.byte	11,11
+00000020 0000              130		.byte	0,0
+                           131	
+                           132		.section	.debug_info
+                           133	.LDW_189c9c0:
+00000099 27                134		.byte	39
+0000009a 696e7400          135		.strz	"int"
+0000009e 05                136		.byte	5
+0000009f 04                137		.byte	4
+                           138	
+                           139	.LDW_5c233e0:
+000000a0 2b                140		.byte	43
+000000a1 00000000          141		.long	.LDW_5c23120
+                           142	
+                           143		.section	.debug_abbrev
+00000022 2b                144		.byte	43
+00000023 26                145		.byte	38
+00000024 00                146		.byte	0
+00000025 4910              147		.byte	73,16
+00000027 0000              148		.byte	0,0
+                           149	
+                           150		.section	.debug_info
+                           151	.LDW_5c23438:
+000000a5 3c                152		.byte	60
+000000a6 00                153		.byte	0
+
+                                   Fri Apr 10 08:31:58 2020           Page 4
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+000000a7 08                154		.byte	8
+000000a8 00000000          155		.long	.LDW_5c233e0
+                           156	
+                           157		.section	.debug_abbrev
+00000029 3c                158		.byte	60
+0000002a 01                159		.byte	1
+0000002b 01                160		.byte	1
+0000002c 090b              161		.byte	9,11
+0000002e 0b0f              162		.byte	11,15
+00000030 4910              163		.byte	73,16
+00000032 0000              164		.byte	0,0
+                           165	
+                           166		.section	.debug_info
+000000ac 34                167		.byte	52
+000000ad 00000000          168		.long	.LDW_189c9c0
+000000b1 04                169		.byte	4
+000000b2 00                170		.byte	0
+000000b3 01                171		.byte	1
+                           172	
+                           173		.section	.debug_abbrev
+00000034 34                174		.byte	52
+00000035 21                175		.byte	33
+00000036 00                176		.byte	0
+00000037 4910              177		.byte	73,16
+00000039 0b0f              178		.byte	11,15
+0000003b 220d              179		.byte	34,13
+0000003d 2f0d              180		.byte	47,13
+0000003f 0000              181		.byte	0,0
+                           182	
+                           183		.section	.debug_info
+000000b4 00                184		.byte	0
+                           185	
+                           186	.LDW_189ca30:
+000000b5 47                187		.byte	71
+000000b6 01                188		.byte	1
+                           189	
+                           190		.section	.debug_abbrev
+00000041 47                191		.byte	71
+00000042 15                192		.byte	21
+00000043 01                193		.byte	1
+00000044 270c              194		.byte	39,12
+00000046 0000              195		.byte	0,0
+                           196	
+                           197		.section	.debug_info
+000000b7 00                198		.byte	0
+                           199	
+                           200	.LDW_5c23120:
+000000b8 2a                201		.byte	42
+000000b9 7675696e74333200  202		.strz	"vuint32"
+000000c1 b204              203		.byte	178,4
+000000c3 18                204		.byte	24
+000000c4 03                205		.byte	3
+000000c5 00000000          206		.long	.LDW_189c4b8
+                           207	
+                           208		.section	.debug_abbrev
+00000048 2a                209		.byte	42
+
+                                   Fri Apr 10 08:31:58 2020           Page 5
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+00000049 16                210		.byte	22
+0000004a 00                211		.byte	0
+0000004b 0308              212		.byte	3,8
+0000004d 3b0f              213		.byte	59,15
+0000004f 390f              214		.byte	57,15
+00000051 3a0f              215		.byte	58,15
+00000053 4910              216		.byte	73,16
+00000055 0000              217		.byte	0,0
+                           218	
+                           219		.section	.debug_info
+                           220	.LDW_5c234c0:
+000000c9 06                221		.byte	6
+000000ca 4170706c496e744a  222		.strz	"ApplIntJmpTable"
+000000d2 6d705461626c6500
+000000da 5d                223		.byte	93
+000000db 27                224		.byte	39
+000000dc 01                225		.byte	1
+000000dd 00000000          226		.long	.LDW_5c23438
+000000e1 01                227		.byte	1
+000000e2 00                228		.byte	0
+000000e3 0503              229		.byte	5,3
+000000e5 00000000          230		.long	ApplIntJmpTable
+                           231	
+                           232		.section	.debug_abbrev
+00000057 06                233		.byte	6
+00000058 34                234		.byte	52
+00000059 00                235		.byte	0
+0000005a 0308              236		.byte	3,8
+0000005c 3b0f              237		.byte	59,15
+0000005e 390f              238		.byte	57,15
+00000060 3a0f              239		.byte	58,15
+00000062 4910              240		.byte	73,16
+00000064 3f0c              241		.byte	63,12
+00000066 3c0c              242		.byte	60,12
+00000068 020a              243		.byte	2,10
+0000006a 0000              244		.byte	0,0
+                           245	
+                           246		.section	.debug_info
+                           247	.LDW_5c23518:
+000000e9 17                248		.byte	23
+000000ea 5f737461727400    249		.strz	"_start"
+000000f1 53                250		.byte	83
+000000f2 0d                251		.byte	13
+000000f3 01                252		.byte	1
+000000f4 01                253		.byte	1
+000000f5 00                254		.byte	0
+000000f6 01                255		.byte	1
+000000f7 01                256		.byte	1
+000000f8 00                257		.byte	0
+000000f9 01                258		.byte	1
+                           259	
+                           260		.section	.debug_abbrev
+0000006c 17                261		.byte	23
+0000006d 2e                262		.byte	46
+0000006e 01                263		.byte	1
+0000006f 0308              264		.byte	3,8
+00000071 3b0f              265		.byte	59,15
+
+                                   Fri Apr 10 08:31:58 2020           Page 6
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+00000073 390f              266		.byte	57,15
+00000075 3a0f              267		.byte	58,15
+00000077 3c0c              268		.byte	60,12
+00000079 200b              269		.byte	32,11
+0000007b 3f0c              270		.byte	63,12
+0000007d 320b              271		.byte	50,11
+0000007f 4c0b              272		.byte	76,11
+00000081 270c              273		.byte	39,12
+00000083 0000              274		.byte	0,0
+                           275	
+                           276		.section	.debug_info
+000000fa 00                277		.byte	0
+                           278	
+000000fb 00                279		.byte	0
+                           280	
+                           281		.section	.debug_line
+                           282	.Ldw_line_end:
+                           283		.section	.debug_macinfo
+00000000 03                284		.byte	3
+00000001 00                285		.byte	0
+00000002 01                286		.byte	1
+00000003 03                287		.byte	3
+00000004 3e                288		.byte	62
+00000005 02                289		.byte	2
+00000006 01                290		.byte	1
+00000007 4a                291		.byte	74
+00000008 435f435055545950  292		.strz	"C_CPUTYPE_32BIT "
+00000010 455f333242495420
+00000018 00              
+00000019 01                293		.byte	1
+0000001a 59                294		.byte	89
+0000001b 435f435055545950  295		.strz	"C_CPUTYPE_BITORDER_MSB2LSB "
+00000023 455f4249544f5244
+0000002b 45525f4d5342324c
+00000033 53422000        
+00000037 01                296		.byte	1
+00000038 8901              297		.byte	137,1
+0000003a 5647454e5f454e41  298		.strz	"VGEN_ENABLE_CANFBL "
+00000042 424c455f43414e46
+0000004a 424c2000        
+0000004e 01                299		.byte	1
+0000004f be01              300		.byte	190,1
+00000051 565f434f4d505f47  301		.strz	"V_COMP_GHS_MPC5700 "
+00000059 48535f4d50433537
+00000061 30302000        
+00000065 04                302		.byte	4
+00000066 03                303		.byte	3
+00000067 42                304		.byte	66
+00000068 03                305		.byte	3
+00000069 01                306		.byte	1
+0000006a 8704              307		.byte	135,4
+0000006c 565f4445465f5355  308		.strz	"V_DEF_SUPPORTED_PLATFORM "
+00000074 50504f525445445f
+0000007c 504c4154464f524d
+00000084 2000            
+00000086 01                309		.byte	1
+00000087 da06              310		.byte	218,6
+00000089 4c4f43414c5f494e  311		.strz	"LOCAL_INLINE static inline"
+00000091 4c494e4520737461
+00000099 74696320696e6c69
+000000a1 6e6500          
+000000a4 01                312		.byte	1
+000000a5 e406              313		.byte	228,6
+000000a7 565f4d454d524f4d  314		.strz	"V_MEMROM0 "
+000000af 302000          
+000000b2 01                315		.byte	1
+000000b3 ec06              316		.byte	236,6
+000000b5 565f4d454d524f4d  317		.strz	"V_MEMROM1 "
+000000bd 312000          
+000000c0 01                318		.byte	1
+000000c1 8007              319		.byte	128,7
+000000c3 565f4d454d524f4d  320		.strz	"V_MEMROM2 const"
+000000cb 3220636f6e737400
+000000d3 04                321		.byte	4
+
+                                   Fri Apr 10 08:31:58 2020           Page 7
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+000000d4 03                322		.byte	3
+000000d5 43                323		.byte	67
+000000d6 04                324		.byte	4
+000000d7 01                325		.byte	1
+000000d8 42                326		.byte	66
+000000d9 46424c5654414241  327		.strz	"FBLVTABAPPL_MPC5500_VERSION 0x0204u"
+000000e1 50504c5f4d504335
+000000e9 3530305f56455253
+000000f1 494f4e2030783032
+000000f9 30347500        
+000000fd 01                328		.byte	1
+000000fe 43                329		.byte	67
+000000ff 46424c5654414241  330		.strz	"FBLVTABAPPL_MPC5500_RELEASE_VERSION 0x00u"
+00000107 50504c5f4d504335
+0000010f 3530305f52454c45
+00000117 4153455f56455253
+0000011f 494f4e2030783030
+00000127 7500            
+00000129 01                331		.byte	1
+0000012a 49                332		.byte	73
+0000012b 4150504c56454354  333		.strz	"APPLVECT_FROM_BOOT 0xA5000000UL"
+00000133 5f46524f4d5f424f
+0000013b 4f54203078413530
+00000143 3030303030554c00
+0000014b 01                334		.byte	1
+0000014c 55                335		.byte	85
+0000014d 46424c5f4150504c  336		.strz	"FBL_APPLVECT_START_SEC_CONST "
+00000155 564543545f535441
+0000015d 52545f5345435f43
+00000165 4f4e53542000    
+0000016b 03                337		.byte	3
+0000016c 56                338		.byte	86
+0000016d 05                339		.byte	5
+0000016e 01                340		.byte	1
+0000016f 2b                341		.byte	43
+00000170 46424c5f4d454d4d  342		.strz	"FBL_MEMMAP_ERROR "
+00000178 41505f4552524f52
+00000180 2000            
+00000182 04                343		.byte	4
+00000183 01                344		.byte	1
+00000184 5a                345		.byte	90
+00000185 46424c5f4150504c  346		.strz	"FBL_APPLVECT_STOP_SEC_CONST "
+0000018d 564543545f53544f
+00000195 505f5345435f434f
+0000019d 4e53542000      
+000001a2 03                347		.byte	3
+000001a3 5b                348		.byte	91
+000001a4 05                349		.byte	5
+000001a5 01                350		.byte	1
+000001a6 2b                351		.byte	43
+000001a7 46424c5f4d454d4d  352		.strz	"FBL_MEMMAP_ERROR "
+000001af 41505f4552524f52
+000001b7 2000            
+000001b9 04                353		.byte	4
+000001ba 04                354		.byte	4
+000001bb 01                355		.byte	1
+000001bc 54                356		.byte	84
+000001bd 52455345545f454e  357		.strz	"RESET_ENTRY_POINT (vuint32)_start"
+000001c5 5452595f504f494e
+000001cd 5420287675696e74
+000001d5 3332295f73746172
+000001dd 7400            
+000001df 01                358		.byte	1
+000001e0 5a                359		.byte	90
+000001e1 46424c5f4150504c  360		.strz	"FBL_APPLVECT_START_SEC_CONST "
+000001e9 564543545f535441
+000001f1 52545f5345435f43
+000001f9 4f4e53542000    
+000001ff 03                361		.byte	3
+00000200 5b                362		.byte	91
+00000201 05                363		.byte	5
+00000202 01                364		.byte	1
+00000203 2b                365		.byte	43
+00000204 46424c5f4d454d4d  366		.strz	"FBL_MEMMAP_ERROR "
+0000020c 41505f4552524f52
+00000214 2000            
+00000216 04                367		.byte	4
+00000217 01                368		.byte	1
+00000218 5f                369		.byte	95
+00000219 46424c5f4150504c  370		.strz	"FBL_APPLVECT_STOP_SEC_CONST "
+00000221 564543545f53544f
+00000229 505f5345435f434f
+00000231 4e53542000      
+00000236 03                371		.byte	3
+00000237 60                372		.byte	96
+00000238 05                373		.byte	5
+00000239 01                374		.byte	1
+0000023a 2b                375		.byte	43
+0000023b 46424c5f4d454d4d  376		.strz	"FBL_MEMMAP_ERROR "
+00000243 41505f4552524f52
+0000024b 2000            
+0000024d 04                377		.byte	4
+
+                                   Fri Apr 10 08:31:58 2020           Page 8
+                                   Fri Apr 10 08:31:57 2020   gh_000085s1.si
+0000024e 04                378		.byte	4
+0000024f 00                379		.byte	0
+                           380		.section	.debug_abbrev
+00000085 00                381		.byte	0
+                           382		.section	.debug_info
+                           383	.Ldw_end:

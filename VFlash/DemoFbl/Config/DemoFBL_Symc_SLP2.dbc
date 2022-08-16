@@ -1,0 +1,104 @@
+VERSION "HNPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYNNYYNNNNNN>4>%%%/4/'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: DemoExtIDs_2 DemoExtIDs Demo_2 Tester Demo
+
+
+BO_ 2564481442 DiagExtDemoResponse_2: 6 DemoExtIDs_2
+ SG_ DiagExtDataResponse : 0|48@1- (1,0) [0|0] "" Vector__XXX
+
+BO_ 2564465377 DiagExtDemoRequest_2: 8 Vector__XXX
+ SG_ DiagExtDataRequest : 0|48@1- (1,0) [0|0] ""  DemoExtIDs_2
+
+BO_ 2564532736 DiagExtDemoFuncReq: 8 Tester
+ SG_ FunctionalDataExt : 0|64@1- (1,0) [0|0] ""  DemoExtIDs_2,DemoExtIDs
+
+BO_ 2564481441 DiagExtDemoResponse: 6 DemoExtIDs
+ SG_ DiagExtDataResponse : 0|48@1- (1,0) [0|0] ""  Tester
+
+BO_ 2564465121 DiagExtDemoRequest: 8 Tester
+ SG_ DiagExtDataRequest : 0|48@1- (1,0) [0|0] ""  DemoExtIDs
+
+BO_ 1802 Diag2DemoResponse: 8 Demo_2
+ SG_ DiagData2Response : 0|48@1- (1,0) [0|0] ""  Tester
+
+BO_ 1794 Diag2DemoRequest: 8 Tester
+ SG_ DiagData2Request : 0|48@1- (1,0) [0|0] ""  Demo_2
+
+BO_ 1792 DiagDemoFunctional: 8 Tester
+ SG_ FunctionalData : 0|64@1- (1,0) [0|0] ""  Demo_2,Demo
+
+BO_ 1801 DiagDemoResponse: 8 Demo
+ SG_ DiagDataResponse : 16|48@1+ (1,0) [0|0] ""  Tester
+ SG_ DiagTPCI : 8|8@1+ (1,0) [0|0] ""  Tester
+ SG_ DiagTA : 0|8@1+ (1,0) [0|0] ""  Tester
+
+BO_ 1793 DiagDemoRequest: 8 Tester
+ SG_ DiagDataRequest : 16|48@1+ (1,0) [0|0] ""  Demo
+ SG_ DiagTPCI : 8|8@1+ (1,0) [0|0] ""  Demo
+ SG_ DiagTA : 0|8@1+ (1,0) [0|0] ""  Demo
+
+
+
+BA_DEF_ BU_  "TpOwnSystemEcuNumber" HEX 0 255;
+BA_DEF_ BU_  "TpNodeBaseAddress" HEX 0 65535;
+BA_DEF_ BU_  "NodeAddress" INT 0 63;
+BA_DEF_ BO_  "DiagState" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "no","yes";
+BA_DEF_ BO_  "DiagRequest" ENUM  "no","yes";
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "VersionNumber" INT 0 4096;
+BA_DEF_DEF_  "TpOwnSystemEcuNumber" 241;
+BA_DEF_DEF_  "TpNodeBaseAddress" 6362;
+BA_DEF_DEF_  "NodeAddress" 0;
+BA_DEF_DEF_  "DiagState" "no";
+BA_DEF_DEF_  "DiagResponse" "no";
+BA_DEF_DEF_  "DiagRequest" "no";
+BA_DEF_DEF_  "Manufacturer" "Vector";
+BA_DEF_DEF_  "VersionNumber" 0;
+BA_ "VersionNumber" 1;
+BA_ "TpOwnSystemEcuNumber" BU_ DemoExtIDs_2 162;
+BA_ "TpOwnSystemEcuNumber" BU_ DemoExtIDs 161;
+BA_ "DiagResponse" BO_ 2564481442 1;
+BA_ "DiagRequest" BO_ 2564465377 1;
+BA_ "DiagState" BO_ 2564532736 1;
+BA_ "DiagResponse" BO_ 2564481441 1;
+BA_ "DiagRequest" BO_ 2564465121 1;
+BA_ "DiagResponse" BO_ 1802 1;
+BA_ "DiagRequest" BO_ 1794 1;
+BA_ "DiagState" BO_ 1792 1;
+BA_ "DiagResponse" BO_ 1801 1;
+BA_ "DiagRequest" BO_ 1793 1;
+

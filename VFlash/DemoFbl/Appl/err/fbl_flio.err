@@ -1,0 +1,5 @@
+"../../../BSW/Fbl/fbl_flio.c", line 264: warning #177-D: variable "rchwValues"
+          was declared but never referenced
+  V_MEMROM0 static V_MEMROM1 vuint32 V_MEMROM2 rchwValues[kNrOfRchwValues] = {0x005A0000ul, 0x00A50000ul};
+                                               ^
+

@@ -1,0 +1,1410 @@
+
+                                   Fri Apr 24 16:52:06 2020           Page 1
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined -elf -b1 -I.
+                -I./components/spc570sxx_platform_component_rla/lib/include
+                -I./components/flash_driver/lib/include
+                -I./components/spc570sxx_board_initialization_component_rla/lib/include
+                -I./components/spc570sxx_clock_component_rla/lib/include
+                -I./components/spc570sxx_irq_component_rla/lib/include
+                -I./components/spc570sxx_osal_component_rla/lib/include
+                -I./components/spc570sxx_platform_component_rla/cfg
+                -I./components/spc570sxx_board_initialization_component_rla/cfg
+                -I./components/spc570sxx_clock_component_rla/cfg
+                -I./components/spc570sxx_irq_component_rla/cfg
+                -I./components/spc570sxx_osal_component_rla/cfg -I./source/
+                -I./source/ASW/ -I./source/BSW/ -I./source/BSW/BSW_Geny/
+                -I./source/BSW/BSW_Geny/Can/ -I./source/BSW/BSW_Geny/Common/
+                -I./source/BSW/BSW_Geny/Il/
+                -I./source/BSW/BSW_Geny/SipVersionCheck/
+                -I./source/BSW/BSW_Geny/Tp/ -I./source/BSW/BSW_Geny/VStdLib/
+                -I./source/BSW/CANbedded_Vector/ -I./source/FBL/ -I./source/Geny/
+                -I./source/Geny/Cdd/ -I./source/Geny/Cfg/ -I./source/Geny/Db/
+                -I./source/Geny/Prj/ -I./source/HAL/ -I./source/RTE/
+                -I./source/UDS/ -I./components -IC:\ghs\comp_201754\/ansi
+                -IC:\ghs\comp_201754\lib\ppc5514 -cpu=ppc5746mz0
+                -dbo=D:\07_Working\E100\build\obj\ivor.dbo
+                -source=./components/spc570sxx_osal_component_rla/lib/src/ivor.s
+                --gh_oname=build/obj/ivor.o --gh_md_append=build/obj/ivor.dtmp
+                -asm3g -asm3g_driver=C:/ghs/comp_201754/ccppc
+                -asm3g_args=@@build/obj/ivor.a3g -accept_unsafe_op_names -o
+                build\obj\gh_0000a9g1.o -list=build/lst/ivor.lst
+                build\obj\gh_0000a9g1.si
+Original File:  ./components/spc570sxx_osal_component_rla/lib/src/ivor.s
+Source File:    build\obj\gh_0000a9g1.si
+Directory:      D:\07_Working\E100
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             0	#line 1 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             1	
+                             2	
+                             3	
+                             4	
+                             5	
+                             6	
+                             7	
+                             8	
+                             9	
+                            10	
+                            11	
+                            12	 
+                            13	
+                            14	
+                            15	
+                            16	
+                            17	
+                            18	
+                            19	 
+                            20	
+                            21	
+                            22	
+
+                                   Fri Apr 24 16:52:06 2020           Page 2
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            23	 
+                             0*	#line 1 "./components/spc570sxx_platform_component_rla/lib/include/platform.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	 
+                            18*	
+                            19*	
+                            20*	
+                            21*	
+                             0*	#line 1 "./components/spc570sxx_platform_component_rla/cfg/core.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	 
+                            19*	
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	 
+                            26*	
+                            27*	
+                            28*	
+                            29*	
+                            30*	 
+                            31*	
+                            32*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 3
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            33*	
+                            34*	
+                            35*	 
+                            36*	
+                            37*	
+                            38*	
+                            39*	
+                            40*	 
+                            41*	
+                            42*	
+                            43*	
+                            44*	
+                            45*	 
+                            46*	
+                            47*	
+                            48*	
+                            49*	
+                            50*	 
+                            51*	
+                            52*	
+                            53*	
+                            54*	
+                            55*	 
+                            56*	
+                            57*	
+                            58*	
+                            59*	
+                            60*	 
+                            61*	
+                            62*	
+                            63*	
+                            64*	
+                            65*	 
+                            66*	
+                            67*	
+                            68*	
+                            69*	
+                            70*	 
+                            71*	
+                            72*	
+                            73*	
+                            74*	
+                            75*	 
+                            76*	
+                            77*	
+                            78*	
+                            79*	
+                            80*	 
+                            81*	
+                            82*	
+                            83*	
+                            84*	
+                            85*	 
+                            22*	#line 23 "./components/spc570sxx_platform_component_rla/lib/include/platform.h"
+                             0*	#line 1 "./components/spc570sxx_platform_component_rla/cfg/toolchain.h"
+                             1*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 4
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	 
+                            18*	
+                            19*	
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	
+                            26*	
+                            23*	#line 24 "./components/spc570sxx_platform_component_rla/lib/include/platform.h"
+                             0*	#line 1 "./components/spc570sxx_platform_component_rla/lib/include/intc.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	
+                            19*	
+                            20*	 
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	 
+                            26*	 
+                            27*	 
+                            28*	
+                            29*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 5
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            30*	
+                            31*	 
+                            32*	
+                            33*	
+                            34*	 
+                            35*	
+                            36*	 
+                            37*	
+                            38*	
+                            39*	 
+                            40*	
+                            41*	
+                            42*	
+                            43*	
+                            44*	 
+                            45*	
+                            46*	 
+                            47*	
+                            48*	
+                            49*	
+                            50*	 
+                            51*	 
+                            52*	
+                            53*	
+                            54*	
+                            55*	
+                            56*	 
+                            57*	
+                            58*	
+                            59*	
+                            60*	
+                            61*	 
+                            62*	
+                            63*	
+                            64*	 
+                            65*	 
+                            66*	 
+                            67*	
+                            68*	 
+                            69*	 
+                            70*	 
+                            71*	
+                            72*	 
+                            73*	 
+                            74*	 
+                            75*	
+                            76*	 
+                            77*	 
+                            78*	 
+                            79*	
+                            80*	
+                            81*	
+                            82*	 
+                            83*	
+                            84*	
+                            85*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 6
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            86*	
+                            87*	
+                            88*	
+                            89*	
+                            90*	
+                            91*	 
+                            92*	
+                            93*	
+                            94*	
+                            95*	 
+                            96*	 
+                            97*	 
+                            98*	
+                            99*	 
+                           100*	 
+                           101*	 
+                           102*	
+                           103*	
+                           104*	
+                           105*	 
+                            24*	#line 25 "./components/spc570sxx_platform_component_rla/lib/include/platform.h"
+                            25*	
+                            26*	
+                            27*	
+                            28*	
+                            29*	
+                            30*	
+                            31*	
+                            32*	
+                            33*	
+                            34*	
+                            35*	
+                            36*	 
+                            37*	
+                            38*	
+                            39*	
+                            40*	
+                            41*	
+                            25	#line 26 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             0*	#line 1 "./components/spc570sxx_irq_component_rla/cfg/irq_cfg.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 7
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            17*	
+                            18*	
+                            19*	 
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	 
+                            25*	 
+                            26*	 
+                            27*	
+                            28*	
+                            29*	
+                            30*	
+                            31*	 
+                            32*	
+                            33*	
+                            34*	
+                            35*	
+                            36*	
+                            37*	
+                            38*	
+                            39*	
+                            40*	
+                            41*	
+                            42*	
+                            43*	 
+                            44*	 
+                            45*	
+                            46*	
+                            47*	
+                            48*	
+                            49*	 
+                            50*	 
+                            51*	
+                            52*	 
+                            53*	 
+                            54*	 
+                            55*	
+                            56*	 
+                            57*	 
+                            58*	 
+                            59*	
+                            60*	 
+                            61*	 
+                            62*	 
+                            63*	
+                            64*	 
+                            65*	 
+                            66*	 
+                            67*	
+                            68*	 
+                            69*	 
+                            70*	 
+                            71*	
+                            72*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 8
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            73*	
+                            74*	
+                            75*	
+                            76*	
+                            77*	
+                            78*	
+                            79*	
+                            80*	
+                            81*	
+                            82*	
+                            83*	
+                            84*	 
+                            26	#line 27 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             0*	#line 1 "./components/spc570sxx_osal_component_rla/cfg/osal_cfg.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	
+                            19*	 
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	 
+                            25*	 
+                            26*	 
+                            27*	
+                            28*	 
+                            29*	 
+                            30*	 
+                            31*	
+                            32*	
+                            33*	
+                            34*	
+                            35*	
+                            36*	 
+                            37*	
+                            38*	
+                            39*	
+                            40*	
+                            41*	
+                            42*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 9
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            43*	 
+                            44*	
+                            45*	
+                            46*	
+                            47*	
+                            48*	
+                            49*	
+                            50*	
+                            51*	
+                            52*	
+                            53*	 
+                            54*	
+                            55*	
+                            56*	
+                            57*	
+                            58*	
+                            59*	
+                            60*	
+                            61*	 
+                            62*	
+                            63*	
+                            64*	
+                            65*	
+                            66*	
+                            67*	
+                            68*	
+                            69*	 
+                            70*	
+                            71*	
+                            72*	
+                            73*	
+                            74*	 
+                            75*	 
+                            76*	 
+                            77*	
+                            78*	 
+                            79*	 
+                            80*	 
+                            81*	
+                            82*	 
+                            83*	 
+                            84*	 
+                            85*	
+                            86*	 
+                            87*	 
+                            88*	 
+                            89*	
+                            90*	
+                            91*	
+                            92*	 
+                            27	#line 28 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             0*	#line 1 "./components/spc570sxx_osal_component_rla/cfg/ivor_cfg.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 10
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	
+                            19*	 
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	
+                            26*	 
+                            27*	 
+                            28*	 
+                            29*	
+                            30*	 
+                            31*	 
+                            32*	 
+                            33*	
+                            34*	 
+                            35*	 
+                            36*	 
+                            37*	
+                            38*	
+                            39*	
+                            40*	
+                            41*	
+                            42*	
+                            43*	
+                            44*	
+                            45*	
+                            46*	 
+                            47*	 
+                            48*	
+                            49*	
+                            50*	
+                            51*	
+                            52*	
+                            53*	
+                            54*	
+                            55*	
+                            56*	
+                            57*	
+                            58*	
+                            59*	 
+                            60*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 11
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            61*	
+                            62*	
+                            63*	
+                            64*	
+                            65*	
+                            66*	
+                            67*	
+                            68*	
+                            69*	 
+                            70*	
+                            71*	
+                            72*	
+                            73*	
+                            74*	
+                            75*	
+                            76*	
+                            77*	
+                            78*	
+                            79*	 
+                            80*	
+                            81*	
+                            82*	
+                            83*	
+                            84*	
+                            85*	
+                            86*	
+                            87*	
+                            88*	
+                            89*	 
+                            90*	
+                            91*	
+                            92*	
+                            93*	
+                            94*	
+                            95*	
+                            96*	
+                            97*	
+                            98*	
+                            99*	 
+                           100*	
+                           101*	
+                           102*	
+                           103*	
+                           104*	
+                           105*	
+                           106*	
+                           107*	
+                           108*	
+                           109*	 
+                           110*	
+                           111*	
+                           112*	
+                           113*	
+                           114*	
+                           115*	
+                           116*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 12
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           117*	
+                           118*	 
+                           119*	
+                           120*	
+                           121*	
+                           122*	
+                           123*	
+                           124*	
+                           125*	
+                           126*	
+                           127*	
+                           128*	 
+                           129*	
+                           130*	
+                           131*	
+                           132*	
+                           133*	
+                           134*	
+                           135*	
+                           136*	
+                           137*	
+                           138*	 
+                           139*	
+                           140*	
+                           141*	
+                           142*	
+                           143*	
+                           144*	
+                           145*	
+                           146*	
+                           147*	
+                           148*	 
+                           149*	
+                           150*	
+                           151*	
+                           152*	
+                           153*	
+                           154*	
+                           155*	
+                           156*	
+                           157*	
+                           158*	 
+                           159*	
+                           160*	
+                           161*	
+                           162*	
+                           163*	
+                           164*	
+                           165*	
+                           166*	
+                           167*	
+                           168*	 
+                           169*	
+                           170*	
+                           171*	
+                           172*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 13
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           173*	
+                           174*	
+                           175*	
+                           176*	
+                           177*	 
+                           178*	
+                           179*	
+                           180*	
+                           181*	
+                           182*	 
+                           183*	 
+                           184*	 
+                           185*	
+                           186*	 
+                           187*	 
+                           188*	 
+                           189*	
+                           190*	 
+                           191*	 
+                           192*	 
+                           193*	
+                           194*	 
+                           195*	 
+                           196*	 
+                           197*	
+                           198*	
+                           199*	
+                           200*	 
+                            28	#line 29 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             0*	#line 1 "./components/spc570sxx_platform_component_rla/cfg/boot.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	 
+                            19*	
+                            20*	
+                            21*	
+                            22*	
+                            23*	 
+                            24*	 
+                            25*	 
+                            26*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 14
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            27*	
+                            28*	
+                            29*	
+                            30*	 
+                            31*	
+                            32*	
+                            33*	 
+                            34*	
+                            35*	
+                            36*	
+                            37*	
+                            38*	 
+                            39*	
+                            40*	
+                            41*	
+                            42*	
+                            43*	
+                            44*	
+                            45*	
+                            46*	
+                            47*	
+                            48*	 
+                            49*	
+                            50*	 
+                            51*	 
+                            52*	 
+                            53*	
+                            54*	
+                            55*	
+                            56*	 
+                            57*	
+                            58*	
+                            59*	
+                            60*	
+                            61*	 
+                            62*	
+                            63*	
+                            64*	
+                            65*	
+                            66*	 
+                            67*	
+                            68*	
+                            69*	
+                            70*	
+                            71*	 
+                            72*	
+                            73*	
+                            74*	
+                            75*	
+                            76*	 
+                            77*	
+                            78*	
+                            79*	
+                            80*	
+                            81*	 
+                            82*	 
+
+                                   Fri Apr 24 16:52:06 2020           Page 15
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            83*	 
+                            84*	
+                            85*	 
+                            86*	 
+                            87*	 
+                            88*	
+                            89*	 
+                            90*	 
+                            91*	 
+                            92*	
+                            93*	 
+                            94*	 
+                            95*	 
+                            96*	
+                            97*	 
+                            98*	 
+                            99*	 
+                           100*	
+                           101*	
+                           102*	
+                           103*	 
+                            29	#line 30 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                             0*	#line 1 "./components/spc570sxx_osal_component_rla/lib/include/ivor.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	
+                            19*	 
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	
+                            26*	  
+                            27*	.macro SAVE_CONTEXT
+                            28*	        e_stwu      sp, -80(sp)              
+                            29*	        e_stmvsrrw  8(sp)                    
+                            30*	        e_stmvsprw  16(sp)                   
+                            31*	        e_stmvgprw  32(sp)                   
+                            32*	.endm
+                            33*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 16
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            34*	 
+                            35*	.macro RESTORE_CONTEXT
+                            36*	        e_lmvgprw   32(sp)                   
+                            37*	        e_lmvsprw   16(sp)                   
+                            38*	        e_lmvsrrw   8(sp)                    
+                            39*	        e_addi      sp, sp, 80               
+                            40*	.endm
+                            41*	
+                            42*	 
+                            43*	.macro SAVE_CONTEXT_CRITICAL
+                            44*	        e_stwu      sp, -80(sp)              
+                            45*	        e_stmvcsrrw  8(sp)                   
+                            46*	        e_stmvsprw  16(sp)                   
+                            47*	        e_stmvgprw  32(sp)                   
+                            48*	.endm
+                            49*	
+                            50*	 
+                            51*	.macro RESTORE_CONTEXT_CRITICAL
+                            52*	        e_lmvgprw   32(sp)                   
+                            53*	        e_lmvsprw   16(sp)                   
+                            54*	        e_lmvcsrrw   8(sp)                   
+                            55*	        e_addi      sp, sp, 80               
+                            56*	.endm
+                            57*	
+                            58*	 
+                            59*	.macro SAVE_CONTEXT_MACHINE_CHECK
+                            60*	        e_stwu			sp, -80(sp)			 
+                            61*	        e_stmvmcsrrw	8(sp)				 
+                            62*	        e_stmvsprw		16(sp)				 
+                            63*	        e_stmvgprw		32(sp)				 
+                            64*	.endm
+                            65*	
+                            66*	 
+                            67*	.macro RESTORE_MACHINE_CHECK
+                            68*	        e_lmvgprw		32(sp)				 
+                            69*	        e_lmvsprw		16(sp)				 
+                            70*	        e_lmvmcsrrw		8(sp)				 
+                            71*	        e_addi			sp, sp, 80			 
+                            72*	.endm
+                            73*	
+                            74*	
+                            75*	
+                            76*	
+                            77*	
+                            78*	 
+                            79*	.macro LOAD_SSR0_SSR1_PLUS
+                            80*			mfspr 		%r5,26				 
+                            81*			se_mr		%r3,%r5				 
+                            82*			mfspr		%r4,27				 
+                            83*	        se_lhz 		%r6,0(%r5)			 
+                            84*	        e_andi. 	%r7,%r6,0x9000
+                            85*	        e_cmpli 	0x0,%r7,0x1000		 
+                            86*	
+                            87*			se_bc		0x1,0x0,0x4			 
+                            88*	        se_addi 	%r5,2				 
+                            89*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 17
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                            90*	        se_addi 	%r5,2				 
+                            91*	
+                            92*	        e_stw       %r5, 8(sp)			 
+                            93*	.endm
+                            94*	
+                            95*	
+                            96*	
+                            97*	 
+                            98*	.macro LOAD_SSR0_SSR1
+                            99*			mfspr 		%r3,26				 
+                           100*			mfspr		%r4,27				 
+                           101*	.endm
+                           102*	
+                           103*	 
+                           104*	
+                           105*	 
+                           106*	.macro LOAD_CSSR0_CSSR1
+                           107*			mfspr 		%r3,58				 
+                           108*			mfspr		%r4,59				 
+                           109*	.endm
+                           110*	
+                           111*	
+                           112*	
+                           113*	
+                           114*	
+                           115*	 
+                           116*	.macro LOAD_MCSSR0_MCSSR1
+                           117*			mfspr 		%r5,570				 
+                           118*			se_mr		%r3,%r5				 
+                           119*			mfspr		%r4,571				 
+                           120*	        se_lhz 		%r6,0(%r5)			 
+                           121*	        e_andi. 	%r7,%r6,0x9000
+                           122*	        e_cmpli 	0x0,%r7,0x1000		 
+                           123*	
+                           124*			se_bc		0x1,0x0,0x4			 
+                           125*	        se_addi 	%r5,2				 
+                           126*	
+                           127*	        se_addi 	%r5,2				 
+                           128*	
+                           129*	        e_stw       %r5, 8(sp)			 
+                           130*	.endm
+                           131*	
+                           132*	
+                           133*	
+                           134*	
+                           135*	
+                           136*	 
+                           137*	.macro LOAD_DSSR0_DSSR1
+                           138*			mfspr 		%r5,574				 
+                           139*			se_mr		%r3,%r5				 
+                           140*			mfspr		%r4,575				 
+                           141*	        se_lhz 		%r6,0(%r5)			 
+                           142*	        e_andi. 	%r7,%r6,0x9000
+                           143*	        e_cmpli 	0x0,%r7,0x1000		 
+                           144*	
+                           145*			se_bc		0x1,0x0,0x4			 
+
+                                   Fri Apr 24 16:52:06 2020           Page 18
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           146*	        se_addi 	%r5,2				 
+                           147*	
+                           148*	        se_addi 	%r5,2				 
+                           149*	
+                           150*	        e_stw       %r5, 8(sp)			 
+                           151*	.endm
+                           152*	
+                           153*	
+                           154*	
+                           155*	
+                           156*	
+                             0*	#line 1 "./components/spc570sxx_osal_component_rla/lib/include/ivor_z0.h"
+                             1*	
+                             2*	
+                             3*	
+                             4*	
+                             5*	
+                             6*	
+                             7*	
+                             8*	
+                             9*	
+                            10*	
+                            11*	
+                            12*	 
+                            13*	
+                            14*	
+                            15*	
+                            16*	
+                            17*	
+                            18*	
+                            19*	 
+                            20*	
+                            21*	
+                            22*	
+                            23*	
+                            24*	
+                            25*	
+                            26*	
+                            27*	
+                            28*	
+                            29*	
+                            30*	
+                            31*	
+                            32*	
+                            33*	
+                            34*	
+                            35*	
+                            36*	
+                            37*	
+                            38*	
+                            39*	   
+                           158*	#line 159 "./components/spc570sxx_osal_component_rla/lib/include/ivor.h"
+                           159*	
+                           160*	
+                           161*	
+                           162*	
+
+                                   Fri Apr 24 16:52:06 2020           Page 19
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           163*	
+                           164*	
+                           165*	
+                           166*	
+                           167*	
+                           168*	
+                           169*	
+                           170*	
+                           171*	
+                           172*	
+                           173*	  
+                            30	#line 31 "./components/spc570sxx_osal_component_rla/lib/src/ivor.s"
+                            31	
+                            32	
+                            33	
+                            34	
+                            35	
+                            36	        .section    .handlers, "axv"
+                            37	.vle
+                            38	
+                            39	        
+                            40	
+                            41	 
+                            42	
+                            43	
+                            44	
+                            45	
+                            46	
+                            47	
+                            48	
+                            49	
+                            50	
+                            51	
+                            52	
+                            53	
+                            54	
+                            55	
+                            56	
+                            57	        
+                            58	
+                            59	 
+                            91	#line 92
+                            92	
+                            93	        
+                            94	
+                            95	 
+                            96	
+                            97	
+                            98	
+                            99	
+                           100	
+                           101	
+                           102	
+                           103	
+                           104	
+                           105	
+
+                                   Fri Apr 24 16:52:06 2020           Page 20
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           106	
+                           107	
+                           108	
+                           109	
+                           110	
+                           111	        
+                           112	
+                           113	 
+                           114	
+                           115	
+                           116	
+                           117	
+                           118	
+                           119	
+                           120	
+                           121	
+                           122	
+                           123	
+                           124	
+                           125	
+                           126	
+                           127	
+                           128	
+                           155	#line 156
+                           156	
+                           157	        
+                           158	
+                           159	 
+                           160	        .align      4
+                           161	        .globl      _IVOR4
+                           162	        .type       _IVOR4, @function
+                           163	_IVOR4:
+                           164	        SAVE_CONTEXT
+                           164	        e_stwu      sp, -80(sp)              
+00000000 182106b0          164		 nametmp/nt(e_stwu) sp,-80(sp)
+                           164	        e_stmvsrrw  8(sp)                    
+00000004 18811108          164		 nametmp/nt(e_stmvsrrw) 8(sp)
+                           164	        e_stmvsprw  16(sp)                   
+00000008 18211110          164		 nametmp/nt(e_stmvsprw) 16(sp)
+                           164	        e_stmvgprw  32(sp)                   
+0000000c 18011120          164		 nametmp/nt(e_stmvgprw) 32(sp)
+                           165	
+                           166	         
+00000010 707fe404          167	        e_lis       %r3, %hi(0xFC040020)  
+00000014 7060c020          168	        e_or2i      %r3, %lo(0xFC040020)
+00000018 c033              169	        se_lwz      %r3, 0(%r3)              
+0000001a c033              170	        se_lwz      %r3, 0(%r3)
+0000001c 00b3              171	        se_mtCTR    %r3                      
+                           172	
+                           173	         
+0000001e 7c1b02a6          174	        mfSRR1      %r0
+                           175	         
+00000022 6100              176	        se_bclri    %r0, 16                  
+00000024 7c000124          177	        mtMSR       %r0
+                           178	
+                           179	
+
+                                   Fri Apr 24 16:52:06 2020           Page 21
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           180	         
+00000028 7c008146          181	        wrteei      1
+                           182	
+                           183	
+                           184	         
+0000002c 0007              185	        se_bctrl
+                           186	
+                           187	
+                           188	         
+0000002e 7c000146          189	        wrteei      0
+                           190	
+                           191	
+                           192	         
+00000032 7c0006ac          193	        mbar        0
+00000036 707fe404          194	        e_lis       %r3, %hi(0xFC040030)
+0000003a 7060c030          195	        e_or2i      %r3, %lo(0xFC040030)
+0000003e d033              196	        se_stw      %r3, 0(%r3)              
+                           197	
+                           198	        RESTORE_CONTEXT
+                           198	        e_lmvgprw   32(sp)                   
+00000040 18011020          198		 nametmp/nt(e_lmvgprw) 32(sp)
+                           198	        e_lmvsprw   16(sp)                   
+00000044 18211010          198		 nametmp/nt(e_lmvsprw) 16(sp)
+                           198	        e_lmvsrrw   8(sp)                    
+00000048 18811008          198		 nametmp/nt(e_lmvsrrw) 8(sp)
+                           198	        e_addi      sp, sp, 80               
+0000004c 18218050          198		 nametmp/nt(e_addi) sp,sp,80
+00000050 0008              199	        se_rfi
+                           200	
+                           245	#line 246
+                           246	
+                           291	#line 292
+                           292	
+                           293	        
+                           294	
+                           295	 
+                           296	
+                           297	
+                           298	
+                           299	
+                           300	
+                           301	
+                           302	
+                           303	
+                           304	
+                           305	
+                           306	
+                           307	
+                           308	
+                           309	
+                           310	
+                           311	        
+                           312	
+                           313	 
+                           314	
+                           315	
+
+                                   Fri Apr 24 16:52:06 2020           Page 22
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           316	
+                           317	
+                           318	
+                           319	
+                           320	
+                           321	
+                           322	
+                           323	
+                           324	
+                           325	
+                           326	
+                           327	
+                           328	
+                           329	        
+                           330	
+                           331	 
+                           332	
+                           333	
+                           334	
+                           335	
+                           336	
+                           337	
+                           338	
+                           339	
+                           340	
+                           341	
+                           342	
+                           343	
+                           344	
+                           345	
+                           346	
+                           347	        
+                           348	
+                           349	 
+                           350	
+                           351	
+                           352	
+                           353	
+                           354	
+                           355	
+                           356	
+                           357	
+                           358	
+                           359	
+                           360	
+                           361	
+                           362	
+                           363	
+                           364	
+                           365	        
+                           366	
+                           367	 
+                           368	
+                           369	
+                           370	
+                           371	
+
+                                   Fri Apr 24 16:52:06 2020           Page 23
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           372	
+                           373	
+                           374	
+                           375	
+                           376	
+                           377	
+                           378	
+                           379	
+                           380	
+                           381	
+                           382	
+                           383	
+                           384	        
+                           385	
+                           386	 
+                           411	#line 412
+                           412	
+                           413	        
+                           414	
+                           415	 
+                           416	
+                           417	
+                           418	
+                           419	
+                           420	
+                           421	
+                           422	
+                           423	
+                           424	
+                           425	
+                           426	
+                           427	
+                           428	
+                           429	
+                           430	
+                           431	
+                           432	        
+                           433	
+                           434	 
+                           435	
+                           436	
+                           437	
+                           438	
+                           439	
+                           440	
+                           441	
+                           442	
+                           443	
+                           444	
+                           445	
+                           446	
+                           447	
+                           448	
+                           449	
+                           450	        
+                           451	
+
+                                   Fri Apr 24 16:52:06 2020           Page 24
+                                   Tue Mar 03 12:02:14 2020           ivor.s
+                           452	 
+                           453	
+                           454	
+                           455	
+                           456	
+                           457	
+                           458	
+                           459	
+                           460	
+                           461	
+                           462	
+                           463	
+                           464	
+                           465	
+                           466	
+                           467	
+                           468	        
+                           469	
+                           470	 
+                           471	
+                           472	
+                           473	
+                           474	
+                           475	
+                           476	
+                           477	
+                           478	
+                           479	
+                           480	
+                           481	
+                           482	
+                           483	
+                           484	
+                           485	
+                           486	
+                           570	#line 571
+                           571	
+                           572	
+                           573	
+                           574	
+                           575	
+                           576	 

@@ -1,0 +1,450 @@
+
+                                   Fri Apr 10 08:32:28 2020           Page 1
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined -stderr=err/v_par.err
+                -elf -b1 -I../../../bsw/_common -I../../../bsw/eep
+                -I../../../bsw/fbl -I../../../bsw/flash -I../../../bsw/flash_xd1
+                -I../../../bsw/secmod -I../../../bsw/wrapnv
+                -Ic:/ghs/comp_201754/ansi -Ic:/ghs/comp_201754/include/ppc
+                -Ic:/ghs/comp_201754/src/libsys -Igendata -Iinclude
+                -IC:\ghs\comp_201754\lib\ppc5514 -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\v_par.dbo
+                -source=v_par.c -o obj\gh_00001a81.o -list=lst/v_par.lst
+                C:\Users\owner\AppData\Local\Temp\gh_00001a81.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_00001a81.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/v_par.lst -stderr=err/v_par.err -c -vle
+                             6	#		-DC_ENABLE_INSTRUCTION_SET_VLE -D__vle --prototype_warnings
+                             7	#		-Odebug -Osize -Ospace -G -dual_debug -nofloatio -cpu=ppc560xp
+                             8	#		-noobj -DRAM_48K -inline_prologue -pragma_asm_inline -noSPE
+                             9	#		--no_exceptions --no_commons -nokeeptempfiles -pnone
+                            10	#		--incorrect_pragma_warnings --slash_comment --long_long
+                            11	#		-preprocess_assembly_files -passsource -I../../../bsw/_common
+                            12	#		-I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                            13	#		-I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                            14	#		-I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                            15	#		-Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                            16	#		-Igendata -Iinclude GenData/v_par.c
+                            17	#Source File:   GenData/v_par.c
+                            18	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            19	#Compile Date:  Fri Apr 10 08:32:28 2020
+                            20	#Host OS:       Win32
+                            21	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            22	#Release:       Compiler v2017.5.4
+                            23	#Revision Date: Wed Oct 04 11:39:37 2017
+                            24	#Release Date:  Wed Oct 04 09:00:05 2017
+                            25	# ecom  -g -w -OMS
+                            26	
+                            27		.section ".rodata","a"
+                            28		.global	kGENyVersion
+00000000 0103               29	kGENyVersion:	.byte	1,3
+00000002 00                 30		.space	1
+00000003 01800772           31		.byte	1,128,7,114
+00000007 00                 32		.space	1
+00000008 00                 33		.space	1
+00000009 00                 34		.space	1
+                            35		.type	kGENyVersion,@object
+                            36		.size	kGENyVersion,10
+                            37		.data
+                            38		.note ".PPC.EMB.apuinfo",""
+00000000 00000008           39		.long	0x00000008
+00000004 00000004           40		.long	4
+00000008 00000002           41		.long	0x00000002
+                            42		# "APUinfo\000"
+0000000c 41505569           43		.byte	65,80,85,105
+
+                                   Fri Apr 10 08:32:28 2020           Page 2
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+00000010 6e666f00           44		.byte	110,102,111,0
+00000014 01040001           45		.long	0x01040001
+                            46		.ghsnote version,20
+                            47		.ghsnote tools,3
+                            48		.ghsnote options,644
+                            49		.section ".vletext", "vax"
+                            50		.vle
+                            51		.vle
+                            52	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cv_par...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB08C..0::
+                            53	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cv_par...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB08C..0::
+                            54		.section	.debug_info
+                            55	.Ldw_begin:
+00000000 000000cf           56		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002               57		.byte	0,2
+00000006 00000000           58		.long	.Ldw_abbr_begin
+0000000a 04                 59		.byte	4
+                            60		.section	.debug_abbrev
+                            61	.Ldw_abbr_begin:
+                            62		.section	.debug_info
+0000000b 01                 63		.byte	1
+0000000c 00000000           64		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cv_par...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB08C..0
+00000010 00000000           65		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cv_par...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB08C..0
+00000014 47656e446174612f   66		.strz	"GenData/v_par.c"
+0000001c 765f7061722e6300
+00000024 433a5c566563746f   67		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+0000002c 725c434244313830
+00000034 303737325f443030
+0000003c 5f4d706335377878
+00000044 5c44656d6f5c4465
+0000004c 6d6f46626c5c4170
+00000054 706c00          
+00000057 4748532043203230   68		.strz	"GHS C 2017.5.4 [dual]"
+0000005f 31372e352e34205b
+00000067 6475616c5d00    
+0000006d 0001               69		.byte	0,1
+0000006f 00000000           70		.long	.Ldw_line_begin
+00000073 00000000           71		.long	.Ldw_macinfo_begin
+00000077 00                 72		.byte	0
+                            73	
+                            74		.section	.debug_abbrev
+00000000 01                 75		.byte	1
+00000001 11                 76		.byte	17
+00000002 01                 77		.byte	1
+00000003 1101               78		.byte	17,1
+00000005 1201               79		.byte	18,1
+00000007 0308               80		.byte	3,8
+00000009 1b08               81		.byte	27,8
+0000000b 2508               82		.byte	37,8
+0000000d 1305               83		.byte	19,5
+0000000f 1006               84		.byte	16,6
+00000011 4306               85		.byte	67,6
+00000013 420b               86		.byte	66,11
+00000015 0000               87		.byte	0,0
+                            88	
+                            89		.section	.debug_line
+                            90	.Ldw_line_begin:
+00000000 00000082           91		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002               92		.byte	0,2
+00000006 0000007c           93		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                            94	.Ldw_lpro_begin:
+0000000a 01                 95		.byte	1
+0000000b 00                 96		.byte	0
+0000000c 00                 97		.byte	0
+0000000d 04                 98		.byte	4
+0000000e 0a                 99		.byte	10
+
+                                   Fri Apr 10 08:32:28 2020           Page 3
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+0000000f 000101            100		.byte	0,1,1
+00000012 010100            101		.byte	1,1,0
+00000015 000001            102		.byte	0,0,1
+00000018 00                103		.byte	0
+00000019 47656e446174612f  104		.strz	"GenData/v_par.c"
+00000021 765f7061722e6300
+00000029 000000            105		.byte	0,0,0
+0000002c 47656e446174612f  106		.strz	"GenData/v_inc.h"
+00000034 765f696e632e6800
+0000003c 000000            107		.byte	0,0,0
+0000003f 47656e446174612f  108		.strz	"GenData/v_cfg.h"
+00000047 765f6366672e6800
+0000004f 000000            109		.byte	0,0,0
+00000052 47656e446174612f  110		.strz	"GenData/v_par.h"
+0000005a 765f7061722e6800
+00000062 000000            111		.byte	0,0,0
+00000065 2e2e2f2e2e2f2e2e  112		.strz	"../../../bsw/_common/v_def.h"
+0000006d 2f6273772f5f636f
+00000075 6d6d6f6e2f765f64
+0000007d 65662e6800      
+00000082 000000            113		.byte	0,0,0
+00000085 00                114		.byte	0
+                           115	.Ldw_lpro_end:
+                           116		.section	.debug_macinfo
+                           117	.Ldw_macinfo_begin:
+                           118		.section	.debug_info
+                           119	.LDW_19cc688:
+00000078 27                120		.byte	39
+00000079 756e7369676e6564  121		.strz	"unsigned char"
+00000081 206368617200    
+00000087 08                122		.byte	8
+00000088 01                123		.byte	1
+                           124	
+                           125		.section	.debug_abbrev
+00000017 27                126		.byte	39
+00000018 24                127		.byte	36
+00000019 00                128		.byte	0
+0000001a 0308              129		.byte	3,8
+0000001c 3e0b              130		.byte	62,11
+0000001e 0b0b              131		.byte	11,11
+00000020 0000              132		.byte	0,0
+                           133	
+                           134		.section	.debug_info
+                           135	.LDW_19cc5a8:
+00000089 27                136		.byte	39
+0000008a 696e7400          137		.strz	"int"
+0000008e 05                138		.byte	5
+0000008f 04                139		.byte	4
+                           140	
+                           141	.LDW_1a0ed10:
+00000090 2b                142		.byte	43
+00000091 00000000          143		.long	.LDW_1a0e8f0
+                           144	
+                           145		.section	.debug_abbrev
+00000022 2b                146		.byte	43
+00000023 26                147		.byte	38
+00000024 00                148		.byte	0
+00000025 4910              149		.byte	73,16
+00000027 0000              150		.byte	0,0
+                           151	
+                           152		.section	.debug_info
+                           153	.LDW_1a0ed68:
+00000095 3c                154		.byte	60
+00000096 00                155		.byte	0
+
+                                   Fri Apr 10 08:32:28 2020           Page 4
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+00000097 0a                156		.byte	10
+00000098 00000000          157		.long	.LDW_1a0ed10
+                           158	
+                           159		.section	.debug_abbrev
+00000029 3c                160		.byte	60
+0000002a 01                161		.byte	1
+0000002b 01                162		.byte	1
+0000002c 090b              163		.byte	9,11
+0000002e 0b0f              164		.byte	11,15
+00000030 4910              165		.byte	73,16
+00000032 0000              166		.byte	0,0
+                           167	
+                           168		.section	.debug_info
+0000009c 34                169		.byte	52
+0000009d 00000000          170		.long	.LDW_19cc5a8
+000000a1 04                171		.byte	4
+000000a2 00                172		.byte	0
+000000a3 09                173		.byte	9
+                           174	
+                           175		.section	.debug_abbrev
+00000034 34                176		.byte	52
+00000035 21                177		.byte	33
+00000036 00                178		.byte	0
+00000037 4910              179		.byte	73,16
+00000039 0b0f              180		.byte	11,15
+0000003b 220d              181		.byte	34,13
+0000003d 2f0d              182		.byte	47,13
+0000003f 0000              183		.byte	0,0
+                           184	
+                           185		.section	.debug_info
+000000a4 00                186		.byte	0
+                           187	
+                           188	.LDW_1a0e8f0:
+000000a5 2a                189		.byte	42
+000000a6 7675696e743800    190		.strz	"vuint8"
+000000ad 9b04              191		.byte	155,4
+000000af 18                192		.byte	24
+000000b0 05                193		.byte	5
+000000b1 00000000          194		.long	.LDW_19cc688
+                           195	
+                           196		.section	.debug_abbrev
+00000041 2a                197		.byte	42
+00000042 16                198		.byte	22
+00000043 00                199		.byte	0
+00000044 0308              200		.byte	3,8
+00000046 3b0f              201		.byte	59,15
+00000048 390f              202		.byte	57,15
+0000004a 3a0f              203		.byte	58,15
+0000004c 4910              204		.byte	73,16
+0000004e 0000              205		.byte	0,0
+                           206	
+                           207		.section	.debug_info
+                           208	.LDW_1a0edf0:
+000000b5 06                209		.byte	6
+000000b6 6b47454e79566572  210		.strz	"kGENyVersion"
+000000be 73696f6e00      
+000000c3 38                211		.byte	56
+
+                                   Fri Apr 10 08:32:28 2020           Page 5
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+000000c4 26                212		.byte	38
+000000c5 01                213		.byte	1
+000000c6 00000000          214		.long	.LDW_1a0ed68
+000000ca 01                215		.byte	1
+000000cb 00                216		.byte	0
+000000cc 0503              217		.byte	5,3
+000000ce 00000000          218		.long	kGENyVersion
+                           219	
+                           220		.section	.debug_abbrev
+00000050 06                221		.byte	6
+00000051 34                222		.byte	52
+00000052 00                223		.byte	0
+00000053 0308              224		.byte	3,8
+00000055 3b0f              225		.byte	59,15
+00000057 390f              226		.byte	57,15
+00000059 3a0f              227		.byte	58,15
+0000005b 4910              228		.byte	73,16
+0000005d 3f0c              229		.byte	63,12
+0000005f 3c0c              230		.byte	60,12
+00000061 020a              231		.byte	2,10
+00000063 0000              232		.byte	0,0
+                           233	
+                           234		.section	.debug_info
+000000d2 00                235		.byte	0
+                           236	
+                           237		.section	.debug_line
+                           238	.Ldw_line_end:
+                           239		.section	.debug_macinfo
+00000000 03                240		.byte	3
+00000001 00                241		.byte	0
+00000002 01                242		.byte	1
+00000003 03                243		.byte	3
+00000004 30                244		.byte	48
+00000005 02                245		.byte	2
+00000006 03                246		.byte	3
+00000007 2f                247		.byte	47
+00000008 03                248		.byte	3
+00000009 01                249		.byte	1
+0000000a 4a                250		.byte	74
+0000000b 435f435055545950  251		.strz	"C_CPUTYPE_32BIT "
+00000013 455f333242495420
+0000001b 00              
+0000001c 01                252		.byte	1
+0000001d 59                253		.byte	89
+0000001e 435f435055545950  254		.strz	"C_CPUTYPE_BITORDER_MSB2LSB "
+00000026 455f4249544f5244
+0000002e 45525f4d5342324c
+00000036 53422000        
+0000003a 01                255		.byte	1
+0000003b 8901              256		.byte	137,1
+0000003d 5647454e5f454e41  257		.strz	"VGEN_ENABLE_CANFBL "
+00000045 424c455f43414e46
+0000004d 424c2000        
+00000051 01                258		.byte	1
+00000052 be01              259		.byte	190,1
+00000054 565f434f4d505f47  260		.strz	"V_COMP_GHS_MPC5700 "
+0000005c 48535f4d50433537
+00000064 30302000        
+00000068 01                261		.byte	1
+00000069 ca01              262		.byte	202,1
+0000006b 4d414749435f4e55  263		.strz	"MAGIC_NUMBER 312540478"
+00000073 4d42455220333132
+0000007b 35343034373800  
+00000082 04                264		.byte	4
+00000083 03                265		.byte	3
+00000084 31                266		.byte	49
+00000085 04                267		.byte	4
+
+                                   Fri Apr 10 08:32:28 2020           Page 6
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+00000086 03                268		.byte	3
+00000087 34                269		.byte	52
+00000088 05                270		.byte	5
+00000089 01                271		.byte	1
+0000008a 8704              272		.byte	135,4
+0000008c 565f4445465f5355  273		.strz	"V_DEF_SUPPORTED_PLATFORM "
+00000094 50504f525445445f
+0000009c 504c4154464f524d
+000000a4 2000            
+000000a6 01                274		.byte	1
+000000a7 da06              275		.byte	218,6
+000000a9 4c4f43414c5f494e  276		.strz	"LOCAL_INLINE static inline"
+000000b1 4c494e4520737461
+000000b9 74696320696e6c69
+000000c1 6e6500          
+000000c4 01                277		.byte	1
+000000c5 e406              278		.byte	228,6
+000000c7 565f4d454d524f4d  279		.strz	"V_MEMROM0 "
+000000cf 302000          
+000000d2 01                280		.byte	1
+000000d3 ec06              281		.byte	236,6
+000000d5 565f4d454d524f4d  282		.strz	"V_MEMROM1 "
+000000dd 312000          
+000000e0 01                283		.byte	1
+000000e1 8007              284		.byte	128,7
+000000e3 565f4d454d524f4d  285		.strz	"V_MEMROM2 const"
+000000eb 3220636f6e737400
+000000f3 04                286		.byte	4
+000000f4 01                287		.byte	1
+000000f5 3b                288		.byte	59
+000000f6 5647454e5f44454c  289		.strz	"VGEN_DELIVERY_VERSION_BYTE_0 0x01"
+000000fe 49564552595f5645
+00000106 5253494f4e5f4259
+0000010e 54455f3020307830
+00000116 3100            
+00000118 01                290		.byte	1
+00000119 3c                291		.byte	60
+0000011a 5647454e5f44454c  292		.strz	"VGEN_DELIVERY_VERSION_BYTE_1 0x03"
+00000122 49564552595f5645
+0000012a 5253494f4e5f4259
+00000132 54455f3120307830
+0000013a 3300            
+0000013c 01                293		.byte	1
+0000013d 3d                294		.byte	61
+0000013e 5647454e5f44454c  295		.strz	"VGEN_DELIVERY_VERSION_BYTE_2 0x00"
+00000146 49564552595f5645
+0000014e 5253494f4e5f4259
+00000156 54455f3220307830
+0000015e 3000            
+00000160 01                296		.byte	1
+00000161 3e                297		.byte	62
+00000162 5647454e5f44454c  298		.strz	"VGEN_DELIVERY_VERSION_BYTE_3 0x01"
+0000016a 49564552595f5645
+00000172 5253494f4e5f4259
+0000017a 54455f3320307830
+00000182 3100            
+00000184 01                299		.byte	1
+00000185 3f                300		.byte	63
+00000186 5647454e5f44454c  301		.strz	"VGEN_DELIVERY_VERSION_BYTE_4 0x80"
+0000018e 49564552595f5645
+00000196 5253494f4e5f4259
+0000019e 54455f3420307838
+000001a6 3000            
+000001a8 01                302		.byte	1
+000001a9 40                303		.byte	64
+000001aa 5647454e5f44454c  304		.strz	"VGEN_DELIVERY_VERSION_BYTE_5 0x07"
+000001b2 49564552595f5645
+000001ba 5253494f4e5f4259
+000001c2 54455f3520307830
+000001ca 3700            
+000001cc 01                305		.byte	1
+000001cd 41                306		.byte	65
+000001ce 5647454e5f44454c  307		.strz	"VGEN_DELIVERY_VERSION_BYTE_6 0x72"
+000001d6 49564552595f5645
+000001de 5253494f4e5f4259
+000001e6 54455f3620307837
+000001ee 3200            
+000001f0 01                308		.byte	1
+000001f1 42                309		.byte	66
+000001f2 5647454e5f44454c  310		.strz	"VGEN_DELIVERY_VERSION_BYTE_7 0x00"
+000001fa 49564552595f5645
+00000202 5253494f4e5f4259
+0000020a 54455f3720307830
+00000212 3000            
+00000214 01                311		.byte	1
+00000215 43                312		.byte	67
+00000216 5647454e5f44454c  313		.strz	"VGEN_DELIVERY_VERSION_BYTE_8 0x00"
+0000021e 49564552595f5645
+00000226 5253494f4e5f4259
+0000022e 54455f3820307830
+00000236 3000            
+00000238 01                314		.byte	1
+00000239 44                315		.byte	68
+0000023a 5647454e5f44454c  316		.strz	"VGEN_DELIVERY_VERSION_BYTE_9 0x00"
+00000242 49564552595f5645
+0000024a 5253494f4e5f4259
+00000252 54455f3920307830
+0000025a 3000            
+0000025c 01                317		.byte	1
+0000025d 45                318		.byte	69
+0000025e 6b47454e79566572  319		.strz	"kGENyVersionNumberOfBytes 10"
+00000266 73696f6e4e756d62
+0000026e 65724f6642797465
+00000276 7320313000      
+0000027b 04                320		.byte	4
+0000027c 04                321		.byte	4
+0000027d 04                322		.byte	4
+0000027e 00                323		.byte	0
+
+                                   Fri Apr 10 08:32:28 2020           Page 7
+                                   Fri Apr 10 08:32:28 2020   gh_00001a81.si
+                           324		.section	.debug_abbrev
+00000065 00                325		.byte	0
+                           326		.section	.debug_info
+                           327	.Ldw_end:

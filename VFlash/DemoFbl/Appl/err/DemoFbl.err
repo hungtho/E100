@@ -1,0 +1,3 @@
+[elxr] (warning #283) section .intvect_CoreExceptions from BrsIntTb.o isn't included by the section map;
+  appending after last section.
+  add to section map or use -append to append without warning

@@ -1,0 +1,367 @@
+#######################################################################################################################
+# File Name  : Makefile.derivative.settings                                                                           #
+# Description: This file contains all derivative related settings                                                     #
+# Project    : Vector Basic Runtime System                                                                            #
+# Module     : BrsHw for platform Freescale/ST MPC57xx                                                                #
+#                                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# COPYRIGHT                                                                                                           #
+#---------------------------------------------------------------------------------------------------------------------#
+# Copyright (c) 2018 by Vector Informatik GmbH.                                                  All rights reserved. #
+#                                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# AUTHOR IDENTITY                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# Name                          Initials      Company                                                                 #
+# ----------------------------  ------------  ------------------------------------------------------------------------#
+# Benjamin Walter               visbwa        Vector Informatik GmbH                                                  #
+# Stefan Schorer                vissns        Vector Informatik GmbH                                                  #
+# Timo Mueller                  vistir        Vector Informatik GmbH                                                  #
+# Nguyen Le                     vislnn        Vector Informatik GmbH                                                  #
+# Jens Haerer                   visjhr        Vector Informatik GmbH                                                  #
+# Michael Tiran                 vismin        Vector Informatik GmbH                                                  #
+# Wolfgang Lienhart             viswlt        Vector Informatik GmbH                                                  #
+# Sascha Mauser                 vismaa        Vector Informatik GmbH                                                  #
+# Ivo Georgiev                  visivg        Vector Informatik GmbH                                                  #
+#---------------------------------------------------------------------------------------------------------------------#
+# REVISION HISTORY                                                                                                    #
+#---------------------------------------------------------------------------------------------------------------------#
+# Version   Date        Author  Description                                                                           #
+# --------  ----------  ------  --------------------------------------------------------------------------------------#
+# 01.00.00  2015-05-05  vissns  New creation, based on zBrs_Mpc@root[3.09.04],                                        #
+#                               according to template for BrsHw Codestyle 2.0                                         #
+# 01.00.01  2015-08-05  vistir  Added support for MPC5745B, MPC5746B and MPC5746R                                     #
+# 01.00.02  2015-12-09  vislnn  Added support for SPC574Sx and SPC574Kxx                                              #
+# 01.00.03  2015-12-09  visjhr  Added CPU_STARTUP_ID for PC580002x/Quasar2                                            #
+# 01.00.04  2015-12-09  vismin  Added support for S32R274                                                             #
+# 01.00.05  2016-01-13  visbwa  Fixed DIAB_PROC_PC580002x                                                             #
+# 01.00.06  2016-03-21  visbwa  Added CPU_STARTUP_ID and Core-Compiler-Option for PC580003x/Quasar3                   #
+# 01.00.07  2016-03-23  vismin  Added support for PC580000x/Quasar0                                                   #
+# 01.00.08  2016-03-30  visbwa  Fixed PC580000x, added ROM_3584K_V3 for MPC5746M                                      #
+# 01.01.00  2016-07-01  visbwa  Adapted complete file header structure for zBrs_Template@root[2.00.02]                #
+# 01.01.01  2016-08-19  viswlt  Added ROM_4096K_V4 for PC582101                                                       #
+# 01.01.02  2016-10-20  vismaa  Added RAM_256K_V2 for PC582101                                                        #
+# 01.01.03  2017-06-16  visivg  Fixed CPU_ROM_SIZE_SPC574Sx                                                           #
+# 01.01.04  2017-07-17  vismaa  Added support for MPC5745R (RAM_192K and ROM_3248K), fixed startupcore MPC5746        #
+# 01.01.05  2017-08-28  visivg  Renamed GNU compiler option into HIGHTEC,                                             #
+#                               added GNUGCC compiler option and defined GNUGCC_PROC_MPC5748G                         #
+# 01.01.06  2017-09-11  visbwa  Fixed DIAB_PROC_MPC5744P, introduced CPU_NO_OF_CORES (for OsGen7 linkerscript)        #
+# 01.01.07  2017-10-05  visbwa  Fixed ROM mapping of S32R (ROM_2048K_V4)                                              #
+# 01.01.08  2017-10-11  visbwa  Changed ROM mapping of MPC5746R to proper ROM_4272K_V2                                #
+# 01.01.09  2017-10-23  visbwa  Changed DiabData -t option for MPC574xB/C                                             #
+# 01.01.10  2017-10-27  vismaa  Added support for MPC5771N                                                            #
+# 01.01.11  2017-12-12  vismaa  Fixed DIAB_PROC_S32R274                                                               #
+# 01.01.12  2018-03-27  vismaa  Added missing GNUGCC_PROC and set correct HIGHTEC_PROC for MPC5744P                   #
+#######################################################################################################################
+
+#------------------------------------------------------------------------------
+# Definition of the RAM/ROM size
+# currently used for linker file
+#------------------------------------------------------------------------------
+CPU_RAM_SIZE_MPC5744P    = RAM_384K
+CPU_ROM_SIZE_MPC5744P    = ROM_2048K_V2
+CPU_NO_OF_CORES_MPC5744P = 2
+
+CPU_RAM_SIZE_MPC5745B    = RAM_256K
+CPU_ROM_SIZE_MPC5745B    = ROM_2048K_V2
+CPU_NO_OF_CORES_MPC5745B =
+
+CPU_RAM_SIZE_MPC5745R    = RAM_192K
+CPU_ROM_SIZE_MPC5745R    = ROM_3248K
+CPU_NO_OF_CORES_MPC5745R = 
+
+CPU_RAM_SIZE_MPC5746B    = RAM_384K
+CPU_ROM_SIZE_MPC5746B    = ROM_3072K_V2
+CPU_NO_OF_CORES_MPC5746B = 
+
+CPU_RAM_SIZE_MPC5746C    = RAM_384K
+CPU_ROM_SIZE_MPC5746C    = ROM_3072K_V2
+CPU_NO_OF_CORES_MPC5746C = 
+
+CPU_RAM_SIZE_MPC5746M    = RAM_64K
+CPU_ROM_SIZE_MPC5746M    = ROM_3584K_V3
+CPU_NO_OF_CORES_MPC5746M = 
+
+CPU_RAM_SIZE_MPC5746R    = RAM_256K
+CPU_ROM_SIZE_MPC5746R    = ROM_4272K_V2
+CPU_NO_OF_CORES_MPC5746R = 
+
+CPU_RAM_SIZE_MPC5747C    = RAM_768K
+CPU_ROM_SIZE_MPC5747C    = ROM_5632K_V3
+CPU_NO_OF_CORES_MPC5747C = 
+
+CPU_RAM_SIZE_MPC5748G    = RAM_768K
+CPU_ROM_SIZE_MPC5748G    = ROM_5632K_V3
+CPU_NO_OF_CORES_MPC5748G = 
+
+CPU_RAM_SIZE_MPC5775K    = RAM_1536K
+CPU_ROM_SIZE_MPC5775K    = ROM_4096K_V2
+CPU_NO_OF_CORES_MPC5775K = 
+
+CPU_RAM_SIZE_MPC5771N    = RAM_800K
+CPU_ROM_SIZE_MPC5771N    = ROM_1280K
+CPU_NO_OF_CORES_MPC5771N = 2
+
+CPU_RAM_SIZE_MPC5773N    = RAM_1280K
+CPU_ROM_SIZE_MPC5773N    = ROM_2048K_V2
+CPU_NO_OF_CORES_MPC5773N = 
+
+CPU_RAM_SIZE_MPC5775N    = RAM_1536K
+CPU_ROM_SIZE_MPC5775N    = ROM_3584K_V2
+CPU_NO_OF_CORES_MPC5775N = 
+
+CPU_RAM_SIZE_MPC5777C    = RAM_512K
+CPU_ROM_SIZE_MPC5777C    = ROM_8192K_V3
+CPU_NO_OF_CORES_MPC5777C = 
+
+CPU_RAM_SIZE_MPC5777M    = RAM_384K
+CPU_ROM_SIZE_MPC5777M    = ROM_7680K_V2
+CPU_NO_OF_CORES_MPC5777M = 
+
+CPU_RAM_SIZE_PC580000x    = RAM_128K
+CPU_ROM_SIZE_PC580000x    = ROM_2048K_V3
+CPU_NO_OF_CORES_PC580000x = 
+
+CPU_RAM_SIZE_PC580002x    = RAM_256K
+CPU_ROM_SIZE_PC580002x    = ROM_4096K_V3
+CPU_NO_OF_CORES_PC580002x = 
+
+CPU_RAM_SIZE_PC582101     = RAM_256K_V2
+CPU_ROM_SIZE_PC582101     = ROM_4096K_V4
+CPU_NO_OF_CORES_PC582101  = 
+
+CPU_RAM_SIZE_PC580003x    = RAM_512K_V2
+CPU_ROM_SIZE_PC580003x    = ROM_8736K
+CPU_NO_OF_CORES_PC580003x = 
+
+CPU_RAM_SIZE_SPC560P44    = RAM_36K
+CPU_ROM_SIZE_SPC560P44    = ROM_384K
+CPU_NO_OF_CORES_SPC560P44 = 
+
+CPU_RAM_SIZE_SPC560P50    = RAM_40K
+CPU_ROM_SIZE_SPC560P50    = ROM_512K
+CPU_NO_OF_CORES_SPC560P50 = 
+
+CPU_RAM_SIZE_SPC56AP60    = RAM_48K
+CPU_ROM_SIZE_SPC56AP60    = ROM_512K
+CPU_NO_OF_CORES_SPC56AP60 = 
+
+CPU_RAM_SIZE_SPC570S50    = RAM_48K
+CPU_ROM_SIZE_SPC570S50    = ROM_512K_V2
+CPU_NO_OF_CORES_SPC570S50 = 
+
+CPU_RAM_SIZE_SPC574Sx    = RAM_64K
+CPU_ROM_SIZE_SPC574Sx    = ROM_1536K_V2
+CPU_NO_OF_CORES_SPC574Sx = 
+
+CPU_RAM_SIZE_SPC574Kxx    = RAM_64K
+CPU_ROM_SIZE_SPC574Kxx    = ROM_2560K
+CPU_NO_OF_CORES_SPC574Kxx = 
+
+CPU_ROM_SIZE_S32R274     = ROM_2048K_V4
+CPU_RAM_SIZE_S32R274     = RAM_1536K
+CPU_NO_OF_CORES_S32R274  = 3 # core0 z420n3, core1 and core2z7260n3
+
+#------------------------------------------------------------------------------
+# set CPU amount of Cores
+#------------------------------------------------------------------------------
+CPU_NO_OF_CORES = $(CPU_NO_OF_CORES_$(DERIVATIVE))
+
+#------------------------------------------------------------------------------
+# Definition of the startup core ID
+# currently used for multicore startup
+#------------------------------------------------------------------------------
+CPU_STARTUP_ID_MPC5746B  = 0
+CPU_STARTUP_ID_MPC5746C  = 0
+CPU_STARTUP_ID_MPC5747C  = 0
+CPU_STARTUP_ID_MPC5748G  = 0
+CPU_STARTUP_ID_MPC5745R  = 1
+CPU_STARTUP_ID_MPC5746R  = 1
+CPU_STARTUP_ID_MPC5746M  = 2
+CPU_STARTUP_ID_MPC5777M  = 2
+CPU_STARTUP_ID_MPC5771N  = 1
+CPU_STARTUP_ID_PC580000x = 1
+CPU_STARTUP_ID_PC580002x = 1
+CPU_STARTUP_ID_PC582101  = 1
+CPU_STARTUP_ID_PC580003x = 1
+CPU_STARTUP_ID_SPC574Kxx = 2
+CPU_STARTUP_ID_S32R274   = 0
+
+#------------------------------------------------------------------------------
+# Definition of the HighTec     compiler option (-mcpu=<value>)
+# Definition of the GnuGcc      compiler option (-mcpu=<value>)
+# Definition of the Green Hills compiler option (-cpu=<value>) 
+# Definition of the DiabData    compiler option (-t<value>)    
+# Definition of the Metrowerks  compiler option (-proc <value>)
+#------------------------------------------------------------------------------
+HIGHTEC_PROC_MPC5744P  = z425n3
+ GNUGCC_PROC_MPC5744P  = e200z4
+    GHS_PROC_MPC5744P  = ppc5744p
+   DIAB_PROC_MPC5744P  = PPCE200Z4251N3$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5744P  = generic
+
+HIGHTEC_PROC_MPC5745B  = z420n3
+ GNUGCC_PROC_MPC5745B  =
+    GHS_PROC_MPC5745B  = ppc5746mz420
+#PPCE200Z420N3 is at least supported from DiabData V.5.9.4.4. For older versions, try PPCE200Z4
+   DIAB_PROC_MPC5745B  = PPCE200Z420N3$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5745B  = generic
+
+HIGHTEC_PROC_MPC5745R  = z420n3
+ GNUGCC_PROC_MPC5745R  =
+    GHS_PROC_MPC5745R  = ppc5746mz420
+   DIAB_PROC_MPC5745R  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5745R  = 
+
+HIGHTEC_PROC_MPC5746B  = z420n3
+ GNUGCC_PROC_MPC5746B  =
+    GHS_PROC_MPC5746B  = ppc5746mz420
+#PPCE200Z420N3 is at least supported from DiabData V.5.9.4.4. For older versions, try PPCE200Z4
+   DIAB_PROC_MPC5746B  = PPCE200Z420N3$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5746B  = generic
+
+HIGHTEC_PROC_MPC5746C  = z420n3
+ GNUGCC_PROC_MPC5746C  = e200z4
+    GHS_PROC_MPC5746C  = ppc5746mz420
+#PPCE200Z420N3 is at least supported from DiabData V.5.9.4.4. For older versions, try PPCE200Z4
+   DIAB_PROC_MPC5746C  = PPCE200Z420N3$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5746C  = generic
+
+HIGHTEC_PROC_MPC5746M  = z420n3
+ GNUGCC_PROC_MPC5746M  =
+    GHS_PROC_MPC5746M  = ppc5746mz420
+   DIAB_PROC_MPC5746M  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5746M  = generic
+
+HIGHTEC_PROC_MPC5746R  = z420n3
+ GNUGCC_PROC_MPC5746R  =
+    GHS_PROC_MPC5746R  = ppc5746mz420
+   DIAB_PROC_MPC5746R  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5746R  = 
+
+HIGHTEC_PROC_MPC5747C  = z420n3
+ GNUGCC_PROC_MPC5747C  =
+    GHS_PROC_MPC5747C  = ppc5746mz420
+   DIAB_PROC_MPC5747C  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+
+HIGHTEC_PROC_MPC5748G  = z420n3
+ GNUGCC_PROC_MPC5748G  = e200z4
+    GHS_PROC_MPC5748G  = ppc5746mz420
+   DIAB_PROC_MPC5748G  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5748G  = 
+
+HIGHTEC_PROC_MPC5775K  = z425n3
+ GNUGCC_PROC_MPC5775K  =
+    GHS_PROC_MPC5775K  = ppc5775kz7260
+   DIAB_PROC_MPC5775K  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5775K  = 
+
+HIGHTEC_PROC_MPC5771N  = z425n3
+ GNUGCC_PROC_MPC5771N  =
+    GHS_PROC_MPC5771N  = 
+   DIAB_PROC_MPC5771N  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5771N  = 
+
+HIGHTEC_PROC_MPC5773N  = z425n3
+ GNUGCC_PROC_MPC5773N  =
+    GHS_PROC_MPC5773N  = 
+   DIAB_PROC_MPC5773N  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5773N  = 
+
+HIGHTEC_PROC_MPC5775N  = z425n3
+ GNUGCC_PROC_MPC5775N  =
+    GHS_PROC_MPC5775N  = 
+   DIAB_PROC_MPC5775N  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5775N  = 
+
+HIGHTEC_PROC_MPC5777M  = z720n3
+ GNUGCC_PROC_MPC5777M  =
+    GHS_PROC_MPC5777M  = ppc5777mz720
+   DIAB_PROC_MPC5777M  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5777M  = generic
+
+HIGHTEC_PROC_MPC5777C  = 
+ GNUGCC_PROC_MPC5777C  = 
+    GHS_PROC_MPC5777C  = ppc5777c
+   DIAB_PROC_MPC5777C  = PPCE200Z7$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_MPC5777C  = 
+
+HIGHTEC_PROC_PC571703x = 
+ GNUGCC_PROC_PC571703x = 
+    GHS_PROC_PC571703x = 
+   DIAB_PROC_PC571703x = PPCE200Z6$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_PC571703x = 
+
+HIGHTEC_PROC_PC580000x = 
+ GNUGCC_PROC_PC580000x = 
+    GHS_PROC_PC580000x = 
+   DIAB_PROC_PC580000x = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_PC580000x = 
+
+HIGHTEC_PROC_PC580002x = 
+ GNUGCC_PROC_PC580002x =
+    GHS_PROC_PC580002x = 
+   DIAB_PROC_PC580002x = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_PC580002x = 
+
+HIGHTEC_PROC_PC582101  = 
+ GNUGCC_PROC_PC582101  = 
+    GHS_PROC_PC582101  = 
+   DIAB_PROC_PC582101  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_PC582101  = 
+
+HIGHTEC_PROC_PC580003x = 
+ GNUGCC_PROC_PC580003x = 
+    GHS_PROC_PC580003x = 
+   DIAB_PROC_PC580003x = PPCE200Z720N3$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_PC580003x = 
+
+HIGHTEC_PROC_SPC570S50 = 
+ GNUGCC_PROC_SPC570S50 = 
+    GHS_PROC_SPC570S50 = ppc560xp
+   DIAB_PROC_SPC570S50 = PPCE200Z0V
+  METRO_PROC_SPC570S50 = 
+
+HIGHTEC_PROC_SPC574Sx  = 
+ GNUGCC_PROC_SPC574Sx  = 
+    GHS_PROC_SPC574Sx  = ppc5746mz420
+   DIAB_PROC_SPC574Sx  = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_SPC574Sx  = 
+
+HIGHTEC_PROC_SPC574Kxx = 
+ GNUGCC_PROC_SPC574Kxx = 
+    GHS_PROC_SPC574Kxx = ppc5746mz420
+   DIAB_PROC_SPC574Kxx = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_SPC574Kxx = 
+
+HIGHTEC_PROC_S32R274   = 
+ GNUGCC_PROC_S32R274   = 
+    GHS_PROC_S32R274   = 
+   DIAB_PROC_S32R274   = PPCE200Z4$(DIAB_PROC_$(LENGTH_ENCODING))
+  METRO_PROC_S32R274   = 
+
+DIAB_PROC_VLE = V
+DIAB_PROC_BOOKE = N
+
+#------------------------------------------------------------------------------
+# set CPU startup ID
+#------------------------------------------------------------------------------
+ifeq ($(CPU_STARTUP_ID_$(DERIVATIVE)),)
+ CPU_STARTUP_ID = 0
+else
+ CPU_STARTUP_ID = $(CPU_STARTUP_ID_$(DERIVATIVE))
+endif
+
+#------------------------------------------------------------------------------
+# validate if all mandatory settings are available 
+# for the derivative selected in makefile.config
+#------------------------------------------------------------------------------
+ifeq ($(CPU_RAM_SIZE_$(DERIVATIVE)),)
+ $(warning LINKERFILEERROR: RAM size is not defined! Please set CPU_RAM_SIZE_$(DERIVATIVE)= with the RAM size of your derivative in makefile.derivative.setting.)
+endif
+ifeq ($(CPU_ROM_SIZE_$(DERIVATIVE)),)
+ $(warning LINKERFILEERROR: ROM size is not defined! Please set CPU_ROM_SIZE_$(DERIVATIVE)= with the ROM size of your derivative in makefile.derivative.setting.)
+endif
+
+#$(warning DEBUG: DERIVATIVE=$(DERIVATIVE))
+#$(warning DEBUG: CPU_STARTUP_ID=$(CPU_STARTUP_ID_$(DERIVATIVE)))

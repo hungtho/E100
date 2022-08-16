@@ -1,0 +1,454 @@
+#######################################################################################################################
+# File Name  : Makefile.derivative.memorymap                                                                          #
+# Description: This file contains all memory mappings, for the areas, defined within Makefile.derivative.settings     #
+# Project    : Vector Basic Runtime System                                                                            #
+# Module     : BrsHw for platform Freescale/ST MPC57xx                                                                #
+#                                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# COPYRIGHT                                                                                                           #
+#---------------------------------------------------------------------------------------------------------------------#
+# Copyright (c) 2018 by Vector Informatik GmbH.                                                  All rights reserved. #
+#                                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# AUTHOR IDENTITY                                                                                                     #
+#---------------------------------------------------------------------------------------------------------------------#
+# Name                          Initials      Company                                                                 #
+# ----------------------------  ------------  ------------------------------------------------------------------------#
+# Benjamin Walter               visbwa        Vector Informatik GmbH                                                  #
+# Stefan Schorer                vissns        Vector Informatik GmbH                                                  #
+# Nguyen Le                     vislnn        Vector Informatik GmbH                                                  #
+# Michael Tiran                 vismin        Vector Informatik GmbH                                                  #
+# Viet Duc Nguyen               visvnn        Vector Informatik GmbH                                                  #
+# Bjoern Eisenkrammer           visebj        Vector Informatik GmbH                                                  #
+# Sascha Mauser                 vismaa        Vector Informatik GmbH                                                  #
+# Ivo Georgiev                  visivg        Vector Informatik GmbH                                                  #
+# Hakan Capci                   vishci        Vector Informatik GmbH                                                  #
+#---------------------------------------------------------------------------------------------------------------------#
+# REVISION HISTORY                                                                                                    #
+#---------------------------------------------------------------------------------------------------------------------#
+# Version   Date        Author  Description                                                                           #
+# --------  ----------  ------  --------------------------------------------------------------------------------------#
+# 01.00.00  2015-05-05  vissns  New creation, based on zBrs_Mpc@root[3.09.04],                                        #
+#                               according to template for BrsHw Codestyle 2.0                                         #
+# 01.00.01  2015-09-29  visfsn  Bigger INTTABLE in MAPPING_ROM_3072K_V2                                               #
+# 01.00.02  2015-12-09  vislnn  Added support for ROM_2560K and ROM_1024K_V2                                          #
+# 01.00.03  2015-12-09  vismin  Added MAPPING_ROM_2048K_V3                                                            #
+# 01.00.04  2016-01-14  visvnn  Fixed MAPPING_ROM_2560K                                                               #
+# 01.00.05  2016-03-23  visbwa  Added workaround within MAPPING_RAM_512K_V2                                           #
+# 01.00.06  2016-03-30  visbwa  Fixed ROM_3584K_V2 and added ROM_3584K_V3                                             #
+# 01.00.07  2016-03-31  vismin  Fixed ROM_4096K_V3 and ROM_2048K_V3                                                   #
+# 01.01.00  2016-07-01  visbwa  Adapted complete file header structure for zBrs_Template@root[2.00.02]                #
+# 01.02.00  2016-07-12  visbwa  Introduced RAM_FLEXRAY_ETH and CPU_RAM_START_ADDR                                     #
+# 01.02.01  2016-07-29  visebj  Fixed RESETWORD size for SPC574Kxx (MAPPING_ROM_2560K)                                #
+# 01.02.02  2016-08-19  viswlt  Added MAPPING_ROM_4096K_V4                                                            #
+# 01.02.03  2016-10-20  viswlt  Fixed MAPPING_ROM_4096K_V4 startaddress, INTTABLE and ROM1 + MAPPING_RAM_256K_V2      #
+# 01.02.04  2016-11-03  vismaa  Fixed MAPPING_ROM_4096K_V4 ROM2 startaddress                                          #
+# 01.02.05  2017-02-09  visbwa  Increased stack size of MAPPING_RAM_768K                                              #
+# 01.02.06  2017-03-14  visbwa  Increased stack size of MAPPING_RAM_64K                                               #
+# 01.02.07  2017-06-16  visivg  Added MAPPING_ROM_1536K_V2                                                            #
+# 01.02.08  2017-08-11  vismaa  Added MAPPING_ROM_3248K, fixed RESETWORD address from ROM_4256K_V2                    #
+# 01.02.09  2017-10-05  visbwa  Introduced MAPPING_ROM_2048K_V4 (S32R)                                                #
+# 01.02.10  2017-10-11  visbwa  Changed mapping of ROM_4256K_V2 to proper ROM_4272K_V2, added description             #
+# 01.02.11  2017-10-27  vismaa  Added MAPPING_ROM_1280K and MAPPING_RAM_800K                                          #
+# 01.02.12  2018-03-27  vismaa  Increased INTTABLE size of MAPPING_ROM_1536K_V2                                       #
+# 01.02.13  2018-06-08  vishci  fixed INITTABLE mapping for S32R at MAPPING_ROM_2048K_V4                              #
+#######################################################################################################################
+
+#------------------------------------------------------------------------------
+# define RAM area 
+#------------------------------------------------------------------------------
+define MAPPING_RAM_1536K       #0x40000000   to   0x4017FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x00168000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40178000, len = 0x00008000"   >> $@;
+endef
+
+define MAPPING_RAM_1280K       #0x40000000   to   0x4013FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x00128000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40138000, len = 0x00008000"   >> $@;
+endef
+
+define MAPPING_RAM_800K        #0x40000000   to   0x400C7FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x000A0000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x400B0000, len = 0x00018000"   >> $@; 
+endef
+
+define MAPPING_RAM_768K        #0x40000000   to   0x400BFFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x000A0000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x400B0000, len = 0x00010000"   >> $@; 
+endef
+
+define MAPPING_RAM_512K        #0x40000000   to   0x4007FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x00068000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40078000, len = 0x00008000"   >> $@;
+endef
+
+define MAPPING_RAM_512K_V2     #0x47FC0000   to   0x4803FFFF
+# Because of problems with 2nd SRAM block (within AXBS slave port 5), only the 1st 256K are used
+# #0x47FC0000   to   0x47FFFFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x47FC0000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x47FD0000, len = 0x0002A000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x47FFA000, len = 0x00006000"   >> $@;
+endef
+
+define MAPPING_RAM_384K        #0x40000000   to   0x4005FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x0004A000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4005A000, len = 0x00006000"   >> $@;
+endef
+
+define MAPPING_RAM_256K        #0x40000000   to   0x4003FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40010000, len = 0x0002A000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4003A000, len = 0x00006000"   >> $@;
+endef
+
+#Quasar2E uses internal SRAM @ 0x48000000
+define MAPPING_RAM_256K_V2        #0x48000000   to   0x4803FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x48000000, len = 0x00010000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x48010000, len = 0x0002A000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4803A000, len = 0x00006000"   >> $@;
+endef
+
+define MAPPING_RAM_192K        #0x40000000   to   0x4002FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00006000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40006000, len = 0x00024000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4002A000, len = 0x00006000"   >> $@;
+endef
+
+define MAPPING_RAM_160K        #0x40000000   to   0x40027FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00004000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40004000, len = 0x00020000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40024000, len = 0x00004000"   >> $@;
+endef
+
+define MAPPING_RAM_128K        #0x40000000   to   0x4001FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00004000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40004000, len = 0x00018000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4001C000, len = 0x00004000"   >> $@;
+endef
+
+define MAPPING_RAM_96K         #0x40000000   to   0x40017FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00002000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40002000, len = 0x00013000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40015000, len = 0x00003000"   >> $@;
+endef
+
+define MAPPING_RAM_94K         #0x40000000   to   0x400177FF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00002000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40002000, len = 0x00013000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40015000, len = 0x00002800"   >> $@;
+endef
+
+define MAPPING_RAM_80K         #0x40000000   to   0x40013FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00002000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40002000, len = 0x00010000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40012000, len = 0x00002000"   >> $@;
+endef
+
+define MAPPING_RAM_64K         #0x40000000   to   0x4000FFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00000100"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40000100, len = 0x00009F00"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4000A000, len = 0x00006000"   >> $@;
+endef
+
+define MAPPING_RAM_48K         #0x40000000   to   0x4000BFFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00001000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40001000, len = 0x0000A000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x4000B000, len = 0x00001000"   >> $@;
+endef
+
+define MAPPING_RAM_40K         #0x40000000   to   0x40009FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00001000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40001000, len = 0x00008000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40009000, len = 0x00001000"   >> $@;
+endef
+
+define MAPPING_RAM_36K         #0x40000000   to   0x40008FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00001000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40001000, len = 0x00007000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40008000, len = 0x00001000"   >> $@;
+endef
+
+define MAPPING_RAM_32K         #0x40000000   to   0x40007FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00001000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40001000, len = 0x00006000"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40007000, len = 0x00001000"   >> $@;
+endef
+
+define MAPPING_RAM_16K         #0x40000000   to   0x40003FFF
+  $(ECHO) " RAM_FLEXRAY_ETH : org = 0x40000000, len = 0x00001000"   >> $@; \
+  $(ECHO) " RAM             : org = 0x40001000, len = 0x00002800"   >> $@; \
+  $(ECHO) " STACK           : org = 0x40003800, len = 0x00000800"   >> $@;
+endef
+
+ifeq ($(CPU_RAM_SIZE_$(DERIVATIVE)),)
+else
+ ifeq ($(MAPPING_$(CPU_RAM_SIZE_$(DERIVATIVE))),)
+  $(warning LINKERFILEERROR: RAM size is defined to a not supported value! Please change CPU_RAM_SIZE_$(DERIVATIVE)=$(CPU_RAM_SIZE_$(DERIVATIVE)) to a supported value in makefile.derivative.setting.)
+ endif
+endif
+
+#------------------------------------------------------------------------------
+# define ROM area and connect with RAM area
+#------------------------------------------------------------------------------
+define MAPPING_ROM_8736K       #0x00000000   to   0x0087FFFF
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x0086E000"       >> $@;
+endef
+
+define MAPPING_ROM_8192K_V3    #0x00800000   to   0x00FFFFFF
+  $(ECHO) " RESETWORD   : org = 0x00800000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00800020, len = 0x0000FFE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00810000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00812000, len = 0x007FCFFF"       >> $@;
+endef
+
+define MAPPING_ROM_7680K_V2    #0x01000000   to   0x01780000
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0077D000"       >> $@;
+endef
+
+define MAPPING_ROM_6144K       #0x00000000   to   0x00600000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x005EE000"       >> $@;
+endef
+
+define MAPPING_ROM_5632K_V2    #0x01000000   to   0x01580000
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0057D000"       >> $@;
+endef
+
+define MAPPING_ROM_5632K_V3    #0x01000000   to   0x01580000
+  $(ECHO) " RESETWORD   : org = 0x00f8c000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00006000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01007000, len = 0x00579000"       >> $@;
+endef
+
+define MAPPING_ROM_4272K_V2
+  #0x00F9C000 - 0x00FFFFFF: Low & Mid Flash Blocks
+  #0x01000000 - 0x0137FFFF: Large Flash Blocks
+  #==> effective, this are 3984kB CodeFlash.
+  #    Freescale counts UTest+DFlash to get 4272kB.
+  $(ECHO) " RESETWORD   : org = 0x00F9C000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00F9C020, len = 0x00063FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01000000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01002000, len = 0x0037E000"       >> $@;
+endef
+
+define MAPPING_ROM_4096K       #0x00000000   to   0x00400000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x003EE000"       >> $@;
+endef
+
+define MAPPING_ROM_4096K_V2       #0x01000000   to   0x0137FFFF
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0037CFFF"       >> $@;
+endef
+
+define MAPPING_ROM_4096K_V3
+  #0x00000000 to 0x00008000 = Bootload Block
+  #0x00040000 to 0x00440000 = Program Code
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x00007FF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00011000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00040000, len = 0x00400000"       >> $@;
+endef
+
+define MAPPING_ROM_4096K_V4
+  #0x00000000 to 0x00007FFF = Bootload Block1
+  #0x00008000 to 0x00017FFF = Bootload Block2
+  #0x00080000 to 0x0047FFFF = Program Code
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00002000, len = 0x00007FFF"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00001000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00080000, len = 0x00400000"       >> $@;
+endef
+
+define MAPPING_ROM_3584K_V2    #0x01000000   to   0x01380000
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " OSCONFIG    : org = 0x01009000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x0100A000, len = 0x0037D000"       >> $@;
+endef
+
+define MAPPING_ROM_3584K_V3    #0x01000000   to   0x01380000
+  $(ECHO) " RESETWORD   : org = 0x00FC0000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00FC0020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00008000"       >> $@; \
+  $(ECHO) " OSCONFIG    : org = 0x01009000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x0100A000, len = 0x0037D000"       >> $@;
+endef
+
+define MAPPING_ROM_3248K       #0x01000000   to   0x0132BFFF
+  $(ECHO) " RESETWORD   : org = 0x00F9C000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000000, len = 0x00001000"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x00328FFF"       >> $@;
+endef
+
+define MAPPING_ROM_3072K       #0x00000000   to   0x00300000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x002EE000"       >> $@;
+endef
+
+define MAPPING_ROM_3072K_V2    #0x01000000   to   0x01300000
+  $(ECHO) " RESETWORD   : org = 0x00f8c000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00004000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01005000, len = 0x002FD000"       >> $@;
+endef
+
+define MAPPING_ROM_2560K       #0x01000000   to   0x0123FFFF
+  $(ECHO) " RESETWORD   : org = 0x00FC0000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000000, len = 0x00001000"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0023D000"       >> $@;
+endef
+
+define MAPPING_ROM_2048K       #0x00000000   to   0x00200000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x001EE000"       >> $@;
+endef
+
+define MAPPING_ROM_2048K_V2    #0x01000000   to   0x01200000
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x001FD000"       >> $@;
+endef
+
+define MAPPING_ROM_2048K_V3
+  #0x00000000 to 0x00008000 = Bootload Block
+  #0x00040000 to 0x00240000 = Program Code
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x00007FF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00011000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00040000, len = 0x00200000"       >> $@;
+endef
+
+define MAPPING_ROM_2048K_V4    #0x00F98000   to   0x01180000
+  $(ECHO) " RESETWORD   : org = 0x00F98000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00F98010, len = 0x00007FF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00004000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01005000, len = 0x001D0000"       >> $@;
+endef
+
+define MAPPING_ROM_1536K       #0x00000000   to   0x00180000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x0016E000"       >> $@;
+endef
+
+define MAPPING_ROM_1536K_V2    #0x00FC0000   to   0x0113FFFE
+  $(ECHO) " RESETWORD   : org = 0x00FC0000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000000, len = 0x00001000"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0013DFFF"       >> $@;
+endef
+
+define MAPPING_ROM_1280K       #0x01000000   to   0x0113FFFF
+  $(ECHO) " RESETWORD   : org = 0x01000000, len = 0x00000020"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x01000020, len = 0x00000FE0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x01001000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x01003000, len = 0x0013D000"       >> $@;
+endef
+
+define MAPPING_ROM_1024K       #0x00000000   to   0x00100000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00012000, len = 0x000AE000"       >> $@;
+endef
+
+define MAPPING_ROM_1024K_V2    #0x00FC0000   to   0x010BFFFF
+  $(ECHO) " RESETWORD   : org = 0x00FC0000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00FC0010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00FD0000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00FD2000, len = 0x000AE000"       >> $@;
+endef
+
+define MAPPING_ROM_512K        #0x00000000   to   0x00080000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00001800"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00011800, len = 0x0006D800"       >> $@;
+endef
+
+define MAPPING_ROM_512K_V2     #0x00FC0000   to  0x0103FFFF
+  $(ECHO) " RESETWORD   : org = 0x00FC0000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00FC0010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00FD0000, len = 0x00002000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00FD2000, len = 0x0006D800"       >> $@;
+endef
+
+define MAPPING_ROM_384K        #0x00000000   to   0x00060000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00011000, len = 0x0004F000"       >> $@; 
+endef
+
+define MAPPING_ROM_256K        #0x00000000   to   0x00040000
+  $(ECHO) " RESETWORD   : org = 0x00000000, len = 0x00000010"       >> $@; \
+  $(ECHO) " ROM1        : org = 0x00000010, len = 0x0000FFF0"       >> $@; \
+  $(ECHO) " INTTABLE    : org = 0x00010000, len = 0x00001000"       >> $@; \
+  $(ECHO) " ROM2        : org = 0x00011000, len = 0x0002F000"       >> $@;
+endef
+
+ifeq ($(CPU_ROM_SIZE_$(DERIVATIVE)),)
+else
+ ifeq ($(MAPPING_$(CPU_ROM_SIZE_$(DERIVATIVE))),)
+  $(warning LINKERFILEERROR: ROM size is defined to a not supported value! Please change CPU_ROM_SIZE_$(DERIVATIVE)=$(CPU_ROM_SIZE_$(DERIVATIVE)) to a supported value in makefile.derivative.setting.)
+ endif
+endif
+
+#------------------------------------------------------------------------------
+# RAM Start Address for INIT RAM section of StartUpCode
+#------------------------------------------------------------------------------
+ifeq ($(CPU_RAM_SIZE_$(DERIVATIVE)),RAM_512K_V2)
+  CPU_RAM_START_ADDR = 0x47FC0000
+else
+  ifeq ($(CPU_RAM_SIZE_$(DERIVATIVE)),RAM_256K_V2)
+   CPU_RAM_START_ADDR = 0x48000000
+  else
+   CPU_RAM_START_ADDR = 0x40000000
+  endif
+endif
+
+#------------------------------------------------------------------------------
+# combine ROM and RAM area
+#------------------------------------------------------------------------------
+define MAPPING_$(DERIVATIVE)
+  $(MAPPING_$(CPU_ROM_SIZE_$(DERIVATIVE)))\
+  $(MAPPING_$(CPU_RAM_SIZE_$(DERIVATIVE)))
+endef
+
+#$(warning DEBUG: DERIVATIVE=$(DERIVATIVE))
+#$(warning DEBUG: CPU_ROM_SIZE_$(DERIVATIVE)=$(CPU_ROM_SIZE_$(DERIVATIVE)))
+#$(warning DEBUG: CPU_RAM_SIZE_$(DERIVATIVE)=$(CPU_RAM_SIZE_$(DERIVATIVE)))
+#$(warning DEBUG: MAPPING_$(CPU_RAM_SIZE_$(DERIVATIVE))=$(MAPPING_$(CPU_RAM_SIZE_$(DERIVATIVE))))
+#$(warning DEBUG: MAPPING_$(CPU_ROM_SIZE_$(DERIVATIVE))=$(MAPPING_$(CPU_ROM_SIZE_$(DERIVATIVE))))

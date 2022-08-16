@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SPC5-Patch version="1.0.0">
+  <!--It is your patch repository, do not break your XML File.-->
+  <files>
+    <file componentId="com.st.spc5.components.clock.spc570sxx_rla" version="1.1.0.202002240850" path="component/lib/src/clock.c" user="false">
+      <diff><![CDATA[--- components/spc570sxx_clock_component_rla/lib/src/clock.c
++++ components/spc570sxx_clock_component_rla/lib/src/clock.c
+@@ -8,7 +8,7 @@
+ * THIS SOFTWARE IS DISTRIBUTED "AS IS," AND ALL WARRANTIES ARE DISCLAIMED, 
+ * INCLUDING MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+-* EVALUATION ONLY �� NOT FOR USE IN PRODUCTION
++* EVALUATION ONLY ?? NOT FOR USE IN PRODUCTION
+ *****************************************************************************/
+ 
+ /**
+@@ -125,9 +125,11 @@
+ 
+   /* The system must be in DRUN mode on entry, if this is not the case then
+      it is considered a serious anomaly.*/
++#if 0 /* FBL(v-flash) */
+   if (MC_ME.GS.B.S_CURRENT_MODE != (uint8_t)SPC5_RUNMODE_DRUN) {
+     SPC5_CLOCK_FAILURE_HOOK();
+   }
++#endif
+ 
+ #if (SPC5_XOSC_DISABLED == FALSE)
+ #if (SPC5_OSC_BYPASS == TRUE)
+@@ -166,9 +168,11 @@
+   MC_ME.DRUN_MC.R   = SPC5_ME_MC_SYSCLK_IRC | SPC5_ME_MC_IRCON |
+                       SPC5_ME_MC_XOSCON | SPC5_ME_MC_FLAON_NORMAL |
+                       SPC5_ME_MC_MVRON;
++#if 0 /* FBL(v-flash) */
+   if (SPCSetRunMode(SPC5_RUNMODE_DRUN) == CLOCK_FAILED) {
+     SPC5_CLOCK_FAILURE_HOOK();
+   }
++#endif
+ #endif /* !SPC5_XOSC_DISABLED */
+ 
+   /* PLLs initialization, the changes will have effect on mode switch.*/]]></diff>
+    </file>
+    <file componentId="com.st.spc5.components.clock.spc570sxx_rla" version="1.1.0.20200421090315" path="component/lib/src/clock.c" user="false">
+      <diff><![CDATA[--- components/spc570sxx_clock_component_rla/lib/src/clock.c
++++ components/spc570sxx_clock_component_rla/lib/src/clock.c
+@@ -8,7 +8,7 @@
+ * THIS SOFTWARE IS DISTRIBUTED "AS IS," AND ALL WARRANTIES ARE DISCLAIMED, 
+ * INCLUDING MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ *
+-* EVALUATION ONLY �� NOT FOR USE IN PRODUCTION
++* EVALUATION ONLY ?? NOT FOR USE IN PRODUCTION
+ *****************************************************************************/
+ 
+ /**
+@@ -125,9 +125,11 @@
+ 
+   /* The system must be in DRUN mode on entry, if this is not the case then
+      it is considered a serious anomaly.*/
++#if 0 /* FBL(v-flash) */
+   if (MC_ME.GS.B.S_CURRENT_MODE != (uint8_t)SPC5_RUNMODE_DRUN) {
+     SPC5_CLOCK_FAILURE_HOOK();
+   }
++#endif
+ 
+ #if (SPC5_XOSC_DISABLED == FALSE)
+ #if (SPC5_OSC_BYPASS == TRUE)
+@@ -166,9 +168,11 @@
+   MC_ME.DRUN_MC.R   = SPC5_ME_MC_SYSCLK_IRC | SPC5_ME_MC_IRCON |
+                       SPC5_ME_MC_XOSCON | SPC5_ME_MC_FLAON_NORMAL |
+                       SPC5_ME_MC_MVRON;
++#if 0 /* FBL(v-flash) */
+   if (SPCSetRunMode(SPC5_RUNMODE_DRUN) == CLOCK_FAILED) {
+     SPC5_CLOCK_FAILURE_HOOK();
+   }
++#endif
+ #endif /* !SPC5_XOSC_DISABLED */
+ 
+   /* PLLs initialization, the changes will have effect on mode switch.*/]]></diff>
+    </file>
+  </files>
+</SPC5-Patch>

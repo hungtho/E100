@@ -1,0 +1,3463 @@
+
+                                   Fri Apr 10 08:32:24 2020           Page 1
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined
+                -stderr=err/flashdrv_xd1.err -elf -b1 -I../../../bsw/_common
+                -I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                -I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                -I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                -Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                -Igendata -Iinclude -IC:\ghs\comp_201754\lib\ppc5514
+                -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\flashdrv_xd1.dbo
+                -source=flashdrv_xd1.c -o obj\gh_00004u41.o
+                -list=lst/flashdrv_xd1.lst
+                C:\Users\owner\AppData\Local\Temp\gh_00004u41.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_00004u41.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/flashdrv_xd1.lst
+                             6	#		-stderr=err/flashdrv_xd1.err -c -vle
+                             7	#		-DC_ENABLE_INSTRUCTION_SET_VLE -D__vle --prototype_warnings
+                             8	#		-Odebug -Osize -Ospace -G -dual_debug -nofloatio -cpu=ppc560xp
+                             9	#		-noobj -DRAM_48K -inline_prologue -pragma_asm_inline -noSPE
+                            10	#		--no_exceptions --no_commons -nokeeptempfiles -pnone
+                            11	#		--incorrect_pragma_warnings --slash_comment --long_long
+                            12	#		-preprocess_assembly_files -passsource -I../../../bsw/_common
+                            13	#		-I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                            14	#		-I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                            15	#		-I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                            16	#		-Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                            17	#		-Igendata -Iinclude ../../../BSW/Flash_XD1/flashdrv_xd1.c
+                            18	#Source File:   ../../../BSW/Flash_XD1/flashdrv_xd1.c
+                            19	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            20	#Compile Date:  Fri Apr 10 08:32:24 2020
+                            21	#Host OS:       Win32
+                            22	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            23	#Release:       Compiler v2017.5.4
+                            24	#Revision Date: Wed Oct 04 11:39:37 2017
+                            25	#Release Date:  Wed Oct 04 09:00:05 2017
+                            26	# ecom  -g -w -OMS
+                            27	
+                            28	#1: /***********************************************************************************************************************
+                            29	#2:  *  FILE DESCRIPTION
+                            30	#3:  *  ------------------------------------------------------------------------------------------------------------------*/
+                            31	#4: /** \file
+                            32	#5:  *  \brief         Flash Driver for Freescale MPC57xx/ST SPC57x
+                            33	#6:  *
+                            34	#7:  *  --------------------------------------------------------------------------------------------------------------------
+                            35	#8:  *  COPYRIGHT
+                            36	#9:  *  --------------------------------------------------------------------------------------------------------------------
+                            37	#10:  *  \par Copyright
+                            38	#11:  *  \verbatim
+                            39	#12:  *  Copyright (c) 2016 by Vector Informatik GmbH.                                                  All rights reserved.
+                            40	#13:  *
+                            41	#14:  *                This software is copyright protected and proprietary to Vector Informatik GmbH.
+
+                                   Fri Apr 10 08:32:24 2020           Page 2
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                            42	#15:  *                Vector Informatik GmbH grants to you only those rights as set out in the license conditions.
+                            43	#16:  *                All other rights remain with Vector Informatik GmbH.
+                            44	#17:  *  \endverbatim
+                            45	#18:  */
+                            46	#19: /**********************************************************************************************************************/
+                            47	#21: /***********************************************************************************************************************
+                            48	#22:  *  AUTHOR IDENTITY
+                            49	#23:  *  --------------------------------------------------------------------------------------------------------------------
+                            50	#24:  *  Name                          Initials      Company
+                            51	#25:  *  --------------------------------------------------------------------------------------------------------------------
+                            52	#26:  *  Achim Strobelt                Ach           Vector Informatik GmbH
+                            53	#27:  *  Jonas Pfau                    Jop           Vector Informatik GmbH
+                            54	#28:  *  Johannes Krimmel              KJs           Vector Informatik GmbH
+                            55	#29:  *  --------------------------------------------------------------------------------------------------------------------
+                            56	#30:  *  REVISION HISTORY
+                            57	#31:  *  --------------------------------------------------------------------------------------------------------------------
+                            58	#32:  *  Version    Date        Author  Change Id        Description
+                            59	#33:  *  --------------------------------------------------------------------------------------------------------------------
+                            60	#34:  *  01.00.00   2013-07-05  Ach                      Initial version
+                            61	#35:  *  01.01.00   2013-09-05  Ach     ESCAN00070014    No changes
+                            62	#36:  *  01.02.00   2013-11-15  Ach     ESCAN00070407    Support second instance and data flash configuration
+                            63	#37:  *  01.03.00   2014-07-17  Ach     ESCAN00075846    Move user lock check to FblDrvFlash
+                            64	#38:  *  01.04.00   2015-02-04  Ach     ESCAN00080607    No changes
+                            65	#39:  *  01.04.01   2015-09-29  Jop     ESCAN00085544    Allow use of MemMap includes for flashHeader placement
+                            66	#40:  *  01.05.00   2016-04-08  KJs     ESCAN00089315    Support SPC58EC80/70
+                            67	#41:  *  01.06.00   2016-12-10  Ach     ESCAN00093245    Rename defines to avoid collisions with MCAL
+                            68	#42:  **********************************************************************************************************************/
+                            69	#43: #include "flashdrv_xd1.h"
+                            70	#45: /***********************************************************************************************************************
+                            71	#46:  *  VERSION
+                            72	#47:  **********************************************************************************************************************/
+                            73	#49: #if ( ( FBLDRVFLASH_XD1_MPC5700C55FMCHIS_VERSION != 0x0106u ) || \
+                            74	#50:       ( FBLDRVFLASH_XD1_MPC5700C55FMCHIS_RELEASE_VERSION != 0x00u ) )
+                            75	#51: # error "Error in flashdrv_xd1.c: Source and header file versions are inconsistent!"
+                            76	#52: #endif
+                            77	#54: /***********************************************************************************************************************
+                            78	#55:  *  CONFIGURATION CHECK
+                            79	#56:  **********************************************************************************************************************/
+                            80	#57: #if ((FLASH_DRIVER_XD1_VERSION_MCUTYPE != 0x57u ) || \
+                            81	#58:      (FLASH_DRIVER_XD1_VERSION_MASKTYPE != 0x00u ))
+                            82	#59: # error "Error in flashdrv_xd1.c: CPU type error! Wrong flashdrv_xd1.h file."
+                            83	#60: #endif
+                            84	#62: /***********************************************************************************************************************
+                            85	#63:  *  DEFINES AND MACROS
+                            86	#64:  **********************************************************************************************************************/
+                            87	#66: #define FLASH_REG(a, b) *(volatile unsigned long *)(((a)->registerBase) + (b))
+                            88	#68: /***********************************************************************************************************************
+                            89	#69:  *  LOCAL DATA TYPES AND STRUCTURES
+                            90	#70:  **********************************************************************************************************************/
+                            91	#73: /***********************************************************************************************************************
+                            92	#74:  *  FUNCTION PROTOTYPES
+                            93	#75:  **********************************************************************************************************************/
+                            94	#78: static void fUnlockFlashBlocks(tFlashParam_XD1* fp, unsigned long* lockState);
+                            95	#79: static void fLockFlashBlocks(tFlashParam_XD1* fp, unsigned long* lockState);
+                            96	#80: static void fVerifyData(tFlashParam_XD1* fp);
+                            97	#81: static void fWaitCmdCompleted(tFlashParam_XD1* fp);
+
+                                   Fri Apr 10 08:32:24 2020           Page 3
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                            98	#83: /***********************************************************************************************************************
+                            99	#84:  *  GLOBAL DATA
+                           100	#85:  **********************************************************************************************************************/
+                           101	#88: /***********************************************************************************************************************
+                           102	#89:  *  LOCAL FUNCTIONS
+                           103	#90:  **********************************************************************************************************************/
+                           104	#92: /***********************************************************************************************************************
+                           105	#93:  *  fUnlockFlashBlocks
+                           106	#94:  **********************************************************************************************************************/
+                           107	#95: /*! \brief         Unlock flash blocks
+                           108	#96:  *  \details       Unlock write access to flash blocks requested for erase or write. Write access
+                           109	#97:  *                 is unlocked for flash blocks not protected by user lock mask. The current lock
+                           110	#98:  *                 state is saved to be restored by lockFlashBlocks().
+                           111	#99:  *  \pre           Flash driver present in RAM.
+                           112	#100:  *  \param[in,out] fp Pointer to flash parameter structure
+                           113	#101:  *  \param[in,out] lockState Pointer to lock value storage provided by calling function
+                           114	#102:  **********************************************************************************************************************/
+                           115		.section ".vletext", "vax"
+                           116		.vle
+                           117		.vle
+                           118	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB088..0::
+                           119		.align	1
+                           120	..gh.f.p.4.a.1.r.0.e.0:
+                           121		.type	..gh.f.p.4.a.1.r.0.e.0,@object
+                           122		.size	..gh.f.p.4.a.1.r.0.e.0,0
+                           123		.global	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           124	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.:
+                           125	fUnlockFlashBlocks:
+00000000 182106f0          126		e_stwu	sp, -16(sp)
+00000004 0080              127		se_mflr	r0
+00000006 1bc10908          128		e_stmw	r30, 8(sp)
+0000000a d501              129		se_stw	r0, 20(sp)
+0000000c 013f              130		se_mr	r31, r3
+0000000e 014e              131		se_mr	r30, r4
+                           132	#	    .bf
+                           133	.LDW01:
+                           134	#103: static void fUnlockFlashBlocks(tFlashParam_XD1* fp, unsigned long* lockState)
+                           135	#104: {
+                           136	#105:    unsigned long i;
+                           137	#107:    /* Initialize variables */
+                           138	#108:    fp->errorCode = kFlashOk_XD1;
+00000010 4800              139		se_li	r0, 0
+00000012 b203              140		se_sth	r0, 4(r3)
+                           141	#109:    
+                           142	#110:    if (fp->wdTriggerFct != 0)
+00000014 c503              143		se_lwz	r0, 20(r3)
+00000016 2a00              144		se_cmpi	r0, 0
+00000018 e600              145		se_beq	.L4
+                           146	#111:    {
+                           147	#112:       (void)(*fp->wdTriggerFct)();
+                           148	#line112
+                           149	..lin.8b51fde3..4f218903.0_1::
+                           150	.LDWlin1:
+0000001a 00b0              151		se_mtctr	r0
+0000001c 0007              152		se_bctrl
+                           153	.L4:
+
+                                   Fri Apr 10 08:32:24 2020           Page 4
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           154	#113:    }
+                           155	#115:    /* Check user lock state */
+                           156	#116:    for (i = 0u; i < fp->selectCount; i++)
+0000001e 4800              157		se_li	r0, 0
+00000020 e800              158		se_b	.L9
+                           159	.L8:
+                           160	#117:    {
+                           161	#118:       if ((fp->protectSelect[i] & fp->blockSelect[i]) != 0ul)
+                           162	#line118
+                           163	..lin.8b51fde3..4f218903.0_2::
+                           164	.LDWlin2:
+00000022 ca6f              165		se_lwz	r6, 40(r31)
+00000024 cb5f              166		se_lwz	r5, 44(r31)
+00000026 7c071070          167		e_slwi	r7, r0, 2
+0000002a 7cc6382e          168		lwzx	r6, r6, r7
+0000002e 7ce5382e          169		lwzx	r7, r5, r7
+00000032 4767              170		se_and.	r7, r6
+00000034 e600              171		se_beq	.L7
+                           172	#119:       {
+                           173	#120:          /* User lock set */
+                           174	#121:          fp->errorCode = kFlashProtected_XD1;
+                           175	#line121
+                           176	..lin.8b51fde3..4f218903.0_3::
+                           177	.LDWlin3:
+00000036 48c7              178		se_li	r7, 12
+00000038 b27f              179		se_sth	r7, 4(r31)
+                           180	.L7:
+0000003a 2000              181		se_addi	r0, 1
+                           182	.L9:
+0000003c c97f              183		se_lwz	r7, 36(r31)
+0000003e 0d70              184		se_cmpl	r0, r7
+00000040 e400              185		se_blt	.L8
+                           186	#122:       }
+                           187	#123:    }
+                           188	#124:    
+                           189	#125:    /* No user lock set, unlock flash blocks */
+                           190	#126:    if (fp->errorCode == kFlashOk_XD1)
+                           191	#line126
+                           192	..lin.8b51fde3..4f218903.0_4::
+                           193	.LDWlin4:
+00000042 a20f              194		se_lhz	r0, 4(r31)
+00000044 2a00              195		se_cmpi	r0, 0
+00000046 e200              196		se_bne	.L2
+                           197	#127:    {
+                           198	#128:       /* Save lock state and unlock requested blocks */
+                           199	#129:       for (i = 0u; i < fp->selectCount; i++)
+                           200	#line129
+                           201	..lin.8b51fde3..4f218903.0_5::
+                           202	.LDWlin5:
+00000048 e800              203		se_b	.L17
+                           204	.L16:
+                           205	#130:       {
+                           206	#131:          lockState[i] = FLASH_REG(fp, FBL_FLASH_LOCK_OFFSET_XD1(i));
+                           207	#line131
+                           208	..lin.8b51fde3..4f218903.0_6::
+                           209	.LDWlin6:
+
+                                   Fri Apr 10 08:32:24 2020           Page 5
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000004a cc6f              210		se_lwz	r6, 48(r31)
+0000004c 7c071070          211		e_slwi	r7, r0, 2
+00000050 0476              212		se_add	r6, r7
+00000052 c466              213		se_lwz	r6, 16(r6)
+00000054 ca5f              214		se_lwz	r5, 40(r31)
+                           215	#132:          FLASH_REG(fp, FBL_FLASH_LOCK_OFFSET_XD1(i)) &= (fp->protectSelect[i] | ((unsigned long)~fp->blockSelect[i]));
+00000056 7cde392e          216		stwx	r6, r30, r7
+0000005a cb6f              217		se_lwz	r6, 44(r31)
+0000005c 7ca5382e          218		lwzx	r5, r5, r7
+00000060 7cc6382e          219		lwzx	r6, r6, r7
+00000064 7ca53338          220		orc	r5, r5, r6
+00000068 cc6f              221		se_lwz	r6, 48(r31)
+0000006a 0476              222		se_add	r6, r7
+0000006c c476              223		se_lwz	r7, 16(r6)
+0000006e 2000              224		se_addi	r0, 1
+00000070 4657              225		se_and	r7, r5
+00000072 d476              226		se_stw	r7, 16(r6)
+                           227	.L17:
+00000074 c97f              228		se_lwz	r7, 36(r31)
+00000076 0d70              229		se_cmpl	r0, r7
+00000078 e400              230		se_blt	.L16
+                           231	.L2:
+                           232	#133:       }
+                           233	#134:    }
+                           234	#135: }
+                           235	#	    .ef
+                           236	.LDW11:
+                           237	#line135
+                           238	..lin.8b51fde3..4f218903.0_7::
+                           239	.LDWlin7:
+0000007a c501              240		se_lwz	r0, 20(sp)
+0000007c 1bc10808          241		e_lmw	r30, 8(sp)
+00000080 20f1              242		se_addi	sp, 16
+00000082 0090              243		se_mtlr	r0
+00000084 0004              244		se_blr
+                           245	__ghs_eofn_fUnlockFlashBlocks:
+                           246		.type	fUnlockFlashBlocks,@function
+                           247		.size	fUnlockFlashBlocks,$-fUnlockFlashBlocks
+                           248		.type	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,@function
+                           249		.size	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,$-fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           250		.align	1
+                           251	
+                           252	#function:			fUnlockFlashBlocks
+                           253	#stack frame size:		16
+                           254	#link area offset:		0
+                           255	#local storage area offset:	8
+                           256	#gpr save area offset:		8
+                           257	#
+                           258	#i	r0	local
+                           259	
+                           260	#fp	r31	param
+                           261	#lockState	r30	param
+                           262	
+                           263		.data
+                           264		.section ".vletext", "vax"
+                           265		.vle
+
+                                   Fri Apr 10 08:32:24 2020           Page 6
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           266		.vle
+                           267	
+                           268	
+                           269	#137: /***********************************************************************************************************************
+                           270	#138:  *  fLockFlashBlocks
+                           271	#139:  **********************************************************************************************************************/
+                           272	#140: /*! \brief         Lock flash blocks
+                           273	#141:  *  \details       Lock write access to flash blocks requested for erase or write. The lock state before
+                           274	#142:  *                 unlocking the blocks is restored.
+                           275	#143:  *  \pre           Flash blocks are unlocked.
+                           276	#144:  *  \param[in,out] fp Pointer to flash parameter structure
+                           277	#145:  *  \param[in,out] lockState Pointer to lock value storage provided by calling function
+                           278	#146:  **********************************************************************************************************************/
+                           279		.align	1
+                           280		.align	1
+                           281	..gh.f.p.4.a.1.r.0.e.1:
+                           282		.type	..gh.f.p.4.a.1.r.0.e.1,@object
+                           283		.size	..gh.f.p.4.a.1.r.0.e.1,0
+                           284		.global	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           285	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.:
+                           286	fLockFlashBlocks:
+00000086 182106f0          287		e_stwu	sp, -16(sp)
+0000008a 1bc10908          288		e_stmw	r30, 8(sp)
+0000008e 014e              289		se_mr	r30, r4
+00000090 013f              290		se_mr	r31, r3
+00000092 0080              291		se_mflr	r0
+00000094 d501              292		se_stw	r0, 20(sp)
+                           293	#	    .bf
+                           294	.LDW21:
+                           295	#147: static void fLockFlashBlocks(tFlashParam_XD1* fp, unsigned long* lockState)
+                           296	#148: {
+                           297	#149:    unsigned long i;
+                           298	#151:    if (fp->wdTriggerFct != 0)
+00000096 c503              299		se_lwz	r0, 20(r3)
+00000098 2a00              300		se_cmpi	r0, 0
+0000009a e600              301		se_beq	.L399
+                           302	#152:    {
+                           303	#153:       (void)(*fp->wdTriggerFct)();
+                           304	#line153
+                           305	..lin.8b51fde3..44852920.0_8::
+                           306	.LDWlin8:
+0000009c 00b0              307		se_mtctr	r0
+0000009e 0007              308		se_bctrl
+                           309	.L399:
+                           310	#154:    }
+                           311	#156:    /* Restore lock state */
+                           312	#157:    for (i = 0u; i < fp->selectCount; i++)
+000000a0 4800              313		se_li	r0, 0
+000000a2 e800              314		se_b	.L404
+                           315	.L403:
+                           316	#158:    {
+                           317	#159:       FLASH_REG(fp, FBL_FLASH_LOCK_OFFSET_XD1(i)) = lockState[i];
+                           318	#line159
+                           319	..lin.8b51fde3..44852920.0_9::
+                           320	.LDWlin9:
+000000a4 cc7f              321		se_lwz	r7, 48(r31)
+
+                                   Fri Apr 10 08:32:24 2020           Page 7
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000000a6 7c061070          322		e_slwi	r6, r0, 2
+000000aa 0467              323		se_add	r7, r6
+000000ac 7cde302e          324		lwzx	r6, r30, r6
+000000b0 2000              325		se_addi	r0, 1
+000000b2 d467              326		se_stw	r6, 16(r7)
+                           327	.L404:
+000000b4 c97f              328		se_lwz	r7, 36(r31)
+000000b6 0d70              329		se_cmpl	r0, r7
+000000b8 e400              330		se_blt	.L403
+                           331	#160:    }
+                           332	#161: }
+                           333	#	    .ef
+                           334	.LDW31:
+                           335	#line161
+                           336	..lin.8b51fde3..44852920.0_10::
+                           337	.LDWlin10:
+000000ba c501              338		se_lwz	r0, 20(sp)
+000000bc 1bc10808          339		e_lmw	r30, 8(sp)
+000000c0 20f1              340		se_addi	sp, 16
+000000c2 0090              341		se_mtlr	r0
+000000c4 0004              342		se_blr
+                           343	__ghs_eofn_fLockFlashBlocks:
+                           344		.type	fLockFlashBlocks,@function
+                           345		.size	fLockFlashBlocks,$-fLockFlashBlocks
+                           346		.type	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,@function
+                           347		.size	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,$-fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           348		.align	1
+                           349	
+                           350	#function:			fLockFlashBlocks
+                           351	#stack frame size:		16
+                           352	#link area offset:		0
+                           353	#local storage area offset:	8
+                           354	#gpr save area offset:		8
+                           355	#
+                           356	#i	r0	local
+                           357	
+                           358	#fp	r31	param
+                           359	#lockState	r30	param
+                           360	
+                           361		.data
+                           362		.section ".vletext", "vax"
+                           363		.vle
+                           364		.vle
+                           365	
+                           366	
+                           367	#163: /***********************************************************************************************************************
+                           368	#164:  *  fVerifyData
+                           369	#165:  **********************************************************************************************************************/
+                           370	#166: /*! \brief         Verifies if data has been written correctly.
+                           371	#167:  *  \pre           Data has been written.
+                           372	#168:  *  \param[in,out] fp Pointer to flash parameter structure
+                           373	#169:  **********************************************************************************************************************/
+                           374		.align	1
+                           375		.align	1
+                           376	..gh.f.p.3.a.1.r.0.e.2:
+                           377		.type	..gh.f.p.3.a.1.r.0.e.2,@object
+
+                                   Fri Apr 10 08:32:24 2020           Page 8
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           378		.size	..gh.f.p.3.a.1.r.0.e.2,0
+                           379		.global	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           380	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.:
+                           381	fVerifyData:
+000000c6 182106e8          382		e_stwu	sp, -24(sp)
+000000ca 1b810908          383		e_stmw	r28, 8(sp)
+000000ce 0080              384		se_mflr	r0
+000000d0 d701              385		se_stw	r0, 28(sp)
+000000d2 013f              386		se_mr	r31, r3
+                           387	#	    .bf
+                           388	.LDW41:
+                           389	#170: static void fVerifyData(tFlashParam_XD1* fp)
+                           390	#171: {
+                           391	#172:    tFlashLength_XD1   length;
+                           392	#173:    unsigned long *intendedData;
+                           393	#174:    unsigned long *actualData;
+                           394	#176:    /* Initialize variables */
+                           395	#177:    intendedData = (unsigned long *)fp->data;
+000000d4 c2d3              396		se_lwz	r29, 8(r3)
+                           397	#178:    actualData = (unsigned long *)fp->address;
+000000d6 c4c3              398		se_lwz	r28, 16(r3)
+                           399	#179:    fp->errorAddress = fp->address;
+000000d8 c3e3              400		se_lwz	r30, 12(r3)
+                           401	#180:    fp->errorCode = kFlashOk_XD1;
+000000da 4800              402		se_li	r0, 0
+000000dc b203              403		se_sth	r0, 4(r3)
+                           404	#181:    length = fp->length;
+000000de d8d3              405		se_stw	r29, 32(r3)
+                           406	#183:    while ((fp->errorCode == kFlashOk_XD1) && (length > 0ul))
+000000e0 e800              407		se_b	.L490
+                           408	.L492:
+                           409	#184:    {
+                           410	#185:       /* Service watchdog */
+                           411	#186:       if ((length & 0x3Ful) == 0x00ul)
+                           412	#line186
+                           413	..lin.8b51fde3..1d95c87a.0_11::
+                           414	.LDWlin11:
+000000e2 1bc0c83f          415		e_andi.	r0, r30, 63
+000000e6 e200              416		se_bne	.L493
+                           417	#187:       {
+                           418	#188:          if (fp->wdTriggerFct != 0)
+                           419	#line188
+                           420	..lin.8b51fde3..1d95c87a.0_12::
+                           421	.LDWlin12:
+000000e8 c50f              422		se_lwz	r0, 20(r31)
+000000ea 2a00              423		se_cmpi	r0, 0
+000000ec e600              424		se_beq	.L493
+                           425	#189:          {
+                           426	#190:             (void)(*fp->wdTriggerFct)();
+                           427	#line190
+                           428	..lin.8b51fde3..1d95c87a.0_13::
+                           429	.LDWlin13:
+000000ee 00b0              430		se_mtctr	r0
+000000f0 0007              431		se_bctrl
+                           432	.L493:
+                           433	#191:          }
+
+                                   Fri Apr 10 08:32:24 2020           Page 9
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           434	#192:       }
+                           435	#194:       /* Check if programmed data matches intended data */
+                           436	#195:       if (*actualData != *intendedData)
+000000f2 c07d              437		se_lwz	r7, 0(r29)
+000000f4 c00c              438		se_lwz	r0, 0(r28)
+000000f6 0d07              439		se_cmpl	r7, r0
+000000f8 e600              440		se_beq	.L497
+                           441	#196:       {
+                           442	#197:          /* Verify error, set error code */
+                           443	#198:          *(unsigned long *)&fp->intendedData = *intendedData;
+                           444	#line198
+                           445	..lin.8b51fde3..1d95c87a.0_14::
+                           446	.LDWlin14:
+000000fa d60f              447		se_stw	r0, 24(r31)
+                           448	#199:          *(unsigned long *)&fp->actualData = *actualData;
+000000fc c00d              449		se_lwz	r0, 0(r29)
+000000fe c27f              450		se_lwz	r7, 8(r31)
+                           451	#200:          fp->errorAddress = ((fp->address + fp->length) - length);
+00000100 d70f              452		se_stw	r0, 28(r31)
+00000102 c30f              453		se_lwz	r0, 12(r31)
+00000104 0407              454		se_add	r7, r0
+00000106 7c1e3850          455		subf	r0, r30, r7
+0000010a d80f              456		se_stw	r0, 32(r31)
+                           457	#201:          fp->errorCode = kFlashWriteVerify_XD1;
+0000010c 4e20              458		se_li	r0, 98
+0000010e b20f              459		se_sth	r0, 4(r31)
+                           460	.L497:
+                           461	#202:       }
+                           462	#203:       length -= 4u;
+00000110 203c              463		se_addi	r28, 4
+                           464	#204:       actualData++;
+00000112 203d              465		se_addi	r29, 4
+                           466	#205:       intendedData++;
+00000114 243e              467		se_subi	r30, 4
+                           468	.L490:
+00000116 a20f              469		se_lhz	r0, 4(r31)
+00000118 2a00              470		se_cmpi	r0, 0
+0000011a e200              471		se_bne	.L488
+0000011c 2a0e              472		se_cmpi	r30, 0
+0000011e e200              473		se_bne	.L492
+                           474	.L488:
+                           475	#206:    }
+                           476	#207: }
+                           477	#	    .ef
+                           478	.LDW51:
+                           479	#line207
+                           480	..lin.8b51fde3..1d95c87a.0_15::
+                           481	.LDWlin15:
+00000120 c701              482		se_lwz	r0, 28(sp)
+00000122 1b810808          483		e_lmw	r28, 8(sp)
+00000126 2171              484		se_addi	sp, 24
+00000128 0090              485		se_mtlr	r0
+0000012a 0004              486		se_blr
+                           487	__ghs_eofn_fVerifyData:
+                           488		.type	fVerifyData,@function
+                           489		.size	fVerifyData,$-fVerifyData
+
+                                   Fri Apr 10 08:32:24 2020           Page 10
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           490		.type	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,@function
+                           491		.size	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,$-fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           492		.align	1
+                           493	
+                           494	#function:			fVerifyData
+                           495	#stack frame size:		24
+                           496	#link area offset:		0
+                           497	#local storage area offset:	8
+                           498	#gpr save area offset:		8
+                           499	#
+                           500	#length	r30	local
+                           501	#intendedData	r28	local
+                           502	#actualData	r29	local
+                           503	
+                           504	#fp	r31	param
+                           505	
+                           506		.data
+                           507		.section ".vletext", "vax"
+                           508		.vle
+                           509		.vle
+                           510	
+                           511	
+                           512	#209: /***********************************************************************************************************************
+                           513	#210:  *  fWaitCmdCompleted
+                           514	#211:  **********************************************************************************************************************/
+                           515	#212: /*! \brief         Wait until flash command completes
+                           516	#213:  *  \details       Waits until a erase or write request completes and checks if the operation has been
+                           517	#214:  *                 successful.
+                           518	#215:  *  \pre           Flash command started
+                           519	#216:  *  \param[in,out] fp Pointer to flash parameter structure
+                           520	#217:  **********************************************************************************************************************/
+                           521		.align	1
+                           522		.align	1
+                           523	..gh.f.p.3.a.1.r.0.e.3:
+                           524		.type	..gh.f.p.3.a.1.r.0.e.3,@object
+                           525		.size	..gh.f.p.3.a.1.r.0.e.3,0
+                           526		.global	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           527	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.:
+                           528	fWaitCmdCompleted:
+0000012c 182106f0          529		e_stwu	sp, -16(sp)
+00000130 0080              530		se_mflr	r0
+00000132 d3f1              531		se_stw	r31, 12(sp)
+00000134 d501              532		se_stw	r0, 20(sp)
+00000136 013f              533		se_mr	r31, r3
+                           534	#	    .bf
+                           535	.LDW61:
+                           536	#218: static void fWaitCmdCompleted(tFlashParam_XD1* fp)
+                           537	#219: {
+                           538	#220:    unsigned long doneFlag;
+                           539	#222:    /* Initialize variables */
+                           540	#223:    doneFlag = 0x00ul;
+                           541	#225:    /* Wait until flash operation completes */
+                           542	#226:    while (doneFlag == 0x00ul)
+                           543	.L639:
+                           544	#227:    {
+                           545	#228:       /* Trigger watchdog */
+
+                                   Fri Apr 10 08:32:24 2020           Page 11
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           546	#229:       if (fp->wdTriggerFct != 0)
+00000138 c50f              547		se_lwz	r0, 20(r31)
+0000013a 2a00              548		se_cmpi	r0, 0
+0000013c e600              549		se_beq	.L640
+                           550	#230:       {
+                           551	#231:          (void)(*fp->wdTriggerFct)();
+                           552	#line231
+                           553	..lin.8b51fde3..2fa55a11.0_16::
+                           554	.LDWlin16:
+0000013e 00b0              555		se_mtctr	r0
+00000140 0007              556		se_bctrl
+                           557	.L640:
+                           558	#232:       }
+                           559	#234:       /* Poll DONE flag */
+                           560	#235:       doneFlag = (FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) & FBL_FLASH_MCR_DONE_XD1);
+00000142 cc0f              561		se_lwz	r0, 48(r31)
+00000144 c070              562		se_lwz	r7, 0(r0)
+00000146 6757              563		se_btsti	r7, 21
+00000148 e600              564		se_beq	.L639
+                           565	#236:    }
+                           566	#238:    /* Check for errors */
+                           567	#239:    if ((FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) & FBL_FLASH_MCR_PEG_XD1) == 0x00ul)
+                           568	#line239
+                           569	..lin.8b51fde3..2fa55a11.0_17::
+                           570	.LDWlin17:
+0000014a c070              571		se_lwz	r7, 0(r0)
+0000014c 6767              572		se_btsti	r7, 22
+0000014e e200              573		se_bne	.L642
+                           574	#240:    {
+                           575	#241:       fp->errorCode = kFlashFailed_XD1;
+                           576	#line241
+                           577	..lin.8b51fde3..2fa55a11.0_18::
+                           578	.LDWlin18:
+00000150 4817              579		se_li	r7, 1
+00000152 b27f              580		se_sth	r7, 4(r31)
+                           581	.L642:
+                           582	#242:    }
+                           583	#244:    /* Switch off high voltage */
+                           584	#245:    FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) &= (unsigned long)(~FBL_FLASH_MCR_EHV_XD1);
+00000154 c070              585		se_lwz	r7, 0(r0)
+00000156 61f7              586		se_bclri	r7, 31
+00000158 d070              587		se_stw	r7, 0(r0)
+                           588	#246: }
+                           589	#	    .ef
+                           590	.LDW71:
+0000015a c501              591		se_lwz	r0, 20(sp)
+0000015c c3f1              592		se_lwz	r31, 12(sp)
+0000015e 20f1              593		se_addi	sp, 16
+00000160 0090              594		se_mtlr	r0
+00000162 0004              595		se_blr
+                           596	__ghs_eofn_fWaitCmdCompleted:
+                           597		.type	fWaitCmdCompleted,@function
+                           598		.size	fWaitCmdCompleted,$-fWaitCmdCompleted
+                           599		.type	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,@function
+                           600		.size	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.,$-fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+                           601		.align	1
+
+                                   Fri Apr 10 08:32:24 2020           Page 12
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           602	
+                           603	#function:			fWaitCmdCompleted
+                           604	#stack frame size:		16
+                           605	#link area offset:		0
+                           606	#local storage area offset:	12
+                           607	#gpr save area offset:		12
+                           608	#
+                           609	#doneFlag	r7	local
+                           610	
+                           611	#fp	r31	param
+                           612	
+                           613		.data
+                           614		.section ".vletext", "vax"
+                           615		.vle
+                           616		.vle
+                           617	
+                           618	
+                           619	#248: /***********************************************************************************************************************
+                           620	#249:  *  GLOBAL FUNCTIONS
+                           621	#250:  **********************************************************************************************************************/
+                           622	#252: /***********************************************************************************************************************
+                           623	#253:  *  ExpFlash_XD1Init
+                           624	#254:  **********************************************************************************************************************/
+                           625	#255: /*! \brief         Flash driver initialization
+                           626	#256:  *  \details       This function initializes the flash driver after download.
+                           627	#257:  *  \pre           Flash driver present in RAM.
+                           628	#258:  *  \param[in,out] fp Pointer to flash parameter structure
+                           629	#259:  **********************************************************************************************************************/
+                           630		.align	1
+                           631		.align	1
+                           632	..gh.f.p.3.a.1.r.0.e.4:
+                           633		.type	..gh.f.p.3.a.1.r.0.e.4,@object
+                           634		.size	..gh.f.p.3.a.1.r.0.e.4,0
+                           635		.global	ExpFlash_XD1Init
+                           636	ExpFlash_XD1Init:
+                           637	#	    .bf
+                           638	.LDW81:
+                           639	#260: void ExpFlash_XD1Init(tFlashParam_XD1 * fp)
+                           640	#261: {
+                           641	#262:    /* Report actually used versions back to flio */
+                           642	#263:    fp->majorVersion = FLASH_DRIVER_XD1_VERSION_MAJOR;
+00000164 4810              643		se_li	r0, 1
+00000166 9203              644		se_stb	r0, 2(r3)
+                           645	#264:    fp->minorVersion = FLASH_DRIVER_XD1_VERSION_MINOR;
+00000168 4860              646		se_li	r0, 6
+0000016a 9103              647		se_stb	r0, 1(r3)
+                           648	#265:    fp->patchLevel = FLASH_DRIVER_XD1_VERSION_PATCH;
+0000016c 4800              649		se_li	r0, 0
+0000016e 9003              650		se_stb	r0, 0(r3)
+                           651	#267:    fp->errorCode = kFlashOk_XD1;
+00000170 b203              652		se_sth	r0, 4(r3)
+                           653	#268: }
+                           654	#	    .ef
+                           655	.LDW91:
+00000172 0004              656		se_blr
+                           657		.global	__ghs_eofn_ExpFlash_XD1Init
+
+                                   Fri Apr 10 08:32:24 2020           Page 13
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           658	__ghs_eofn_ExpFlash_XD1Init:
+                           659		.type	ExpFlash_XD1Init,@function
+                           660		.size	ExpFlash_XD1Init,$-ExpFlash_XD1Init
+                           661		.align	1
+                           662	
+                           663	#function:			ExpFlash_XD1Init
+                           664	#stack frame size:		0
+                           665	#
+                           666	
+                           667	#fp	r3	param
+                           668	
+                           669		.data
+                           670		.section ".vletext", "vax"
+                           671		.vle
+                           672		.vle
+                           673	
+                           674	
+                           675	#270: /***********************************************************************************************************************
+                           676	#271:  *  ExpFlash_XD1Deinit
+                           677	#272:  **********************************************************************************************************************/
+                           678	#273: /*! \brief         Flash driver de-initialization
+                           679	#274:  *  \details       This function de-initializes the flash driver after download.
+                           680	#275:  *  \pre           Flash driver initialized.
+                           681	#276:  *  \param[in,out] fp Pointer to flash parameter structure
+                           682	#277:  **********************************************************************************************************************/
+                           683		.align	1
+                           684		.align	1
+                           685	..gh.f.p.3.a.1.r.0.e.5:
+                           686		.type	..gh.f.p.3.a.1.r.0.e.5,@object
+                           687		.size	..gh.f.p.3.a.1.r.0.e.5,0
+                           688		.global	ExpFlash_XD1Deinit
+                           689	ExpFlash_XD1Deinit:
+                           690	#	    .bf
+                           691	.LDW02:
+                           692	#278: void ExpFlash_XD1Deinit(tFlashParam_XD1 * fp)
+                           693	#279: {
+                           694	#280:    fp->errorCode = kFlashOk_XD1;
+00000174 4800              695		se_li	r0, 0
+00000176 b203              696		se_sth	r0, 4(r3)
+                           697	#281: }
+                           698	#	    .ef
+                           699	.LDW12:
+00000178 0004              700		se_blr
+                           701		.global	__ghs_eofn_ExpFlash_XD1Deinit
+                           702	__ghs_eofn_ExpFlash_XD1Deinit:
+                           703		.type	ExpFlash_XD1Deinit,@function
+                           704		.size	ExpFlash_XD1Deinit,$-ExpFlash_XD1Deinit
+                           705		.align	1
+                           706	
+                           707	#function:			ExpFlash_XD1Deinit
+                           708	#stack frame size:		0
+                           709	#
+                           710	
+                           711	#fp	r3	param
+                           712	
+                           713		.data
+
+                                   Fri Apr 10 08:32:24 2020           Page 14
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           714		.section ".vletext", "vax"
+                           715		.vle
+                           716		.vle
+                           717	
+                           718	
+                           719	#283: /***********************************************************************************************************************
+                           720	#284:  *  ExpFlash_XD1Erase
+                           721	#285:  **********************************************************************************************************************/
+                           722	#286: /*! \brief         Flash driver erase function.
+                           723	#287:  *  \details       This function erases a given flash area.
+                           724	#288:  *  \pre           Flash driver initialized.
+                           725	#289:  *  \param[in,out] fp Pointer to flash parameter structure
+                           726	#290:  **********************************************************************************************************************/
+                           727		.align	1
+                           728		.align	1
+                           729	..gh.f.p.3.a.1.r.0.e.6:
+                           730		.type	..gh.f.p.3.a.1.r.0.e.6,@object
+                           731		.size	..gh.f.p.3.a.1.r.0.e.6,0
+                           732		.global	ExpFlash_XD1Erase
+                           733	ExpFlash_XD1Erase:
+0000017a 182106e0          734		e_stwu	sp, -32(sp)
+0000017e 1bc10918          735		e_stmw	r30, 24(sp)
+00000182 0080              736		se_mflr	r0
+00000184 d901              737		se_stw	r0, 36(sp)
+                           738	#	    .bf
+                           739	.LDW22:
+                           740	#291: void ExpFlash_XD1Erase(tFlashParam_XD1 * fp)
+                           741	#292: {
+                           742	#293:    unsigned long i;
+                           743	#294:    unsigned long lockState[4];
+                           744	#296:    /* Initialize variables */
+                           745	#297:    fp->errorCode = kFlashOk_XD1;
+00000186 c203              746		se_lwz	r0, 8(r3)
+00000188 480e              747		se_li	r30, 0
+                           748	#298:    fp->errorAddress = fp->address;
+0000018a b2e3              749		se_sth	r30, 4(r3)
+0000018c 18818008          750		e_addi	r4, sp, 8
+                           751	#300:    /* Unlock flash blocks needed for erase */
+                           752	#301:    fUnlockFlashBlocks(fp, lockState);
+00000190 d803              753		se_stw	r0, 32(r3)
+00000192 013f              754		se_mr	r31, r3
+00000194 78000001          755		se_bl	fUnlockFlashBlocks
+                           756	#302:    
+                           757	#303:    /* Check for successful unlock */
+                           758	#304:    if (fp->errorCode == kFlashOk_XD1)
+                           759	#line304
+                           760	..lin.8b51fde3..57a2683c.0_19::
+                           761	.LDWlin19:
+00000198 a20f              762		se_lhz	r0, 4(r31)
+0000019a 2a00              763		se_cmpi	r0, 0
+0000019c e200              764		se_bne	.L843
+                           765	#305:    {
+                           766	#306:       /* Enable erase mode */
+                           767	#307:       FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) = FBL_FLASH_MCR_ERS_XD1;
+                           768	#line307
+                           769	..lin.8b51fde3..57a2683c.0_20::
+
+                                   Fri Apr 10 08:32:24 2020           Page 15
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           770	.LDWlin20:
+0000019e cc7f              771		se_lwz	r7, 48(r31)
+000001a0 4840              772		se_li	r0, 4
+000001a2 d007              773		se_stw	r0, 0(r7)
+                           774	#309:       /* Seclect flash blocks to be erased */
+                           775	#310:       for (i = 0u; i < fp->selectCount; i++)
+000001a4 4806              776		se_li	r6, 0
+000001a6 e800              777		se_b	.L837
+                           778	.L836:
+                           779	#311:       {
+                           780	#312:          FLASH_REG(fp, FBL_FLASH_SEL_OFFSET_XD1(i)) = fp->blockSelect[i];
+                           781	#line312
+                           782	..lin.8b51fde3..57a2683c.0_21::
+                           783	.LDWlin21:
+000001a8 cc7f              784		se_lwz	r7, 48(r31)
+000001aa cb5f              785		se_lwz	r5, 44(r31)
+000001ac 7cc01070          786		e_slwi	r0, r6, 2
+000001b0 0407              787		se_add	r7, r0
+000001b2 7c05002e          788		lwzx	r0, r5, r0
+000001b6 2006              789		se_addi	r6, 1
+000001b8 de07              790		se_stw	r0, 56(r7)
+                           791	.L837:
+000001ba c90f              792		se_lwz	r0, 36(r31)
+000001bc 0d06              793		se_cmpl	r6, r0
+000001be e400              794		se_blt	.L836
+                           795	#313:       }
+                           796	#315:       /* Flash interlock write */
+                           797	#316:       *(unsigned long*)fp->errorAddress = 0x00ul;
+                           798	#line316
+                           799	..lin.8b51fde3..57a2683c.0_22::
+                           800	.LDWlin22:
+000001c0 c80f              801		se_lwz	r0, 32(r31)
+000001c2 d0e0              802		se_stw	r30, 0(r0)
+                           803	#318:       /* Enable high voltage to start erase operation */
+                           804	#319:       FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) = (FBL_FLASH_MCR_ERS_XD1 | FBL_FLASH_MCR_EHV_XD1);
+000001c4 cc7f              805		se_lwz	r7, 48(r31)
+000001c6 4850              806		se_li	r0, 5
+000001c8 d007              807		se_stw	r0, 0(r7)
+                           808	#321:       /* Wait until command completes and check for errors */
+                           809	#322:       fWaitCmdCompleted(fp);
+000001ca 01f3              810		se_mr	r3, r31
+000001cc e900              811		se_bl	fWaitCmdCompleted
+                           812	#324:       /* Clear flash block select registers */
+                           813	#325:       for (i = 0u; i < fp->selectCount; i++)
+                           814	#line325
+                           815	..lin.8b51fde3..57a2683c.0_23::
+                           816	.LDWlin23:
+000001ce 4806              817		se_li	r6, 0
+000001d0 e800              818		se_b	.L841
+                           819	.L840:
+                           820	#326:       {
+                           821	#327:          FLASH_REG(fp, FBL_FLASH_SEL_OFFSET_XD1(i)) = 0x00ul;
+                           822	#line327
+                           823	..lin.8b51fde3..57a2683c.0_24::
+                           824	.LDWlin24:
+000001d2 7cc71070          825		e_slwi	r7, r6, 2
+
+                                   Fri Apr 10 08:32:24 2020           Page 16
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000001d6 0407              826		se_add	r7, r0
+000001d8 2006              827		se_addi	r6, 1
+000001da dee7              828		se_stw	r30, 56(r7)
+                           829	.L841:
+000001dc c97f              830		se_lwz	r7, 36(r31)
+000001de cc0f              831		se_lwz	r0, 48(r31)
+000001e0 0d76              832		se_cmpl	r6, r7
+000001e2 e400              833		se_blt	.L840
+                           834	#328:       }
+                           835	#330:       /* Terminate erase sequence */
+                           836	#331:       FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) &= (unsigned long)(~FBL_FLASH_MCR_ERS_XD1);
+                           837	#line331
+                           838	..lin.8b51fde3..57a2683c.0_25::
+                           839	.LDWlin25:
+000001e4 c070              840		se_lwz	r7, 0(r0)
+000001e6 01f3              841		se_mr	r3, r31
+000001e8 61d7              842		se_bclri	r7, 29
+                           843	#333:       /* Lock flash blocks after erase */
+                           844	#334:       fLockFlashBlocks(fp, lockState);
+000001ea d070              845		se_stw	r7, 0(r0)
+000001ec 18818008          846		e_addi	r4, sp, 8
+000001f0 78000001          847		se_bl	fLockFlashBlocks
+                           848	#335:    }
+                           849	#337:    /* Erase failed, set erase error */
+                           850	#338:    if (fp->errorCode != kFlashOk_XD1)
+                           851	#line338
+                           852	..lin.8b51fde3..57a2683c.0_26::
+                           853	.LDWlin26:
+000001f4 a20f              854		se_lhz	r0, 4(r31)
+000001f6 2a00              855		se_cmpi	r0, 0
+000001f8 e600              856		se_beq	.L830
+                           857	.L843:
+                           858	#339:    {
+                           859	#340:       fp->errorCode |= kFlashFctErase_XD1;
+                           860	#line340
+                           861	..lin.8b51fde3..57a2683c.0_27::
+                           862	.LDWlin27:
+000001fa 6590              863		se_bseti	r0, 25
+000001fc b20f              864		se_sth	r0, 4(r31)
+                           865	.L830:
+                           866	#341:    }
+                           867	#342: }
+                           868	#	    .ef
+                           869	.LDW32:
+000001fe c901              870		se_lwz	r0, 36(sp)
+00000200 1bc10818          871		e_lmw	r30, 24(sp)
+00000204 21f1              872		se_addi	sp, 32
+00000206 0090              873		se_mtlr	r0
+00000208 0004              874		se_blr
+                           875		.global	__ghs_eofn_ExpFlash_XD1Erase
+                           876	__ghs_eofn_ExpFlash_XD1Erase:
+                           877		.type	ExpFlash_XD1Erase,@function
+                           878		.size	ExpFlash_XD1Erase,$-ExpFlash_XD1Erase
+                           879		.align	1
+                           880	
+                           881	#function:			ExpFlash_XD1Erase
+
+                                   Fri Apr 10 08:32:24 2020           Page 17
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           882	#stack frame size:		32
+                           883	#link area offset:		0
+                           884	#local storage area offset:	8
+                           885	#gpr save area offset:		24
+                           886	#
+                           887	#i	r6	local
+                           888	#lockState	8(sp)	local
+                           889	
+                           890	#fp	r31	param
+                           891	
+                           892		.data
+                           893		.section ".vletext", "vax"
+                           894		.vle
+                           895		.vle
+                           896	
+                           897	
+                           898	#344: /***********************************************************************************************************************
+                           899	#345:  *  ExpFlash_XD1Write
+                           900	#346:  **********************************************************************************************************************/
+                           901	#347: /*! \brief         Flash driver write function
+                           902	#348:  *  \details       This function writes data to flash memory.
+                           903	#349:  *  \pre           Flash driver initialized, write area has to be erased.
+                           904	#350:  *  \param[in,out] fp Pointer to flash parameter structure
+                           905	#351:  **********************************************************************************************************************/
+                           906		.align	1
+                           907		.align	1
+                           908	..gh.f.p.3.a.1.r.0.e.7:
+                           909		.type	..gh.f.p.3.a.1.r.0.e.7,@object
+                           910		.size	..gh.f.p.3.a.1.r.0.e.7,0
+                           911		.global	ExpFlash_XD1Write
+                           912	ExpFlash_XD1Write:
+0000020a 182106d8          913		e_stwu	sp, -40(sp)
+0000020e 1b810918          914		e_stmw	r28, 24(sp)
+00000212 0080              915		se_mflr	r0
+00000214 db01              916		se_stw	r0, 44(sp)
+                           917	#	    .bf
+                           918	.LDW42:
+                           919	#352: void ExpFlash_XD1Write(tFlashParam_XD1 * fp)
+                           920	#353: {
+                           921	#354:    unsigned long lockState[4];
+                           922	#355:    unsigned long i;
+                           923	#357:    tFlashLength_XD1 currentLength;
+                           924	#358:    tFlashAddress_XD1 currentAddress;
+                           925	#359:    tFlashAddress_XD1 currentData;
+                           926	#361:    /* Initialize variables */
+                           927	#362:    fp->errorCode = kFlashOk_XD1;
+00000216 013f              928		se_mr	r31, r3
+00000218 4800              929		se_li	r0, 0
+                           930	#363:    currentLength = fp->length;
+0000021a b203              931		se_sth	r0, 4(r3)
+                           932	#364:    currentAddress = fp->address;
+0000021c c4c3              933		se_lwz	r28, 16(r3)
+                           934	#365:    currentData = (tFlashAddress_XD1)fp->data;
+0000021e c2e3              935		se_lwz	r30, 8(r3)
+                           936	#367:    /* Unlock flash blocks needed for write */
+                           937	#368:    fUnlockFlashBlocks(fp, lockState);
+
+                                   Fri Apr 10 08:32:24 2020           Page 18
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000220 c3d3              938		se_lwz	r29, 12(r3)
+00000222 18818008          939		e_addi	r4, sp, 8
+00000226 78000001          940		se_bl	fUnlockFlashBlocks
+                           941	#370:    /* Check for successful unlock */
+                           942	#371:    if (fp->errorCode == kFlashOk_XD1)
+                           943	#line371
+                           944	..lin.8b51fde3..58e84377.0_28::
+                           945	.LDWlin28:
+0000022a a20f              946		se_lhz	r0, 4(r31)
+0000022c 2a00              947		se_cmpi	r0, 0
+0000022e e200              948		se_bne	.L984
+                           949	#372:    {
+                           950	#373:       /* Enable programming mode */
+                           951	#374:       FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) = FBL_FLASH_MCR_PGM_XD1;
+                           952	#line374
+                           953	..lin.8b51fde3..58e84377.0_29::
+                           954	.LDWlin29:
+00000230 cc7f              955		se_lwz	r7, 48(r31)
+00000232 4900              956		se_li	r0, 16
+00000234 d007              957		se_stw	r0, 0(r7)
+                           958	#376:       /* Write request (double word-wise) */
+                           959	#377:       while ((currentLength > 0ul) && (fp->errorCode == kFlashOk_XD1))
+00000236 e800              960		se_b	.L986
+                           961	.L988:
+                           962	#378:       {
+                           963	#379:          fp->errorAddress = currentAddress;
+                           964	#line379
+                           965	..lin.8b51fde3..58e84377.0_30::
+                           966	.LDWlin30:
+00000238 d8ef              967		se_stw	r30, 32(r31)
+                           968	#381:          /* Check if a quad page programming request can be done */
+                           969	#382:          if ((currentLength >= 128ul) && ((currentAddress & 0x7Ful) == 0x00ul))
+0000023a 189da880          970		e_cmpli	r29, 128
+0000023e e400              971		se_blt	.L989
+00000240 1bc0c87f          972		e_andi.	r0, r30, 127
+00000244 e200              973		se_bne	.L989
+                           974	#383:          {
+                           975	#384:             /* Quad page - 1024 Bits - can be programmed in one step */
+                           976	#385:             i = 128ul;
+                           977	#line385
+                           978	..lin.8b51fde3..58e84377.0_31::
+                           979	.LDWlin31:
+00000246 6380              980		se_bgeni	r0, 24
+00000248 e800              981		se_b	.L995
+                           982	.L989:
+                           983	#386:          }
+                           984	#387:          else
+                           985	#388:          {
+                           986	#389:             /* One flash segment will be programmed at a time */
+                           987	#390:             i = FLASH_XD1_SEGMENT_SIZE;
+                           988	#line390
+                           989	..lin.8b51fde3..58e84377.0_32::
+                           990	.LDWlin32:
+0000024a 4880              991		se_li	r0, 8
+                           992	.L995:
+                           993	#391:          }
+
+                                   Fri Apr 10 08:32:24 2020           Page 19
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                           994	#393:          /* Prepare data to be written to flash memory */
+                           995	#394:          while (i > 0ul)
+                           996	#395:          {
+                           997	#396:             /* Write word */
+                           998	#397:             *(unsigned long*)currentAddress = *(unsigned long*)currentData;
+0000024c c07c              999		se_lwz	r7, 0(r28)
+0000024e 203c             1000		se_addi	r28, 4
+                          1001	#398:             currentAddress += 4u;
+00000250 243d             1002		se_subi	r29, 4
+                          1003	#399:             currentData += 4u;
+00000252 2630             1004		se_subi.	r0, 4
+                          1005	#400:             currentLength -= 4u;
+00000254 d07e             1006		se_stw	r7, 0(r30)
+                          1007	#401:             i -= 4u;
+00000256 203e             1008		se_addi	r30, 4
+00000258 e200             1009		se_bne	.L995
+                          1010	#402:          }
+                          1011	#404:          /* Enable high voltage to start write operation */
+                          1012	#405:          FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) = (FBL_FLASH_MCR_PGM_XD1 | FBL_FLASH_MCR_EHV_XD1);
+                          1013	#line405
+                          1014	..lin.8b51fde3..58e84377.0_33::
+                          1015	.LDWlin33:
+0000025a cc7f             1016		se_lwz	r7, 48(r31)
+0000025c 4910             1017		se_li	r0, 17
+0000025e d007             1018		se_stw	r0, 0(r7)
+                          1019	#407:          /* Wait until command completes and check for errors */
+                          1020	#408:          fWaitCmdCompleted(fp);
+00000260 01f3             1021		se_mr	r3, r31
+00000262 78000001         1022		se_bl	fWaitCmdCompleted
+                          1023	.L986:
+                          1024	#line377
+                          1025	..lin.8b51fde3..58e84377.0_34::
+                          1026	.LDWlin34:
+00000266 a20f             1027		se_lhz	r0, 4(r31)
+00000268 2a00             1028		se_cmpi	r0, 0
+0000026a e200             1029		se_bne	.L998
+0000026c 2a0d             1030		se_cmpi	r29, 0
+0000026e e200             1031		se_bne	.L988
+                          1032	#414:       }
+                          1033	#415:       else
+                          1034	#416:       {
+                          1035	#417:          /* Verify written data */
+                          1036	#418:          fVerifyData(fp);
+                          1037	#line418
+                          1038	..lin.8b51fde3..58e84377.0_35::
+                          1039	.LDWlin35:
+00000270 01f3             1040		se_mr	r3, r31
+00000272 78000001         1041		se_bl	fVerifyData
+00000276 e800             1042		se_b	.L999
+                          1043	.L998:
+                          1044	#409:       }
+                          1045	#411:       if (fp->errorCode != kFlashOk_XD1)
+                          1046	#412:       {
+                          1047	#413:          fp->errorCode |= kFlashFctWrite_XD1;
+                          1048	#line413
+                          1049	..lin.8b51fde3..58e84377.0_36::
+
+                                   Fri Apr 10 08:32:24 2020           Page 20
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                          1050	.LDWlin36:
+00000278 7000c060         1051		e_or2i	r0, 96
+0000027c b20f             1052		se_sth	r0, 4(r31)
+                          1053	.L999:
+                          1054	#419:       }
+                          1055	#421:       /* Terminate write sequence */
+                          1056	#422:       FLASH_REG(fp, FBL_FLASH_MCR_OFFSET_XD1) &= (unsigned long)(~FBL_FLASH_MCR_PGM_XD1);
+0000027e cc7f             1057		se_lwz	r7, 48(r31)
+00000280 c007             1058		se_lwz	r0, 0(r7)
+00000282 01f3             1059		se_mr	r3, r31
+00000284 61b0             1060		se_bclri	r0, 27
+                          1061	#424:       /* Lock flash blocks after write */
+                          1062	#425:       fLockFlashBlocks(fp, lockState);
+00000286 d007             1063		se_stw	r0, 0(r7)
+00000288 18818008         1064		e_addi	r4, sp, 8
+0000028c 78000001         1065		se_bl	fLockFlashBlocks
+00000290 e800             1066		se_b	.L982
+                          1067	.L984:
+                          1068	#426:    }
+                          1069	#427:    else
+                          1070	#428:    {
+                          1071	#429:       /* Unlock failed, set write error */
+                          1072	#430:       fp->errorCode |= kFlashFctWrite_XD1;
+                          1073	#line430
+                          1074	..lin.8b51fde3..58e84377.0_37::
+                          1075	.LDWlin37:
+00000292 7000c060         1076		e_or2i	r0, 96
+00000296 b20f             1077		se_sth	r0, 4(r31)
+                          1078	.L982:
+                          1079	#431:    }
+                          1080	#432: }
+                          1081	#	    .ef
+                          1082	.LDW52:
+00000298 cb01             1083		se_lwz	r0, 44(sp)
+0000029a 1b810818         1084		e_lmw	r28, 24(sp)
+0000029e 18218028         1085		e_addi	sp, sp, 40
+000002a2 0090             1086		se_mtlr	r0
+000002a4 0004             1087		se_blr
+                          1088		.global	__ghs_eofn_ExpFlash_XD1Write
+                          1089	__ghs_eofn_ExpFlash_XD1Write:
+                          1090		.type	ExpFlash_XD1Write,@function
+                          1091		.size	ExpFlash_XD1Write,$-ExpFlash_XD1Write
+                          1092		.align	1
+                          1093	
+                          1094	#function:			ExpFlash_XD1Write
+                          1095	#stack frame size:		40
+                          1096	#link area offset:		0
+                          1097	#local storage area offset:	8
+                          1098	#gpr save area offset:		24
+                          1099	#
+                          1100	#lockState	8(sp)	local
+                          1101	#i	r0	local
+                          1102	#currentLength	r29	local
+                          1103	#currentAddress	r30	local
+                          1104	#currentData	r28	local
+                          1105	
+
+                                   Fri Apr 10 08:32:24 2020           Page 21
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                          1106	#fp	r31	param
+                          1107	
+                          1108		.data
+                          1109		.section ".vletext", "vax"
+                          1110		.vle
+                          1111		.vle
+                          1112	
+                          1113		.align	1
+                          1114	
+                          1115		.data
+                          1116		.note ".PPC.EMB.apuinfo",""
+00000000 00000008         1117		.long	0x00000008
+00000004 00000004         1118		.long	4
+00000008 00000002         1119		.long	0x00000002
+                          1120		# "APUinfo\000"
+0000000c 41505569         1121		.byte	65,80,85,105
+00000010 6e666f00         1122		.byte	110,102,111,0
+00000014 01040001         1123		.long	0x01040001
+                          1124		.ghsnote version,20
+                          1125		.ghsnote tools,3
+                          1126		.ghsnote options,644
+                          1127		.section ".vletext", "vax"
+                          1128		.vle
+                          1129		.vle
+                          1130		.align	1
+                          1131	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB088..0::
+                          1132		.section	.debug_info
+                          1133	.Ldw_begin:
+00000000 00000737         1134		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002             1135		.byte	0,2
+00000006 00000000         1136		.long	.Ldw_abbr_begin
+0000000a 04               1137		.byte	4
+                          1138		.section	.debug_abbrev
+                          1139	.Ldw_abbr_begin:
+                          1140		.section	.debug_info
+0000000b 01               1141		.byte	1
+0000000c 00000000         1142		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB088..0
+00000010 00000000         1143		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB088..0
+00000014 2e2e2f2e2e2f2e2e 1144		.strz	"../../../BSW/Flash_XD1/flashdrv_xd1.c"
+0000001c 2f4253572f466c61
+00000024 73685f5844312f66
+0000002c 6c6173686472765f
+00000034 7864312e6300    
+0000003a 433a5c566563746f 1145		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+00000042 725c434244313830
+0000004a 303737325f443030
+00000052 5f4d706335377878
+0000005a 5c44656d6f5c4465
+00000062 6d6f46626c5c4170
+0000006a 706c00          
+0000006d 4748532043203230 1146		.strz	"GHS C 2017.5.4 [dual]"
+00000075 31372e352e34205b
+0000007d 6475616c5d00    
+00000083 0001             1147		.byte	0,1
+00000085 00000000         1148		.long	.Ldw_line_begin
+00000089 00000000         1149		.long	.Ldw_macinfo_begin
+0000008d 00               1150		.byte	0
+                          1151	
+                          1152		.section	.debug_abbrev
+00000000 01               1153		.byte	1
+00000001 11               1154		.byte	17
+00000002 01               1155		.byte	1
+00000003 1101             1156		.byte	17,1
+00000005 1201             1157		.byte	18,1
+00000007 0308             1158		.byte	3,8
+00000009 1b08             1159		.byte	27,8
+0000000b 2508             1160		.byte	37,8
+0000000d 1305             1161		.byte	19,5
+
+                                   Fri Apr 10 08:32:24 2020           Page 22
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000000f 1006             1162		.byte	16,6
+00000011 4306             1163		.byte	67,6
+00000013 420b             1164		.byte	66,11
+00000015 0000             1165		.byte	0,0
+                          1166	
+                          1167		.section	.debug_line
+                          1168	.Ldw_line_begin:
+00000000 0000030e         1169		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002             1170		.byte	0,2
+00000006 00000062         1171		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                          1172	.Ldw_lpro_begin:
+0000000a 01               1173		.byte	1
+0000000b 00               1174		.byte	0
+0000000c 00               1175		.byte	0
+0000000d 04               1176		.byte	4
+0000000e 0a               1177		.byte	10
+0000000f 000101           1178		.byte	0,1,1
+00000012 010100           1179		.byte	1,1,0
+00000015 000001           1180		.byte	0,0,1
+00000018 00               1181		.byte	0
+00000019 2e2e2f2e2e2f2e2e 1182		.strz	"../../../BSW/Flash_XD1/flashdrv_xd1.c"
+00000021 2f4253572f466c61
+00000029 73685f5844312f66
+00000031 6c6173686472765f
+00000039 7864312e6300    
+0000003f 000000           1183		.byte	0,0,0
+00000042 2e2e2f2e2e2f2e2e 1184		.strz	"../../../BSW/Flash_XD1/flashdrv_xd1.h"
+0000004a 2f4253572f466c61
+00000052 73685f5844312f66
+0000005a 6c6173686472765f
+00000062 7864312e6800    
+00000068 000000           1185		.byte	0,0,0
+0000006b 00               1186		.byte	0
+                          1187	.Ldw_lpro_end:
+                          1188		.section	.debug_macinfo
+                          1189	.Ldw_macinfo_begin:
+                          1190		.section	.debug_frame
+                          1191	.LDW_4989ca0:
+00000000 0000008c         1192		.long	.LDW_unq_2-.LDW_unq_1
+                          1193	.LDW_unq_1:
+00000004 ffffffff         1194		.byte	255,255,255,255
+00000008 01               1195		.byte	1
+00000009 00               1196		.byte	0
+0000000a 01               1197		.byte	1
+0000000b 01               1198		.byte	1
+0000000c 6c               1199		.byte	108
+0000000d 0c               1200		.byte	12
+0000000e 01               1201		.byte	1
+0000000f 00               1202		.byte	0
+00000010 07               1203		.byte	7
+00000011 00               1204		.byte	0
+00000012 07               1205		.byte	7
+00000013 01               1206		.byte	1
+00000014 07               1207		.byte	7
+00000015 02               1208		.byte	2
+00000016 07               1209		.byte	7
+00000017 03               1210		.byte	3
+00000018 07               1211		.byte	7
+00000019 04               1212		.byte	4
+0000001a 07               1213		.byte	7
+0000001b 05               1214		.byte	5
+0000001c 07               1215		.byte	7
+0000001d 06               1216		.byte	6
+0000001e 07               1217		.byte	7
+
+                                   Fri Apr 10 08:32:24 2020           Page 23
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000001f 07               1218		.byte	7
+00000020 07               1219		.byte	7
+00000021 08               1220		.byte	8
+00000022 07               1221		.byte	7
+00000023 09               1222		.byte	9
+00000024 07               1223		.byte	7
+00000025 0a               1224		.byte	10
+00000026 07               1225		.byte	7
+00000027 0b               1226		.byte	11
+00000028 07               1227		.byte	7
+00000029 0c               1228		.byte	12
+0000002a 07               1229		.byte	7
+0000002b 0d               1230		.byte	13
+0000002c 07               1231		.byte	7
+0000002d 0e               1232		.byte	14
+0000002e 07               1233		.byte	7
+0000002f 0f               1234		.byte	15
+00000030 07               1235		.byte	7
+00000031 10               1236		.byte	16
+00000032 07               1237		.byte	7
+00000033 11               1238		.byte	17
+00000034 07               1239		.byte	7
+00000035 12               1240		.byte	18
+00000036 07               1241		.byte	7
+00000037 13               1242		.byte	19
+00000038 07               1243		.byte	7
+00000039 14               1244		.byte	20
+0000003a 07               1245		.byte	7
+0000003b 15               1246		.byte	21
+0000003c 07               1247		.byte	7
+0000003d 16               1248		.byte	22
+0000003e 07               1249		.byte	7
+0000003f 17               1250		.byte	23
+00000040 07               1251		.byte	7
+00000041 18               1252		.byte	24
+00000042 07               1253		.byte	7
+00000043 19               1254		.byte	25
+00000044 07               1255		.byte	7
+00000045 1a               1256		.byte	26
+00000046 07               1257		.byte	7
+00000047 1b               1258		.byte	27
+00000048 07               1259		.byte	7
+00000049 1c               1260		.byte	28
+0000004a 07               1261		.byte	7
+0000004b 1d               1262		.byte	29
+0000004c 07               1263		.byte	7
+0000004d 1e               1264		.byte	30
+0000004e 07               1265		.byte	7
+0000004f 1f               1266		.byte	31
+00000050 07               1267		.byte	7
+00000051 20               1268		.byte	32
+00000052 07               1269		.byte	7
+00000053 21               1270		.byte	33
+00000054 07               1271		.byte	7
+00000055 22               1272		.byte	34
+00000056 07               1273		.byte	7
+
+                                   Fri Apr 10 08:32:24 2020           Page 24
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000057 23               1274		.byte	35
+00000058 07               1275		.byte	7
+00000059 24               1276		.byte	36
+0000005a 07               1277		.byte	7
+0000005b 25               1278		.byte	37
+0000005c 07               1279		.byte	7
+0000005d 26               1280		.byte	38
+0000005e 07               1281		.byte	7
+0000005f 27               1282		.byte	39
+00000060 07               1283		.byte	7
+00000061 28               1284		.byte	40
+00000062 07               1285		.byte	7
+00000063 29               1286		.byte	41
+00000064 07               1287		.byte	7
+00000065 2a               1288		.byte	42
+00000066 07               1289		.byte	7
+00000067 2b               1290		.byte	43
+00000068 07               1291		.byte	7
+00000069 2c               1292		.byte	44
+0000006a 07               1293		.byte	7
+0000006b 2d               1294		.byte	45
+0000006c 07               1295		.byte	7
+0000006d 2e               1296		.byte	46
+0000006e 07               1297		.byte	7
+0000006f 2f               1298		.byte	47
+00000070 07               1299		.byte	7
+00000071 30               1300		.byte	48
+00000072 07               1301		.byte	7
+00000073 31               1302		.byte	49
+00000074 07               1303		.byte	7
+00000075 32               1304		.byte	50
+00000076 07               1305		.byte	7
+00000077 33               1306		.byte	51
+00000078 07               1307		.byte	7
+00000079 34               1308		.byte	52
+0000007a 07               1309		.byte	7
+0000007b 35               1310		.byte	53
+0000007c 07               1311		.byte	7
+0000007d 36               1312		.byte	54
+0000007e 07               1313		.byte	7
+0000007f 37               1314		.byte	55
+00000080 07               1315		.byte	7
+00000081 38               1316		.byte	56
+00000082 07               1317		.byte	7
+00000083 39               1318		.byte	57
+00000084 07               1319		.byte	7
+00000085 3a               1320		.byte	58
+00000086 07               1321		.byte	7
+00000087 3b               1322		.byte	59
+00000088 07               1323		.byte	7
+00000089 3c               1324		.byte	60
+0000008a 07               1325		.byte	7
+0000008b 3d               1326		.byte	61
+0000008c 07               1327		.byte	7
+0000008d 3e               1328		.byte	62
+0000008e 07               1329		.byte	7
+
+                                   Fri Apr 10 08:32:24 2020           Page 25
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000008f 3f               1330		.byte	63
+                          1331	.LDW_unq_2:
+                          1332		.section	.debug_info
+                          1333	.LDW_498c4f0:
+0000008e 31               1334		.byte	49
+0000008f 00000000         1335		.long	.LDW_49ca818
+                          1336	
+                          1337		.section	.debug_abbrev
+00000017 31               1338		.byte	49
+00000018 0f               1339		.byte	15
+00000019 00               1340		.byte	0
+0000001a 4910             1341		.byte	73,16
+0000001c 0000             1342		.byte	0,0
+                          1343	
+                          1344		.section	.debug_info
+                          1345	.LDW_498caa0:
+00000093 27               1346		.byte	39
+00000094 756e7369676e6564 1347		.strz	"unsigned long"
+0000009c 206c6f6e6700    
+000000a2 07               1348		.byte	7
+000000a3 04               1349		.byte	4
+                          1350	
+                          1351		.section	.debug_abbrev
+0000001e 27               1352		.byte	39
+0000001f 24               1353		.byte	36
+00000020 00               1354		.byte	0
+00000021 0308             1355		.byte	3,8
+00000023 3e0b             1356		.byte	62,11
+00000025 0b0b             1357		.byte	11,11
+00000027 0000             1358		.byte	0,0
+                          1359	
+                          1360		.section	.debug_info
+                          1361	.LDW_498c720:
+000000a4 31               1362		.byte	49
+000000a5 00000000         1363		.long	.LDW_498caa0
+                          1364	
+                          1365	.LDW_498c758:
+000000a9 47               1366		.byte	71
+000000aa 01               1367		.byte	1
+                          1368	
+                          1369		.section	.debug_abbrev
+00000029 47               1370		.byte	71
+0000002a 15               1371		.byte	21
+0000002b 01               1372		.byte	1
+0000002c 270c             1373		.byte	39,12
+0000002e 0000             1374		.byte	0,0
+                          1375	
+                          1376		.section	.debug_info
+                          1377	.LDW_4983380:
+000000ab 14               1378		.byte	20
+000000ac 00000000         1379		.long	.LDW_498c4f0
+000000b0 00               1380		.byte	0
+                          1381	
+                          1382		.section	.debug_abbrev
+00000030 14               1383		.byte	20
+00000031 05               1384		.byte	5
+00000032 00               1385		.byte	0
+
+                                   Fri Apr 10 08:32:24 2020           Page 26
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000033 4910             1386		.byte	73,16
+00000035 4b0c             1387		.byte	75,12
+00000037 0000             1388		.byte	0,0
+                          1389	
+                          1390		.section	.debug_info
+                          1391	.LDW_4983140:
+000000b1 14               1392		.byte	20
+000000b2 00000000         1393		.long	.LDW_498c720
+000000b6 00               1394		.byte	0
+                          1395	
+000000b7 00               1396		.byte	0
+                          1397	
+                          1398	.LDW_498c448:
+000000b8 47               1399		.byte	71
+000000b9 01               1400		.byte	1
+                          1401	
+                          1402	.LDW_49836b0:
+000000ba 14               1403		.byte	20
+000000bb 00000000         1404		.long	.LDW_498c4f0
+000000bf 00               1405		.byte	0
+                          1406	
+                          1407	.LDW_49836e0:
+000000c0 14               1408		.byte	20
+000000c1 00000000         1409		.long	.LDW_498c720
+000000c5 00               1410		.byte	0
+                          1411	
+000000c6 00               1412		.byte	0
+                          1413	
+                          1414	.LDW_498c790:
+000000c7 47               1415		.byte	71
+000000c8 01               1416		.byte	1
+                          1417	
+                          1418	.LDW_4983170:
+000000c9 14               1419		.byte	20
+000000ca 00000000         1420		.long	.LDW_498c4f0
+000000ce 00               1421		.byte	0
+                          1422	
+000000cf 00               1423		.byte	0
+                          1424	
+                          1425	.LDW_498c598:
+000000d0 47               1426		.byte	71
+000000d1 01               1427		.byte	1
+                          1428	
+                          1429	.LDW_4983650:
+000000d2 14               1430		.byte	20
+000000d3 00000000         1431		.long	.LDW_498c4f0
+000000d7 00               1432		.byte	0
+                          1433	
+000000d8 00               1434		.byte	0
+                          1435	
+                          1436	.LDW_498ca30:
+000000d9 47               1437		.byte	71
+000000da 01               1438		.byte	1
+                          1439	
+                          1440	.LDW_4983500:
+000000db 14               1441		.byte	20
+
+                                   Fri Apr 10 08:32:24 2020           Page 27
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000000dc 00000000         1442		.long	.LDW_498c4f0
+000000e0 00               1443		.byte	0
+                          1444	
+000000e1 00               1445		.byte	0
+                          1446	
+                          1447	.LDW_498c5d0:
+000000e2 47               1448		.byte	71
+000000e3 01               1449		.byte	1
+                          1450	
+                          1451	.LDW_49834d0:
+000000e4 14               1452		.byte	20
+000000e5 00000000         1453		.long	.LDW_498c4f0
+000000e9 00               1454		.byte	0
+                          1455	
+000000ea 00               1456		.byte	0
+                          1457	
+                          1458	.LDW_498c3d8:
+000000eb 47               1459		.byte	71
+000000ec 01               1460		.byte	1
+                          1461	
+                          1462	.LDW_4983350:
+000000ed 14               1463		.byte	20
+000000ee 00000000         1464		.long	.LDW_498c4f0
+000000f2 00               1465		.byte	0
+                          1466	
+000000f3 00               1467		.byte	0
+                          1468	
+                          1469	.LDW_498c918:
+000000f4 27               1470		.byte	39
+000000f5 696e7400         1471		.strz	"int"
+000000f9 05               1472		.byte	5
+000000fa 04               1473		.byte	4
+                          1474	
+                          1475	.LDW_49cef58:
+000000fb 3c               1476		.byte	60
+000000fc 00               1477		.byte	0
+000000fd 10               1478		.byte	16
+000000fe 00000000         1479		.long	.LDW_498caa0
+                          1480	
+                          1481		.section	.debug_abbrev
+00000039 3c               1482		.byte	60
+0000003a 01               1483		.byte	1
+0000003b 01               1484		.byte	1
+0000003c 090b             1485		.byte	9,11
+0000003e 0b0f             1486		.byte	11,15
+00000040 4910             1487		.byte	73,16
+00000042 0000             1488		.byte	0,0
+                          1489	
+                          1490		.section	.debug_info
+00000102 34               1491		.byte	52
+00000103 00000000         1492		.long	.LDW_498c918
+00000107 04               1493		.byte	4
+00000108 00               1494		.byte	0
+00000109 03               1495		.byte	3
+                          1496	
+                          1497		.section	.debug_abbrev
+
+                                   Fri Apr 10 08:32:24 2020           Page 28
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000044 34               1498		.byte	52
+00000045 21               1499		.byte	33
+00000046 00               1500		.byte	0
+00000047 4910             1501		.byte	73,16
+00000049 0b0f             1502		.byte	11,15
+0000004b 220d             1503		.byte	34,13
+0000004d 2f0d             1504		.byte	47,13
+0000004f 0000             1505		.byte	0,0
+                          1506	
+                          1507		.section	.debug_info
+0000010a 00               1508		.byte	0
+                          1509	
+                          1510	.LDW_498c6e8:
+0000010b 47               1511		.byte	71
+0000010c 01               1512		.byte	1
+                          1513	
+                          1514	.LDW_49832f0:
+0000010d 14               1515		.byte	20
+0000010e 00000000         1516		.long	.LDW_498c4f0
+00000112 00               1517		.byte	0
+                          1518	
+00000113 00               1519		.byte	0
+                          1520	
+                          1521	.LDW_5b7d108:
+00000114 3c               1522		.byte	60
+00000115 00               1523		.byte	0
+00000116 10               1524		.byte	16
+00000117 00000000         1525		.long	.LDW_498caa0
+                          1526	
+0000011b 34               1527		.byte	52
+0000011c 00000000         1528		.long	.LDW_498c918
+00000120 04               1529		.byte	4
+00000121 00               1530		.byte	0
+00000122 03               1531		.byte	3
+                          1532	
+00000123 00               1533		.byte	0
+                          1534	
+                          1535	.LDW_498c410:
+00000124 27               1536		.byte	39
+00000125 756e7369676e6564 1537		.strz	"unsigned char"
+0000012d 206368617200    
+00000133 08               1538		.byte	8
+00000134 01               1539		.byte	1
+                          1540	
+                          1541	.LDW_498c480:
+00000135 27               1542		.byte	39
+00000136 756e7369676e6564 1543		.strz	"unsigned short"
+0000013e 2073686f727400  
+00000145 07               1544		.byte	7
+00000146 02               1545		.byte	2
+                          1546	
+                          1547	.LDW_498c8a8:
+00000147 31               1548		.byte	49
+00000148 00000000         1549		.long	.LDW_49ce950
+                          1550	
+                          1551	.LDW_498c528:
+0000014c 46               1552		.byte	70
+0000014d 00000000         1553		.long	.LDW_498c410
+
+                                   Fri Apr 10 08:32:24 2020           Page 29
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000151 01               1554		.byte	1
+                          1555	
+                          1556		.section	.debug_abbrev
+00000051 46               1557		.byte	70
+00000052 15               1558		.byte	21
+00000053 01               1559		.byte	1
+00000054 4910             1560		.byte	73,16
+00000056 270c             1561		.byte	39,12
+00000058 0000             1562		.byte	0,0
+                          1563	
+                          1564		.section	.debug_info
+00000152 00               1565		.byte	0
+                          1566	
+                          1567	.LDW_498c608:
+00000153 31               1568		.byte	49
+00000154 00000000         1569		.long	.LDW_498c528
+                          1570	
+                          1571	.LDW_5b42fc0:
+00000158 3c               1572		.byte	60
+00000159 00               1573		.byte	0
+0000015a 04               1574		.byte	4
+0000015b 00000000         1575		.long	.LDW_49ce950
+                          1576	
+0000015f 34               1577		.byte	52
+00000160 00000000         1578		.long	.LDW_498c918
+00000164 04               1579		.byte	4
+00000165 00               1580		.byte	0
+00000166 03               1581		.byte	3
+                          1582	
+00000167 00               1583		.byte	0
+                          1584	
+                          1585	.LDW_5b43048:
+00000168 3c               1586		.byte	60
+00000169 00               1587		.byte	0
+0000016a 04               1588		.byte	4
+0000016b 00000000         1589		.long	.LDW_49ce950
+                          1590	
+0000016f 34               1591		.byte	52
+00000170 00000000         1592		.long	.LDW_498c918
+00000174 04               1593		.byte	4
+00000175 00               1594		.byte	0
+00000176 03               1595		.byte	3
+                          1596	
+00000177 00               1597		.byte	0
+                          1598	
+                          1599	.LDW_49ce378:
+00000178 2b               1600		.byte	43
+00000179 00000000         1601		.long	.LDW_498caa0
+                          1602	
+                          1603		.section	.debug_abbrev
+0000005a 2b               1604		.byte	43
+0000005b 26               1605		.byte	38
+0000005c 00               1606		.byte	0
+0000005d 4910             1607		.byte	73,16
+0000005f 0000             1608		.byte	0,0
+                          1609	
+
+                                   Fri Apr 10 08:32:24 2020           Page 30
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                          1610		.section	.debug_info
+                          1611	.LDW_498c988:
+0000017d 31               1612		.byte	49
+0000017e 00000000         1613		.long	.LDW_49ce378
+                          1614	
+                          1615	.LDW_49ce950:
+00000182 2a               1616		.byte	42
+00000183 74466c6173684461 1617		.strz	"tFlashData_XD1"
+0000018b 74615f58443100  
+00000192 9501             1618		.byte	149,1
+00000194 18               1619		.byte	24
+00000195 02               1620		.byte	2
+00000196 00000000         1621		.long	.LDW_498c410
+                          1622	
+                          1623		.section	.debug_abbrev
+00000061 2a               1624		.byte	42
+00000062 16               1625		.byte	22
+00000063 00               1626		.byte	0
+00000064 0308             1627		.byte	3,8
+00000066 3b0f             1628		.byte	59,15
+00000068 390f             1629		.byte	57,15
+0000006a 3a0f             1630		.byte	58,15
+0000006c 4910             1631		.byte	73,16
+0000006e 0000             1632		.byte	0,0
+                          1633	
+                          1634		.section	.debug_info
+                          1635	.LDW_49cea58:
+0000019a 2a               1636		.byte	42
+0000019b 74466c6173684164 1637		.strz	"tFlashAddress_XD1"
+000001a3 64726573735f5844
+000001ab 3100            
+000001ad 9601             1638		.byte	150,1
+000001af 18               1639		.byte	24
+000001b0 02               1640		.byte	2
+000001b1 00000000         1641		.long	.LDW_498caa0
+                          1642	
+                          1643	.LDW_49ce010:
+000001b5 2a               1644		.byte	42
+000001b6 74466c6173684c65 1645		.strz	"tFlashLength_XD1"
+000001be 6e6774685f584431
+000001c6 00              
+000001c7 9701             1646		.byte	151,1
+000001c9 18               1647		.byte	24
+000001ca 02               1648		.byte	2
+000001cb 00000000         1649		.long	.LDW_498caa0
+                          1650	
+                          1651	.LDW_49ceab0:
+000001cf 2a               1652		.byte	42
+000001d0 74466c6173684572 1653		.strz	"tFlashErrorCode_XD1"
+000001d8 726f72436f64655f
+000001e0 58443100        
+000001e4 9801             1654		.byte	152,1
+000001e6 18               1655		.byte	24
+000001e7 02               1656		.byte	2
+000001e8 00000000         1657		.long	.LDW_498c480
+                          1658	
+                          1659	.LDW_49ca7c0:
+000001ec 42               1660		.byte	66
+000001ed 746167466c617368 1661		.strz	"tagFlashParam_XD1"
+000001f5 506172616d5f5844
+000001fd 3100            
+000001ff 9b01             1662		.byte	155,1
+00000201 10               1663		.byte	16
+00000202 02               1664		.byte	2
+00000203 34               1665		.byte	52
+
+                                   Fri Apr 10 08:32:24 2020           Page 31
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000204 01               1666		.byte	1
+                          1667	
+                          1668		.section	.debug_abbrev
+00000070 42               1669		.byte	66
+00000071 13               1670		.byte	19
+00000072 01               1671		.byte	1
+00000073 0308             1672		.byte	3,8
+00000075 3b0f             1673		.byte	59,15
+00000077 390f             1674		.byte	57,15
+00000079 3a0f             1675		.byte	58,15
+0000007b 0b0f             1676		.byte	11,15
+0000007d 320b             1677		.byte	50,11
+0000007f 0000             1678		.byte	0,0
+                          1679	
+                          1680		.section	.debug_info
+                          1681	.LDW_5b54790:
+00000205 25               1682		.byte	37
+00000206 70617463684c6576 1683		.strz	"patchLevel"
+0000020e 656c00          
+00000211 9e01             1684		.byte	158,1
+00000213 19               1685		.byte	25
+00000214 02               1686		.byte	2
+00000215 00000000         1687		.long	.LDW_498c410
+00000219 0223             1688		.byte	2,35
+0000021b 00               1689		.byte	0
+0000021c 01               1690		.byte	1
+                          1691	
+                          1692		.section	.debug_abbrev
+00000081 25               1693		.byte	37
+00000082 0d               1694		.byte	13
+00000083 00               1695		.byte	0
+00000084 0308             1696		.byte	3,8
+00000086 3b0f             1697		.byte	59,15
+00000088 390f             1698		.byte	57,15
+0000008a 3a0f             1699		.byte	58,15
+0000008c 4910             1700		.byte	73,16
+0000008e 380a             1701		.byte	56,10
+00000090 320b             1702		.byte	50,11
+00000092 0000             1703		.byte	0,0
+                          1704	
+                          1705		.section	.debug_info
+                          1706	.LDW_5b54700:
+0000021d 25               1707		.byte	37
+0000021e 6d696e6f72566572 1708		.strz	"minorVersion"
+00000226 73696f6e00      
+0000022b 9f01             1709		.byte	159,1
+0000022d 19               1710		.byte	25
+0000022e 02               1711		.byte	2
+0000022f 00000000         1712		.long	.LDW_498c410
+00000233 0223             1713		.byte	2,35
+00000235 01               1714		.byte	1
+00000236 01               1715		.byte	1
+                          1716	
+                          1717	.LDW_5b54118:
+00000237 25               1718		.byte	37
+00000238 6d616a6f72566572 1719		.strz	"majorVersion"
+00000240 73696f6e00      
+00000245 a001             1720		.byte	160,1
+00000247 19               1721		.byte	25
+
+                                   Fri Apr 10 08:32:24 2020           Page 32
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000248 02               1722		.byte	2
+00000249 00000000         1723		.long	.LDW_498c410
+0000024d 0223             1724		.byte	2,35
+0000024f 02               1725		.byte	2
+00000250 01               1726		.byte	1
+                          1727	
+                          1728	.LDW_5b54160:
+00000251 25               1729		.byte	37
+00000252 7265736572766564 1730		.strz	"reserved1"
+0000025a 3100            
+0000025c a101             1731		.byte	161,1
+0000025e 19               1732		.byte	25
+0000025f 02               1733		.byte	2
+00000260 00000000         1734		.long	.LDW_498c410
+00000264 0223             1735		.byte	2,35
+00000266 03               1736		.byte	3
+00000267 01               1737		.byte	1
+                          1738	
+                          1739	.LDW_5b541a8:
+00000268 25               1740		.byte	37
+00000269 6572726f72436f64 1741		.strz	"errorCode"
+00000271 6500            
+00000273 a401             1742		.byte	164,1
+00000275 1d               1743		.byte	29
+00000276 02               1744		.byte	2
+00000277 00000000         1745		.long	.LDW_49ceab0
+0000027b 0223             1746		.byte	2,35
+0000027d 04               1747		.byte	4
+0000027e 01               1748		.byte	1
+                          1749	
+                          1750	.LDW_5b543a0:
+0000027f 25               1751		.byte	37
+00000280 7265736572766564 1752		.strz	"reserved2"
+00000288 3200            
+0000028a a501             1753		.byte	165,1
+0000028c 19               1754		.byte	25
+0000028d 02               1755		.byte	2
+0000028e 00000000         1756		.long	.LDW_498c480
+00000292 0223             1757		.byte	2,35
+00000294 06               1758		.byte	6
+00000295 01               1759		.byte	1
+                          1760	
+                          1761	.LDW_5b546b8:
+00000296 25               1762		.byte	37
+00000297 6164647265737300 1763		.strz	"address"
+0000029f a801             1764		.byte	168,1
+000002a1 1d               1765		.byte	29
+000002a2 02               1766		.byte	2
+000002a3 00000000         1767		.long	.LDW_49cea58
+000002a7 0223             1768		.byte	2,35
+000002a9 08               1769		.byte	8
+000002aa 01               1770		.byte	1
+                          1771	
+                          1772	.LDW_5b54358:
+000002ab 25               1773		.byte	37
+000002ac 6c656e67746800   1774		.strz	"length"
+000002b3 a901             1775		.byte	169,1
+000002b5 1d               1776		.byte	29
+000002b6 02               1777		.byte	2
+
+                                   Fri Apr 10 08:32:24 2020           Page 33
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000002b7 00000000         1778		.long	.LDW_49ce010
+000002bb 0223             1779		.byte	2,35
+000002bd 0c               1780		.byte	12
+000002be 01               1781		.byte	1
+                          1782	
+                          1783	.LDW_5b54748:
+000002bf 25               1784		.byte	37
+000002c0 6461746100       1785		.strz	"data"
+000002c5 aa01             1786		.byte	170,1
+000002c7 1d               1787		.byte	29
+000002c8 02               1788		.byte	2
+000002c9 00000000         1789		.long	.LDW_498c8a8
+000002cd 0223             1790		.byte	2,35
+000002cf 10               1791		.byte	16
+000002d0 01               1792		.byte	1
+                          1793	
+                          1794	.LDW_5b54430:
+000002d1 25               1795		.byte	37
+000002d2 7764547269676765 1796		.strz	"wdTriggerFct"
+000002da 7246637400      
+000002df ad01             1797		.byte	173,1
+000002e1 1c               1798		.byte	28
+000002e2 02               1799		.byte	2
+000002e3 00000000         1800		.long	.LDW_498c608
+000002e7 0223             1801		.byte	2,35
+000002e9 14               1802		.byte	20
+000002ea 01               1803		.byte	1
+                          1804	
+                          1805	.LDW_5b540d0:
+000002eb 25               1806		.byte	37
+000002ec 696e74656e646564 1807		.strz	"intendedData"
+000002f4 4461746100      
+000002f9 b001             1808		.byte	176,1
+000002fb 1d               1809		.byte	29
+000002fc 02               1810		.byte	2
+000002fd 00000000         1811		.long	.LDW_5b42fc0
+00000301 0223             1812		.byte	2,35
+00000303 18               1813		.byte	24
+00000304 01               1814		.byte	1
+                          1815	
+                          1816	.LDW_5b53ff8:
+00000305 25               1817		.byte	37
+00000306 61637475616c4461 1818		.strz	"actualData"
+0000030e 746100          
+00000311 b101             1819		.byte	177,1
+00000313 1d               1820		.byte	29
+00000314 02               1821		.byte	2
+00000315 00000000         1822		.long	.LDW_5b43048
+00000319 0223             1823		.byte	2,35
+0000031b 1c               1824		.byte	28
+0000031c 01               1825		.byte	1
+                          1826	
+                          1827	.LDW_5b54040:
+0000031d 25               1828		.byte	37
+0000031e 6572726f72416464 1829		.strz	"errorAddress"
+00000326 7265737300      
+0000032b b201             1830		.byte	178,1
+0000032d 1d               1831		.byte	29
+0000032e 02               1832		.byte	2
+0000032f 00000000         1833		.long	.LDW_49cea58
+
+                                   Fri Apr 10 08:32:24 2020           Page 34
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000333 0223             1834		.byte	2,35
+00000335 20               1835		.byte	32
+00000336 01               1836		.byte	1
+                          1837	
+                          1838	.LDW_5b541f0:
+00000337 25               1839		.byte	37
+00000338 73656c656374436f 1840		.strz	"selectCount"
+00000340 756e7400        
+00000344 b501             1841		.byte	181,1
+00000346 19               1842		.byte	25
+00000347 02               1843		.byte	2
+00000348 00000000         1844		.long	.LDW_498caa0
+0000034c 0223             1845		.byte	2,35
+0000034e 24               1846		.byte	36
+0000034f 01               1847		.byte	1
+                          1848	
+                          1849	.LDW_5b54280:
+00000350 25               1850		.byte	37
+00000351 70726f7465637453 1851		.strz	"protectSelect"
+00000359 656c65637400    
+0000035f b601             1852		.byte	182,1
+00000361 19               1853		.byte	25
+00000362 02               1854		.byte	2
+00000363 00000000         1855		.long	.LDW_498c988
+00000367 0223             1856		.byte	2,35
+00000369 28               1857		.byte	40
+0000036a 01               1858		.byte	1
+                          1859	
+                          1860	.LDW_5b54088:
+0000036b 25               1861		.byte	37
+0000036c 626c6f636b53656c 1862		.strz	"blockSelect"
+00000374 65637400        
+00000378 b701             1863		.byte	183,1
+0000037a 19               1864		.byte	25
+0000037b 02               1865		.byte	2
+0000037c 00000000         1866		.long	.LDW_498c720
+00000380 0223             1867		.byte	2,35
+00000382 2c               1868		.byte	44
+00000383 01               1869		.byte	1
+                          1870	
+                          1871	.LDW_5b545e0:
+00000384 25               1872		.byte	37
+00000385 7265676973746572 1873		.strz	"registerBase"
+0000038d 4261736500      
+00000392 b801             1874		.byte	184,1
+00000394 19               1875		.byte	25
+00000395 02               1876		.byte	2
+00000396 00000000         1877		.long	.LDW_498caa0
+0000039a 0223             1878		.byte	2,35
+0000039c 30               1879		.byte	48
+0000039d 01               1880		.byte	1
+                          1881	
+0000039e 00               1882		.byte	0
+                          1883	
+                          1884	.LDW_49ca818:
+0000039f 2a               1885		.byte	42
+000003a0 74466c6173685061 1886		.strz	"tFlashParam_XD1"
+000003a8 72616d5f58443100
+000003b0 ba01             1887		.byte	186,1
+000003b2 03               1888		.byte	3
+000003b3 02               1889		.byte	2
+
+                                   Fri Apr 10 08:32:24 2020           Page 35
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000003b4 00000000         1890		.long	.LDW_49ca7c0
+                          1891	
+                          1892	.LDW_49cdc38:
+000003b8 15               1893		.byte	21
+000003b9 66556e6c6f636b46 1894		.strz	"fUnlockFlashBlocks"
+000003c1 6c617368426c6f63
+000003c9 6b7300          
+000003cc 67               1895		.byte	103
+000003cd 0d               1896		.byte	13
+000003ce 01               1897		.byte	1
+000003cf 00000000         1898		.long	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000003d3 00000000         1899		.long	__ghs_eofn_fUnlockFlashBlocks
+000003d7 0151             1900		.byte	1,81
+000003d9 808080800c       1901		.byte	128,128,128,128,12
+000003de 08               1902		.byte	8
+000003df 00               1903		.byte	0
+000003e0 10               1904		.byte	16
+000003e1 00               1905		.byte	0
+000003e2 00               1906		.byte	0
+000003e3 00               1907		.byte	0
+000003e4 00               1908		.byte	0
+000003e5 01               1909		.byte	1
+000003e6 00               1910		.byte	0
+000003e7 01               1911		.byte	1
+                          1912	
+                          1913		.section	.debug_abbrev
+00000094 15               1914		.byte	21
+00000095 2e               1915		.byte	46
+00000096 01               1916		.byte	1
+00000097 0308             1917		.byte	3,8
+00000099 3b0f             1918		.byte	59,15
+0000009b 390f             1919		.byte	57,15
+0000009d 3a0f             1920		.byte	58,15
+0000009f 1101             1921		.byte	17,1
+000000a1 1201             1922		.byte	18,1
+000000a3 400a             1923		.byte	64,10
+000000a5 8341             1924		.byte	131,65
+000000a7 0f               1925		.byte	15
+000000a8 8741             1926		.byte	135,65
+000000aa 0d               1927		.byte	13
+000000ab 8541             1928		.byte	133,65
+000000ad 0f               1929		.byte	15
+000000ae 8641             1930		.byte	134,65
+000000b0 0d               1931		.byte	13
+000000b1 9241             1932		.byte	146,65
+000000b3 0f               1933		.byte	15
+000000b4 3c0c             1934		.byte	60,12
+000000b6 200b             1935		.byte	32,11
+000000b8 3f0c             1936		.byte	63,12
+000000ba 320b             1937		.byte	50,11
+000000bc 4c0b             1938		.byte	76,11
+000000be 270c             1939		.byte	39,12
+000000c0 0000             1940		.byte	0,0
+                          1941	
+                          1942		.section	.debug_frame
+                          1943	.LDW_5bbe1a8:
+00000090 00000014         1944		.long	.LDW_unq_4-.LDW_unq_3
+                          1945	.LDW_unq_3:
+
+                                   Fri Apr 10 08:32:24 2020           Page 36
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000094 00000000         1946		.long	.LDW_4989ca0
+00000098 00000000         1947		.long	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+0000009c 00000086         1948		.long	__ghs_eofn_fUnlockFlashBlocks-fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000a0 01               1949		.byte	1
+000000a1 00000000         1950		.long	.LDW11
+000000a5 00               1951		.byte	0
+000000a6 00               1952		.byte	0
+000000a7 00               1953		.byte	0
+                          1954	.LDW_unq_4:
+                          1955		.section	.debug_line
+0000006c 000502           1956		.byte	0,5,2
+0000006f 00000000         1957		.long	fUnlockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+00000073 06               1958		.byte	6
+00000074 03               1959		.byte	3
+00000075 e700             1960		.byte	231,0
+00000077 02               1961		.byte	2
+00000078 00               1962		.byte	0
+00000079 01               1963		.byte	1
+0000007a 03               1964		.byte	3
+0000007b 04               1965		.byte	4
+0000007c 02               1966		.byte	2
+0000007d 10               1967		.byte	16
+0000007e 01               1968		.byte	1
+0000007f 1c               1969		.byte	28
+00000080 000502           1970		.byte	0,5,2
+00000083 00000000         1971		.long	.LDWlin1
+00000087 0b               1972		.byte	11
+00000088 0b               1973		.byte	11
+00000089 1b               1974		.byte	27
+0000008a 02               1975		.byte	2
+0000008b 00               1976		.byte	0
+0000008c 0d               1977		.byte	13
+0000008d 02               1978		.byte	2
+0000008e 02               1979		.byte	2
+0000008f 000502           1980		.byte	0,5,2
+00000092 00000000         1981		.long	.LDWlin2
+00000096 0c               1982		.byte	12
+00000097 000502           1983		.byte	0,5,2
+0000009a 00000000         1984		.long	.LDWlin3
+0000009e 0b               1985		.byte	11
+0000009f 0c               1986		.byte	12
+000000a0 1b               1987		.byte	27
+000000a1 02               1988		.byte	2
+000000a2 00               1989		.byte	0
+000000a3 03               1990		.byte	3
+000000a4 7a               1991		.byte	122
+000000a5 02               1992		.byte	2
+000000a6 00               1993		.byte	0
+000000a7 01               1994		.byte	1
+000000a8 000502           1995		.byte	0,5,2
+000000ab 00000000         1996		.long	.LDWlin4
+000000af 03               1997		.byte	3
+000000b0 07               1998		.byte	7
+000000b1 02               1999		.byte	2
+000000b2 00               2000		.byte	0
+000000b3 01               2001		.byte	1
+
+                                   Fri Apr 10 08:32:24 2020           Page 37
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000000b4 0d               2002		.byte	13
+000000b5 000502           2003		.byte	0,5,2
+000000b8 00000000         2004		.long	.LDWlin5
+000000bc 0b               2005		.byte	11
+000000bd 0c               2006		.byte	12
+000000be 000502           2007		.byte	0,5,2
+000000c1 00000000         2008		.long	.LDWlin6
+000000c5 0c               2009		.byte	12
+000000c6 3b               2010		.byte	59
+000000c7 03               2011		.byte	3
+000000c8 7d               2012		.byte	125
+000000c9 02               2013		.byte	2
+000000ca 1c               2014		.byte	28
+000000cb 01               2015		.byte	1
+000000cc 000502           2016		.byte	0,5,2
+000000cf 00000000         2017		.long	.LDWlin7
+000000d3 03               2018		.byte	3
+000000d4 04               2019		.byte	4
+000000d5 02               2020		.byte	2
+000000d6 00               2021		.byte	0
+000000d7 01               2022		.byte	1
+000000d8 0b               2023		.byte	11
+000000d9 02               2024		.byte	2
+000000da 00               2025		.byte	0
+000000db 0b               2026		.byte	11
+000000dc 02               2027		.byte	2
+000000dd 0c               2028		.byte	12
+000000de 000101           2029		.byte	0,1,1
+                          2030		.section	.debug_info
+                          2031	.LDW_49ca870:
+000003e8 11               2032		.byte	17
+000003e9 667000           2033		.strz	"fp"
+000003ec 67               2034		.byte	103
+000003ed 31               2035		.byte	49
+000003ee 01               2036		.byte	1
+000003ef 00000000         2037		.long	.LDW_498c4f0
+000003f3 00               2038		.byte	0
+000003f4 016f             2039		.byte	1,111
+                          2040	
+                          2041		.section	.debug_abbrev
+000000c2 11               2042		.byte	17
+000000c3 05               2043		.byte	5
+000000c4 00               2044		.byte	0
+000000c5 0308             2045		.byte	3,8
+000000c7 3b0f             2046		.byte	59,15
+000000c9 390f             2047		.byte	57,15
+000000cb 3a0f             2048		.byte	58,15
+000000cd 4910             2049		.byte	73,16
+000000cf 4b0c             2050		.byte	75,12
+000000d1 020a             2051		.byte	2,10
+000000d3 0000             2052		.byte	0,0
+                          2053	
+                          2054		.section	.debug_info
+                          2055	.LDW_49cdcd0:
+000003f6 11               2056		.byte	17
+000003f7 6c6f636b53746174 2057		.strz	"lockState"
+000003ff 6500            
+
+                                   Fri Apr 10 08:32:24 2020           Page 38
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000401 67               2058		.byte	103
+00000402 44               2059		.byte	68
+00000403 01               2060		.byte	1
+00000404 00000000         2061		.long	.LDW_498c720
+00000408 00               2062		.byte	0
+00000409 016e             2063		.byte	1,110
+                          2064	
+                          2065	.LDW_49833e0:
+0000040b 1f               2066		.byte	31
+0000040c 00000000         2067		.long	.LDW01
+00000410 00000000         2068		.long	.LDW11
+                          2069	
+                          2070		.section	.debug_abbrev
+000000d5 1f               2071		.byte	31
+000000d6 0b               2072		.byte	11
+000000d7 01               2073		.byte	1
+000000d8 1101             2074		.byte	17,1
+000000da 1201             2075		.byte	18,1
+000000dc 0000             2076		.byte	0,0
+                          2077	
+                          2078		.section	.debug_info
+                          2079	.LDW_49cdd28:
+00000414 06               2080		.byte	6
+00000415 6900             2081		.strz	"i"
+00000417 69               2082		.byte	105
+00000418 12               2083		.byte	18
+00000419 01               2084		.byte	1
+0000041a 00000000         2085		.long	.LDW_498caa0
+0000041e 00               2086		.byte	0
+0000041f 00               2087		.byte	0
+00000420 0150             2088		.byte	1,80
+                          2089	
+                          2090		.section	.debug_abbrev
+000000de 06               2091		.byte	6
+000000df 34               2092		.byte	52
+000000e0 00               2093		.byte	0
+000000e1 0308             2094		.byte	3,8
+000000e3 3b0f             2095		.byte	59,15
+000000e5 390f             2096		.byte	57,15
+000000e7 3a0f             2097		.byte	58,15
+000000e9 4910             2098		.byte	73,16
+000000eb 3f0c             2099		.byte	63,12
+000000ed 3c0c             2100		.byte	60,12
+000000ef 020a             2101		.byte	2,10
+000000f1 0000             2102		.byte	0,0
+                          2103	
+                          2104		.section	.debug_info
+00000422 00               2105		.byte	0
+                          2106	
+00000423 00               2107		.byte	0
+                          2108	
+                          2109	.LDW_49cdd80:
+00000424 15               2110		.byte	21
+00000425 664c6f636b466c61 2111		.strz	"fLockFlashBlocks"
+0000042d 7368426c6f636b73
+00000435 00              
+00000436 9301             2112		.byte	147,1
+00000438 0d               2113		.byte	13
+
+                                   Fri Apr 10 08:32:24 2020           Page 39
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000439 01               2114		.byte	1
+0000043a 00000000         2115		.long	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+0000043e 00000000         2116		.long	__ghs_eofn_fLockFlashBlocks
+00000442 0151             2117		.byte	1,81
+00000444 808080800c       2118		.byte	128,128,128,128,12
+00000449 08               2119		.byte	8
+0000044a 00               2120		.byte	0
+0000044b 10               2121		.byte	16
+0000044c 00               2122		.byte	0
+0000044d 00               2123		.byte	0
+0000044e 00               2124		.byte	0
+0000044f 00               2125		.byte	0
+00000450 01               2126		.byte	1
+00000451 00               2127		.byte	0
+00000452 01               2128		.byte	1
+                          2129	
+                          2130		.section	.debug_frame
+                          2131	.LDW_5bbdbc8:
+000000a8 00000014         2132		.long	.LDW_unq_6-.LDW_unq_5
+                          2133	.LDW_unq_5:
+000000ac 00000000         2134		.long	.LDW_4989ca0
+000000b0 00000000         2135		.long	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000b4 00000040         2136		.long	__ghs_eofn_fLockFlashBlocks-fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000b8 01               2137		.byte	1
+000000b9 00000000         2138		.long	.LDW31
+000000bd 00               2139		.byte	0
+000000be 00               2140		.byte	0
+000000bf 00               2141		.byte	0
+                          2142	.LDW_unq_6:
+                          2143		.section	.debug_line
+000000e1 000502           2144		.byte	0,5,2
+000000e4 00000000         2145		.long	fLockFlashBlocks..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000e8 06               2146		.byte	6
+000000e9 03               2147		.byte	3
+000000ea 9301             2148		.byte	147,1
+000000ec 02               2149		.byte	2
+000000ed 00               2150		.byte	0
+000000ee 01               2151		.byte	1
+000000ef 4d               2152		.byte	77
+000000f0 000502           2153		.byte	0,5,2
+000000f3 00000000         2154		.long	.LDWlin8
+000000f7 0b               2155		.byte	11
+000000f8 0b               2156		.byte	11
+000000f9 1b               2157		.byte	27
+000000fa 02               2158		.byte	2
+000000fb 00               2159		.byte	0
+000000fc 0d               2160		.byte	13
+000000fd 02               2161		.byte	2
+000000fe 02               2162		.byte	2
+000000ff 000502           2163		.byte	0,5,2
+00000102 00000000         2164		.long	.LDWlin9
+00000106 0c               2165		.byte	12
+00000107 03               2166		.byte	3
+00000108 7e               2167		.byte	126
+00000109 02               2168		.byte	2
+0000010a 0e               2169		.byte	14
+
+                                   Fri Apr 10 08:32:24 2020           Page 40
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000010b 01               2170		.byte	1
+0000010c 000502           2171		.byte	0,5,2
+0000010f 00000000         2172		.long	.LDWlin10
+00000113 0d               2173		.byte	13
+00000114 0b               2174		.byte	11
+00000115 02               2175		.byte	2
+00000116 0c               2176		.byte	12
+00000117 000101           2177		.byte	0,1,1
+                          2178		.section	.debug_info
+                          2179	.LDW_49cde18:
+00000453 11               2180		.byte	17
+00000454 667000           2181		.strz	"fp"
+00000457 9301             2182		.byte	147,1
+00000459 2f               2183		.byte	47
+0000045a 01               2184		.byte	1
+0000045b 00000000         2185		.long	.LDW_498c4f0
+0000045f 00               2186		.byte	0
+00000460 016f             2187		.byte	1,111
+                          2188	
+                          2189	.LDW_49cde70:
+00000462 11               2190		.byte	17
+00000463 6c6f636b53746174 2191		.strz	"lockState"
+0000046b 6500            
+0000046d 9301             2192		.byte	147,1
+0000046f 42               2193		.byte	66
+00000470 01               2194		.byte	1
+00000471 00000000         2195		.long	.LDW_498c720
+00000475 00               2196		.byte	0
+00000476 016e             2197		.byte	1,110
+                          2198	
+                          2199	.LDW_49832c0:
+00000478 1f               2200		.byte	31
+00000479 00000000         2201		.long	.LDW21
+0000047d 00000000         2202		.long	.LDW31
+                          2203	
+                          2204	.LDW_49cdec8:
+00000481 06               2205		.byte	6
+00000482 6900             2206		.strz	"i"
+00000484 9501             2207		.byte	149,1
+00000486 12               2208		.byte	18
+00000487 01               2209		.byte	1
+00000488 00000000         2210		.long	.LDW_498caa0
+0000048c 00               2211		.byte	0
+0000048d 00               2212		.byte	0
+0000048e 0150             2213		.byte	1,80
+                          2214	
+00000490 00               2215		.byte	0
+                          2216	
+00000491 00               2217		.byte	0
+                          2218	
+                          2219	.LDW_49cdf20:
+00000492 15               2220		.byte	21
+00000493 6656657269667944 2221		.strz	"fVerifyData"
+0000049b 61746100        
+0000049f aa01             2222		.byte	170,1
+000004a1 0d               2223		.byte	13
+000004a2 01               2224		.byte	1
+000004a3 00000000         2225		.long	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+
+                                   Fri Apr 10 08:32:24 2020           Page 41
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000004a7 00000000         2226		.long	__ghs_eofn_fVerifyData
+000004ab 0151             2227		.byte	1,81
+000004ad 808080800f       2228		.byte	128,128,128,128,15
+000004b2 08               2229		.byte	8
+000004b3 00               2230		.byte	0
+000004b4 18               2231		.byte	24
+000004b5 00               2232		.byte	0
+000004b6 00               2233		.byte	0
+000004b7 00               2234		.byte	0
+000004b8 00               2235		.byte	0
+000004b9 01               2236		.byte	1
+000004ba 00               2237		.byte	0
+000004bb 01               2238		.byte	1
+                          2239	
+                          2240		.section	.debug_frame
+                          2241	.LDW_5b43a18:
+000000c0 00000014         2242		.long	.LDW_unq_8-.LDW_unq_7
+                          2243	.LDW_unq_7:
+000000c4 00000000         2244		.long	.LDW_4989ca0
+000000c8 00000000         2245		.long	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000cc 00000066         2246		.long	__ghs_eofn_fVerifyData-fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000d0 01               2247		.byte	1
+000000d1 00000000         2248		.long	.LDW51
+000000d5 00               2249		.byte	0
+000000d6 00               2250		.byte	0
+000000d7 00               2251		.byte	0
+                          2252	.LDW_unq_8:
+                          2253		.section	.debug_line
+0000011a 000502           2254		.byte	0,5,2
+0000011d 00000000         2255		.long	fVerifyData..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+00000121 06               2256		.byte	6
+00000122 03               2257		.byte	3
+00000123 aa01             2258		.byte	170,1
+00000125 02               2259		.byte	2
+00000126 00               2260		.byte	0
+00000127 01               2261		.byte	1
+00000128 03               2262		.byte	3
+00000129 06               2263		.byte	6
+0000012a 02               2264		.byte	2
+0000012b 0e               2265		.byte	14
+0000012c 01               2266		.byte	1
+0000012d 13               2267		.byte	19
+0000012e 13               2268		.byte	19
+0000012f 13               2269		.byte	19
+00000130 1b               2270		.byte	27
+00000131 14               2271		.byte	20
+00000132 000502           2272		.byte	0,5,2
+00000135 00000000         2273		.long	.LDWlin11
+00000139 0d               2274		.byte	13
+0000013a 000502           2275		.byte	0,5,2
+0000013d 00000000         2276		.long	.LDWlin12
+00000141 0b               2277		.byte	11
+00000142 0b               2278		.byte	11
+00000143 000502           2279		.byte	0,5,2
+00000146 00000000         2280		.long	.LDWlin13
+0000014a 0b               2281		.byte	11
+
+                                   Fri Apr 10 08:32:24 2020           Page 42
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+0000014b 0b               2282		.byte	11
+0000014c 1b               2283		.byte	27
+0000014d 02               2284		.byte	2
+0000014e 00               2285		.byte	0
+0000014f 0b               2286		.byte	11
+00000150 02               2287		.byte	2
+00000151 00               2288		.byte	0
+00000152 0d               2289		.byte	13
+00000153 000502           2290		.byte	0,5,2
+00000156 00000000         2291		.long	.LDWlin14
+0000015a 0b               2292		.byte	11
+0000015b 0c               2293		.byte	12
+0000015c 13               2294		.byte	19
+0000015d 1b               2295		.byte	27
+0000015e 3b               2296		.byte	59
+0000015f 1b               2297		.byte	27
+00000160 02               2298		.byte	2
+00000161 00               2299		.byte	0
+00000162 0b               2300		.byte	11
+00000163 13               2301		.byte	19
+00000164 13               2302		.byte	19
+00000165 03               2303		.byte	3
+00000166 6a               2304		.byte	106
+00000167 02               2305		.byte	2
+00000168 02               2306		.byte	2
+00000169 01               2307		.byte	1
+0000016a 000502           2308		.byte	0,5,2
+0000016d 00000000         2309		.long	.LDWlin15
+00000171 03               2310		.byte	3
+00000172 17               2311		.byte	23
+00000173 02               2312		.byte	2
+00000174 00               2313		.byte	0
+00000175 01               2314		.byte	1
+00000176 0b               2315		.byte	11
+00000177 02               2316		.byte	2
+00000178 0c               2317		.byte	12
+00000179 000101           2318		.byte	0,1,1
+                          2319		.section	.debug_info
+                          2320	.LDW_49cdfb8:
+000004bc 11               2321		.byte	17
+000004bd 667000           2322		.strz	"fp"
+000004c0 aa01             2323		.byte	170,1
+000004c2 2a               2324		.byte	42
+000004c3 01               2325		.byte	1
+000004c4 00000000         2326		.long	.LDW_498c4f0
+000004c8 00               2327		.byte	0
+000004c9 016f             2328		.byte	1,111
+                          2329	
+                          2330	.LDW_4983410:
+000004cb 1f               2331		.byte	31
+000004cc 00000000         2332		.long	.LDW41
+000004d0 00000000         2333		.long	.LDW51
+                          2334	
+                          2335	.LDW_49ce068:
+000004d4 06               2336		.byte	6
+000004d5 6c656e67746800   2337		.strz	"length"
+
+                                   Fri Apr 10 08:32:24 2020           Page 43
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000004dc ac01             2338		.byte	172,1
+000004de 17               2339		.byte	23
+000004df 01               2340		.byte	1
+000004e0 00000000         2341		.long	.LDW_49ce010
+000004e4 00               2342		.byte	0
+000004e5 00               2343		.byte	0
+000004e6 016e             2344		.byte	1,110
+                          2345	
+                          2346	.LDW_49ce0c0:
+000004e8 06               2347		.byte	6
+000004e9 696e74656e646564 2348		.strz	"intendedData"
+000004f1 4461746100      
+000004f6 ad01             2349		.byte	173,1
+000004f8 13               2350		.byte	19
+000004f9 01               2351		.byte	1
+000004fa 00000000         2352		.long	.LDW_498c720
+000004fe 00               2353		.byte	0
+000004ff 00               2354		.byte	0
+00000500 016c             2355		.byte	1,108
+                          2356	
+                          2357	.LDW_49ce118:
+00000502 06               2358		.byte	6
+00000503 61637475616c4461 2359		.strz	"actualData"
+0000050b 746100          
+0000050e ae01             2360		.byte	174,1
+00000510 13               2361		.byte	19
+00000511 01               2362		.byte	1
+00000512 00000000         2363		.long	.LDW_498c720
+00000516 00               2364		.byte	0
+00000517 00               2365		.byte	0
+00000518 016d             2366		.byte	1,109
+                          2367	
+0000051a 00               2368		.byte	0
+                          2369	
+0000051b 00               2370		.byte	0
+                          2371	
+                          2372	.LDW_49ce170:
+0000051c 15               2373		.byte	21
+0000051d 6657616974436d64 2374		.strz	"fWaitCmdCompleted"
+00000525 436f6d706c657465
+0000052d 6400            
+0000052f da01             2375		.byte	218,1
+00000531 0d               2376		.byte	13
+00000532 01               2377		.byte	1
+00000533 00000000         2378		.long	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+00000537 00000000         2379		.long	__ghs_eofn_fWaitCmdCompleted
+0000053b 0151             2380		.byte	1,81
+0000053d 8080808008       2381		.byte	128,128,128,128,8
+00000542 0c               2382		.byte	12
+00000543 00               2383		.byte	0
+00000544 10               2384		.byte	16
+00000545 00               2385		.byte	0
+00000546 00               2386		.byte	0
+00000547 00               2387		.byte	0
+00000548 00               2388		.byte	0
+00000549 01               2389		.byte	1
+0000054a 00               2390		.byte	0
+0000054b 01               2391		.byte	1
+                          2392	
+                          2393		.section	.debug_frame
+
+                                   Fri Apr 10 08:32:24 2020           Page 44
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                          2394	.LDW_5b42ba0:
+000000d8 00000014         2395		.long	.LDW_unq_a-.LDW_unq_9
+                          2396	.LDW_unq_9:
+000000dc 00000000         2397		.long	.LDW_4989ca0
+000000e0 00000000         2398		.long	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000e4 00000038         2399		.long	__ghs_eofn_fWaitCmdCompleted-fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+000000e8 01               2400		.byte	1
+000000e9 00000000         2401		.long	.LDW71
+000000ed 00               2402		.byte	0
+000000ee 00               2403		.byte	0
+000000ef 00               2404		.byte	0
+                          2405	.LDW_unq_a:
+                          2406		.section	.debug_line
+0000017c 000502           2407		.byte	0,5,2
+0000017f 00000000         2408		.long	fWaitCmdCompleted..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cflashdrv_xd1.
+00000183 06               2409		.byte	6
+00000184 03               2410		.byte	3
+00000185 da01             2411		.byte	218,1
+00000187 02               2412		.byte	2
+00000188 00               2413		.byte	0
+00000189 01               2414		.byte	1
+0000018a 03               2415		.byte	3
+0000018b 07               2416		.byte	7
+0000018c 02               2417		.byte	2
+0000018d 0c               2418		.byte	12
+0000018e 01               2419		.byte	1
+0000018f 0d               2420		.byte	13
+00000190 000502           2421		.byte	0,5,2
+00000193 00000000         2422		.long	.LDWlin16
+00000197 0b               2423		.byte	11
+00000198 0b               2424		.byte	11
+00000199 1b               2425		.byte	27
+0000019a 02               2426		.byte	2
+0000019b 00               2427		.byte	0
+0000019c 0d               2428		.byte	13
+0000019d 03               2429		.byte	3
+0000019e 77               2430		.byte	119
+0000019f 02               2431		.byte	2
+000001a0 06               2432		.byte	6
+000001a1 01               2433		.byte	1
+000001a2 000502           2434		.byte	0,5,2
+000001a5 00000000         2435		.long	.LDWlin17
+000001a9 03               2436		.byte	3
+000001aa 0a               2437		.byte	10
+000001ab 02               2438		.byte	2
+000001ac 00               2439		.byte	0
+000001ad 01               2440		.byte	1
+000001ae 0d               2441		.byte	13
+000001af 000502           2442		.byte	0,5,2
+000001b2 00000000         2443		.long	.LDWlin18
+000001b6 0b               2444		.byte	11
+000001b7 0b               2445		.byte	11
+000001b8 1b               2446		.byte	27
+000001b9 02               2447		.byte	2
+000001ba 00               2448		.byte	0
+000001bb 0d               2449		.byte	13
+
+                                   Fri Apr 10 08:32:24 2020           Page 45
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000001bc 23               2450		.byte	35
+000001bd 02               2451		.byte	2
+000001be 0a               2452		.byte	10
+000001bf 000101           2453		.byte	0,1,1
+                          2454		.section	.debug_info
+                          2455	.LDW_49ce208:
+0000054c 11               2456		.byte	17
+0000054d 667000           2457		.strz	"fp"
+00000550 da01             2458		.byte	218,1
+00000552 30               2459		.byte	48
+00000553 01               2460		.byte	1
+00000554 00000000         2461		.long	.LDW_498c4f0
+00000558 00               2462		.byte	0
+00000559 016f             2463		.byte	1,111
+                          2464	
+                          2465	.LDW_49831a0:
+0000055b 1f               2466		.byte	31
+0000055c 00000000         2467		.long	.LDW61
+00000560 00000000         2468		.long	.LDW71
+                          2469	
+                          2470	.LDW_49ce260:
+00000564 06               2471		.byte	6
+00000565 646f6e65466c6167 2472		.strz	"doneFlag"
+0000056d 00              
+0000056e dc01             2473		.byte	220,1
+00000570 12               2474		.byte	18
+00000571 01               2475		.byte	1
+00000572 00000000         2476		.long	.LDW_498caa0
+00000576 00               2477		.byte	0
+00000577 00               2478		.byte	0
+00000578 0157             2479		.byte	1,87
+                          2480	
+0000057a 00               2481		.byte	0
+                          2482	
+0000057b 00               2483		.byte	0
+                          2484	
+                          2485	.LDW_49ce2b8:
+0000057c 15               2486		.byte	21
+0000057d 457870466c617368 2487		.strz	"ExpFlash_XD1Init"
+00000585 5f584431496e6974
+0000058d 00              
+0000058e 8402             2488		.byte	132,2
+00000590 06               2489		.byte	6
+00000591 01               2490		.byte	1
+00000592 00000000         2491		.long	ExpFlash_XD1Init
+00000596 00000000         2492		.long	__ghs_eofn_ExpFlash_XD1Init
+0000059a 0151             2493		.byte	1,81
+0000059c 03               2494		.byte	3
+0000059d 00               2495		.byte	0
+0000059e 00               2496		.byte	0
+0000059f 00               2497		.byte	0
+000005a0 00               2498		.byte	0
+000005a1 00               2499		.byte	0
+000005a2 00               2500		.byte	0
+000005a3 01               2501		.byte	1
+000005a4 01               2502		.byte	1
+000005a5 00               2503		.byte	0
+000005a6 01               2504		.byte	1
+                          2505	
+
+                                   Fri Apr 10 08:32:24 2020           Page 46
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+                          2506		.section	.debug_frame
+                          2507	.LDW_5b42f48:
+000000f0 00000014         2508		.long	.LDW_unq_c-.LDW_unq_b
+                          2509	.LDW_unq_b:
+000000f4 00000000         2510		.long	.LDW_4989ca0
+000000f8 00000000         2511		.long	ExpFlash_XD1Init
+000000fc 00000010         2512		.long	__ghs_eofn_ExpFlash_XD1Init-ExpFlash_XD1Init
+00000100 01               2513		.byte	1
+00000101 00000000         2514		.long	.LDW91
+00000105 00               2515		.byte	0
+00000106 00               2516		.byte	0
+00000107 00               2517		.byte	0
+                          2518	.LDW_unq_c:
+                          2519		.section	.debug_line
+000001c2 000502           2520		.byte	0,5,2
+000001c5 00000000         2521		.long	ExpFlash_XD1Init
+000001c9 06               2522		.byte	6
+000001ca 03               2523		.byte	3
+000001cb 8602             2524		.byte	134,2
+000001cd 02               2525		.byte	2
+000001ce 00               2526		.byte	0
+000001cf 01               2527		.byte	1
+000001d0 1b               2528		.byte	27
+000001d1 1b               2529		.byte	27
+000001d2 1c               2530		.byte	28
+000001d3 13               2531		.byte	19
+000001d4 02               2532		.byte	2
+000001d5 02               2533		.byte	2
+000001d6 000101           2534		.byte	0,1,1
+                          2535		.section	.debug_info
+                          2536	.LDW_49ce4d8:
+000005a7 11               2537		.byte	17
+000005a8 667000           2538		.strz	"fp"
+000005ab 8402             2539		.byte	132,2
+000005ad 29               2540		.byte	41
+000005ae 01               2541		.byte	1
+000005af 00000000         2542		.long	.LDW_498c4f0
+000005b3 00               2543		.byte	0
+000005b4 0153             2544		.byte	1,83
+                          2545	
+                          2546	.LDW_49831d0:
+000005b6 1f               2547		.byte	31
+000005b7 00000000         2548		.long	.LDW81
+000005bb 00000000         2549		.long	.LDW91
+                          2550	
+000005bf 00               2551		.byte	0
+                          2552	
+000005c0 00               2553		.byte	0
+                          2554	
+                          2555	.LDW_5b6af30:
+000005c1 15               2556		.byte	21
+000005c2 457870466c617368 2557		.strz	"ExpFlash_XD1Deinit"
+000005ca 5f5844314465696e
+000005d2 697400          
+000005d5 9602             2558		.byte	150,2
+000005d7 06               2559		.byte	6
+000005d8 01               2560		.byte	1
+000005d9 00000000         2561		.long	ExpFlash_XD1Deinit
+
+                                   Fri Apr 10 08:32:24 2020           Page 47
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000005dd 00000000         2562		.long	__ghs_eofn_ExpFlash_XD1Deinit
+000005e1 0151             2563		.byte	1,81
+000005e3 03               2564		.byte	3
+000005e4 00               2565		.byte	0
+000005e5 00               2566		.byte	0
+000005e6 00               2567		.byte	0
+000005e7 00               2568		.byte	0
+000005e8 00               2569		.byte	0
+000005e9 00               2570		.byte	0
+000005ea 01               2571		.byte	1
+000005eb 01               2572		.byte	1
+000005ec 00               2573		.byte	0
+000005ed 01               2574		.byte	1
+                          2575	
+                          2576		.section	.debug_frame
+                          2577	.LDW_5c22250:
+00000108 00000014         2578		.long	.LDW_unq_e-.LDW_unq_d
+                          2579	.LDW_unq_d:
+0000010c 00000000         2580		.long	.LDW_4989ca0
+00000110 00000000         2581		.long	ExpFlash_XD1Deinit
+00000114 00000006         2582		.long	__ghs_eofn_ExpFlash_XD1Deinit-ExpFlash_XD1Deinit
+00000118 01               2583		.byte	1
+00000119 00000000         2584		.long	.LDW12
+0000011d 00               2585		.byte	0
+0000011e 00               2586		.byte	0
+0000011f 00               2587		.byte	0
+                          2588	.LDW_unq_e:
+                          2589		.section	.debug_line
+000001d9 000502           2590		.byte	0,5,2
+000001dc 00000000         2591		.long	ExpFlash_XD1Deinit
+000001e0 06               2592		.byte	6
+000001e1 03               2593		.byte	3
+000001e2 9702             2594		.byte	151,2
+000001e4 02               2595		.byte	2
+000001e5 00               2596		.byte	0
+000001e6 01               2597		.byte	1
+000001e7 1b               2598		.byte	27
+000001e8 02               2599		.byte	2
+000001e9 02               2600		.byte	2
+000001ea 000101           2601		.byte	0,1,1
+                          2602		.section	.debug_info
+                          2603	.LDW_49ce638:
+000005ee 11               2604		.byte	17
+000005ef 667000           2605		.strz	"fp"
+000005f2 9602             2606		.byte	150,2
+000005f4 2b               2607		.byte	43
+000005f5 01               2608		.byte	1
+000005f6 00000000         2609		.long	.LDW_498c4f0
+000005fa 00               2610		.byte	0
+000005fb 0153             2611		.byte	1,83
+                          2612	
+                          2613	.LDW_4983200:
+000005fd 1f               2614		.byte	31
+000005fe 00000000         2615		.long	.LDW02
+00000602 00000000         2616		.long	.LDW12
+                          2617	
+
+                                   Fri Apr 10 08:32:24 2020           Page 48
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000606 00               2618		.byte	0
+                          2619	
+00000607 00               2620		.byte	0
+                          2621	
+                          2622	.LDW_5b6afc8:
+00000608 15               2623		.byte	21
+00000609 457870466c617368 2624		.strz	"ExpFlash_XD1Erase"
+00000611 5f58443145726173
+00000619 6500            
+0000061b a302             2625		.byte	163,2
+0000061d 06               2626		.byte	6
+0000061e 01               2627		.byte	1
+0000061f 00000000         2628		.long	ExpFlash_XD1Erase
+00000623 00000000         2629		.long	__ghs_eofn_ExpFlash_XD1Erase
+00000627 0151             2630		.byte	1,81
+00000629 808080800c       2631		.byte	128,128,128,128,12
+0000062e 18               2632		.byte	24
+0000062f 00               2633		.byte	0
+00000630 20               2634		.byte	32
+00000631 00               2635		.byte	0
+00000632 00               2636		.byte	0
+00000633 00               2637		.byte	0
+00000634 01               2638		.byte	1
+00000635 01               2639		.byte	1
+00000636 00               2640		.byte	0
+00000637 01               2641		.byte	1
+                          2642	
+                          2643		.section	.debug_frame
+                          2644	.LDW_5c22290:
+00000120 00000014         2645		.long	.LDW_unq_10-.LDW_unq_f
+                          2646	.LDW_unq_f:
+00000124 00000000         2647		.long	.LDW_4989ca0
+00000128 00000000         2648		.long	ExpFlash_XD1Erase
+0000012c 00000090         2649		.long	__ghs_eofn_ExpFlash_XD1Erase-ExpFlash_XD1Erase
+00000130 01               2650		.byte	1
+00000131 00000000         2651		.long	.LDW32
+00000135 00               2652		.byte	0
+00000136 00               2653		.byte	0
+00000137 00               2654		.byte	0
+                          2655	.LDW_unq_10:
+                          2656		.section	.debug_line
+000001ed 000502           2657		.byte	0,5,2
+000001f0 00000000         2658		.long	ExpFlash_XD1Erase
+000001f4 06               2659		.byte	6
+000001f5 03               2660		.byte	3
+000001f6 a302             2661		.byte	163,2
+000001f8 02               2662		.byte	2
+000001f9 00               2663		.byte	0
+000001fa 01               2664		.byte	1
+000001fb 03               2665		.byte	3
+000001fc 05               2666		.byte	5
+000001fd 02               2667		.byte	2
+000001fe 0c               2668		.byte	12
+000001ff 01               2669		.byte	1
+00000200 1b               2670		.byte	27
+00000201 25               2671		.byte	37
+00000202 000502           2672		.byte	0,5,2
+00000205 00000000         2673		.long	.LDWlin19
+
+                                   Fri Apr 10 08:32:24 2020           Page 49
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000209 0d               2674		.byte	13
+0000020a 000502           2675		.byte	0,5,2
+0000020d 00000000         2676		.long	.LDWlin20
+00000211 0b               2677		.byte	11
+00000212 0c               2678		.byte	12
+00000213 25               2679		.byte	37
+00000214 02               2680		.byte	2
+00000215 02               2681		.byte	2
+00000216 000502           2682		.byte	0,5,2
+00000219 00000000         2683		.long	.LDWlin21
+0000021d 0c               2684		.byte	12
+0000021e 03               2685		.byte	3
+0000021f 7e               2686		.byte	126
+00000220 02               2687		.byte	2
+00000221 10               2688		.byte	16
+00000222 01               2689		.byte	1
+00000223 000502           2690		.byte	0,5,2
+00000226 00000000         2691		.long	.LDWlin22
+0000022a 0d               2692		.byte	13
+0000022b 0d               2693		.byte	13
+0000022c 1d               2694		.byte	29
+0000022d 25               2695		.byte	37
+0000022e 000502           2696		.byte	0,5,2
+00000231 00000000         2697		.long	.LDWlin23
+00000235 0d               2698		.byte	13
+00000236 02               2699		.byte	2
+00000237 02               2700		.byte	2
+00000238 000502           2701		.byte	0,5,2
+0000023b 00000000         2702		.long	.LDWlin24
+0000023f 0c               2703		.byte	12
+00000240 03               2704		.byte	3
+00000241 7e               2705		.byte	126
+00000242 02               2706		.byte	2
+00000243 08               2707		.byte	8
+00000244 01               2708		.byte	1
+00000245 000502           2709		.byte	0,5,2
+00000248 00000000         2710		.long	.LDWlin25
+0000024c 0d               2711		.byte	13
+0000024d 0d               2712		.byte	13
+0000024e 25               2713		.byte	37
+0000024f 000502           2714		.byte	0,5,2
+00000252 00000000         2715		.long	.LDWlin26
+00000256 0b               2716		.byte	11
+00000257 02               2717		.byte	2
+00000258 00               2718		.byte	0
+00000259 0d               2719		.byte	13
+0000025a 000502           2720		.byte	0,5,2
+0000025d 00000000         2721		.long	.LDWlin27
+00000261 0b               2722		.byte	11
+00000262 0b               2723		.byte	11
+00000263 1b               2724		.byte	27
+00000264 02               2725		.byte	2
+00000265 00               2726		.byte	0
+00000266 0b               2727		.byte	11
+00000267 02               2728		.byte	2
+00000268 0c               2729		.byte	12
+
+                                   Fri Apr 10 08:32:24 2020           Page 50
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000269 000101           2730		.byte	0,1,1
+                          2731		.section	.debug_info
+                          2732	.LDW_49ce9a8:
+00000638 11               2733		.byte	17
+00000639 667000           2734		.strz	"fp"
+0000063c a302             2735		.byte	163,2
+0000063e 2a               2736		.byte	42
+0000063f 01               2737		.byte	1
+00000640 00000000         2738		.long	.LDW_498c4f0
+00000644 00               2739		.byte	0
+00000645 016f             2740		.byte	1,111
+                          2741	
+                          2742	.LDW_4983680:
+00000647 1f               2743		.byte	31
+00000648 00000000         2744		.long	.LDW22
+0000064c 00000000         2745		.long	.LDW32
+                          2746	
+                          2747	.LDW_49ce5e0:
+00000650 06               2748		.byte	6
+00000651 6900             2749		.strz	"i"
+00000653 a502             2750		.byte	165,2
+00000655 12               2751		.byte	18
+00000656 01               2752		.byte	1
+00000657 00000000         2753		.long	.LDW_498caa0
+0000065b 00               2754		.byte	0
+0000065c 00               2755		.byte	0
+0000065d 0156             2756		.byte	1,86
+                          2757	
+                          2758	.LDW_49cea00:
+0000065f 06               2759		.byte	6
+00000660 6c6f636b53746174 2760		.strz	"lockState"
+00000668 6500            
+0000066a a602             2761		.byte	166,2
+0000066c 12               2762		.byte	18
+0000066d 01               2763		.byte	1
+0000066e 00000000         2764		.long	.LDW_49cef58
+00000672 00               2765		.byte	0
+00000673 00               2766		.byte	0
+00000674 0271             2767		.byte	2,113
+00000676 08               2768		.byte	8
+                          2769	
+00000677 00               2770		.byte	0
+                          2771	
+00000678 00               2772		.byte	0
+                          2773	
+                          2774	.LDW_5b7d070:
+00000679 15               2775		.byte	21
+0000067a 457870466c617368 2776		.strz	"ExpFlash_XD1Write"
+00000682 5f58443157726974
+0000068a 6500            
+0000068c e002             2777		.byte	224,2
+0000068e 06               2778		.byte	6
+0000068f 01               2779		.byte	1
+00000690 00000000         2780		.long	ExpFlash_XD1Write
+00000694 00000000         2781		.long	__ghs_eofn_ExpFlash_XD1Write
+00000698 0151             2782		.byte	1,81
+0000069a 808080800f       2783		.byte	128,128,128,128,15
+0000069f 18               2784		.byte	24
+000006a0 00               2785		.byte	0
+
+                                   Fri Apr 10 08:32:24 2020           Page 51
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000006a1 28               2786		.byte	40
+000006a2 00               2787		.byte	0
+000006a3 00               2788		.byte	0
+000006a4 00               2789		.byte	0
+000006a5 01               2790		.byte	1
+000006a6 01               2791		.byte	1
+000006a7 00               2792		.byte	0
+000006a8 01               2793		.byte	1
+                          2794	
+                          2795		.section	.debug_frame
+                          2796	.LDW_5b3cf38:
+00000138 00000014         2797		.long	.LDW_unq_12-.LDW_unq_11
+                          2798	.LDW_unq_11:
+0000013c 00000000         2799		.long	.LDW_4989ca0
+00000140 00000000         2800		.long	ExpFlash_XD1Write
+00000144 0000009c         2801		.long	__ghs_eofn_ExpFlash_XD1Write-ExpFlash_XD1Write
+00000148 01               2802		.byte	1
+00000149 00000000         2803		.long	.LDW52
+0000014d 00               2804		.byte	0
+0000014e 00               2805		.byte	0
+0000014f 00               2806		.byte	0
+                          2807	.LDW_unq_12:
+                          2808		.section	.debug_line
+0000026c 000502           2809		.byte	0,5,2
+0000026f 00000000         2810		.long	ExpFlash_XD1Write
+00000273 06               2811		.byte	6
+00000274 03               2812		.byte	3
+00000275 e002             2813		.byte	224,2
+00000277 02               2814		.byte	2
+00000278 00               2815		.byte	0
+00000279 01               2816		.byte	1
+0000027a 03               2817		.byte	3
+0000027b 09               2818		.byte	9
+0000027c 02               2819		.byte	2
+0000027d 0c               2820		.byte	12
+0000027e 01               2821		.byte	1
+0000027f 1b               2822		.byte	27
+00000280 13               2823		.byte	19
+00000281 13               2824		.byte	19
+00000282 15               2825		.byte	21
+00000283 000502           2826		.byte	0,5,2
+00000286 00000000         2827		.long	.LDWlin28
+0000028a 0d               2828		.byte	13
+0000028b 000502           2829		.byte	0,5,2
+0000028e 00000000         2830		.long	.LDWlin29
+00000292 0b               2831		.byte	11
+00000293 0c               2832		.byte	12
+00000294 25               2833		.byte	37
+00000295 000502           2834		.byte	0,5,2
+00000298 00000000         2835		.long	.LDWlin30
+0000029c 0c               2836		.byte	12
+0000029d 15               2837		.byte	21
+0000029e 000502           2838		.byte	0,5,2
+000002a1 00000000         2839		.long	.LDWlin31
+000002a5 0b               2840		.byte	11
+000002a6 0c               2841		.byte	12
+
+                                   Fri Apr 10 08:32:24 2020           Page 52
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000002a7 000502           2842		.byte	0,5,2
+000002aa 00000000         2843		.long	.LDWlin32
+000002ae 0b               2844		.byte	11
+000002af 0c               2845		.byte	12
+000002b0 0c               2846		.byte	12
+000002b1 13               2847		.byte	19
+000002b2 02               2848		.byte	2
+000002b3 00               2849		.byte	0
+000002b4 0d               2850		.byte	13
+000002b5 0d               2851		.byte	13
+000002b6 1b               2852		.byte	27
+000002b7 13               2853		.byte	19
+000002b8 13               2854		.byte	19
+000002b9 13               2855		.byte	19
+000002ba 03               2856		.byte	3
+000002bb 79               2857		.byte	121
+000002bc 02               2858		.byte	2
+000002bd 02               2859		.byte	2
+000002be 01               2860		.byte	1
+000002bf 000502           2861		.byte	0,5,2
+000002c2 00000000         2862		.long	.LDWlin33
+000002c6 03               2863		.byte	3
+000002c7 08               2864		.byte	8
+000002c8 02               2865		.byte	2
+000002c9 00               2866		.byte	0
+000002ca 01               2867		.byte	1
+000002cb 0d               2868		.byte	13
+000002cc 25               2869		.byte	37
+000002cd 000502           2870		.byte	0,5,2
+000002d0 00000000         2871		.long	.LDWlin34
+000002d4 03               2872		.byte	3
+000002d5 61               2873		.byte	97
+000002d6 02               2874		.byte	2
+000002d7 00               2875		.byte	0
+000002d8 01               2876		.byte	1
+000002d9 000502           2877		.byte	0,5,2
+000002dc 00000000         2878		.long	.LDWlin35
+000002e0 03               2879		.byte	3
+000002e1 25               2880		.byte	37
+000002e2 02               2881		.byte	2
+000002e3 00               2882		.byte	0
+000002e4 01               2883		.byte	1
+000002e5 0c               2884		.byte	12
+000002e6 0c               2885		.byte	12
+000002e7 000502           2886		.byte	0,5,2
+000002ea 00000000         2887		.long	.LDWlin36
+000002ee 03               2888		.byte	3
+000002ef 77               2889		.byte	119
+000002f0 02               2890		.byte	2
+000002f1 00               2891		.byte	0
+000002f2 01               2892		.byte	1
+000002f3 0c               2893		.byte	12
+000002f4 0b               2894		.byte	11
+000002f5 0b               2895		.byte	11
+000002f6 03               2896		.byte	3
+000002f7 06               2897		.byte	6
+
+                                   Fri Apr 10 08:32:24 2020           Page 53
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000002f8 02               2898		.byte	2
+000002f9 06               2899		.byte	6
+000002fa 01               2900		.byte	1
+000002fb 02               2901		.byte	2
+000002fc 00               2902		.byte	0
+000002fd 0d               2903		.byte	13
+000002fe 2d               2904		.byte	45
+000002ff 000502           2905		.byte	0,5,2
+00000302 00000000         2906		.long	.LDWlin37
+00000306 0b               2907		.byte	11
+00000307 0c               2908		.byte	12
+00000308 0c               2909		.byte	12
+00000309 23               2910		.byte	35
+0000030a 02               2911		.byte	2
+0000030b 00               2912		.byte	0
+0000030c 0b               2913		.byte	11
+0000030d 02               2914		.byte	2
+0000030e 0e               2915		.byte	14
+0000030f 000101           2916		.byte	0,1,1
+                          2917		.section	.debug_info
+                          2918	.LDW_49ce690:
+000006a9 11               2919		.byte	17
+000006aa 667000           2920		.strz	"fp"
+000006ad e002             2921		.byte	224,2
+000006af 2a               2922		.byte	42
+000006b0 01               2923		.byte	1
+000006b1 00000000         2924		.long	.LDW_498c4f0
+000006b5 00               2925		.byte	0
+000006b6 016f             2926		.byte	1,111
+                          2927	
+                          2928	.LDW_4983530:
+000006b8 1f               2929		.byte	31
+000006b9 00000000         2930		.long	.LDW42
+000006bd 00000000         2931		.long	.LDW52
+                          2932	
+                          2933	.LDW_49ce848:
+000006c1 06               2934		.byte	6
+000006c2 6c6f636b53746174 2935		.strz	"lockState"
+000006ca 6500            
+000006cc e202             2936		.byte	226,2
+000006ce 12               2937		.byte	18
+000006cf 01               2938		.byte	1
+000006d0 00000000         2939		.long	.LDW_5b7d108
+000006d4 00               2940		.byte	0
+000006d5 00               2941		.byte	0
+000006d6 0271             2942		.byte	2,113
+000006d8 08               2943		.byte	8
+                          2944	
+                          2945	.LDW_49ce530:
+000006d9 06               2946		.byte	6
+000006da 6900             2947		.strz	"i"
+000006dc e302             2948		.byte	227,2
+000006de 12               2949		.byte	18
+000006df 01               2950		.byte	1
+000006e0 00000000         2951		.long	.LDW_498caa0
+000006e4 00               2952		.byte	0
+000006e5 00               2953		.byte	0
+
+                                   Fri Apr 10 08:32:24 2020           Page 54
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000006e6 0150             2954		.byte	1,80
+                          2955	
+                          2956	.LDW_49ce8a0:
+000006e8 06               2957		.byte	6
+000006e9 63757272656e744c 2958		.strz	"currentLength"
+000006f1 656e67746800    
+000006f7 e502             2959		.byte	229,2
+000006f9 15               2960		.byte	21
+000006fa 01               2961		.byte	1
+000006fb 00000000         2962		.long	.LDW_49ce010
+000006ff 00               2963		.byte	0
+00000700 00               2964		.byte	0
+00000701 016d             2965		.byte	1,109
+                          2966	
+                          2967	.LDW_49ce8f8:
+00000703 06               2968		.byte	6
+00000704 63757272656e7441 2969		.strz	"currentAddress"
+0000070c 64647265737300  
+00000713 e602             2970		.byte	230,2
+00000715 16               2971		.byte	22
+00000716 01               2972		.byte	1
+00000717 00000000         2973		.long	.LDW_49cea58
+0000071b 00               2974		.byte	0
+0000071c 00               2975		.byte	0
+0000071d 016e             2976		.byte	1,110
+                          2977	
+                          2978	.LDW_49ce6e8:
+0000071f 06               2979		.byte	6
+00000720 63757272656e7444 2980		.strz	"currentData"
+00000728 61746100        
+0000072c e702             2981		.byte	231,2
+0000072e 16               2982		.byte	22
+0000072f 01               2983		.byte	1
+00000730 00000000         2984		.long	.LDW_49cea58
+00000734 00               2985		.byte	0
+00000735 00               2986		.byte	0
+00000736 016c             2987		.byte	1,108
+                          2988	
+00000738 00               2989		.byte	0
+                          2990	
+00000739 00               2991		.byte	0
+                          2992	
+0000073a 00               2993		.byte	0
+                          2994	
+                          2995		.section	.debug_line
+                          2996	.Ldw_line_end:
+                          2997		.section	.debug_macinfo
+00000000 03               2998		.byte	3
+00000001 00               2999		.byte	0
+00000002 01               3000		.byte	1
+00000003 03               3001		.byte	3
+00000004 2b               3002		.byte	43
+00000005 02               3003		.byte	2
+00000006 01               3004		.byte	1
+00000007 2f               3005		.byte	47
+00000008 46424c445256464c 3006		.strz	"FBLDRVFLASH_XD1_MPC5700C55FMCHIS_VERSION 0x0106u"
+00000010 4153485f5844315f
+00000018 4d50433537303043
+00000020 3535464d43484953
+00000028 5f56455253494f4e
+00000030 2030783031303675
+00000038 00              
+00000039 01               3007		.byte	1
+0000003a 30               3008		.byte	48
+0000003b 46424c445256464c 3009		.strz	"FBLDRVFLASH_XD1_MPC5700C55FMCHIS_RELEASE_VERSION 0x00u"
+00000043 4153485f5844315f
+0000004b 4d50433537303043
+00000053 3535464d43484953
+0000005b 5f52454c45415345
+00000063 5f56455253494f4e
+0000006b 20307830307500  
+
+                                   Fri Apr 10 08:32:24 2020           Page 55
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+00000072 01               3010		.byte	1
+00000073 37               3011		.byte	55
+00000074 464c4153485f4452 3012		.strz	"FLASH_DRIVER_XD1_VERSION_MCUTYPE 0x57u"
+0000007c 495645525f584431
+00000084 5f56455253494f4e
+0000008c 5f4d435554595045
+00000094 20307835377500  
+0000009b 01               3013		.byte	1
+0000009c 38               3014		.byte	56
+0000009d 464c4153485f4452 3015		.strz	"FLASH_DRIVER_XD1_VERSION_MASKTYPE 0x00u"
+000000a5 495645525f584431
+000000ad 5f56455253494f4e
+000000b5 5f4d41534b545950
+000000bd 4520307830307500
+000000c5 01               3016		.byte	1
+000000c6 3c               3017		.byte	60
+000000c7 464c4153485f4452 3018		.strz	"FLASH_DRIVER_XD1_VERSION_MAJOR ((FBLDRVFLASH_XD1_MPC5700C55FMCHIS_VERSION >> 8) & 0xffu)"
+000000cf 495645525f584431
+000000d7 5f56455253494f4e
+000000df 5f4d414a4f522028
+000000e7 2846424c44525646
+000000ef 4c4153485f584431
+000000f7 5f4d504335373030
+000000ff 433535464d434849
+00000107 535f56455253494f
+0000010f 4e203e3e20382920
+00000117 2620307866667529
+0000011f 00              
+00000120 01               3019		.byte	1
+00000121 3d               3020		.byte	61
+00000122 464c4153485f4452 3021		.strz	"FLASH_DRIVER_XD1_VERSION_MINOR (FBLDRVFLASH_XD1_MPC5700C55FMCHIS_VERSION & 0xffu)"
+0000012a 495645525f584431
+00000132 5f56455253494f4e
+0000013a 5f4d494e4f522028
+00000142 46424c445256464c
+0000014a 4153485f5844315f
+00000152 4d50433537303043
+0000015a 3535464d43484953
+00000162 5f56455253494f4e
+0000016a 2026203078666675
+00000172 2900            
+00000174 01               3022		.byte	1
+00000175 3e               3023		.byte	62
+00000176 464c4153485f4452 3024		.strz	"FLASH_DRIVER_XD1_VERSION_PATCH FBLDRVFLASH_XD1_MPC5700C55FMCHIS_RELEASE_VERSION"
+0000017e 495645525f584431
+00000186 5f56455253494f4e
+0000018e 5f50415443482046
+00000196 424c445256464c41
+0000019e 53485f5844315f4d
+000001a6 5043353730304335
+000001ae 35464d434849535f
+000001b6 52454c454153455f
+000001be 56455253494f4e00
+000001c6 01               3025		.byte	1
+000001c7 54               3026		.byte	84
+000001c8 464c4153485f5844 3027		.strz	"FLASH_XD1_SEGMENT_SIZE 8u"
+000001d0 315f5345474d454e
+000001d8 545f53495a452038
+000001e0 7500            
+000001e2 01               3028		.byte	1
+000001e3 5c               3029		.byte	92
+000001e4 6b466c6173684663 3030		.strz	"kFlashFctErase_XD1 0x40u"
+000001ec 7445726173655f58
+000001f4 4431203078343075
+000001fc 00              
+000001fd 01               3031		.byte	1
+000001fe 5d               3032		.byte	93
+000001ff 6b466c6173684663 3033		.strz	"kFlashFctWrite_XD1 0x60u"
+00000207 7457726974655f58
+0000020f 4431203078363075
+00000217 00              
+00000218 01               3034		.byte	1
+00000219 60               3035		.byte	96
+0000021a 6b466c6173684f6b 3036		.strz	"kFlashOk_XD1 0x00u"
+00000222 5f58443120307830
+0000022a 307500          
+0000022d 01               3037		.byte	1
+0000022e 61               3038		.byte	97
+0000022f 6b466c6173684661 3039		.strz	"kFlashFailed_XD1 0x01u"
+00000237 696c65645f584431
+0000023f 20307830317500  
+00000246 01               3040		.byte	1
+00000247 62               3041		.byte	98
+00000248 6b466c6173685665 3042		.strz	"kFlashVerify_XD1 0x02u"
+00000250 726966795f584431
+00000258 20307830327500  
+0000025f 01               3043		.byte	1
+00000260 68               3044		.byte	104
+00000261 6b466c6173685072 3045		.strz	"kFlashProtected_XD1 0x0Cu"
+00000269 6f7465637465645f
+00000271 5844312030783043
+00000279 7500            
+0000027b 01               3046		.byte	1
+0000027c 7a               3047		.byte	122
+0000027d 6b466c6173685772 3048		.strz	"kFlashWriteVerify_XD1 (kFlashFctWrite_XD1 | kFlashVerify_XD1)"
+00000285 6974655665726966
+0000028d 795f58443120286b
+00000295 466c617368466374
+0000029d 57726974655f5844
+000002a5 31207c206b466c61
+000002ad 7368566572696679
+000002b5 5f5844312900    
+000002bb 01               3049		.byte	1
+000002bc 8101             3050		.byte	129,1
+000002be 46424c5f464c4153 3051		.strz	"FBL_FLASH_MCR_OFFSET_XD1 0x00ul"
+000002c6 485f4d43525f4f46
+000002ce 465345545f584431
+000002d6 2030783030756c00
+000002de 01               3052		.byte	1
+000002df 8301             3053		.byte	131,1
+000002e1 46424c5f464c4153 3054		.strz	"FBL_FLASH_LOCK_OFFSET_XD1(x) (0x10ul + ((x) * 0x04ul))"
+000002e9 485f4c4f434b5f4f
+000002f1 46465345545f5844
+000002f9 3128782920283078
+00000301 3130756c202b2028
+00000309 287829202a203078
+00000311 3034756c292900  
+00000318 01               3055		.byte	1
+00000319 8401             3056		.byte	132,1
+0000031b 46424c5f464c4153 3057		.strz	"FBL_FLASH_SEL_OFFSET_XD1(x) (0x38ul + ((x) * 0x04ul))"
+00000323 485f53454c5f4f46
+0000032b 465345545f584431
+00000333 2878292028307833
+0000033b 38756c202b202828
+00000343 7829202a20307830
+0000034b 34756c292900    
+00000351 01               3058		.byte	1
+00000352 8901             3059		.byte	137,1
+00000354 46424c5f464c4153 3060		.strz	"FBL_FLASH_MCR_DONE_XD1 0x00000400ul"
+0000035c 485f4d43525f444f
+00000364 4e455f5844312030
+0000036c 7830303030303430
+00000374 30756c00        
+00000378 01               3061		.byte	1
+00000379 8a01             3062		.byte	138,1
+0000037b 46424c5f464c4153 3063		.strz	"FBL_FLASH_MCR_PEG_XD1 0x00000200ul"
+00000383 485f4d43525f5045
+0000038b 475f584431203078
+00000393 3030303030323030
+0000039b 756c00          
+0000039e 01               3064		.byte	1
+0000039f 8b01             3065		.byte	139,1
+
+                                   Fri Apr 10 08:32:24 2020           Page 56
+                                   Fri Apr 10 08:32:24 2020   gh_00004u41.si
+000003a1 46424c5f464c4153 3066		.strz	"FBL_FLASH_MCR_PGM_XD1 0x00000010ul"
+000003a9 485f4d43525f5047
+000003b1 4d5f584431203078
+000003b9 3030303030303130
+000003c1 756c00          
+000003c4 01               3067		.byte	1
+000003c5 8c01             3068		.byte	140,1
+000003c7 46424c5f464c4153 3069		.strz	"FBL_FLASH_MCR_EHV_XD1 0x00000001ul"
+000003cf 485f4d43525f4548
+000003d7 565f584431203078
+000003df 3030303030303031
+000003e7 756c00          
+000003ea 01               3070		.byte	1
+000003eb 8d01             3071		.byte	141,1
+000003ed 46424c5f464c4153 3072		.strz	"FBL_FLASH_MCR_ERS_XD1 0x00000004ul"
+000003f5 485f4d43525f4552
+000003fd 535f584431203078
+00000405 3030303030303034
+0000040d 756c00          
+00000410 04               3073		.byte	4
+00000411 01               3074		.byte	1
+00000412 42               3075		.byte	66
+00000413 464c4153485f5245 3076		.strz	"FLASH_REG(a,b) *(volatile unsigned long *)(((a)->registerBase) + (b))"
+0000041b 4728612c6229202a
+00000423 28766f6c6174696c
+0000042b 6520756e7369676e
+00000433 6564206c6f6e6720
+0000043b 2a2928282861292d
+00000443 3e72656769737465
+0000044b 724261736529202b
+00000453 202862292900    
+00000459 04               3077		.byte	4
+0000045a 00               3078		.byte	0
+                          3079		.section	.debug_abbrev
+000000f3 00               3080		.byte	0
+                          3081		.section	.debug_info
+                          3082	.Ldw_end:

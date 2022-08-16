@@ -1,0 +1,4203 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<!DOCTYPE CANDELA SYSTEM 'candela.dtd'>
+<CANDELA dtdvers='9.0.1100'>
+<ECUDOC oid='182EE2AF83D14ea4ACBE0DE7D5079758' temploid='{1DCA0988-4B31-4443-A70D-5056F6DD703B}' doctype='inst' manufacturer='Vector' mid='PWI9O4hkBC4jvktZ6bHdKg==' saveno='2' languages='(en-US)' uptodateLanguages='(en-US)' jobfileext='' xdtauth='31'>
+<PROTOCOLSTANDARD>UDS</PROTOCOLSTANDARD>
+<SPECOWNER>Vector</SPECOWNER>
+<DTID>ZENWVFBcUllPHgVgBS0sNmlmFCk/LwUjbXRvYn1yHzU3Mzt4Y3p2cQ==</DTID>
+<QUALGENOPTIONS case='ignore' minLen='1' maxLen='64'/>
+<ATTRCATS>
+<ATTRCAT id='_0570E8E0' oid='2461A9F879ED457cBB2EB317C666C222' temploid='{FC008A0F-60C7-452e-B108-760C1B1D8ADA}' usage='sys' xauth='r'>
+<NAME>
+<TUV xml:lang='en-US'>Available interfaces</TUV>
+</NAME>
+<QUAL>COM.INTERFACES</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570E9B0' oid='8A5972A41A86425aBC2D52214EB32218' temploid='{89B35B76-F79D-4efe-B8C3-833BB92787D3}' usage='sys' xauth='r'>
+<NAME>
+<TUV xml:lang='en-US'>Initialization</TUV>
+</NAME>
+<QUAL>COM.INIT</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570EA80' oid='228E0FCE63874884850452E00AB8D676' temploid='{043AF51A-F4F4-4405-B33C-56BB7F772C27}' usage='sys' xauth='r'>
+<NAME>
+<TUV xml:lang='en-US'>Communication</TUV>
+</NAME>
+<QUAL>COM.COM</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570EB50' oid='77626E081155410283FDE2ACEF69C46B' temploid='{6F0C0C14-292F-45d3-97F8-040F99C9FB4D}' usage='sys' xauth='r'>
+<NAME>
+<TUV xml:lang='en-US'>Timing</TUV>
+</NAME>
+<QUAL>COM.TIMING</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570EC20' oid='DE894D5AC62D439fA43C44AFEE901930' temploid='{DE9212D7-AC58-4397-8DE1-CFFA5F118A24}'>
+<NAME>
+<TUV xml:lang='en-US'>CANdesc</TUV>
+</NAME>
+<QUAL>CANdesc</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570ECF0' oid='C034C09CBF9747fd9FDBE5070365B6F6' temploid='{62402351-7D94-4c8f-8315-C3D2D49608FD}'>
+<NAME>
+<TUV xml:lang='en-US'>Any attribute category</TUV>
+</NAME>
+<QUAL>AnyAttributeCategory</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570EDC0' oid='260B275329A446b08844DBAA0DAB3ED9' temploid='{D8290D4C-277B-4ac2-B42C-64AF62A6567E}'>
+<NAME>
+<TUV xml:lang='en-US'>Quality Management</TUV>
+</NAME>
+<QUAL>Quality_Management</QUAL>
+</ATTRCAT>
+<ATTRCAT id='_0570EE90' oid='659E11233BB3417dAA00ECCFBB3D0A8D' temploid='{0234B386-65D2-4a56-8A3F-D948E204B430}'>
+<NAME>
+<TUV xml:lang='en-US'>Editor</TUV>
+</NAME>
+<QUAL>Editor</QUAL>
+</ATTRCAT>
+</ATTRCATS>
+<DEFATTS>
+<ECUATTS>
+<ENUMDEF id='_056FAFC8' oid='340E4E3BF28443cb84EAAE1DE339BC77' temploid='3C405208B049466dA0E68EBD4DF50DC6' attrcatref='_0570E8E0' usage='sys' v='1' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>CAN</TUV>
+</NAME>
+<QUAL>Diagnostic_CAN</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>not supported</TUV>
+</ETAG>
+<ETAG v='1'>
+<TUV xml:lang='en-US'>supported</TUV>
+</ETAG>
+</ENUMDEF>
+<ENUMDEF id='_056FB0C0' oid='3489E220EB634e96B4FC3D241E53B93F' temploid='11A92CEF65EA4774B1F7049809B949EA' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Bus Type</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Type of transport media</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.BusType</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>CAN</TUV>
+</ETAG>
+</ENUMDEF>
+<ENUMDEF id='_056FB1B8' oid='4905D59EFF3B494fA2A27D056E7403F5' temploid='41EFE94195FB4232B9C4AC86E547F69A' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Transport Protocol Type</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Type of used Transport Protocol (e.g. ISO15765)</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TransportProtocolType</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>ISO15765</TUV>
+</ETAG>
+</ENUMDEF>
+<ENUMDEF id='_056FB2B0' oid='9506CBD292DC4a57BBB1D03A987A29D0' temploid='7B5F38FC58CC485dB39FCE70B9BF6B44' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Addressing Scheme</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Addressing Scheme used for physical requests and responses.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.AddrScheme</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>Normal</TUV>
+</ETAG>
+</ENUMDEF>
+<ENUMDEF id='_056FB3A8' oid='7AD57CAC9F914a40B5EC930620385F28' temploid='DD62A5290185483eAF1FD9FA3E5831DE' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>CAN-ID Type</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>CAN-ID Type used for physical requests and responses</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.CanIdType</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>11-Bit</TUV>
+</ETAG>
+<ETAG v='1'>
+<TUV xml:lang='en-US'>29-Bit</TUV>
+</ETAG>
+</ENUMDEF>
+<UNSDEF id='_0BF8E378' oid='3211AAC4333A450d931C93E78EC15736' temploid='9CB5C47B6E2E44e9B77AD5DD1875CC7A' attrcatref='_0570EA80' usage='sys' v='0' df='hex'>
+<NAME>
+<TUV xml:lang='en-US'>Request CAN-ID</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>The request CAN identifier for physical requests. The hex value not only describes the identifier but also the priority of the message. The higher the number, the lower the priority. </TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.ReqCanId</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3158' oid='EFE053C8EBE54b63932BFCA43C9E1D8A' temploid='90AC1872979E494e8154AD0037E8F447' attrcatref='_0570EA80' usage='sys' v='0' df='hex'>
+<NAME>
+<TUV xml:lang='en-US'>Response CAN-ID</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>The response CAN identifier for physical responses.The response for functional requests is sent via the physical path.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.ResCanId</QUAL>
+</UNSDEF>
+<ENUMDEF id='_056FB598' oid='FACA8F4D311E4743886E5639B02BF9AF' temploid='DE6D7EC3525644cfA402FFA7692D8D64' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Functional Addressing Scheme</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Addressing Scheme used for functional requests.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.AddrSchemeFunc</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>Normal</TUV>
+</ETAG>
+</ENUMDEF>
+<ENUMDEF id='_056FB4A0' oid='2A5424B7869B49ea91BD39D5C02B0596' temploid='55B74FBE5AF34699A2B828A5DE4D84AB' attrcatref='_0570EA80' usage='sys' v='0' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Functional CAN-ID Type</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>CAN-ID Type used for functional request</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.CanIdTypeFunc</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>11-Bit</TUV>
+</ETAG>
+<ETAG v='1'>
+<TUV xml:lang='en-US'>29-Bit</TUV>
+</ETAG>
+</ENUMDEF>
+<UNSDEF id='_0BFA3260' oid='42BAEBA0D2594a77A63D46D96F01669E' temploid='354BE0599FE4449aB47AE3BFEB74AFA6' attrcatref='_0570EA80' usage='sys' v='0' df='hex'>
+<NAME>
+<TUV xml:lang='en-US'>Functional Request CAN-ID</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>The request CAN identifier for functional requests.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.ReqCanIdFunc</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3368' oid='8D26EEFE236C4cd48A9733F7096569DB' temploid='E0CBF8F9B539472d8DE58809DF8583A0' attrcatref='_0570EB50' usage='sys' v='150' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P2Client</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Timeout for the client to wait after the successful transmission of a request message for the start of incoming response messages. In UDS this is the timeout for the default session.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P2Client</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3470' oid='27B7844D773946f18A76FDFDF60BC497' temploid='37671E3C5C054523A93C33D72F2B4633' attrcatref='_0570EB50' usage='sys' v='100' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P2Server</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Performance requirement for the server to start with the response message after the reception of a request message. In UDS this is the timeout for the default session.The tester will also require the P2Server timeout, since in UDS service "DiagnosticSessionControl"returns the P2Server and P2*Server timeouts – the tester has to calculate the offset manually and has to add it to the returned P2Server and P2*Server timeouts.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P2Server</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3578' oid='871133F35B744612B84F30F8FB86A56F' temploid='97AE8A1B5FB44c0d8FA387789DB2855F' attrcatref='_0570EB50' usage='sys' v='5000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P2*Client</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Enhanced timeout for the client to wait after the reception of a negative response message with response code 78 hex for the start of incoming response messages. In UDS this is the timeout for the default session.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P2ExClient</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3680' oid='D57CAE8C044042d88838CCD153906EA3' temploid='D886A9EBD0B54fc2A1520C66D2ED14D5' attrcatref='_0570EB50' usage='sys' v='4950' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P2*Server</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Performance requirement for the server to start with the response message after the transmission of a negative response message with response code 78 hex (enhanced response timing). In UDS this is the timeout for the default session.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P2ExServer</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3788' oid='147BD98D1A7A4a008CCB4DF333E498F4' temploid='C218B7453DB148a3AB4A26C93E380E1B' attrcatref='_0570EB50' usage='sys' v='4000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>S3Client</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time between functionally addressed Tester Present request messages transmitted by the client to keep a diagnostic session other than the defaultSession active in multiple servers (functional communication) or maximum time between physically transmitted request messages to a single server (physical communication).</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.S3Client</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3890' oid='8FA387E21EF94b9aA3B8C8AE92D49200' temploid='9BCDFE77AF5344579DA4E18FDF476FF4' attrcatref='_0570EB50' usage='sys' v='5000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>S3Server</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time for the server to keep a diagnostic session other than the defaultSession active while not receiving any diagnostic request message</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.S3Server</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3998' oid='3096CC37DA71450eB0272C0D0222E8DB' temploid='75EFAFAC965F48d79620B763B46348EB' attrcatref='_0570EB50' usage='sys' v='100' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P3ClientPhys</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Minimum time for the client to wait after the successful transmission of a physically addressed request message (indicated via N_USData.con) with no response required before it can transmit the next physically addressed request message.
+Minimum value = P2Server</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P3ClientPhys</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3AA0' oid='61C7B6F4BDE14f219CB4B4534CE6E4C4' temploid='41719039AFF64b54959AC3B7ADE525BF' attrcatref='_0570EB50' usage='sys' v='100' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>P3ClientFunc</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Minimum time for the client to wait after the successful transmission of a functionally addressed request message (indicated via N_USData.con) before it can transmit the next functionally addressed request message in case no response is required or the requested data is only supported by a subset of the functionally addressed servers.
+Minimum value = P2Server.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.P3ClientFunc</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3BA8' oid='1E663F145CD743cdA90A2A3F9D8FF339' temploid='7F3D7830911A4434A701488D548CC6FC' attrcatref='_0570EB50' usage='sys' v='0' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>STmin</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>(Separation Time) defines the minimum time gap between consecutive frames.Values from 0x00 to 0x7F (0 – 127) are absolute milliseconds.Values from 0xF1 to 0xF9 are even 100 micro seconds.Every other value range is reserved and should not be used.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.StMin</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3CB0' oid='A0D3E216A0D24c4dBBDE974C8678B23C' temploid='800D694713CA42d1979FFB1A55482659' attrcatref='_0570EA80' usage='sys' v='0' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Blocksize</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>The Blocksize parameter indicates, how many consecutive frames shall be sent in a transmission before a flow control frame is sent. The number 0 tells the sender, that no more flow controls should disrupt the sending of the remaining flow controls</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.Blocksize</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3DB8' oid='068CE63359404a8eBF0F1795D73B34CF' temploid='62ACB5BAD8B943c28545F05F5C5AA618' attrcatref='_0570EB50' usage='sys' v='1000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Timeout As</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time for transmission of frame, sender side</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeoutAs</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3EC0' oid='556845FF010647b19BAF638F74335589' temploid='320978D6D3724504B693A98A133BB0DB' attrcatref='_0570EB50' usage='sys' v='1000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Timeout Ar</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time for transmission of frame, receiver side</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeoutAr</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA3FC8' oid='1A700F878AD94cf3999F3F4579849BD0' temploid='4B4BC0CF50B94267AC1576891F22FE8A' attrcatref='_0570EB50' usage='sys' v='1000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Timeout Bs</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time until reception of next flow control</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeoutBs</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA40D0' oid='E97ADBF000E74a9f9649A2DF5458AFC4' temploid='67DA0EC43C3645d280DD682781E84C39' attrcatref='_0570EB50' usage='sys' v='100' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Time Br</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time for next transmission of flow control</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeBr</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA41D8' oid='5A5E1F9E60474352BC6B33BA07AB045E' temploid='6049C97CB52C44068D6CF3368D1BBF56' attrcatref='_0570EB50' usage='sys' v='100' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Time Cs</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time until next transmission of consecutive frame</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeCs</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA42E0' oid='18237C4F106F4b4e83CEDFD111AAC36C' temploid='33CAF0D51FE4411dB24C81A98F7F5AEC' attrcatref='_0570EB50' usage='sys' v='1000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Timeout Cr</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Time until reception of next consecutive frame</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.TimeoutCr</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA43E8' oid='8CA7D333455F4829830E5D8569CC2C01' temploid='D7B6F3A7A2954e77BBF72A8A7B619AAB' attrcatref='_0570EA80' usage='sys' v='4095' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Max Length of TP Message</TUV>
+</NAME>
+<QUAL>Diagnostic_CAN.MaxLengthTpMessage</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA44F0' oid='05CA2479105947a1A90C8C64C1B5AF4E' temploid='CD97BBE1B3574ae69056849C8E73E737' attrcatref='_0570EA80' usage='sys' v='500000' df='dec'>
+<NAME>
+<TUV xml:lang='en-US'>Baudrate</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Bus Speed of the used transport media. Caution, the Bus Speed has to be set identical in all ECUs connected to one subnet.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.Baudrate</QUAL>
+</UNSDEF>
+<UNSDEF id='_0BFA4700' oid='AD7A47E6342E4f3cABB222858BD6CE87' temploid='028D380F732D4c3d87A3BE2F99F9BEDF' attrcatref='_0570EA80' usage='sys' v='0' df='hex'>
+<NAME>
+<TUV xml:lang='en-US'>CANFrameFillerByte</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Fill byte used for filling CAN frames to eight byte length.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.CANFrameFillerByte</QUAL>
+</UNSDEF>
+<ENUMDEF id='_056FB788' oid='516DEDCB5D0847b2AD6B3AB7D92884DE' temploid='B194416F950C429fADD54ABCC36F083B' attrcatref='_0570EA80' usage='sys' v='1' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>FillerByteHandling</TUV>
+</NAME>
+<DESC>
+<TUV xml:lang='en-US'>Enables use of fill bytes; if "true", fill bytes are used, otherwise DLC may be smaller than 8.</TUV>
+</DESC>
+<QUAL>Diagnostic_CAN.FillerByteHandling</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>false</TUV>
+</ETAG>
+<ETAG v='1'>
+<TUV xml:lang='en-US'>true</TUV>
+</ETAG>
+</ENUMDEF>
+</ECUATTS>
+</DEFATTS>
+<AUTHORS>
+<AUTHOR id='_0BF49B58' obs='0' responsible='1'>
+<LASTNAME>Rätz</LASTNAME>
+<FIRSTNAME>Christoph</FIRSTNAME>
+<SHORTNAME>Rz</SHORTNAME>
+<COMPANY>Vector Informatik</COMPANY>
+<DEPT>PDG</DEPT>
+<PHONE>+49 711 80670 275</PHONE>
+<FAX>+49 711 80670 299</FAX>
+<EMAIL>christoph.raetz@vector-informatik.de</EMAIL>
+</AUTHOR>
+</AUTHORS>
+<HISTITEMS>
+</HISTITEMS>
+<TARGETGROUPS>
+<TARGETGROUP oid='934D286A7B894fa6B7F09839EC20AFB7' temploid='{BB4F40AA-2B43-41b3-AC66-55BA5C9700DC}'>
+<NAME>
+<TUV xml:lang='en-US'>Development</TUV>
+</NAME>
+<QUAL>Development</QUAL>
+</TARGETGROUP>
+<TARGETGROUP oid='BACE1D1901CF4ba08B6A39D0D2C093E9' temploid='{D564A96D-0051-4730-8B4F-BF9A38DD3567}'>
+<NAME>
+<TUV xml:lang='en-US'>Manufacturing</TUV>
+</NAME>
+<QUAL>Manufacturing</QUAL>
+</TARGETGROUP>
+<TARGETGROUP oid='6E6A6769E3DA41018037745C47E3FBA0' temploid='{93A9802F-D0CA-4929-99E6-197352197D52}'>
+<NAME>
+<TUV xml:lang='en-US'>Service</TUV>
+</NAME>
+<QUAL>Service</QUAL>
+</TARGETGROUP>
+</TARGETGROUPS>
+<NEGRESCODES bl='8' bo='21' stateGroupDefault='34'>
+<NEGRESCODE id='_056E22D0' oid='E25266EF70C445168E8B3739FE2F0DBC' temploid='{5A212CD7-8053-4225-9AF5-C81256A622CB}' v='16'>
+<NAME>
+<TUV xml:lang='en-US'>General reject</TUV>
+</NAME>
+<QUAL>General_reject</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2398' oid='1B88679A6CE24b04A1DCA241BD92C1AD' temploid='{BD2975AF-378D-4c53-9BF1-C704344BB7DC}' v='17'>
+<NAME>
+<TUV xml:lang='en-US'>Service not supported</TUV>
+</NAME>
+<QUAL>Service_not_supported</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2460' oid='65B7B2CD50644bac89C47D7AE1EAF2FE' temploid='{80C2D695-E8D7-47f3-B00E-99BE5D368CD7}' v='18'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction not supported</TUV>
+</NAME>
+<QUAL>Subfunction_not_supported</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2528' oid='39CAF65E14E54028826003C91D680501' temploid='{1A51AEF2-AE78-48e6-83C4-B327A82F6B2F}' v='19'>
+<NAME>
+<TUV xml:lang='en-US'>Incorrect message length or invalid format</TUV>
+</NAME>
+<QUAL>Incorrect_message_length_or_invalid_format</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E25F0' oid='3758072AF5D94c709D0BFAB1D6E5E6E9' temploid='{96F8BF29-BE84-4f1b-8C1A-A89AD0E87A03}' v='20'>
+<NAME>
+<TUV xml:lang='en-US'>Response too long</TUV>
+</NAME>
+<QUAL>Response_too_long</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E26B8' oid='1052D15CEB0C45e7AABCE869D9E8B93C' temploid='{D554803F-2F91-42c8-849A-DC5D70A19416}' v='33'>
+<NAME>
+<TUV xml:lang='en-US'>Busy repeat request</TUV>
+</NAME>
+<QUAL>Busy_repeat_request</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2780' oid='926A465E910C442481D9320929A7F677' temploid='{49B5EF28-B74C-4eb9-A142-415EA5B3DBB6}' v='34'>
+<NAME>
+<TUV xml:lang='en-US'>Conditions not correct</TUV>
+</NAME>
+<QUAL>Conditions_not_correct</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2848' oid='A775E276ED8B496dBDD851A2498400D1' temploid='{494E1654-2EA0-4752-8D8C-A29CF4700334}' v='36'>
+<NAME>
+<TUV xml:lang='en-US'>Request sequence error</TUV>
+</NAME>
+<QUAL>Request_sequence_error</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2910' oid='857AECBFD6FB4f859013E559E2F4EF04' temploid='{F6CEC3CF-1BD9-42c3-936C-02F00969DD0A}' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>Request out of range</TUV>
+</NAME>
+<QUAL>Request_out_of_range</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E29D8' oid='447E6A2DC556493897EB00AE3332F079' temploid='{5E1B9F8B-7FE7-4eda-BDB8-C7D0FAB1F9D6}' v='51'>
+<NAME>
+<TUV xml:lang='en-US'>Security access denied</TUV>
+</NAME>
+<QUAL>Security_access_denied</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2AA0' oid='1FEB338DAAF94ef2B695AACE92E4E16B' temploid='{A81E9C63-D58E-460d-B255-61CD688B687E}' v='53'>
+<NAME>
+<TUV xml:lang='en-US'>Invalid key</TUV>
+</NAME>
+<QUAL>Invalid_key</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2B68' oid='EC64DC717AB7472e8E12C5CD8F629CEF' temploid='{714D7B28-3660-4560-B72D-3191FDD7DA29}' v='55'>
+<NAME>
+<TUV xml:lang='en-US'>Required time delay not expired</TUV>
+</NAME>
+<QUAL>Required_time_delay_not_expired</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2C30' oid='C2BD051FA4384389BE035F813ADEBB69' temploid='{14B0BA89-73D8-4dae-8590-7ED33468EE49}' v='112'>
+<NAME>
+<TUV xml:lang='en-US'>Upload / Download not accepted</TUV>
+</NAME>
+<QUAL>Upload_Download_not_accepted</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2CF8' oid='A63E115D9C324f60BFF6DD198DF64FD8' temploid='{CF094B6D-9721-4fb7-9DB6-96B37708C3D2}' v='113'>
+<NAME>
+<TUV xml:lang='en-US'>Transfer data suspended</TUV>
+</NAME>
+<QUAL>Transfer_data_suspended</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2DC0' oid='A9BD7CB5C8F54ff7800069EB94F8479C' temploid='{59AEDE24-6CED-481a-999B-E72B1804942F}' v='114'>
+<NAME>
+<TUV xml:lang='en-US'>General programming failure</TUV>
+</NAME>
+<QUAL>General_programming_failure</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2E88' oid='BF2845753F9F4476A647C5438A175DC4' temploid='{11F7148B-10F1-4e3b-923C-A4F4E629BF8F}' v='115'>
+<NAME>
+<TUV xml:lang='en-US'>Wrong block sequence counter</TUV>
+</NAME>
+<QUAL>Wrong_block_sequence_counter</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E2F50' oid='C4DE469CC7634000B2918B5C56C4FD3B' temploid='{D6DF6702-21FE-43a1-981A-C5514EE7E764}' v='120'>
+<NAME>
+<TUV xml:lang='en-US'>Request correctly received - response pending</TUV>
+</NAME>
+<QUAL>Request_correctly_received_response_pending</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E3018' oid='D8D72FA36F4D4b52A927543C2A98196E' temploid='{7A789812-B188-463c-BF48-9DA06B9D911B}' v='126'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction not supported in active session</TUV>
+</NAME>
+<QUAL>Subfunction_not_supported_in_active_session</QUAL>
+</NEGRESCODE>
+<NEGRESCODE id='_056E30E0' oid='7F8C586DEE30498f9057BEE67188DD16' temploid='{3086D7DA-6702-4cd6-B2A6-5310B08403C5}' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>Service not supported in active session</TUV>
+</NAME>
+<QUAL>Service_not_supported_in_active_session</QUAL>
+</NEGRESCODE>
+</NEGRESCODES>
+<STATEGROUPS>
+<STATEGROUP oid='63C9F2665001420199DE8BA40E75C5EC' temploid='{79248E0C-ACAC-4b55-B40C-5CB726C21152}' spec='session'>
+<NAME>
+<TUV xml:lang='en-US'>Session</TUV>
+</NAME>
+<QUAL>Session</QUAL>
+<STATE oid='45AA1A3BC7064143B5F9D036EF2F4BBD' temploid='{800CCB35-12C8-4971-A9D3-4C47BF911EC5}'>
+<NAME>
+<TUV xml:lang='en-US'>Default</TUV>
+</NAME>
+<QUAL>Default</QUAL>
+</STATE>
+<STATE oid='3DB3A5C8BDBE4b1d83F166A794190AFF' temploid='{4454F7E7-6CD8-4a7e-8A9F-717437C00161}'>
+<NAME>
+<TUV xml:lang='en-US'>Programming</TUV>
+</NAME>
+<QUAL>Programming</QUAL>
+</STATE>
+<STATE oid='986CF27AEE7D46c183CC1AC836321042' temploid='{9D13BD42-38B4-430b-B0B4-8D70F4C4FB35}'>
+<NAME>
+<TUV xml:lang='en-US'>Extended</TUV>
+</NAME>
+<QUAL>Extended</QUAL>
+</STATE>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</STATEGROUP>
+<STATEGROUP oid='F137BF378AE848f7AF9B730C130731B0' temploid='{66020251-8683-4b77-B92D-F64533BA7CFB}' spec='security'>
+<NAME>
+<TUV xml:lang='en-US'>SecurityAccess</TUV>
+</NAME>
+<QUAL>SecurityAccess</QUAL>
+<STATE oid='99165630116249aaBF449E21666046D3' temploid='{87277718-912E-4d13-A8C6-4AD385C8D121}'>
+<NAME>
+<TUV xml:lang='en-US'>Locked</TUV>
+</NAME>
+<QUAL>Locked</QUAL>
+</STATE>
+<STATE oid='40E7003D0FE04a579ECF07C957030389' temploid='{D7FB18DD-DF26-4055-9BF9-C197DE057C8B}'>
+<NAME>
+<TUV xml:lang='en-US'>Unlocked L1</TUV>
+</NAME>
+<QUAL>UnlockedL1</QUAL>
+</STATE>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+</STATEGROUP>
+</STATEGROUPS>
+<VCKMGR vckmode='none' vckmin='0' vckmax='0' vcknext='0'/>
+<DATATYPES>
+<TEXTTBL id='_05693868' oid='474B0F1C77064d569ACD9699755275A7' temploid='{1130C14A-9D03-4472-AADE-65898E9C88E7}' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ-NR</TUV>
+</NAME>
+<QUAL>SID_RQ_NR</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='255'>
+<TEXT>
+<TUV xml:lang='en-US'>Service IDs</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693968' oid='413B69F6A9EE4614AAD0992EE2B9EA14' temploid='08089E506D074352BFAAF7597666FEC4' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction EcuReset</TUV>
+</NAME>
+<QUAL>Subfunction_EcuReset</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>hardReset</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>keyOffOnReset</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>softReset</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='4' e='4'>
+<TEXT>
+<TUV xml:lang='en-US'>enableRapidPowerShutDown</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='5' e='5'>
+<TEXT>
+<TUV xml:lang='en-US'>disableRapidPowerShutDown</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64' e='95'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='96' e='126'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693A68' oid='591786EBC2524629AAF11C47FB538B21' temploid='9CCB4E84AA704c9aBADFF610A5D1A5B2' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction DiagnosticSessionControl</TUV>
+</NAME>
+<QUAL>Subfunction_DiagnosticSessionControl</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>defaultSession</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>programmingSession</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>extendedDiagnosticSession</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='4' e='4'>
+<TEXT>
+<TUV xml:lang='en-US'>safetySystemDiagnosticSession</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64' e='95'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='96' e='126'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693B68' oid='70ED425B22BD4f89909E211A0598D57F' temploid='79E8E0139ACB43ceB9664B0B5240D725' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction SecurityAccess</TUV>
+</NAME>
+<QUAL>Subfunction_SecurityAccess</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='1' e='66'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='97' e='126'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693C68' oid='B2AD9F09769E4ae2AC18A3F89DFA3C57' temploid='7619AEFF08EA403cAD7326CFAEE27C6A' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction CommunicationControl</TUV>
+</NAME>
+<QUAL>Subfunction_CommunicationControl</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='0'>
+<TEXT>
+<TUV xml:lang='en-US'>enableRxAndTx</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>enableRxAndDisableTx</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>disableRxAndEnableTx</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>disableRxAndTx</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64' e='95'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='96' e='126'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693D68' oid='72222F96E7D143eb9D05F290FC494BE1' temploid='D808BEE8104B4682A509274E4E240D7B' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Subfunction ControlDTCSettings</TUV>
+</NAME>
+<QUAL>Subfunction_ControlDTCSettings</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>on</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>off</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64' e='95'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='96' e='126'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693E68' oid='11405112E4FB4ef6879CB52DD0BE8CDE' temploid='78050EF48AFD47f48809EFDFA2216F21' bm='65535'>
+<NAME>
+<TUV xml:lang='en-US'>DataIdentifier</TUV>
+</NAME>
+<QUAL>DataIdentifier</QUAL>
+<CVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='256' e='61439'>
+<TEXT>
+<TUV xml:lang='en-US'>VehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61440' e='61455'>
+<TEXT>
+<TUV xml:lang='en-US'>networkConfigurationDataForTractorTrailerApplicationDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61456' e='61695'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61696' e='61823'>
+<TEXT>
+<TUV xml:lang='en-US'>identificationOptionVehicleManufacturerSpecificDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61824' e='61824'>
+<TEXT>
+<TUV xml:lang='en-US'>BootSoftwareIdentificationDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61825' e='61825'>
+<TEXT>
+<TUV xml:lang='en-US'>applicationSoftwareIdentificationDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61826' e='61826'>
+<TEXT>
+<TUV xml:lang='en-US'>applicationDataIdentificationDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61827' e='61827'>
+<TEXT>
+<TUV xml:lang='en-US'>bootSoftwareFingerprintDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61828' e='61828'>
+<TEXT>
+<TUV xml:lang='en-US'>applicationSoftwareFingerprintDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61829' e='61829'>
+<TEXT>
+<TUV xml:lang='en-US'>applicationDataFingerprintDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61830' e='61830'>
+<TEXT>
+<TUV xml:lang='en-US'>ActiveDiagnosticSessionDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61831' e='61831'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSparePartNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61832' e='61832'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerECUSoftwareNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61833' e='61833'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerECUSoftwareVersionNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61834' e='61834'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierIdentifierDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61835' e='61835'>
+<TEXT>
+<TUV xml:lang='en-US'>ECUManufacturingDateDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61836' e='61836'>
+<TEXT>
+<TUV xml:lang='en-US'>ECUSerialNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61837' e='61837'>
+<TEXT>
+<TUV xml:lang='en-US'>supportedFunctionalUnitsDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61838' e='61838'>
+<TEXT>
+<TUV xml:lang='en-US'>VehicleManufacturerKitAssemblyPartNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61840' e='61840'>
+<TEXT>
+<TUV xml:lang='en-US'>VINDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61841' e='61841'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerECUHardwareNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61842' e='61842'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierECUHardwareNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61843' e='61843'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierECUHardwareVersionNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61844' e='61844'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierECUSoftwareNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61845' e='61845'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierECUSoftwareVersionNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61846' e='61846'>
+<TEXT>
+<TUV xml:lang='en-US'>exhaustRegulationOrTypeApprovalNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61847' e='61847'>
+<TEXT>
+<TUV xml:lang='en-US'>systemNameOrEngineTypeDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61848' e='61848'>
+<TEXT>
+<TUV xml:lang='en-US'>repairShopCodeOrTesterSerialNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61849' e='61849'>
+<TEXT>
+<TUV xml:lang='en-US'>programmingDateDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61850' e='61850'>
+<TEXT>
+<TUV xml:lang='en-US'>calibrationRepairShopCodeOrCalibrationEquipmentSerialNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61851' e='61851'>
+<TEXT>
+<TUV xml:lang='en-US'>calibrationDateDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61852' e='61852'>
+<TEXT>
+<TUV xml:lang='en-US'>calibrationEquipmentSoftwareNumberDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61853' e='61853'>
+<TEXT>
+<TUV xml:lang='en-US'>ECUInstallationDateDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61854' e='61854'>
+<TEXT>
+<TUV xml:lang='en-US'>ODXFileDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61855' e='61855'>
+<TEXT>
+<TUV xml:lang='en-US'>EntityDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61856' e='61935'>
+<TEXT>
+<TUV xml:lang='en-US'>identificationOptionVehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61945' e='61951'>
+<TEXT>
+<TUV xml:lang='en-US'>identificationOptionSystemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61952' e='62207'>
+<TEXT>
+<TUV xml:lang='en-US'>periodicDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='62208' e='62463'>
+<TEXT>
+<TUV xml:lang='en-US'>DynamicallyDefinedDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='62464' e='62719'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='62720' e='62975'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='62976' e='63231'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDMonitorDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='63232' e='63487'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDMonitorDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='63488' e='63743'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDInfoTypeDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='63744' e='63999'>
+<TEXT>
+<TUV xml:lang='en-US'>TachographDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64000' e='64015'>
+<TEXT>
+<TUV xml:lang='en-US'>AirbagDeploymentDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64016' e='64255'>
+<TEXT>
+<TUV xml:lang='en-US'>SafetySystemDataIdentifier</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64256' e='64767'>
+<TEXT>
+<TUV xml:lang='en-US'>ReservedForLegislativeUse</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='64768' e='65279'>
+<TEXT>
+<TUV xml:lang='en-US'>SystemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05693F68' oid='FB0CE909111E4032845D9C55DE5EDFFC' temploid='1C279276DE2A4b078D66D5AE0AE7C718' bm='65535'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineIdentifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+<CVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='256' e='511'>
+<TEXT>
+<TUV xml:lang='en-US'>TachographTestIds</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='512' e='57343'>
+<TEXT>
+<TUV xml:lang='en-US'>vehicleManufacturerSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='57344' e='57855'>
+<TEXT>
+<TUV xml:lang='en-US'>OBDTestIds</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='57856' e='57856'>
+<TEXT>
+<TUV xml:lang='en-US'>DeployLoopRoutineID</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='57857' e='58111'>
+<TEXT>
+<TUV xml:lang='en-US'>SafetySystemRoutineIDs</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='61440' e='65279'>
+<TEXT>
+<TUV xml:lang='en-US'>systemSupplierSpecific</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='65280' e='65280'>
+<TEXT>
+<TUV xml:lang='en-US'>eraseMemory</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='65281' e='65281'>
+<TEXT>
+<TUV xml:lang='en-US'>checkProgrammingDependencies</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='65282' e='65282'>
+<TEXT>
+<TUV xml:lang='en-US'>eraseMirrorMemoryDTCs</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<TEXTTBL id='_05694068' oid='1AB42F2F10E84b3b9283901BA4AA427C' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>CommunicationControlType</TUV>
+</NAME>
+<QUAL>CommunicationControlType</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>Enable Rx And Disable Tx</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>Disable Rx And Tx</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<IDENT id='_05694168' oid='F5D6BCE27DC94689AD14462063F1191C' temploid='F5D6BCE27DC94689AD14462063F1191C' bm='15'>
+<NAME>
+<TUV xml:lang='en-US'>CompressionMethod</TUV>
+</NAME>
+<QUAL>CompressionMethod</QUAL>
+<CVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05694268' oid='D1749C0ED651458887D7CE45282F9F73' temploid='D1749C0ED651458887D7CE45282F9F73' bm='15'>
+<NAME>
+<TUV xml:lang='en-US'>EncryptionMethod</TUV>
+</NAME>
+<QUAL>EncryptionMethod</QUAL>
+<CVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<TEXTTBL id='_05694368' oid='6EECBC1684C14a128AB188267FE83DD7' temploid='6EECBC1684C14a128AB188267FE83DD7' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>yes/no [B]</TUV>
+</NAME>
+<QUAL>yes_no_B</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='0'>
+<TEXT>
+<TUV xml:lang='en-US'>yes</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='1' e='255'>
+<TEXT>
+<TUV xml:lang='en-US'>no</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<IDENT id='_05694468' oid='1BD1DD8D7AA842d58E838F6B41E93FBC' temploid='1BD1DD8D7AA842d58E838F6B41E93FBC' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>MemoryBlockSize</TUV>
+</NAME>
+<QUAL>MemoryBlockSize</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='dec' qty='field' sz='no' minsz='1' maxsz='8'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='dec' qty='field' sz='no' minsz='1' maxsz='8'/>
+</IDENT>
+<IDENT id='_05694568' oid='B39361A47EC94ad1A128F40AB6BDCC4D' temploid='B39361A47EC94ad1A128F40AB6BDCC4D' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>MemoryAddressAndSize</TUV>
+</NAME>
+<QUAL>MemoryAddressAndSize</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='2' maxsz='16'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='2' maxsz='16'/>
+</IDENT>
+<LINCOMP id='_05694668' oid='BF15F0E3804E4924AF010DF90DF9DEFE' temploid='BF15F0E3804E4924AF010DF90DF9DEFE' bm='65535'>
+<NAME>
+<TUV xml:lang='en-US'>Time P2Ex</TUV>
+</NAME>
+<QUAL>Time_P2Ex</QUAL>
+<CVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='0' maxsz='255'/>
+<PVALUETYPE bl='64' bo='21' enc='dbl' sig='0' df='dec' qty='atom' sz='no' minsz='0' maxsz='255'>
+<UNIT>ms</UNIT>
+</PVALUETYPE>
+<COMP f='10' o='0'>
+</COMP>
+</LINCOMP>
+<IDENT id='_05694768' oid='A04A0CABD60A4db292471E89D5C14BD7' temploid='A04A0CABD60A4db292471E89D5C14BD7' bm='65535'>
+<NAME>
+<TUV xml:lang='en-US'>Time P2</TUV>
+</NAME>
+<QUAL>Time_P2</QUAL>
+<CVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'>
+<UNIT>ms</UNIT>
+</CVALUETYPE>
+<PVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'>
+<UNIT>ms</UNIT>
+</PVALUETYPE>
+</IDENT>
+<TEXTTBL id='_05694868' oid='3D17C6C7F9F44da0994D821FC596FCBB' temploid='3D17C6C7F9F44da0994D821FC596FCBB' bm='1'>
+<NAME>
+<TUV xml:lang='en-US'>don't control/control</TUV>
+</NAME>
+<QUAL>don_t_control_control</QUAL>
+<CVALUETYPE bl='1' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='0'>
+<TEXT>
+<TUV xml:lang='en-US'>don't control</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>control</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<IDENT id='_05694968' oid='F17569B5FA5244608EEDEB0D7E92C33C' temploid='F17569B5FA5244608EEDEB0D7E92C33C' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Unsigned 1Byte</TUV>
+</NAME>
+<QUAL>Unsigned_1Byte</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05694A68' oid='5514EB4A023F47e0B3586717DE6A7535' temploid='5514EB4A023F47e0B3586717DE6A7535' bm='15'>
+<NAME>
+<TUV xml:lang='en-US'>Unsigned 4Bit</TUV>
+</NAME>
+<QUAL>Unsigned_4Bit</QUAL>
+<CVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='4' bo='21' enc='uns' sig='0' df='dec' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05694B68' oid='B1CE45C1944947d0B24A18332ACFE381' temploid='B1CE45C1944947d0B24A18332ACFE381' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump 1Byte</TUV>
+</NAME>
+<QUAL>HexDump_1Byte</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05694C68' oid='80EB9D0E701346a6A3F5FB21B80A7E48' temploid='80EB9D0E701346a6A3F5FB21B80A7E48' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>StatusRecord</TUV>
+</NAME>
+<QUAL>StatusRecord</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='0' maxsz='100'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='0' maxsz='100'/>
+</IDENT>
+<IDENT id='_05694D68' oid='5E45A292A3984024A26DE26E3087BD2C' temploid='5E45A292A3984024A26DE26E3087BD2C' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>OptionRecord</TUV>
+</NAME>
+<QUAL>OptionRecord</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='0' maxsz='3'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='0' maxsz='3'/>
+</IDENT>
+<TEXTTBL id='_05694E68' oid='9E5DFE7B3E44445d9642FE490041E001' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>Security Class</TUV>
+</NAME>
+<QUAL>Security_Class</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='0'>
+<TEXT>
+<TUV xml:lang='en-US'>Security Class none</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>Security Class C</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>Security Class CC</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>Security Class CCC</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<IDENT id='_05694F68' oid='C7F70332E89548efBC9606F462381093' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump [1..1024]</TUV>
+</NAME>
+<QUAL>HexDump_1_1024</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='1' maxsz='1024'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='1' maxsz='1024'/>
+</IDENT>
+<IDENT id='_05695068' oid='F33E79031B6B4887891F18C9160EDC33' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>ASCII [10]</TUV>
+</NAME>
+<QUAL>ASCII_10</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='10' maxsz='10'/>
+<PVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='10' maxsz='10'/>
+</IDENT>
+<IDENT id='_05695168' oid='10190CF835584a0b97F0421DBFE26EBE' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>ASCII [2]</TUV>
+</NAME>
+<QUAL>ASCII_2</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='2' maxsz='2'/>
+<PVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='2' maxsz='2'/>
+</IDENT>
+<IDENT id='_05695268' oid='0B9C94BF27564724B05E7916A771DD2B' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>HexDumo [8]</TUV>
+</NAME>
+<QUAL>HexDumo_8</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='8' maxsz='8'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='8' maxsz='8'/>
+</IDENT>
+<IDENT id='_05695368' oid='AE4308D6E9604e78ACD5FB46014AD596' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump [4]</TUV>
+</NAME>
+<QUAL>HexDump_4</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='4' maxsz='4'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='4' maxsz='4'/>
+</IDENT>
+<IDENT id='_05695468' oid='470DA4A2CFE84f55BCB0212DE6B08F5D' bm='4294967295'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump (4Byte)</TUV>
+</NAME>
+<QUAL>HexDump_4Byte</QUAL>
+<CVALUETYPE bl='32' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='32' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05695568' oid='CE75A86B2329422681512F3C52BC042A' bm='65535'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump (2Byte)</TUV>
+</NAME>
+<QUAL>HexDump_2Byte</QUAL>
+<CVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+</IDENT>
+<IDENT id='_05695668' oid='7DAB2723244744a482B0D2B6BB46CFA0' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>HexDump [4..2048]</TUV>
+</NAME>
+<QUAL>HexDump_4_2048</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='4' maxsz='2048'/>
+<PVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='4' maxsz='2048'/>
+</IDENT>
+<TEXTTBL id='_05695768' oid='27EA8AFCC61F40b59DC3F9C4E5BB85A5' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>CheckProgrammingDependenciesResult</TUV>
+</NAME>
+<QUAL>CheckProgrammingDependenciesResult</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TEXTMAP s='0' e='0'>
+<TEXT>
+<TUV xml:lang='en-US'>Routine Completed successfully</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='1' e='1'>
+<TEXT>
+<TUV xml:lang='en-US'>General Error</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='2' e='2'>
+<TEXT>
+<TUV xml:lang='en-US'>Not all mandatory blocks present</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='3' e='3'>
+<TEXT>
+<TUV xml:lang='en-US'>SwSw incompatibility</TUV>
+</TEXT>
+</TEXTMAP>
+<TEXTMAP s='4' e='4'>
+<TEXT>
+<TUV xml:lang='en-US'>HwSw incompatibility</TUV>
+</TEXT>
+</TEXTMAP>
+</TEXTTBL>
+<IDENT id='_05695868' oid='7123DCF2E1FA4bc79A6C99A2C973EAB9' bm='255'>
+<NAME>
+<TUV xml:lang='en-US'>SerialNumber</TUV>
+</NAME>
+<QUAL>SerialNumber</QUAL>
+<CVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='4' maxsz='8'/>
+<PVALUETYPE bl='8' bo='21' enc='asc' sig='0' df='text' qty='field' sz='no' minsz='4' maxsz='8'/>
+</IDENT>
+<STRUCTDT id='_0BFA45F8' oid='354ECB015D924902BC223EDDDE417B77' bm='4294967295'>
+<NAME>
+<TUV xml:lang='en-US'>FlashAttributes</TUV>
+</NAME>
+<QUAL>FlashAttributes</QUAL>
+<CVALUETYPE bl='8' bo='12' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='1' maxsz='1'/>
+<PVALUETYPE bl='8' bo='12' enc='uns' sig='0' df='hex' qty='field' sz='no' minsz='1' maxsz='1'/>
+<DATAOBJ oid='E40B826473D3465aA3573548C5835C68' spec='no' dtref='_05694068'>
+<NAME>
+<TUV xml:lang='en-US'>CommunicationControlType</TUV>
+</NAME>
+<QUAL>CommunicationControlType</QUAL>
+</DATAOBJ>
+</STRUCTDT>
+</DATATYPES>
+<DOCTMPL oid='4947D94199C543abB6B7D2E0AD479695' saveno='8'>
+<NAME>
+<TUV xml:lang='en-US'>SsangYong UDS</TUV>
+</NAME>
+<QUAL>SsangYong_UDS</QUAL>
+<LABEL>0.5</LABEL>
+</DOCTMPL>
+<RECORDTMPLS>
+<RECORDTMPL spec='faultMemory'>
+<CVALUETYPE bl='24' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='0' maxsz='255'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+<TRRECORDITEMTMPL id='_0BFA4A18' oid='C1B3105F8B87431f93E8690CA8B6EC31' temploid='{9DF7F4E6-EFE5-4c11-8BB7-84942DD6CD7C}' mayBeDup='1' conv='opt'>
+<NAME>
+<TUV xml:lang='en-US'>Set Condition</TUV>
+</NAME>
+<QUAL>SetCondition</QUAL>
+</TRRECORDITEMTMPL>
+<TRRECORDITEMTMPL id='_0BFA4B20' oid='631FF85AEEC04c25972B45A5DF9D5D92' temploid='{0D1B721A-9F64-4e0a-A195-EFA82B571130}' mayBeDup='1' conv='opt'>
+<NAME>
+<TUV xml:lang='en-US'>Reset condition &#38; self healing</TUV>
+</NAME>
+<QUAL>ResetCondition</QUAL>
+</TRRECORDITEMTMPL>
+<ENUMRECORDITEMTMPL id='_056FF2F8' oid='A1E38EC9955E48af9FB98E7EC45FF971' temploid='{2C1F7058-4E16-4015-ACD4-2790A0E08C37}' mayBeDup='1' conv='req' v='5' sort='id'>
+<NAME>
+<TUV xml:lang='en-US'>Corrective action</TUV>
+</NAME>
+<QUAL>CorrectiveAction</QUAL>
+<ETAG v='0'>
+<TUV xml:lang='en-US'>Replace ECU</TUV>
+</ETAG>
+<ETAG v='1'>
+<TUV xml:lang='en-US'>Check wiring connector</TUV>
+</ETAG>
+<ETAG v='2'>
+<TUV xml:lang='en-US'>Check wiring</TUV>
+</ETAG>
+<ETAG v='3'>
+<TUV xml:lang='en-US'>Check power supply</TUV>
+</ETAG>
+<ETAG v='4'>
+<TUV xml:lang='en-US'>Update software</TUV>
+</ETAG>
+<ETAG v='5'>
+<TUV xml:lang='en-US'>No known corrective action</TUV>
+</ETAG>
+<ETAG v='6'>
+<TUV xml:lang='en-US'>See special instruction</TUV>
+</ETAG>
+</ENUMRECORDITEMTMPL>
+<TRRECORDITEMTMPL id='_0BFA4C28' oid='CAC0672FE19944c3B2B3C48497A4E82A' temploid='{99240899-F037-4d89-883E-ED655942A979}' mayBeDup='1' conv='opt'>
+<NAME>
+<TUV xml:lang='en-US'>Special instruction</TUV>
+</NAME>
+<QUAL>SpecialInstruction</QUAL>
+</TRRECORDITEMTMPL>
+</RECORDTMPL>
+</RECORDTMPLS>
+<UNSUPPSRVNEG oid='E8E7EB4C8FBF43e3A57B002E06D3DE53' temploid='{372C73D4-FA9B-4def-8043-9AB124BA7B04}'>
+<NAME>
+<TUV xml:lang='en-US'>Negative Response Codes for unsupported services</TUV>
+</NAME>
+<QUAL>UNSUPPORTED_SERVICE_NR</QUAL>
+<CONSTCOMP id='_0570BA30' oid='F11B2A83A5D74d72AFFD181EE5316266' temploid='{317B82F6-6296-44d0-B514-46F6764DFB93}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0570BB20' oid='C9D22F1D1D1D40e19237578FC429C14B' temploid='{33FD419C-1BEB-43b4-8AA2-102BA8963D8C}' must='1' spec='id' dtref='_05693868'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ-NR</TUV>
+</NAME>
+<QUAL>SID_RQ_NR</QUAL>
+</STATICCOMP>
+<CONTENTCOMP id='_056FF4C8' oid='101AB37B8A014f77B17370FDEDB9556A' temploid='{A1F80F4F-AC0F-4752-B21A-9657CD53C072}' must='1'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE TABLE</TUV>
+</NAME>
+<QUAL>RESPONSE_CODE_TABLE</QUAL>
+<SIMPLECOMPCONT oid='7E8DB1940DCA4199A432A39A429C34F7' temploid='{E25D7AC9-205E-48ac-B5A7-3D54121F7149}'>
+<SPECDATAOBJ oid='EF284530C7614129AFD37111EF28E8BC' temploid='{B0843B09-4F92-427e-AED9-6865A5C09AE4}'>
+<NAME>
+<TUV xml:lang='en-US'>NEGATIVE RESPONSE CODES</TUV>
+</NAME>
+<QUAL>NRC</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2398'/>
+<NEGRESCODEPROXY idref='_056E2460'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</CONTENTCOMP>
+</UNSUPPSRVNEG>
+<PROTOCOLSERVICES>
+<PROTOCOLSERVICE id='_0BF89EF8' oid='34BFA6364C084e28BD999060DEDC07ED' temploid='{983175F8-D5F7-4ead-8D51-AE6FB12B7D23}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(10) DiagnosticSessionControl</TUV>
+</NAME>
+<QUAL>DSC</QUAL>
+<REQ oid='337AC1C1415447a89FF48C8BACB3C02B' temploid='{12AA22DC-7C5B-4345-A31C-933ED0834AD9}'>
+<NAME>
+<TUV xml:lang='en-US'>STDS-RQ</TUV>
+</NAME>
+<QUAL>STDS_RQ</QUAL>
+<CONSTCOMP id='_0570BC10' oid='8C4DBE4ABD204fef9C953C9075A62421' temploid='{94036327-73F2-4991-8143-4D5E6D533CD4}' must='1' spec='sid' bl='8' v='16'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0570BD00' oid='3488FE1B86D84cceB4D67887C9BE6D03' temploid='{581A5D03-08C7-48de-823B-561ADC8C2C4B}' must='1' spec='sub' dtref='_05693A68' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>DiagSessionType</QUAL>
+</STATICCOMP>
+</REQ>
+<POS oid='F914BB69CE264a4dABC3E9F04A95D9A6' temploid='{F41A6B89-B219-448c-BAE3-D5954780A1FC}'>
+<NAME>
+<TUV xml:lang='en-US'>STDS-PR</TUV>
+</NAME>
+<QUAL>STDS_PR</QUAL>
+<CONSTCOMP id='_0570BDF0' oid='F3911B8FC7434a9cA40E3E4D9E3BE6CE' temploid='{3D3AFC30-328D-4c99-A237-5A5CD65CF04A}' must='1' spec='sid' bl='8' v='80'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0570BEE0' oid='4C4FC6FF9DF34ebeB21298D4AF778A92' temploid='{F58F0C59-D3C8-4d73-A662-70BE1872BFA8}' must='1' spec='sub' dtref='_05693A68'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>DiagSessionType</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFF0020' oid='6DF3281733954209BD36C647C2CF0239' temploid='{BB33D933-927A-43f7-8A84-C348C0991BA6}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>SessionParameterRecord</TUV>
+</NAME>
+<QUAL>SessionParamRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='A38CE37ED66D4c33A0C699A40B26520C' temploid='{3F9D05D3-1DEF-4faf-81AC-C017A79A3B6F}'>
+<NAME>
+<TUV xml:lang='en-US'>STDS-NR</TUV>
+</NAME>
+<QUAL>STDS_NR</QUAL>
+<CONSTCOMP id='_0BFF0110' oid='D2C242A21A974eeaA7043E072B968C59' temploid='{DBF3698E-7DEE-490d-A272-186A97C6ADF1}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFF0200' oid='C02FB83F99824b3cAF0F065F0E892139' temploid='{5E80660D-DCB6-4b80-BD92-31A8A856EA62}' must='1' spec='sid' bl='8' v='16'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFF02F0' oid='F06DEBE012F540eeB2ABB038327F0D5E' temploid='{47BC107F-2D00-458d-97B0-2F8DE765AB85}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BFBAEB0' oid='8B55AEE210044f0592B87751967FBFD6' temploid='{2DF8D6AA-8D5B-4f2f-8846-CB4466BAC8BA}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(11) EcuReset</TUV>
+</NAME>
+<QUAL>ER</QUAL>
+<REQ oid='5C06B3ED41B74d1b8E2DD493BFF3AF1B' temploid='{ABF02049-0D15-4bfa-9DFF-2E8D61EAE193}'>
+<NAME>
+<TUV xml:lang='en-US'>ER-RQ</TUV>
+</NAME>
+<QUAL>ER_RQ</QUAL>
+<CONSTCOMP id='_0BFF03E0' oid='558A743A667A4118904C3D97700E4C58' temploid='{A35EC745-A56B-43ee-A36A-BA3A3638815B}' must='1' spec='sid' bl='8' v='17'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF04D0' oid='5D3ADE629A224025B8B1A14D4E5349FB' temploid='{9B970C70-0D19-467e-A548-97F4BC09C18E}' must='1' spec='sub' dtref='_05693968'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ResetType</QUAL>
+</STATICCOMP>
+</REQ>
+<POS oid='D3B5979A839041a1A6CAAFBC43428CD3' temploid='{233C82B1-AA3D-4f51-B3B6-F92914ED2B48}'>
+<NAME>
+<TUV xml:lang='en-US'>ER-PR</TUV>
+</NAME>
+<QUAL>ER_PR</QUAL>
+<CONSTCOMP id='_0BFF05C0' oid='9D474CFDC19A42beA5812C8373C07E89' temploid='{5D4912F0-04C9-49a4-8164-A2733679B6C5}' must='1' spec='sid' bl='8' v='81'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF06B0' oid='D210289E2C64421eB9FC7586401B9AD9' temploid='{07FA1142-E231-4d20-8C5E-362951AFBD98}' must='1' spec='sub' dtref='_05693968'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ResetType</QUAL>
+</STATICCOMP>
+</POS>
+<NEG oid='34D2CD88C7DA473687F6E8134571A197' temploid='{60D4E08D-FA1C-4216-AEDC-18B5A0C89371}'>
+<NAME>
+<TUV xml:lang='en-US'>ER-NR</TUV>
+</NAME>
+<QUAL>ER_NR</QUAL>
+<CONSTCOMP id='_0BFF07A0' oid='9258AC7CDFFF4be29B37721AE74B036D' temploid='{593C9F76-584E-40a5-B75D-822104B0B0C2}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFF0890' oid='64C12C9280EC4d82841A9D0C5339DB39' temploid='{C9E47B5D-6DC4-4e92-8B57-224CAF4701A2}' must='1' spec='sid' bl='8' v='17'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFF0980' oid='EB46E0D204944497843C906D60C69890' temploid='{927CB775-F6FD-4b21-9798-0AEE9EC8CAC0}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF8DD98' oid='2D5439B3612E4d2a83514207F296D378' temploid='{8FC6AE38-830C-4f9d-8D85-26C88734B6A5}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(27) SecurityAccess - Request seed</TUV>
+</NAME>
+<QUAL>SA_RS</QUAL>
+<REQ oid='C81172BC4D1E4584BA8A853794A68ADB' temploid='{F230C4B1-51C8-4414-A56E-196A56684D2F}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_RSD-RQ</TUV>
+</NAME>
+<QUAL>SA_RSD_RQ</QUAL>
+<CONSTCOMP id='_0BFF0A70' oid='208C9FA174774cbc9797BCBB47273A59' temploid='{E3D2CABD-4E69-4b00-9A59-9FCE1CB7979B}' must='1' spec='sid' bl='8' v='39'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF0B60' oid='2AFF92327E0D45a287C16D0F76097D41' temploid='{0178D2BB-04F9-458a-9E5F-DF940BA60BEB}' must='1' spec='accm' dtref='_05693B68' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SecurityAccessType</QUAL>
+</STATICCOMP>
+</REQ>
+<POS oid='74B857B4080148acB76AD6674958001D' temploid='{0E14B963-A799-488b-A412-FC517ABCAB6F}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_RSD-PR</TUV>
+</NAME>
+<QUAL>SA_RSD_PR</QUAL>
+<CONSTCOMP id='_0BFF0C50' oid='55F3328ECB9B4e6eA0AC55F99548B8E3' temploid='{A2F8C0BE-1647-4611-9173-7BF248C37414}' must='1' spec='sid' bl='8' v='103'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF0D40' oid='EFB2F43D30BF4daeB473881A68A034F5' temploid='{80C72091-19A0-49c4-BC54-7B407E512ADF}' must='1' spec='accm' dtref='_05693B68'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SecurityAccessType</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFF0E30' oid='7963EDB6515D47eaBF6E3600AA9B40F0' temploid='{B2024426-45C5-4a56-B1C5-EF8AC0593FD1}' must='1' dest='data' minbl='16'>
+<NAME>
+<TUV xml:lang='en-US'>Seed</TUV>
+</NAME>
+<QUAL>Seed</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='AA130EAB02FC466cB23D5AD08E1F17E4' temploid='{75052912-F66B-427c-BEE7-BF18A361963D}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_RSD-NR</TUV>
+</NAME>
+<QUAL>SA_RSD_NR</QUAL>
+<CONSTCOMP id='_0BFF0F20' oid='F6B4197017C7427d8CCEFF7C2DA34996' temploid='{11505798-8C37-4148-9C9E-2A7933C21EF1}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFF1010' oid='020F97DE51614d13A7188D163C5CCC3E' temploid='{9D624AA5-3297-4f7d-A833-47B7F15DC6FE}' must='1' spec='sid' bl='8' v='39'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFF1100' oid='96702B0E8AB045af9FB246D56D6B0FED' temploid='{A9F18340-0604-4c25-A844-6E30AB30A3D4}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E2B68'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BFCBFE8' oid='814BE93903264be7A8F257177A3F9952' temploid='{8C03504D-A0A3-410b-96C3-7BC4DECA8A30}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(27) SecurityAccess - Send key</TUV>
+</NAME>
+<QUAL>SA_SK</QUAL>
+<REQ oid='5256073ED8EC4179BED81D1EE7318984' temploid='{C1921A7F-AE08-4a91-ABE3-8FFD0664174F}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_SK-RQ</TUV>
+</NAME>
+<QUAL>SA_SK_RQ</QUAL>
+<CONSTCOMP id='_0BFF11F0' oid='AECEF5AEC5C64008AC33A9DCCB7416C6' temploid='{FFEE2150-B299-4f94-B251-0237E6E71EF2}' must='1' spec='sid' bl='8' v='39'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF12E0' oid='85743E3F6A3842a2AE33D2511E09D979' temploid='{670E9D0E-8255-446d-812F-F96E61A8A4D3}' must='1' spec='sub' dtref='_05693B68' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SecurityAccessType</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFF13D0' oid='31786020397A4614A6D47A36CEAA3791' temploid='{162A7209-6C7F-4258-9606-30B866C25F77}' must='1' dest='data' minbl='16'>
+<NAME>
+<TUV xml:lang='en-US'>Key</TUV>
+</NAME>
+<QUAL>Key</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='197CFFCEFBD84494AC0801F3C82D6236' temploid='{305BCA2C-A17B-423e-AC55-49BB2681B906}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_SK-PR</TUV>
+</NAME>
+<QUAL>SA_SK_PR</QUAL>
+<CONSTCOMP id='_0BFF14C0' oid='FA084A8ABE9C4b41A7E1E01AF906D584' temploid='{986CD1ED-1794-486b-8F59-0B5B3AAA297D}' must='1' spec='sid' bl='8' v='103'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF15B0' oid='FBAB09D36DAE4ac8922D3FB9F5582DE5' temploid='{336B63DD-0D0F-489f-ACFC-194BABB7ACC6}' must='1' spec='sub' dtref='_05693B68'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SecurityAccessType</QUAL>
+</STATICCOMP>
+</POS>
+<NEG oid='8E62F99716F84051972865C4D47A0851' temploid='{4707EE93-B476-47df-AE87-407F165B89A7}'>
+<NAME>
+<TUV xml:lang='en-US'>SA_SK-NR</TUV>
+</NAME>
+<QUAL>SA_SK_NR</QUAL>
+<CONSTCOMP id='_0BFF16A0' oid='DC3B1F1C1C8D4818A82BFAA51F220692' temploid='{5A870EBF-1A7D-4703-BD06-5EDE2269E64B}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFF1790' oid='6D6AF98EA3E0421785694BD39E64E94F' temploid='{EF8275A8-CBF2-4bea-8AA7-BC951D5EB014}' must='1' spec='sid' bl='8' v='39'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFF1880' oid='CC41BD193E294153B9E5F42ED788B91B' temploid='{6F61404B-A8F9-4b3a-BE79-F6FAACABA599}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E2AA0'/>
+<NEGRESCODEPROXY idref='_056E2B68'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BFF8808' oid='9AE77CC0F3BB453c82A86A9C9741C059' temploid='{F9230D56-435C-46bb-9318-DAAA0B0EEC93}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(28) CommunicationControl</TUV>
+</NAME>
+<QUAL>CC</QUAL>
+<REQ oid='2664CC3CD7FB4fedB9075442FC1DEDB0' temploid='{3B535501-AF51-4db3-8B35-E5F3D408B872}'>
+<NAME>
+<TUV xml:lang='en-US'>CC-RQ</TUV>
+</NAME>
+<QUAL>CC_RQ</QUAL>
+<CONSTCOMP id='_0BFF1970' oid='BAF8532FE2E347dfAC237C4A852978C1' temploid='{35211487-B54E-4cb1-971E-C97706065EDA}' must='1' spec='sid' bl='8' v='40'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF1A60' oid='174C2CFD48594192AB65A7D7386ECE0A' temploid='{40ACC51D-9BB2-4c70-B452-EFC5D293BD44}' must='1' spec='sub' dtref='_05693C68' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ControlType</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFF1B50' oid='8779F4C8A9AC4c83B923E705B6F7254E' temploid='{A1D6A0B0-75A1-4e59-9CEE-1F850207BD8C}' must='1' dest='data' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>CommunicationType</TUV>
+</NAME>
+<QUAL>CommunicationType</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='ABE8C5A6663E4868BFC2230C031CD316' temploid='{D5869893-7AFF-4575-B2CE-61C3AC6B30CE}'>
+<NAME>
+<TUV xml:lang='en-US'>CC-PR</TUV>
+</NAME>
+<QUAL>CC_PR</QUAL>
+<CONSTCOMP id='_0BFF1C40' oid='D53B25FB3E9C4288BC505C7948EBDD62' temploid='{341ED511-10BA-4dbf-BF53-AE47F6A295B6}' must='1' spec='sid' bl='8' v='104'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFF1D30' oid='1E4BAB5CDCB646578453300705406C0D' temploid='{D224AA87-20D6-43d5-B8AE-1490E470AD10}' must='1' spec='sub' dtref='_05693C68'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ControlType</QUAL>
+</STATICCOMP>
+</POS>
+<NEG oid='F9E567D4F65140a9A6FB569CA8BFB9AA' temploid='{BF4D531B-5BEA-418a-9E14-B1F094BF4953}'>
+<NAME>
+<TUV xml:lang='en-US'>CC-NR</TUV>
+</NAME>
+<QUAL>CC_NR</QUAL>
+<CONSTCOMP id='_0BFF1E20' oid='92EE48AEF3BE45f081E87B909F76A1B7' temploid='{20CE796A-1FA5-4fbf-92A5-AD03C2D0483A}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFF1F10' oid='77C2ABAEC03847ef85D06BE5AA35A734' temploid='{82392C72-416C-41b0-955B-B6A75FD65C55}' must='1' spec='sid' bl='8' v='40'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFFD138' oid='8A97B1A563A44ca78C26B93266AED5D8' temploid='{EBF82F6C-FD4E-48a2-B4AA-6F34E68C54A9}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7AAD8' oid='4E3B0981C06948ccA5C91174D6AE429D' temploid='{0E556C34-9569-41e5-BA65-D8EA0E99C3C8}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(3E) TesterPresent</TUV>
+</NAME>
+<QUAL>TP</QUAL>
+<REQ oid='B932F13B1FBC4867B8A801F52CED564F' temploid='{CBC7D3A4-4A3E-4cd8-BB33-E00122E1B80A}'>
+<NAME>
+<TUV xml:lang='en-US'>TP-RQ</TUV>
+</NAME>
+<QUAL>TP_RQ</QUAL>
+<CONSTCOMP id='_0BFFD228' oid='119FBBC1C6AE47d9839B73504E1EC964' temploid='{50A6BDC7-9FC9-4271-A671-6B6FF3688372}' must='1' spec='sid' bl='8' v='62'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFD318' oid='851084CB7B4F4c42AE0622D266EFE5AE' temploid='{277F1E50-C0C2-42df-9C8C-80500FB78B50}' must='1' spec='sub' bl='8' v='0' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>ZeroSubfunction</TUV>
+</NAME>
+<QUAL>ZeroSubfunction</QUAL>
+</CONSTCOMP>
+</REQ>
+<POS oid='6CB7A02702A54146B7E3D3A9FCCCC1E1' temploid='{BAFB8F97-121B-4ac9-8BB6-0950F00C755B}'>
+<NAME>
+<TUV xml:lang='en-US'>TP-PR</TUV>
+</NAME>
+<QUAL>TP_PR</QUAL>
+<CONSTCOMP id='_0BFFD408' oid='73459204571C4d9aA513A1BE131A2F58' temploid='{AC83156A-7331-46ec-A83F-EF5B70524470}' must='1' spec='sid' bl='8' v='126'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFD4F8' oid='C7335528615E4d63940EEE7756643B40' temploid='{4F48A6BE-8FAC-4a0e-AFCA-40ACDE6B1D1D}' must='1' spec='sub' bl='8' v='0'>
+<NAME>
+<TUV xml:lang='en-US'>ZeroSubfunction</TUV>
+</NAME>
+<QUAL>ZeroSubfunction</QUAL>
+</CONSTCOMP>
+</POS>
+<NEG oid='B7F387DE79584b47951102B95131E7A4' temploid='{E04CC93A-11C3-47e6-9C8C-47558B9115E8}'>
+<NAME>
+<TUV xml:lang='en-US'>TP-NR</TUV>
+</NAME>
+<QUAL>TP_NR</QUAL>
+<CONSTCOMP id='_0BFFD5E8' oid='F2180E96072E4acf98BE832D31B916E8' temploid='{597673B9-36CF-4295-9790-E1B5057EB66E}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFD6D8' oid='15072D85F29541a09E5FAE99174A177A' temploid='{D48A3110-3718-4ad4-AFF2-FB83C0722086}' must='1' spec='sid' bl='8' v='62'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFFD7C8' oid='7487C6A1D58142e28F466E386B99870C' temploid='{E4DDB08C-3C2E-49a6-B7E3-27390B30A3A5}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7ABF0' oid='C6CFB29A973A426bB0ABEEACEA9AB99F' temploid='{8AE31B71-849A-40bb-8688-A3219992C49B}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(22) ReadDataByIdentifier</TUV>
+</NAME>
+<QUAL>RDBI</QUAL>
+<REQ oid='5C765D26A35E4232B1D31716B2AC69B4' temploid='{43DDF7D8-4F83-4b6e-BB3C-639960881D5D}'>
+<NAME>
+<TUV xml:lang='en-US'>RDBI-RQ</TUV>
+</NAME>
+<QUAL>RDBI_RQ</QUAL>
+<CONSTCOMP id='_0BFFD8B8' oid='AA4F95F873CF41c2A8EC1A1110C3F8F9' temploid='{A15219A0-6A9F-43a4-BB70-E2E1FBD69CBA}' must='1' spec='sid' bl='8' v='34'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFD9A8' oid='5FABA9C79A924f06A98D0C3FF2593117' temploid='{7A9F9295-C106-4db4-ACE7-EA83F61DC89B}' must='1' spec='id' dtref='_05693E68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RecordDataIdentifier</QUAL>
+</STATICCOMP>
+</REQ>
+<POS oid='E99EEBB08F4644ec8BF6F9B17ACD8536' temploid='{1D7B0B97-456B-4869-B822-7DF6A53C603A}'>
+<NAME>
+<TUV xml:lang='en-US'>RDBI-PR</TUV>
+</NAME>
+<QUAL>RDBI_PR</QUAL>
+<CONSTCOMP id='_0BFFDA98' oid='D26D3BFD8F174c2cB361AFF4D11D400C' temploid='{7A327E28-1C07-448d-B0EE-5D6FBD46348C}' must='1' spec='sid' bl='8' v='98'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFDB88' oid='EA55A559B10047df8F395E8C263E118B' temploid='{07A3E62B-9848-4a7c-BBDF-DFA1214E33CC}' must='1' spec='id' dtref='_05693E68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RecordDataIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFFDC78' oid='EC84E0159CAC4a8c9F16CE332ACABCEE' temploid='{4C8B75DD-3BCB-4e4a-A9E0-1A4D5EB9EBFC}' must='1' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>DataRecord</TUV>
+</NAME>
+<QUAL>DataRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='61F5DC3177B84b1bBA1F261C69F3A5DA' temploid='{196E9DC1-1907-47f7-B382-75854FC57DDB}'>
+<NAME>
+<TUV xml:lang='en-US'>RDBI-NR</TUV>
+</NAME>
+<QUAL>RDBI_NR</QUAL>
+<CONSTCOMP id='_0BFFDD68' oid='D531D98D0A354e92948D0C812D82219E' temploid='{15DF7DBE-FD91-4b4a-9469-1AC3EA836CF1}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFDE58' oid='3F35B372792141ecBCD0AAEC8EEE96C2' temploid='{0F9F1AAC-8F4A-4826-A778-FB1757EB5CC1}' must='1' spec='sid' bl='8' v='34'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFFDF48' oid='D12FC95341E2461d8717E49E13C7A31A' temploid='{A8FDF2D9-36A2-4907-A538-9DE90B4725DA}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7AD08' oid='E80DA85F3E24414a92EFBFCD486E6F36' temploid='{87D5177E-6748-4302-9928-B44BBE9814AD}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(2E) WriteDataByIdentifier</TUV>
+</NAME>
+<QUAL>WDBI</QUAL>
+<REQ oid='B3D0029B1B9246508A48A5ED9FEDCAE7' temploid='{CEB035B3-A05A-4712-B74B-96EC23E7C159}'>
+<NAME>
+<TUV xml:lang='en-US'>WDBI-RQ</TUV>
+</NAME>
+<QUAL>WDBI_RQ</QUAL>
+<CONSTCOMP id='_0BFFE038' oid='06EC8D28EBA04a828FB453B25C43EE7D' temploid='{7EAF6855-E82B-4e49-AF7C-14591844356F}' must='1' spec='sid' bl='8' v='46'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFE128' oid='8DEBA5B57C5044f1B47E3B88577399C0' temploid='{BF78EFF7-F073-4823-A5A9-DF371F07C11A}' must='1' spec='id' dtref='_05693E68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RecordDataIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFFE218' oid='42EF7FA935F8410095B3A3FE5BFCD320' temploid='{89198DC2-3D4C-4034-AB75-0FDBD002636A}' must='1' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>DataRecord</TUV>
+</NAME>
+<QUAL>DataRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='E5BC16E23ACA4b42A078EC2C32EC0C7A' temploid='{2941E465-13AB-4be6-B61A-C97B626522CF}'>
+<NAME>
+<TUV xml:lang='en-US'>WDBI-PR</TUV>
+</NAME>
+<QUAL>WDBI_PR</QUAL>
+<CONSTCOMP id='_0BFFE308' oid='6310BD2223044f4d9E7C9D63D05BBD01' temploid='{A21163BC-E577-433e-95B1-E7BC062125CA}' must='1' spec='sid' bl='8' v='110'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFE3F8' oid='DC203D00067E4582BCE3BC03371E830C' temploid='{77D284B7-56F8-472b-B671-012241AAFF93}' must='1' spec='id' dtref='_05693E68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RecordDataIdentifier</QUAL>
+</STATICCOMP>
+</POS>
+<NEG oid='76EEC97CD18240c19328E18181C7BB16' temploid='{AA3FC864-D600-45ed-970D-0728268BECB9}'>
+<NAME>
+<TUV xml:lang='en-US'>WDBI-NR</TUV>
+</NAME>
+<QUAL>WDBI_NR</QUAL>
+<CONSTCOMP id='_0BFFE4E8' oid='E8A5E9E771E9429088B9385E4BB6F52F' temploid='{F62AE433-02BC-4de2-B0FD-88550BDD3BA5}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFE5D8' oid='0CD4386B89DD48309F697EB8B88CC1EE' temploid='{142DE6F1-6BE4-4403-A2B9-42E6B1E89616}' must='1' spec='sid' bl='8' v='46'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0BFFE6C8' oid='A63341D30DB54ea397BA60C01D1C9407' temploid='{4C438E74-4C0A-4c9f-8D0A-BAEB84569947}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7AE20' oid='1CEF3F35B9794fff931E07386F3E4687' temploid='{6F205035-E3D1-4353-A4D5-3E438874AB17}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(31) RoutineControl - Start routine</TUV>
+</NAME>
+<QUAL>RC_STR</QUAL>
+<REQ oid='4831E467D57344279D552329B8F138AD' temploid='{604685AB-47D3-4f3a-9627-F7D1D5417B63}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STR-RQ</TUV>
+</NAME>
+<QUAL>RC_STR_RQ</QUAL>
+<CONSTCOMP id='_0BFFE7B8' oid='A79EAB870F0D450f8B639EE28CAAB919' temploid='{DD59E62D-870E-44ab-A2D9-63D1EA2F5C32}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFE8A8' oid='A56129658D854cf2B8C7FD737D9D25E3' temploid='{75CB9068-E04E-4b6f-9AE1-7C1C2D1A8B60}' must='1' spec='sub' bl='8' v='1' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFE998' oid='FD5FADC058644463B35F2464773B7E36' temploid='{305D594C-860E-4e87-A8A9-D91696EE0ABF}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFFEA88' oid='441F1297AB744042A4A05C7CC429C3A3' temploid='{901E0FD4-46A8-4233-9AAD-9713AF5E6C95}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlOptionRecord</TUV>
+</NAME>
+<QUAL>RoutineControlOptionRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='6ACE5B987C4547b6B5850658ABC42223' temploid='{73F9AF8F-F724-4a54-B58A-9963CBF97BD5}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STR-PR</TUV>
+</NAME>
+<QUAL>RC_STR_PR</QUAL>
+<CONSTCOMP id='_0BFFEB78' oid='BDC64F0C70F949e0AC12034CAC6E804C' temploid='{1C3C8D12-6482-4738-A1BD-037FF128F3AF}' must='1' spec='sid' bl='8' v='113'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFEC68' oid='7087512A66F845808053358DAF012C5F' temploid='{BC43EF46-D678-43b5-9033-E3371DF62A3E}' must='1' spec='sub' bl='8' v='1'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0BFFED58' oid='544F6CDBECB74cb0872E3743150ABDD4' temploid='{B2D629BE-7215-4958-82CE-97106AC3A32D}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0BFFEE48' oid='0ECAE153844440e5A5C885686F281E07' temploid='{48D133EA-98A6-4e66-AB71-E212C8A12E67}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineStatusRecord</TUV>
+</NAME>
+<QUAL>RoutineStatusRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='8D6D81A6A56F4cecB7029974B6623E14' temploid='{9597820B-F95D-4026-92D5-41B451513E8D}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STR-NR</TUV>
+</NAME>
+<QUAL>RC_STR_NR</QUAL>
+<CONSTCOMP id='_0BFFEF38' oid='BE6DF270687743728B0D1AD287C42AAF' temploid='{851A5365-6874-438b-9BF5-260DE91EB469}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0BFFF028' oid='06B07A3B540443ec87DBEA287EA8EF7B' temploid='{3988A1C4-3D8A-450b-BA11-86517E718F17}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00A938' oid='6C201C48F3314cd394A3450F9E1893EE' temploid='{BC908725-49AE-4330-A37F-1475EA5776D8}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7AF38' oid='1AA69EF021344993AB7A0D9490409959' temploid='{257E6FEF-06B3-458d-8F7B-BF6B5FADFC15}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(31) RoutineControl - Stop routine</TUV>
+</NAME>
+<QUAL>RC_STPR</QUAL>
+<REQ oid='795B8E1F1F7649c9A8E47BA98127ECA1' temploid='{E7D2B9DB-69DA-48ff-AFA6-145FB9BADE65}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STPR-RQ</TUV>
+</NAME>
+<QUAL>RC_STPR_RQ</QUAL>
+<CONSTCOMP id='_0C00AA28' oid='5FAE83919C8D47349D7A386A52409A7A' temploid='{4EEB2A82-F2BF-4358-8B4A-830A4365EA52}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00AB18' oid='49DD0DB0CD614783B0840319030C2964' temploid='{55A1B434-5EF2-467f-BCF6-85EFD4806A6E}' must='1' spec='sub' bl='8' v='2' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C00AC08' oid='35441EAC95964441845523F059891A11' temploid='{76B69A77-FADC-4845-A6A4-AD45597198DA}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0C00ACF8' oid='3E592CE00F9D4dd3A482EE87507CB6CC' temploid='{0CCDB5F0-46D7-4358-A6BB-DE1EB011881A}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlOptionRecord</TUV>
+</NAME>
+<QUAL>RoutineControlOptionRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='66924CC27B1D4c9fB9B34B20D33A102B' temploid='{F11A2082-651C-45b4-B741-1360A515ADB0}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STPR-PR</TUV>
+</NAME>
+<QUAL>RC_STPR_PR</QUAL>
+<CONSTCOMP id='_0C00ADE8' oid='36BE5A74450F48e2974880A74943BFD5' temploid='{B3AB9906-7119-4aff-9E61-D8F253AC62EF}' must='1' spec='sid' bl='8' v='113'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00AED8' oid='2E23609A956C4923A47EE4D062BBE220' temploid='{0091038C-160A-40d6-8228-7BF5356F896A}' must='1' spec='sub' bl='8' v='2'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C00AFC8' oid='1886DC9722614a0eBD24C3019E0E8A14' temploid='{CB5F8440-8073-446f-A705-1F23B2BD0C87}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0C00B0B8' oid='581BD090CC7247bbA9FB4AE4AE05E888' temploid='{5B33E1D6-AF4E-4ea3-829F-66499344E5ED}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineStatusRecord</TUV>
+</NAME>
+<QUAL>RoutineStatusRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='5D0877D41BCF4bb5ADE89E1B7F88BF45' temploid='{1E64F7B8-02F7-4537-A60B-94D316E4F82C}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_STPR-NR</TUV>
+</NAME>
+<QUAL>RC_STPR_NR</QUAL>
+<CONSTCOMP id='_0C00B1A8' oid='4A5283B57A084592868AB8FDAF7AE916' temploid='{2D35BEF2-216B-45a1-83A4-9A01990B9D29}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00B298' oid='D7F9192A5C564042BA6D007E7FFD993A' temploid='{D04FBA91-3ED8-42bc-ABBA-AB54877B7A2D}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00B388' oid='D6BDE7CEE2384d71B625C0558563F86E' temploid='{E7CCDAAB-6C1B-4a13-B3E1-E1150E40E602}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7B050' oid='725DF657F7C14af79CF0A47B59CEEF6C' temploid='{BDC467A9-D858-4a98-9FB9-68132A2E458C}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(31) RoutineControl - Request routine results</TUV>
+</NAME>
+<QUAL>RC_RRR</QUAL>
+<REQ oid='AB58D66B674B41f8A93C5B85266985A3' temploid='{3D0779EF-EC30-4be5-BA31-96927D3A3906}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_RRR-RQ</TUV>
+</NAME>
+<QUAL>RC_RRR_RQ</QUAL>
+<CONSTCOMP id='_0C00B478' oid='AF5B83EA246C4f82B6BB7B8B8FB5B45D' temploid='{BDEAA3CE-9C9C-432f-8D0C-A676892F5D1B}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00B568' oid='9A2001A59CE44358B37B93C192A8994D' temploid='{B5B4E618-0B7B-4388-A81D-CE90CDB49E30}' must='1' spec='sub' bl='8' v='3' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C00B658' oid='27C110A59C8A43898C4909460C580D47' temploid='{BFFA0B58-CF83-47cb-A2AF-2991CFD64680}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+</REQ>
+<POS oid='F5C4820E28FA4359A31B8594A9A44D0B' temploid='{CA3FE317-867E-4eff-A6A2-A63D304E0831}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_RRR-PR</TUV>
+</NAME>
+<QUAL>RC_RRR_PR</QUAL>
+<CONSTCOMP id='_0C00B748' oid='6D65EBC748124482A1D834327A2447FD' temploid='{890A4193-C939-471a-9314-72CD10454CD1}' must='1' spec='sid' bl='8' v='113'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00B838' oid='4F549024AF1A4fc3BD77729CAD60D142' temploid='{65AB3AC4-2A5D-4c50-A819-E47D466C0FDB}' must='1' spec='sub' bl='8' v='3'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineControlType</TUV>
+</NAME>
+<QUAL>RoutineControlType</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C00B928' oid='C84A08D452F4481f9EAA9E8033DA0E18' temploid='{FBD59D58-3E76-412c-B16F-8AEADBCD2E1C}' must='1' spec='id' dtref='_05693F68'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0C00BA18' oid='2770F9FB0D2E4367B1C644F852DE5077' temploid='{A69615F7-B47C-42aa-B33A-F350C78AC898}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RoutineStatusRecord</TUV>
+</NAME>
+<QUAL>RoutineStatusRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='B577247D4FB34ecdA085E12DF77C1934' temploid='{D00FEFE4-DA98-4de7-A6BF-BB934B7AFF87}'>
+<NAME>
+<TUV xml:lang='en-US'>RC_RRR-NR</TUV>
+</NAME>
+<QUAL>RC_RRR_NR</QUAL>
+<CONSTCOMP id='_0C00BB08' oid='CE93D4447AC24cf8961DC4508EB6F96F' temploid='{E83311AD-0BB4-4fb3-9AED-E124C89CEA6F}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00BBF8' oid='66A4A7AAAC0F41ae8F454947A2BB51D9' temploid='{B2BC96CA-932D-4f42-BC1D-FD19F2EB3BB8}' must='1' spec='sid' bl='8' v='49'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00BCE8' oid='791BB5A4A564494eB8F1B03990E75218' temploid='{C30AA701-F925-4dc2-AF78-C293A985F514}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7B168' oid='CAA5BF70649E4989ACA0514A123BB43A' temploid='{2BF53495-5C69-4d94-855B-69BD35270515}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(34) RequestDownload</TUV>
+</NAME>
+<QUAL>RD</QUAL>
+<REQ oid='5B573E3EBBF44cee992ABF22DC806B67' temploid='{3D50E483-5EB0-476b-A0F9-4BAE45AF5960}'>
+<NAME>
+<TUV xml:lang='en-US'>RD-RQ</TUV>
+</NAME>
+<QUAL>RD_RQ</QUAL>
+<CONSTCOMP id='_0C00BDD8' oid='7C78E19B31DF469fA9C3305367EF774F' temploid='{036384B4-60F0-45d5-9340-9D7F67B56D52}' must='1' spec='sid' bl='8' v='52'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00BEC8' oid='DF391619E7F0415082ABD0DC933B57E8' temploid='B09499C3EAA345239C5F0E332F13E242' must='1' dest='data' minbl='32'>
+<NAME>
+<TUV xml:lang='en-US'>FormatAndAddressAndSize</TUV>
+</NAME>
+<QUAL>FormatAndAddressAndSize</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='C3101DC3B3434dd79D9708476C7550F9' temploid='{AC98F16F-FA60-4d98-9B19-870A6F53F2DF}'>
+<NAME>
+<TUV xml:lang='en-US'>RD-PR</TUV>
+</NAME>
+<QUAL>RD_PR</QUAL>
+<CONSTCOMP id='_0C00BFB8' oid='429FD548676A4cfe9D0BA49A5FF4A9CE' temploid='{60B54C02-91AF-4d28-A8FF-7AA34CB8DFC0}' must='1' spec='sid' bl='8' v='116'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00C0A8' oid='41AACE12652F4b42A530121D7122075C' temploid='CFC04BA3B6DC4e70A2F5B7F30899C6BF' must='1' dest='data' minbl='16'>
+<NAME>
+<TUV xml:lang='en-US'>BlockLength</TUV>
+</NAME>
+<QUAL>BlockLength</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='7B366DA830664dc097D0EABD6B07389F' temploid='{EEF097CF-F3AE-46f7-B3E7-27FB8D0E2D3A}'>
+<NAME>
+<TUV xml:lang='en-US'>RD-NR</TUV>
+</NAME>
+<QUAL>RD_NR</QUAL>
+<CONSTCOMP id='_0C00C198' oid='9C5C04C800004566BFA22289BDF961CD' temploid='{FA4CF288-CBB7-40d1-8895-AB675AE22020}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C00C288' oid='411D38A500E546fa8798371B50CACB48' temploid='{4E0AF1A2-643D-4ad0-AE53-50A83D9EED2A}' must='1' spec='sid' bl='8' v='52'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00C378' oid='3B7092501E15471cBD6C422DE05C3D8F' temploid='{077E78C7-4D15-4933-9E09-A8648CC76DD4}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2528'/>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2C30'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7B280' oid='66520CD263574b688B74639F60B24292' temploid='{C75636DD-1654-4975-8A17-9D1C03E308AF}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(36) TransferData</TUV>
+</NAME>
+<QUAL>TD</QUAL>
+<REQ oid='92719678ABEE48c5BC427B6B5BFEEA8F' temploid='{3AB45028-E460-4eee-A666-4172037C027B}'>
+<NAME>
+<TUV xml:lang='en-US'>TD-RQ</TUV>
+</NAME>
+<QUAL>TD_RQ</QUAL>
+<CONSTCOMP id='_0C00C468' oid='CE7A9D05E3F14cbb926AF1292C4BB185' temploid='{07371AFE-1857-479f-B7E3-2F5DCC2A4887}' must='1' spec='sid' bl='8' v='54'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00C558' oid='8DB71C4263DC4967B22FBAF53D78508A' temploid='246D9BF79EA64272B8C1D57CDFBC7033' must='1' dest='data' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>blockSequenceCounter</TUV>
+</NAME>
+<QUAL>blockSequenceCounter</QUAL>
+</SIMPLEPROXYCOMP>
+<SIMPLEPROXYCOMP id='_0C00C648' oid='F95DC2BB95BD40b2992401B79A9729F4' temploid='A49320A9F5254dff99250130ACB9C7CB' must='1' dest='any' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>transferRequestData</TUV>
+</NAME>
+<QUAL>transferRequestData</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='C71C90D036CF44119B25CBD371CC337E' temploid='{F1EB435A-9E42-4f12-B881-24D605E280F2}'>
+<NAME>
+<TUV xml:lang='en-US'>TD-PR</TUV>
+</NAME>
+<QUAL>TD_PR</QUAL>
+<CONSTCOMP id='_0C00C738' oid='09B159B8E97C443688C9F7815D8F783D' temploid='{4508F430-5482-4227-B0DE-23A656FB40FA}' must='1' spec='sid' bl='8' v='118'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C00C828' oid='30816290D7964f2382AF2BA7F838FC9F' temploid='968C492885954658AA5BF032FC8D9817' must='1' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>TransferResponseData</TUV>
+</NAME>
+<QUAL>TransferResponseData</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='4AD17852C1484824BCF14CF934100C56' temploid='{24FCB6D8-2783-419a-87DD-655A5888F674}'>
+<NAME>
+<TUV xml:lang='en-US'>TD-NR</TUV>
+</NAME>
+<QUAL>TD_NR</QUAL>
+<CONSTCOMP id='_0C01A138' oid='F35459ED9B2C4186803050AD5AAE6E2D' temploid='{A20B0638-F186-4f31-A211-78230DE53D58}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C01A228' oid='942B05FCB8C04b799FA34478F6AF5ECE' temploid='{FB9C2E21-A47D-4cf5-AE37-5D8B10CEDB2B}' must='1' spec='sid' bl='8' v='54'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C01A318' oid='A6C96D10A54049ed988502A3B0A4B70C' temploid='{D5F9B0A2-3803-4b6d-8BED-04D603B5A41B}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E2CF8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+<NEGRESCODEPROXY idref='_056E2E88'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7B398' oid='0E5D1FF4AA6D490cA5F045EC2E7E953E' temploid='{1B2E90BB-896D-497f-A5B2-903717C632BA}' func='1' phys='1' mresp='0' respOnPhys='1' respOnFunc='1'>
+<NAME>
+<TUV xml:lang='en-US'>(37) RequestTransferExit</TUV>
+</NAME>
+<QUAL>RTE</QUAL>
+<REQ oid='350A7DB225174efaA6302FE8301C0CBB' temploid='{F6ABD622-3B97-4504-8A62-B9FB30C8B74F}'>
+<NAME>
+<TUV xml:lang='en-US'>RTE-RQ</TUV>
+</NAME>
+<QUAL>RTE_RQ</QUAL>
+<CONSTCOMP id='_0C01A408' oid='0F285CA05B054bb79E66264F7565DCC9' temploid='{799F63FD-041D-4835-A704-D3CCDDC48CF5}' must='1' spec='sid' bl='8' v='55'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C01A4F8' oid='EF8A9F5A5C014d5dAA2AADF59706154C' temploid='{D9DE5B5C-3923-4169-A1B2-E76B93388F61}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RequestParameter</TUV>
+</NAME>
+<QUAL>RequestParameter</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='7F98F14321F742999D40EA65A0EB3189' temploid='{92833118-04B6-4428-899A-B94EF89B5095}'>
+<NAME>
+<TUV xml:lang='en-US'>RTE-PR</TUV>
+</NAME>
+<QUAL>RTE_PR</QUAL>
+<CONSTCOMP id='_0C01A5E8' oid='67D28E4846AE42ab8CD551386DAABDEA' temploid='{FD3A801A-4379-4c7f-9856-8E03772ABCF5}' must='1' spec='sid' bl='8' v='119'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C01A6D8' oid='B42A82B54D934f4693CD3E24E39E095E' temploid='{9F5C2E9F-4997-41c0-A2B1-401B7C06C157}' must='0' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>ResponseParameter</TUV>
+</NAME>
+<QUAL>ResponseParameter</QUAL>
+</SIMPLEPROXYCOMP>
+</POS>
+<NEG oid='56EC00C02FCB4defB97BEFFADE184F14' temploid='{2FB1EC75-BCBA-427b-9258-FF79F08ECF24}'>
+<NAME>
+<TUV xml:lang='en-US'>RTE-NR</TUV>
+</NAME>
+<QUAL>RTE_NR</QUAL>
+<CONSTCOMP id='_0C01A7C8' oid='C2BEC7B025F74e84BCB730E42E35900F' temploid='{0D933851-CACF-4b32-A9C0-3165B9BE4BFD}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C01A8B8' oid='FB8F98073ACB45a7BA33E962917DBA12' temploid='{FB772C76-FC15-4354-A425-661C92C7831D}' must='1' spec='sid' bl='8' v='55'>
+<NAME>
+<TUV xml:lang='en-US'>SIDRQ-NR</TUV>
+</NAME>
+<QUAL>SIDRQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C01A9A8' oid='33CBAB32C0B54da0BE78B646B58BC5E3' temploid='{629A594B-FBC5-462c-BCFB-162ABFF7E461}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2848'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+<PROTOCOLSERVICE id='_0BF7B4B0' oid='EE29D9CA549E456188414487701662A7' temploid='{95F649FD-4295-4d05-8960-15572B230CE3}' func='0' phys='1' mresp='0' respOnPhys='1' respOnFunc='0'>
+<NAME>
+<TUV xml:lang='en-US'>(85) ControlDTCSetting</TUV>
+</NAME>
+<QUAL>CDTCS</QUAL>
+<REQ oid='CD0C264542EF43a391E60D5C1C2D69BE' temploid='{47147EC6-704A-45ac-BB3C-BD2A8595D811}'>
+<NAME>
+<TUV xml:lang='en-US'>CDTCS-RQ</TUV>
+</NAME>
+<QUAL>CDTCS_RQ</QUAL>
+<CONSTCOMP id='_0C01AA98' oid='0DA9E78A4F2447a58F1D94D7262CE08C' temploid='{9EB81C6B-A92B-4528-8570-72AA804A9C93}' must='1' spec='sid' bl='8' v='133'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ</TUV>
+</NAME>
+<QUAL>SID_RQ</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C01AB88' oid='954E95B38DD249edA5A889122DEB8DE8' temploid='{50465770-FD81-4ce5-BB01-5CF30B567DCB}' must='1' spec='sub' dtref='_05693D68' respsupbit='1'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SettingType</QUAL>
+</STATICCOMP>
+<SIMPLEPROXYCOMP id='_0C01AC78' oid='14D79B1F0ED7456bAE86954DEBA9C4E3' temploid='{08585CC0-21F3-46fd-8CAA-6261E5B9823B}' must='1' dest='data' minbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>ControlOptionRecord</TUV>
+</NAME>
+<QUAL>ControlOptionRecord</QUAL>
+</SIMPLEPROXYCOMP>
+</REQ>
+<POS oid='9FDE44249368438783EE003A07F61639' temploid='{880AA16E-4987-4214-B19A-79EA38981F47}'>
+<NAME>
+<TUV xml:lang='en-US'>CDTCS-PR</TUV>
+</NAME>
+<QUAL>CDTCS_PR</QUAL>
+<CONSTCOMP id='_0C01AD68' oid='8BFBC85D8CDC4e6e92F4FBBC82EA028C' temploid='{2BC4F7EE-1C54-483b-BCBB-A8F1BF8638C1}' must='1' spec='sid' bl='8' v='197'>
+<NAME>
+<TUV xml:lang='en-US'>SID-PR</TUV>
+</NAME>
+<QUAL>SID_PR</QUAL>
+</CONSTCOMP>
+<STATICCOMP id='_0C01AE58' oid='B9E27B1F3A864189B5624A9D21302B08' temploid='{B8161B7F-07F2-4e16-8950-D2C2DBC68725}' must='1' spec='sub' dtref='_05693D68'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SettingType</QUAL>
+</STATICCOMP>
+</POS>
+<NEG oid='C78AE122DA184b2bBD30647D6BB84311' temploid='{8171C5E5-A360-421b-A725-FFB9E3377AEC}'>
+<NAME>
+<TUV xml:lang='en-US'>CDTCS-NR</TUV>
+</NAME>
+<QUAL>CDTCS_NR</QUAL>
+<CONSTCOMP id='_0C01AF48' oid='290436FDA1A74cffBD180BA6F581474F' temploid='{A324A333-AFF1-4556-B77F-38F4A6E943F8}' must='1' spec='sid' bl='8' v='127'>
+<NAME>
+<TUV xml:lang='en-US'>SID-NR</TUV>
+</NAME>
+<QUAL>SID_NR</QUAL>
+</CONSTCOMP>
+<CONSTCOMP id='_0C01B038' oid='0894FA69DDFA449c81800F5EDB84409A' temploid='{6B76FC57-9736-40f1-B3CC-AC37E1D592F0}' must='1' spec='sid' bl='8' v='133'>
+<NAME>
+<TUV xml:lang='en-US'>SID-RQ-NR</TUV>
+</NAME>
+<QUAL>SID_RQ_NR</QUAL>
+</CONSTCOMP>
+<SIMPLEPROXYCOMP id='_0C01B128' oid='0E41723E554A4b53B173EC25D1BAF2BD' temploid='{EEF361AF-FDEF-4b50-B265-76F197533AA6}' must='1' dest='resCode' minbl='8' maxbl='8'>
+<NAME>
+<TUV xml:lang='en-US'>RESPONSE CODE</TUV>
+</NAME>
+<QUAL>RC</QUAL>
+</SIMPLEPROXYCOMP>
+</NEG>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+</NEGRESCODEPROXIES>
+</PROTOCOLSERVICE>
+</PROTOCOLSERVICES>
+<DCLTMPLS>
+<DCLTMPL id='_0C01B218' oid='F5DB169592294b7398F538019CEC9470' temploid='{F1B56AC3-6C42-4eec-9A8B-D24398DA03A6}' cls='ses' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Sessions</TUV>
+</NAME>
+<QUAL>Sessions</QUAL>
+<DCLSRVTMPL id='_0BF7B5C8' oid='FD8B1BD486804f5fA9A7A20D48AD685C' temploid='{1CD54262-F5DA-45b8-921D-DD37B699FAC7}' tmplref='_0BF89EF8' dtref='_05693A68' conv='req'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018918' oid='403B72A38BA1467889BD7FB69462B0A0' temploid='{C2610F08-4AEA-45c1-8172-A7974B2D8A81}' spec='sub'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>DiagSessionType</QUAL>
+<STATICCOMPREF idref='_0570BD00'/>
+<STATICCOMPREF idref='_0570BEE0'/>
+</SHSTATIC>
+<SHPROXY id='_0C01B308' oid='19D76B8136DA4b1f8F7BBB8EA30D2BF5' temploid='{8DAF1A37-2334-40bd-9A02-354090833C19}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Parameter</TUV>
+</NAME>
+<QUAL>Data</QUAL>
+<PROXYCOMPREF idref='_0BFF0020'/>
+</SHPROXY>
+<SHPROXY id='_0C01B3F8' oid='41B6D2811A7140669C2C237F603D8488' temploid='{36CA474D-6F99-4fc3-9B56-E1488457B5A2}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<PROXYCOMPREF idref='_0BFF02F0'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C01B4E8' oid='9204C407592F4e81A58C0E6A976ED12F' temploid='{D3E9D1BC-56CE-44b4-AA33-F3B1681C7F94}' cls='tpr' single='1'>
+<NAME>
+<TUV xml:lang='en-US'>Tester Present</TUV>
+</NAME>
+<QUAL>TesterPresent</QUAL>
+<DCLSRVTMPL id='_0BF7B6E0' oid='54158482A3CE4dcaBC7913FB1B889CEE' temploid='{481167C9-5F05-4127-A189-A2228CDDE0E9}' tmplref='_0BF7AAD8' conv='req'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+</DCLSRVTMPL>
+<SHPROXY id='_0C01B5D8' oid='EB121C8A263C4954812014978ADD8057' temploid='{379093F8-67DF-41d5-B89C-4BB266F6736C}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Senden</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<PROXYCOMPREF idref='_0BFFD7C8'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C01B6C8' oid='3123F3FC095B44e99BCECA4EFCE0C641' temploid='{80056289-65A1-4c4d-924A-34CCE0BB35DA}' cls='com' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Communication Control</TUV>
+</NAME>
+<QUAL>CommunicationControl</QUAL>
+<DCLSRVTMPL id='_0BF7B7F8' oid='827DF5D7AFF04fcb98414A3808C3F196' temploid='{C6D507DD-003F-422d-9FE6-EBD5CEC81C0F}' tmplref='_0BFF8808' dtref='_05693C68' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C0189F8' oid='F88FEBC81DAB4ebd87E22F3FD44A39DA' temploid='{AD5E71F5-FE20-4ba9-86E1-ABC22F17ECBB}' spec='sub'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ControlType</QUAL>
+<STATICCOMPREF idref='_0BFF1A60'/>
+<STATICCOMPREF idref='_0BFF1D30'/>
+</SHSTATIC>
+<SHPROXY id='_0C01B7B8' oid='41DDE720905347aaA46EB5202CBCF38C' temploid='{0F89A484-2913-4848-86D9-3817A4018CC6}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>CommunicationType</TUV>
+</NAME>
+<QUAL>CommunicationType</QUAL>
+<PROXYCOMPREF idref='_0BFF1B50'/>
+</SHPROXY>
+<SHPROXY id='_0C01B8A8' oid='9CDEB566DA274c30B87903DF540C4C6A' temploid='{BD7DBE77-81A8-4d00-93F9-DD991ACB3DD6}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+<PROXYCOMPREF idref='_0BFFD138'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C01B998' oid='82E8D44737234c5bB1185D490270638D' temploid='{72324404-D520-4b1d-9019-282F6AD789A4}' cls='sec' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Security Access</TUV>
+</NAME>
+<QUAL>SecurityAccess</QUAL>
+<DCLSRVTMPL id='_0BF7B910' oid='39AE9D81752846c4B6ECCB69471F10FB' temploid='{9933B22A-9141-47c7-B14A-D480660BFAC1}' tmplref='_0BF8DD98' dtref='_05693B68' conv='optyes' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0BF7BA28' oid='61ACAB43F78049d7B8515E2E8FD9695B' temploid='{B2F65C91-A27E-4e68-84FB-0EC00EBA2209}' tmplref='_0BFCBFE8' dtref='_05693B68' conv='optyes' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018AD8' oid='CDA7031176CA468bA4B9DC70FF05CC86' temploid='{0529D1DD-0ED7-4034-9CE4-2C16A2C067D9}' spec='sub'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SecurityAccessType</QUAL>
+<STATICCOMPREF idref='_0BFF0B60'/>
+<STATICCOMPREF idref='_0BFF0D40'/>
+<STATICCOMPREF idref='_0BFF12E0'/>
+<STATICCOMPREF idref='_0BFF15B0'/>
+</SHSTATIC>
+<SHPROXY id='_0C01BA88' oid='141B866303564ef8A0C5EF2F99339884' temploid='{159C9069-133D-48bf-8090-D1D396BAF165}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Seed</TUV>
+</NAME>
+<QUAL>Seed</QUAL>
+<PROXYCOMPREF idref='_0BFF0E30'/>
+</SHPROXY>
+<SHPROXY id='_0C01BB78' oid='B22A9F57B2BA428eA4325E9EC814679C' temploid='{C9F1BB2C-8095-4179-B55D-D39456642CF3}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Key</TUV>
+</NAME>
+<QUAL>Key</QUAL>
+<PROXYCOMPREF idref='_0BFF13D0'/>
+</SHPROXY>
+<SHPROXY id='_0C01BC68' oid='5660B3B7192849f6986433765E75291C' temploid='{82029372-9968-47a3-84F2-939A51AD8A69}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Anfordern</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<PROXYCOMPREF idref='_0BFF1100'/>
+</SHPROXY>
+<SHPROXY id='_0C01BD58' oid='B8E4B5D594EA4df99BC6708E93026289' temploid='{7D08A41D-D439-4233-BB8B-C0E7070854CD}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Senden</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<PROXYCOMPREF idref='_0BFF1880'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C01BE48' oid='A45CD674B932448c9E250CB7979F25A1' temploid='{0E0B0844-D4F4-4ae2-A5B8-2AD95E3823E7}' cls='fun' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Control DTC Setting</TUV>
+</NAME>
+<QUAL>ControlDTCSetting</QUAL>
+<DCLSRVTMPL id='_0BF7BB40' oid='050673E3460B49bcBD1B9C5623A11BBE' temploid='{58FAEE98-C944-4036-B126-43AEB34BDDEE}' tmplref='_0BF7B4B0' dtref='_05693D68' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018BB8' oid='472A89B168DF4254BA1DE3E1DA8C34E7' temploid='{1335A936-0CAB-410a-A5FE-6FC9F6CE707F}' spec='sub'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>SettingType</QUAL>
+<STATICCOMPREF idref='_0C01AB88'/>
+<STATICCOMPREF idref='_0C01AE58'/>
+</SHSTATIC>
+<SHPROXY id='_0C01BF38' oid='7AAAE8B8D7634525B794F4DAC6BC4C9E' temploid='{707F9339-ED72-4b47-BED9-22488DE073F8}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Option</TUV>
+</NAME>
+<QUAL>Options</QUAL>
+<PROXYCOMPREF idref='_0C01AC78'/>
+</SHPROXY>
+<SHPROXY id='_0C01C028' oid='8B71648329494b60B37FE8E6820CA4E9' temploid='{3B601897-2330-4d7a-82C3-F680B743469C}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<PROXYCOMPREF idref='_0C01B128'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C027538' oid='33516D55233C481aA0969B4B88FA1A19' temploid='{C84E1A9F-4D03-43b7-9098-C7F59EF809A0}' cls='fun' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Ecu Reset</TUV>
+</NAME>
+<QUAL>EcuReset</QUAL>
+<DCLSRVTMPL id='_0BF7BC58' oid='38BF1EE2468142649DC19BB5764DCFC3' temploid='{FE771C56-DBA1-45d3-B9D8-2904AB0D612B}' tmplref='_0BFBAEB0' dtref='_05693968' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Reset</TUV>
+</NAME>
+<QUAL>Reset</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018C98' oid='262BB9740B1E4236950107C24CFC8681' temploid='{9F2CEB45-2F2C-4a60-A419-B778E187C2E7}' spec='sub'>
+<NAME>
+<TUV xml:lang='en-US'>Type</TUV>
+</NAME>
+<QUAL>ResetType</QUAL>
+<STATICCOMPREF idref='_0BFF04D0'/>
+<STATICCOMPREF idref='_0BFF06B0'/>
+</SHSTATIC>
+<SHPROXY id='_0C027628' oid='80FC2DAB896948f8BC87B4EA9DDF15B7' temploid='{F4CE9B3B-1D33-4744-A563-FC38D9A13778}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Reset</TUV>
+</NAME>
+<QUAL>Reset</QUAL>
+<PROXYCOMPREF idref='_0BFF0980'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C027718' oid='AA2F14B7F2714b37A1B40E3B8D1C62F7' temploid='{AB842B98-2516-44c6-8ACC-5CB869389F89}' cls='idn' single='0'>
+<NAME>
+<TUV xml:lang='en-US'>Identification</TUV>
+</NAME>
+<QUAL>Identification</QUAL>
+<DCLSRVTMPL id='_0BF7BD70' oid='5C57E0A64300491789672C2D3DE80662' temploid='{98C4C699-33D6-4f04-8C85-0A55481EDAB0}' tmplref='_0BF7ABF0' dtref='_05693E68' conv='req'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0BF7BE88' oid='7E392299B2084cff92B74B57B38042EC' temploid='{61D0D621-55DB-4d54-8B43-F4B149689BB8}' tmplref='_0BF7AD08' dtref='_05693E68' conv='optyes'>
+<NAME>
+<TUV xml:lang='en-US'>Write</TUV>
+</NAME>
+<QUAL>Write</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018D78' oid='F24A458697EA49ac86AD1FB005B71638' temploid='{6D2336A0-17E9-42f1-9D73-69C2BCE95998}' spec='id'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RecordDataIdentifier</QUAL>
+<STATICCOMPREF idref='_0BFFD9A8'/>
+<STATICCOMPREF idref='_0BFFDB88'/>
+<STATICCOMPREF idref='_0BFFE128'/>
+<STATICCOMPREF idref='_0BFFE3F8'/>
+</SHSTATIC>
+<SHPROXY id='_0C027808' oid='330C4E027A5E423cA8C8347BC53A5E92' temploid='{1265001C-5AB7-47ae-864B-AF17462CA91C}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Data</TUV>
+</NAME>
+<QUAL>Data</QUAL>
+<PROXYCOMPREF idref='_0BFFDC78'/>
+<PROXYCOMPREF idref='_0BFFE218'/>
+</SHPROXY>
+<SHPROXY id='_0C0278F8' oid='820973EBE35948b7A7EA8C45B835B3B5' temploid='{50315AB1-624C-4fb2-A471-FF9D76A91FED}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<PROXYCOMPREF idref='_0BFFDF48'/>
+</SHPROXY>
+<SHPROXY id='_0C0279E8' oid='38CBE9C2511D4dc78A13554390065D32' temploid='{4391D974-BF4D-4aec-844C-B199D617D71C}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Write NR</TUV>
+</NAME>
+<QUAL>Write_NR</QUAL>
+<PROXYCOMPREF idref='_0BFFE6C8'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C027AD8' oid='C4175DE0B0874b8aA1234CD567FA9420' temploid='{58823EA0-231D-44f0-9F48-50AE2CD224E0}' cls='ctl' single='0' isRelevantForReq='1'>
+<NAME>
+<TUV xml:lang='en-US'>Routine</TUV>
+</NAME>
+<QUAL>Routine</QUAL>
+<DCLSRVTMPL id='_0C02A538' oid='9157494CEEFA446cA70D6C2F40559FCB' temploid='{87A9D1F9-7A39-4966-959A-44B5835FA183}' tmplref='_0BF7AE20' dtref='_05693F68' conv='req'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0C02A650' oid='7AA9FB0611424c00AD99DAFDADB689BD' temploid='{A52784C0-6CF6-4362-BDF9-DD5C7E803D3E}' tmplref='_0BF7AF38' dtref='_05693F68' conv='optno'>
+<NAME>
+<TUV xml:lang='en-US'>Stop</TUV>
+</NAME>
+<QUAL>Stop</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0C02A768' oid='513329D5C3BE4f1c9B852F4EEF254008' temploid='{98D1C2DB-5FD7-4a54-8335-3CAD51D4FACC}' tmplref='_0BF7B050' dtref='_05693F68' conv='optno'>
+<NAME>
+<TUV xml:lang='en-US'>Results</TUV>
+</NAME>
+<QUAL>Results</QUAL>
+</DCLSRVTMPL>
+<SHSTATIC id='_0C018E58' oid='ABB922602EE241e1935076992BA9A7E5' temploid='{3C1E61D7-1D61-4693-B8EC-917FDE5F6D00}' spec='id'>
+<NAME>
+<TUV xml:lang='en-US'>Identifier</TUV>
+</NAME>
+<QUAL>RoutineIdentifier</QUAL>
+<STATICCOMPREF idref='_0BFFE998'/>
+<STATICCOMPREF idref='_0BFFED58'/>
+<STATICCOMPREF idref='_0C00AC08'/>
+<STATICCOMPREF idref='_0C00AFC8'/>
+<STATICCOMPREF idref='_0C00B658'/>
+<STATICCOMPREF idref='_0C00B928'/>
+</SHSTATIC>
+<SHPROXY id='_0C027BC8' oid='375C699478734a0dB47F70A7E3155EB9' temploid='{67B5D0CB-B57E-44da-B712-86C2A716ACDD}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Control Options (Start)</TUV>
+</NAME>
+<QUAL>StartOptions</QUAL>
+<PROXYCOMPREF idref='_0BFFEA88'/>
+</SHPROXY>
+<SHPROXY id='_0C027CB8' oid='20CC306DCECE42cd8CE9E2980C31F8EE' temploid='{153674A2-D407-42fa-A8F5-1F35DBB2962C}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Status (Start)</TUV>
+</NAME>
+<QUAL>StartStatus</QUAL>
+<PROXYCOMPREF idref='_0BFFEE48'/>
+</SHPROXY>
+<SHPROXY id='_0C027DA8' oid='BAFB48AFD1BA4038B51734EC945D04E9' temploid='{8644FEFF-BBF9-41dc-A226-0B1A0058C31A}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Control Options (Stop)</TUV>
+</NAME>
+<QUAL>StopOptions</QUAL>
+<PROXYCOMPREF idref='_0C00ACF8'/>
+</SHPROXY>
+<SHPROXY id='_0C027E98' oid='CED853C722B24806AFDD71A41DE73211' temploid='{BACCC7BD-C5F4-4907-BD22-228C5E1B17A7}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Status (Stop)</TUV>
+</NAME>
+<QUAL>StopStatus</QUAL>
+<PROXYCOMPREF idref='_0C00B0B8'/>
+</SHPROXY>
+<SHPROXY id='_0C027F88' oid='3CB662A2180F48d4A7BD400919A8BBB6' temploid='{EB53AA46-6B76-4143-846E-347F856DCDAE}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>Status (Results)</TUV>
+</NAME>
+<QUAL>Results</QUAL>
+<PROXYCOMPREF idref='_0C00BA18'/>
+</SHPROXY>
+<SHPROXY id='_0C028078' oid='58B1D97D0183420081907A347FACCE18' temploid='{0CA510D0-2501-4e88-A7BB-7E3D164A093A}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<PROXYCOMPREF idref='_0C00A938'/>
+</SHPROXY>
+<SHPROXY id='_0C028168' oid='5C2FC995789B405a8FEE56C5E208FF03' temploid='{AD7A6455-2DE7-4bd4-88A6-8F1AC333D77C}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Stop NR</TUV>
+</NAME>
+<QUAL>Stop_NR</QUAL>
+<PROXYCOMPREF idref='_0C00B388'/>
+</SHPROXY>
+<SHPROXY id='_0C028258' oid='6B4D3CA7852149548F836991FF2758EE' temploid='{62C81E48-3115-478f-890F-973C15110A39}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Results</TUV>
+</NAME>
+<QUAL>RequestResults</QUAL>
+<PROXYCOMPREF idref='_0C00BCE8'/>
+</SHPROXY>
+</DCLTMPL>
+<DCLTMPL id='_0C028348' oid='B855D87283154093A8721BC47EC8D1BD' temploid='{489AA8B1-DA0B-43e1-8B3E-7164C0D89850}' cls='dwn' single='1'>
+<NAME>
+<TUV xml:lang='en-US'>Download</TUV>
+</NAME>
+<QUAL>Download</QUAL>
+<DCLSRVTMPL id='_0C02A880' oid='8E9471B05C9741158FD27BB62F2EF807' temploid='{89CC299D-F81E-42d7-A0B8-ADFAB14F2E8C}' tmplref='_0BF7B168' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0C02A998' oid='E9FD23F93DAE4a67A453DE4C64313BEA' temploid='{63FD4DAE-24C0-4ff9-AB8B-BCF6880DEF98}' tmplref='_0BF7B280' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Transmit</TUV>
+</NAME>
+<QUAL>Transmit</QUAL>
+</DCLSRVTMPL>
+<DCLSRVTMPL id='_0C02AAB0' oid='E82432506FE541f8998809A02D38EE81' temploid='{AC0FE716-EB6E-4b1c-A661-A4E9C4B82AFF}' tmplref='_0BF7B398' conv='req' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Stop</TUV>
+</NAME>
+<QUAL>Stop</QUAL>
+</DCLSRVTMPL>
+<SHPROXY id='_0C028438' oid='6D430892659942b6B8AB1227A7D47932' temploid='{10CB1365-73C8-439f-AFFE-1F5450355EBD}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<PROXYCOMPREF idref='_0C00C378'/>
+</SHPROXY>
+<SHPROXY id='_0C028528' oid='4A9D561E890341de98D0D565516F162E' temploid='{51DD35CF-2402-4951-B9F1-F6A4CE13F9EF}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>Transmit</TUV>
+</NAME>
+<QUAL>Transmit</QUAL>
+<PROXYCOMPREF idref='_0C01A318'/>
+</SHPROXY>
+<SHPROXY id='_0C028618' oid='0E52956856EA4d6099D59FE4309FB5D3' temploid='{B2ACA0DD-385B-4204-B3AD-29C0F88983AD}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>RequestParameter (Stop)</TUV>
+</NAME>
+<QUAL>RequestParameter_Stop</QUAL>
+<PROXYCOMPREF idref='_0C01A4F8'/>
+</SHPROXY>
+<SHPROXY id='_0C028708' oid='9AACCF40240B4e7a9ACEA4FF4126DAD3' temploid='{3CC23B6F-7CDD-404b-8DBE-10682C4453E6}' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>ResponseParameter (Stop)</TUV>
+</NAME>
+<QUAL>ResponseParameter_Stop</QUAL>
+<PROXYCOMPREF idref='_0C01A6D8'/>
+</SHPROXY>
+<SHPROXY id='_0C0287F8' oid='8B0FE1BBB4114ca4B9EA61F223724566' temploid='{B0117CA7-CDA6-4a2b-A28B-1AB43A04A226}' dest='resCode'>
+<NAME>
+<TUV xml:lang='en-US'>New Service 17</TUV>
+</NAME>
+<QUAL>New_Service_17</QUAL>
+<PROXYCOMPREF idref='_0C01A9A8'/>
+</SHPROXY>
+<SHPROXY id='_0C0288E8' oid='29726D66DFBC42a68B3F60E1C27168A9' temploid='D1D2B8DA560F4373AE13760A811143AA' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>FormatAndAddressAndSize</TUV>
+</NAME>
+<QUAL>AddressAndSize</QUAL>
+<PROXYCOMPREF idref='_0C00BEC8'/>
+</SHPROXY>
+<SHPROXY id='_0C0289D8' oid='971E1F9372E746b1A4E4F248F84AA61E' temploid='813996376801415c85BAAD8B10831953' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>BlockLength</TUV>
+</NAME>
+<QUAL>BlockLength</QUAL>
+<PROXYCOMPREF idref='_0C00C0A8'/>
+</SHPROXY>
+<SHPROXY id='_0C028AC8' oid='A48476DB1F1C4ff0A4CE87B732AC8CC3' temploid='EC714DA1FC2A41108F610EDC9F1B8B44' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>TransferRequestData</TUV>
+</NAME>
+<QUAL>TransferRequestData</QUAL>
+<PROXYCOMPREF idref='_0C00C558'/>
+</SHPROXY>
+<SHPROXY id='_0C028BB8' oid='8603178866A84c6d880A07F8978B2BBF' temploid='A95B4B726FE94e1e879283CA4C48F24A' dest='data'>
+<NAME>
+<TUV xml:lang='en-US'>TransferResponseData</TUV>
+</NAME>
+<QUAL>TransferResponseData</QUAL>
+<PROXYCOMPREF idref='_0C00C828'/>
+</SHPROXY>
+</DCLTMPL>
+</DCLTMPLS>
+<RECORDDTPOOL>
+<RECORDDT id='_0BF7A9C0' oid='3863CC4E04CF41e9B59B9A3078748309' temploid='3863CC4E04CF41e9B59B9A3078748309' bm='4294967295' rtSpec='faultMemory'>
+<NAME>
+<TUV xml:lang='en-US'>OBDRecordDataType</TUV>
+</NAME>
+<QUAL>OBDRecordDataType</QUAL>
+<CVALUETYPE bl='24' bo='21' enc='uns' sig='0' df='hex' qty='atom' sz='no' minsz='0' maxsz='255'/>
+<PVALUETYPE bl='16' bo='21' enc='utf' sig='0' df='text' qty='field' sz='no' minsz='0' maxsz='65535'/>
+</RECORDDT>
+</RECORDDTPOOL>
+<ECU id='_056FACE0' oid='D10ACBF225FC44f9958BFFBC1CB1FE71' temploid='{A120ED60-20AB-4660-97EA-CD85CDFA5B23}' maxCombinedServiceIds='5'>
+<NAME>
+<TUV xml:lang='en-US'>SsangYong SLP2</TUV>
+</NAME>
+<QUAL>SsangYong_SLP2</QUAL>
+<VAR id='_0570B580' oid='2F21BFC180694efb8ADDEE367B9A50C1' temploid='{8E93F445-4173-4bff-9D7C-852EFDF68146}' base='1'>
+<NAME>
+<TUV xml:lang='en-US'>Common Diagnostics</TUV>
+</NAME>
+<QUAL>CommonDiagnostics</QUAL>
+<DIAGCLASS id='_056FF698' oid='213274D7FDE44b94A560D172F1B3550B' temploid='213274D7FDE44b94A560D172F1B3550B' tmplref='_0C01B218'>
+<NAME>
+<TUV xml:lang='en-US'>Sessions</TUV>
+</NAME>
+<QUAL>Sessions</QUAL>
+<DIAGINST id='_0C02ABC8' oid='987AF9F274F64ebeB74C4F20F16C5B17' temploid='987AF9F274F64ebeB74C4F20F16C5B17' tmplref='_0C01B218' req='req' xauth='a'>
+<NAME>
+<TUV xml:lang='en-US'>Default Session</TUV>
+</NAME>
+<QUAL>DefaultSession</QUAL>
+<SERVICE id='_056DB598' oid='8D41B3A3C3344ce8A4FC95AA5C4DF189' temploid='8D41B3A3C3344ce8A4FC95AA5C4DF189' tmplref='_0BF7B5C8' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(1,2,3,4,5)' trans='(1,1,2,1,3,1,5,4)'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Default Session Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>DefaultSession_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='C3AAE60AEAED4328A99F0A2514D00A59' temploid='C3AAE60AEAED4328A99F0A2514D00A59' shstaticref='_0C018918' v='1'/>
+<SIMPLECOMPCONT oid='A69B10FA708C45caA85538F53D0F2EB4' temploid='A69B10FA708C45caA85538F53D0F2EB4' shproxyref='_0C01B308'>
+<DATAOBJ oid='8686B137E6334398AE9AAE6AFD76DAC4' temploid='8686B137E6334398AE9AAE6AFD76DAC4' spec='no' dtref='_05694768'>
+<NAME>
+<TUV xml:lang='en-US'>p2_Server</TUV>
+</NAME>
+<QUAL>p2_Server</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='4805BAC23D4D4d1aB4AA69CF582B07FD' temploid='4805BAC23D4D4d1aB4AA69CF582B07FD' spec='no' dtref='_05694668'>
+<NAME>
+<TUV xml:lang='en-US'>p2Ex_Server</TUV>
+</NAME>
+<QUAL>p2Ex_Server</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='C16455008E7F41488378A9F374807535' temploid='C16455008E7F41488378A9F374807535' shproxyref='_0C01B3F8'>
+<SPECDATAOBJ oid='C54971EE029C44feB7D8B0293A21E3B2' temploid='C54971EE029C44feB7D8B0293A21E3B2'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02ACE0' oid='110551FC70A3440e9248CD2357ABA73C' temploid='110551FC70A3440e9248CD2357ABA73C' tmplref='_0C01B218' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Programming Session</TUV>
+</NAME>
+<QUAL>ProgrammingSession</QUAL>
+<SERVICE id='_056DB700' oid='185E7C38264E4d3a9868490F838B697A' temploid='185E7C38264E4d3a9868490F838B697A' tmplref='_0BF7B5C8' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3,4,5)' trans='(2,2,3,2,5,4)'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Programming Session Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>ProgrammingSession_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='1478C37FF95C4705B3AD60B1EB2D645E' temploid='1478C37FF95C4705B3AD60B1EB2D645E' shstaticref='_0C018918' v='2'/>
+<SIMPLECOMPCONT oid='8D74126F877243a1B0B47F67A44B38A6' temploid='8D74126F877243a1B0B47F67A44B38A6' shproxyref='_0C01B308'>
+<DATAOBJ oid='0A5F98BBF3B94545AC9A195202F41B9B' temploid='0A5F98BBF3B94545AC9A195202F41B9B' spec='no' dtref='_05694768'>
+<NAME>
+<TUV xml:lang='en-US'>p2_Server</TUV>
+</NAME>
+<QUAL>p2_Server</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='FD0EB61E397D4453A1076567E2B85B8D' temploid='FD0EB61E397D4453A1076567E2B85B8D' spec='no' dtref='_05694668'>
+<NAME>
+<TUV xml:lang='en-US'>p2Ex_Server</TUV>
+</NAME>
+<QUAL>p2Ex_Server</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='8C136A9EAF594639BEF5D1B45EA8DF0A' temploid='8C136A9EAF594639BEF5D1B45EA8DF0A' shproxyref='_0C01B3F8'>
+<SPECDATAOBJ oid='3CA9E00AE5C947bdB4F8843553EF0053' temploid='3CA9E00AE5C947bdB4F8843553EF0053'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02ADF8' oid='68242B2A3C904b7f8C3EB7A64BC1DA6E' temploid='68242B2A3C904b7f8C3EB7A64BC1DA6E' tmplref='_0C01B218' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Extended Diagnostic Session</TUV>
+</NAME>
+<QUAL>ExtendedDiagnosticSession</QUAL>
+<SERVICE id='_056DB868' oid='8D45235B96B34279B07646017762D883' temploid='8D45235B96B34279B07646017762D883' tmplref='_0BF7B5C8' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(1,3,4,5)' trans='(1,3,3,3,5,4)'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Extended Diagnostic Session Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>ExtendedDiagnosticSession_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='D9143A6D95074b7dA1D098D12032193A' temploid='D9143A6D95074b7dA1D098D12032193A' shstaticref='_0C018918' v='3'/>
+<SIMPLECOMPCONT oid='0395FC003C3D4a4aB65C99C7D1E5DEFD' temploid='0395FC003C3D4a4aB65C99C7D1E5DEFD' shproxyref='_0C01B308'>
+<DATAOBJ oid='6F654D7E479F423eBC121D13794F8808' temploid='6F654D7E479F423eBC121D13794F8808' spec='no' dtref='_05694768'>
+<NAME>
+<TUV xml:lang='en-US'>p2_Server</TUV>
+</NAME>
+<QUAL>p2_Server</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='DFE65F60358242159F311D7143F8548F' temploid='DFE65F60358242159F311D7143F8548F' spec='no' dtref='_05694668'>
+<NAME>
+<TUV xml:lang='en-US'>p2Ex_Server</TUV>
+</NAME>
+<QUAL>p2Ex_Server</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='CFD43078F633412eADD9B271C8D3A35C' temploid='CFD43078F633412eADD9B271C8D3A35C' shproxyref='_0C01B3F8'>
+<SPECDATAOBJ oid='85FAE30972A24f98A1EC05FE682FFB4E' temploid='85FAE30972A24f98A1EC05FE682FFB4E'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGINST id='_0C02AF10' oid='05BBFAC5011D476a9A0CF0B0F8CADC10' temploid='05BBFAC5011D476a9A0CF0B0F8CADC10' tmplref='_0C01B4E8' req='req'>
+<NAME>
+<TUV xml:lang='en-US'>Tester Present</TUV>
+</NAME>
+<QUAL>TesterPresent</QUAL>
+<SERVICE id='_056DB9D0' oid='2BD2F7F5F535451fBBFC7A6DB5B5EB33' temploid='2BD2F7F5F535451fBBFC7A6DB5B5EB33' tmplref='_0BF7B6E0' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Tester Present Send</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>TesterPresent_Send</SHORTCUTQUAL>
+</SERVICE>
+<SIMPLECOMPCONT oid='3E65478820F7499086EBC74B1AC94A57' temploid='3E65478820F7499086EBC74B1AC94A57' shproxyref='_0C01B5D8'>
+<SPECDATAOBJ oid='CD119DBE3FFA45ae9C5F10C26D30C4C0' temploid='CD119DBE3FFA45ae9C5F10C26D30C4C0'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<NEGRESCODEPROXIES>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGCLASS id='_056FFDD8' oid='56FFC9A5B18149be873BE8A7A098EFA7' temploid='56FFC9A5B18149be873BE8A7A098EFA7' tmplref='_0C01B6C8'>
+<NAME>
+<TUV xml:lang='en-US'>Communication Control</TUV>
+</NAME>
+<QUAL>CommunicationControl</QUAL>
+<DIAGINST id='_0C02B028' oid='2CF1871F6AFF4829A031DF8FD534CEA6' temploid='2CF1871F6AFF4829A031DF8FD534CEA6' tmplref='_0C01B6C8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Enable Rx And Tx</TUV>
+</NAME>
+<QUAL>Enable_Rx_And_Tx</QUAL>
+<SERVICE id='_056DBB38' oid='4791F0D38D02422b94FBEA953C3898BE' temploid='4791F0D38D02422b94FBEA953C3898BE' tmplref='_0BF7B7F8' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Enable Rx And Tx Control</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Enable_Rx_And_Tx_Control</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='FB8D0B66A9C749a79C19155CC2EBC1E1' temploid='FB8D0B66A9C749a79C19155CC2EBC1E1' shstaticref='_0C0189F8' v='0'/>
+<SIMPLECOMPCONT oid='A74871AB6EA141c383A2C956EB4E819F' temploid='A74871AB6EA141c383A2C956EB4E819F' shproxyref='_0C01B7B8'>
+<STRUCT oid='4409480C679A4f8dA26369A36D85E798' temploid='4409480C679A4f8dA26369A36D85E798' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>communicationControl</TUV>
+</NAME>
+<QUAL>communicationControl</QUAL>
+<DATAOBJ oid='E8D9B6C00980429dAE72B50EF6073821' temploid='E8D9B6C00980429dAE72B50EF6073821' spec='no' v='1' dtref='_05694868'>
+<NAME>
+<TUV xml:lang='en-US'>normalCommunicationMessages</TUV>
+</NAME>
+<QUAL>normalCommunicationMessages</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='95823A197F83417f8ACE6606DF1EB8EE' temploid='95823A197F83417f8ACE6606DF1EB8EE' spec='no' v='1' dtref='_05694868'>
+<NAME>
+<TUV xml:lang='en-US'>networkManagementCommunicationMessages</TUV>
+</NAME>
+<QUAL>networkManagementCommunicationMessages</QUAL>
+</DATAOBJ>
+<GAPDATAOBJ oid='45F4C80B844541e39A9530F133BFB539' temploid='45F4C80B844541e39A9530F133BFB539' bl='2'>
+<NAME>
+<TUV xml:lang='en-US'>(reserved by ISO)</TUV>
+</NAME>
+<QUAL>_reserved_1</QUAL>
+</GAPDATAOBJ>
+<GAPDATAOBJ oid='4753B254A59D486295ADFA0B4A612BF4' temploid='4753B254A59D486295ADFA0B4A612BF4' bl='4'>
+<NAME>
+<TUV xml:lang='en-US'>(reserved)</TUV>
+</NAME>
+<QUAL>_reserved_2</QUAL>
+</GAPDATAOBJ>
+</STRUCT>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='B3AF18F74285463a9B9B073C8B54C9DA' temploid='B3AF18F74285463a9B9B073C8B54C9DA' shproxyref='_0C01B8A8'>
+<SPECDATAOBJ oid='6BCDDC6ABA79430a99962A5FE5575E26' temploid='6BCDDC6ABA79430a99962A5FE5575E26'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02B140' oid='B70D1F98B2924de79792231BD1507ADA' tmplref='_0C01B6C8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Disable Rx And Tx</TUV>
+</NAME>
+<QUAL>Disable_Rx_And_Tx</QUAL>
+<SERVICE id='_056DBCA0' oid='80A0CBD433C343659BEA8B4B196EC75C' tmplref='_0BF7B7F8' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Disable Rx And Tx Control</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Disable_Rx_And_Tx_Control</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='E0917AE0565A4cdcB46EB48038D59994' shstaticref='_0C0189F8' v='3'/>
+<SIMPLECOMPCONT oid='7519E430A4314346942E37F5F39681D8' shproxyref='_0C01B7B8'>
+<STRUCT oid='788C6BCF8ACD4b17B08A2857A2079713' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>communicationControl</TUV>
+</NAME>
+<QUAL>communicationControl</QUAL>
+<DATAOBJ oid='0983C1FC738041d7A3C6A5CF780E7678' spec='no' v='1' dtref='_05694868'>
+<NAME>
+<TUV xml:lang='en-US'>normalCommunicationMessages</TUV>
+</NAME>
+<QUAL>normalCommunicationMessages</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='070F913CB31A4334A1D45C1BCF565FA2' spec='no' v='1' dtref='_05694868'>
+<NAME>
+<TUV xml:lang='en-US'>networkManagementCommunicationMessages</TUV>
+</NAME>
+<QUAL>networkManagementCommunicationMessages</QUAL>
+</DATAOBJ>
+<GAPDATAOBJ oid='18202F6D23BE455d838FD4A0DF976A22' bl='6'>
+<NAME>
+<TUV xml:lang='en-US'>(reserved)</TUV>
+</NAME>
+<QUAL>_reserved_1</QUAL>
+</GAPDATAOBJ>
+</STRUCT>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='594CCA4C838E4f64A326A49763C63A9A' shproxyref='_0C01B8A8'>
+<SPECDATAOBJ oid='DF6F8FD7DD0D4076B285E51A3F62CDFE'>
+<NAME>
+<TUV xml:lang='en-US'>Control</TUV>
+</NAME>
+<QUAL>Control</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGCLASS id='_0C0437F0' oid='9CE50EF03B004c7dB04CEAB4634178E4' temploid='9CE50EF03B004c7dB04CEAB4634178E4' tmplref='_0C01B998'>
+<NAME>
+<TUV xml:lang='en-US'>Security Access</TUV>
+</NAME>
+<QUAL>SecurityAccess</QUAL>
+<DIAGINST id='_0C02B258' oid='642A87F8DFA34404AFC9248F55F00D96' tmplref='_0C01B998' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Seed Level #05</TUV>
+</NAME>
+<QUAL>Seed_Level_05</QUAL>
+<SERVICE id='_056DBE08' oid='C7C60C87E3FF47d8A6E3C443306DF644' tmplref='_0BF7B910' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Seed Level #05 Request</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Seed_Level_05_Request</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='99D88B5D085B43ec92B3F733DDD8BBD5' shstaticref='_0C018AD8' v='5'/>
+<SIMPLECOMPCONT oid='7037DF73693F4d18A6EF9395066E068F' shproxyref='_0C01BA88'>
+<DATAOBJ oid='1B639C42A6F2467596BDD2C97709E1A0' spec='no' dtref='_05695268'>
+<NAME>
+<TUV xml:lang='en-US'>seed</TUV>
+</NAME>
+<QUAL>seed</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='4AC9247CE54F49b1A3FA7EC963CA99A6' shproxyref='_0C01BC68'>
+<SPECDATAOBJ oid='971F6ED9FB854cbfAF2FC35E3648CD31'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02B370' oid='C7E17708FB1B4f5e826C244D91BCCEFF' tmplref='_0C01B998' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Key Level #06</TUV>
+</NAME>
+<QUAL>Key_Level_06</QUAL>
+<SERVICE id='_056DBF70' oid='193FAF2787674c2687ED815EB5CEC453' tmplref='_0BF7BA28' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0' mayBeExec='(2,3,4,5)' trans='(4,5)'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Key Level #06 Send</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Key_Level_06_Send</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='EDE2B52344AA4e7eB7A0F96CEABEEAFE' shstaticref='_0C018AD8' v='6'/>
+<SIMPLECOMPCONT oid='3F486C879B86440b90399CDE897FDCF8' shproxyref='_0C01BB78'>
+<DATAOBJ oid='F03B7214A3614e46A1C8EF18A2E8F5BB' spec='no' dtref='_05695368'>
+<NAME>
+<TUV xml:lang='en-US'>key</TUV>
+</NAME>
+<QUAL>key</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='824229A2C97C4105A32C670FC1D4A220' shproxyref='_0C01BD58'>
+<SPECDATAOBJ oid='19880285A3244436B6D8B52E0DC8BA6B'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGCLASS id='_0C043C78' oid='D4AEC7A967F04371A2A7955FD0BA3008' temploid='D4AEC7A967F04371A2A7955FD0BA3008' tmplref='_0C01BE48'>
+<NAME>
+<TUV xml:lang='en-US'>Control DTC Setting</TUV>
+</NAME>
+<QUAL>ControlDTCSetting</QUAL>
+<DIAGINST id='_0C02B488' oid='377C43F330C742dc9978F73CAE572DC3' temploid='377C43F330C742dc9978F73CAE572DC3' tmplref='_0C01BE48' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Enable</TUV>
+</NAME>
+<QUAL>Enable</QUAL>
+<SERVICE id='_056DC0D8' oid='7C271DD1187C4d38A5BF377B648E5A57' temploid='7C271DD1187C4d38A5BF377B648E5A57' tmplref='_0BF7BB40' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Enable Send</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Enable_Send</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='1F9E608E27A7403f85FE0CC5600F3DA8' temploid='1F9E608E27A7403f85FE0CC5600F3DA8' shstaticref='_0C018BB8' v='1'/>
+<SIMPLECOMPCONT oid='82B87440999345588D452DE0B43483F5' shproxyref='_0C01BF38'>
+<DATAOBJ oid='26E834CD9EDF4337A320382980A8738E' spec='no' dtref='_05694D68'>
+<NAME>
+<TUV xml:lang='en-US'>Option Record</TUV>
+</NAME>
+<QUAL>Option_Record</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='BC8F5DA083C3497d9031E63F7D83D9E6' shproxyref='_0C01C028'>
+<SPECDATAOBJ oid='13474C66FC4740feAAC1DA754E532E42'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02B5A0' oid='929EC5A7956F4ded89076968E82DCDE7' temploid='929EC5A7956F4ded89076968E82DCDE7' tmplref='_0C01BE48' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Disable</TUV>
+</NAME>
+<QUAL>Disable</QUAL>
+<SERVICE id='_056DC240' oid='B72EA0FC2AAC4d50862E003F8A4D0AAE' temploid='B72EA0FC2AAC4d50862E003F8A4D0AAE' tmplref='_0BF7BB40' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Disable Send</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Disable_Send</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='F5DD1743140244e2963802DF023CC551' temploid='F5DD1743140244e2963802DF023CC551' shstaticref='_0C018BB8' v='2'/>
+<SIMPLECOMPCONT oid='8192C4418DDF4c09ACA0973524C38358' shproxyref='_0C01BF38'>
+<DATAOBJ oid='2F1F07AB24494051AEDE2CF1AEFC8406' spec='no' dtref='_05694D68'>
+<NAME>
+<TUV xml:lang='en-US'>Option Record</TUV>
+</NAME>
+<QUAL>Option_Record</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='0FE7F109F6F3436eA428139EF31224DA' shproxyref='_0C01C028'>
+<SPECDATAOBJ oid='16D79BE9A1DD44339419A06AD9BB693F'>
+<NAME>
+<TUV xml:lang='en-US'>Send</TUV>
+</NAME>
+<QUAL>Send</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGCLASS id='_0C044100' oid='020CEFFA5D2941879EC180245588F5E2' temploid='020CEFFA5D2941879EC180245588F5E2' tmplref='_0C027538'>
+<NAME>
+<TUV xml:lang='en-US'>Ecu Reset</TUV>
+</NAME>
+<QUAL>EcuReset</QUAL>
+<DIAGINST id='_0C02B6B8' oid='117E4064E3CD41f089DD04502210BB55' temploid='117E4064E3CD41f089DD04502210BB55' tmplref='_0C027538' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Hard Reset</TUV>
+</NAME>
+<QUAL>Hard_Reset</QUAL>
+<SERVICE id='_056DC3A8' oid='B052394D5DAA4d9d8E33A4C27768ABE1' temploid='B052394D5DAA4d9d8E33A4C27768ABE1' tmplref='_0BF7BC58' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Reset</TUV>
+</NAME>
+<QUAL>Reset</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Hard Reset Reset</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Hard_Reset_Reset</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='092FD6CC0A234399AB0CA0442442C957' temploid='092FD6CC0A234399AB0CA0442442C957' shstaticref='_0C018C98' v='1'/>
+<SIMPLECOMPCONT oid='05015A74E0514db9A4C21D378FC2346B' temploid='05015A74E0514db9A4C21D378FC2346B' shproxyref='_0C027628'>
+<SPECDATAOBJ oid='0E7A9BC89CD742919719C3E5DBA8BFED' temploid='0E7A9BC89CD742919719C3E5DBA8BFED'>
+<NAME>
+<TUV xml:lang='en-US'>Reset</TUV>
+</NAME>
+<QUAL>Reset</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGCLASS id='_0C0442D0' oid='89CEFE337F7E4d90975A6AEB9D0F4DE2' temploid='89CEFE337F7E4d90975A6AEB9D0F4DE2' tmplref='_0C027718'>
+<NAME>
+<TUV xml:lang='en-US'>Identification</TUV>
+</NAME>
+<QUAL>Identification</QUAL>
+<DIAGINST id='_0C02B7D0' oid='EB99B20FF69340c0BB48454AFE1BF376' tmplref='_0C027718' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Tester Serial Number</TUV>
+</NAME>
+<QUAL>Tester_Serial_Number</QUAL>
+<SERVICE id='_056DC510' oid='9FFB884B434247ea947E6BD6811E8936' tmplref='_0BF7BD70' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Tester Serial Number Read</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Tester_Serial_Number_Read</SHORTCUTQUAL>
+</SERVICE>
+<SERVICE id='_056DC678' oid='854C3DD274DF4cdf8CA40672BD93FA27' tmplref='_0BF7BE88' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Write</TUV>
+</NAME>
+<QUAL>Write</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Tester Serial Number Write</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Tester_Serial_Number_Write</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='FE065406A7334b009ADFE00731242820' shstaticref='_0C018D78' v='61848'/>
+<SIMPLECOMPCONT oid='3529A3A6233742cdB50D9A502EE26BC9' shproxyref='_0C027808'>
+<DATAOBJ oid='16B9BE527A4F474b815A6C5FFD68F2EF' spec='no' dtref='_05695868'>
+<NAME>
+<TUV xml:lang='en-US'>SerialNumber</TUV>
+</NAME>
+<QUAL>SerialNumber</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='1F59E75BF22343109491A263ED377212' shproxyref='_0C0278F8'>
+<SPECDATAOBJ oid='8BC543DEC5954fccBB99A3173B4640E4'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='B7DFBA4959824889A64AA93994BBF04A' shproxyref='_0C0279E8'>
+<SPECDATAOBJ oid='2D4A0134AEA843e4BF424C8E9769E3A4'>
+<NAME>
+<TUV xml:lang='en-US'>Write NR</TUV>
+</NAME>
+<QUAL>Write_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02B8E8' oid='7C6BE175028A4c058376DC95D1EC9DE5' tmplref='_0C027718' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Programming Date</TUV>
+</NAME>
+<QUAL>Programming_Date</QUAL>
+<SERVICE id='_056DC7E0' oid='F213E8DF16E54bd9A573927437B469D8' tmplref='_0BF7BD70' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Programming Date Read</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Programming_Date_Read</SHORTCUTQUAL>
+</SERVICE>
+<SERVICE id='_056DC948' oid='E264C82100CA41e094EF032979AABED6' tmplref='_0BF7BE88' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Write</TUV>
+</NAME>
+<QUAL>Write</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Programming Date Write</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Programming_Date_Write</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='D8DEE03DB67F41a8A6755A71DB39D095' shstaticref='_0C018D78' v='61849'/>
+<SIMPLECOMPCONT oid='ADE29AEA6D484f289333AD0AABC26692' shproxyref='_0C027808'>
+<DATAOBJ oid='9F32FF0F1B1C4570B207E82E01889A64' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Year</TUV>
+</NAME>
+<QUAL>Year</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='CFB7AC59733F43f3903597EB956D4CC6' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Month</TUV>
+</NAME>
+<QUAL>Month</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='1580AE3CBE994982A9F023DD50490C87' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Day</TUV>
+</NAME>
+<QUAL>Day</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='BA101C2F6A1944ff811087295E2BAF03' shproxyref='_0C0278F8'>
+<SPECDATAOBJ oid='4F9545E41EDA4f3e9A19807FC589C9F5'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='6D18F510D8FD4dc2A675DB9EC2C960FA' shproxyref='_0C0279E8'>
+<SPECDATAOBJ oid='07109A4E155F491c85BFD5CDDDF038BC'>
+<NAME>
+<TUV xml:lang='en-US'>Write NR</TUV>
+</NAME>
+<QUAL>Write_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02BA00' oid='A09477C0012C4ba2AC6B6FDD40BEF2A4' tmplref='_0C027718' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>SYMC Software Version</TUV>
+</NAME>
+<QUAL>SYMC_Software_Version</QUAL>
+<SERVICE id='_056DCAB0' oid='55299B491EB74c74A4C6A7681D9151A6' tmplref='_0BF7BD70' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>SYMC Software Version Read</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>SYMC_Software_Version_Read</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='AE5CABD8A118498098B07CE0E9B652EC' shstaticref='_0C018D78' v='61833'/>
+<SIMPLECOMPCONT oid='3D87FED7764148d5A552BA006C89695E' shproxyref='_0C027808'>
+<DATAOBJ oid='864B23056CC0453a81EFE26A8C485C7A' spec='no' dtref='_05695168'>
+<NAME>
+<TUV xml:lang='en-US'>SYMC Software Version</TUV>
+</NAME>
+<QUAL>SYMC_Software_Version</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='B54D0D2338B34b78BDB83E61F79D8DF1' shproxyref='_0C0278F8'>
+<SPECDATAOBJ oid='CC766012348C498fBE5871FB1266CCF4'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02BB18' oid='CEBD666C6C724675ADA3494D2C0D8A77' tmplref='_0C027718' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>SYMC Part Number</TUV>
+</NAME>
+<QUAL>SYMC_Part_Number</QUAL>
+<SERVICE id='_056DCC18' oid='6CBBEDC3E97544a798BAF164BA616B37' tmplref='_0BF7BD70' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>SYMC Part Number Read</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>SYMC_Part_Number_Read</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='EC89196F3E2448cc992D525B68A255BB' shstaticref='_0C018D78' v='61831'/>
+<SIMPLECOMPCONT oid='407B73696E02464fAC814AD48555DA30' shproxyref='_0C027808'>
+<DATAOBJ oid='098AE39B3E424ebbA24A35A002B5BFAB' spec='no' dtref='_05695068'>
+<NAME>
+<TUV xml:lang='en-US'>Part Number</TUV>
+</NAME>
+<QUAL>Part_Number</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='817B5905E5324a51ADE4F6B6DBD011D1' shproxyref='_0C0278F8'>
+<SPECDATAOBJ oid='E923D3DCCF294fb9B935B86E2129AC36'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02BC30' oid='A807EFBA5BD64a2590C0D80DB57C82F5' tmplref='_0C027718' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Programming Identification</TUV>
+</NAME>
+<QUAL>Programming_Identification</QUAL>
+<SERVICE id='_056DCD80' oid='79EC84B7C60A45de8BACC4B69CED0BB5' tmplref='_0BF7BD70' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Read</TUV>
+</NAME>
+<QUAL>Read</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Programming Identification Read</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Programming_Identification_Read</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='130CD836D9A341feAFB623CFD0FF0AF8' shstaticref='_0C018D78' v='61857'/>
+<SIMPLECOMPCONT oid='C344BB9C58BC425b82C9B01C02AF64B2' shproxyref='_0C027808'>
+<DATAOBJ oid='30F1475F473D488bBADE59BA8C8AD7FF' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Flash Document Version Number</TUV>
+</NAME>
+<QUAL>Flash_Document_Version_Number</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='2680A1490FCF4ce88BC1F099BD6132EE' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Status Flags</TUV>
+</NAME>
+<QUAL>Status_Flags</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='DBEA90F32E2E42abBFFE26090E0DFB37' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>Support Flags</TUV>
+</NAME>
+<QUAL>Support_Flags</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='11B6734F86E549478172041F0933191B' spec='no' dtref='_05694E68'>
+<NAME>
+<TUV xml:lang='en-US'>Security Class</TUV>
+</NAME>
+<QUAL>Security_Class</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='F4B1194DEF3C4184A3D7CAD58A35BE30' spec='no' dtref='_05694F68'>
+<NAME>
+<TUV xml:lang='en-US'>CodeAndDataBlockInfo</TUV>
+</NAME>
+<QUAL>CodeAndDataBlockInfo</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='28B19F9E7FE84b179A56CDC27EE5530E' shproxyref='_0C0278F8'>
+<SPECDATAOBJ oid='4BC480E58DD44d35B5FC7150AEDEB496'>
+<NAME>
+<TUV xml:lang='en-US'>Read NR</TUV>
+</NAME>
+<QUAL>Read_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGCLASS id='_0C044E98' oid='4F2EE7CEBC314f28B739694B05E697EC' temploid='4F2EE7CEBC314f28B739694B05E697EC' tmplref='_0C027AD8'>
+<NAME>
+<TUV xml:lang='en-US'>Routine</TUV>
+</NAME>
+<QUAL>Routine</QUAL>
+<DIAGINST id='_0C02BD48' oid='9492DEA0E2F442c699CC11EA0950A98D' temploid='9492DEA0E2F442c699CC11EA0950A98D' tmplref='_0C027AD8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Check Programming Preconditions</TUV>
+</NAME>
+<QUAL>Check_Programming_Preconditions</QUAL>
+<SERVICE id='_056DCEE8' oid='59C170A56B3F4b079F2EF7E852FB4965' temploid='59C170A56B3F4b079F2EF7E852FB4965' tmplref='_0C02A538' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Check Programming Preconditions Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Check_Programming_Preconditions_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='02BD8A845F6F4106A8A703354A2D9B00' temploid='02BD8A845F6F4106A8A703354A2D9B00' shstaticref='_0C018E58' v='515'/>
+<SIMPLECOMPCONT oid='1B826DABD17B4779857D7AD4D084CDA5' temploid='1B826DABD17B4779857D7AD4D084CDA5' shproxyref='_0C027BC8'>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='6167872E0F6F44538755CC459C1EAE2A' temploid='6167872E0F6F44538755CC459C1EAE2A' shproxyref='_0C027CB8'>
+<DATAOBJ oid='26D8CD9F56F647038A9AE8E39B1ECE5E' temploid='26D8CD9F56F647038A9AE8E39B1ECE5E' spec='no' dtref='_05694C68'>
+<NAME>
+<TUV xml:lang='en-US'>Status Record</TUV>
+</NAME>
+<QUAL>Status_Record</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='15A378E4931D4d849119D234FE4B67DE' temploid='15A378E4931D4d849119D234FE4B67DE' shproxyref='_0C028078'>
+<SPECDATAOBJ oid='BAD0F087C8F64a22B13A1DEB397FF0FE' temploid='BAD0F087C8F64a22B13A1DEB397FF0FE'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E2848'/>
+<NEGRESCODEPROXY idref='_056E2910'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E2DC0'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02BE60' oid='3276CE77BE7E480cBC5A8CDCA5CB51DF' temploid='3276CE77BE7E480cBC5A8CDCA5CB51DF' tmplref='_0C027AD8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Compare Checksum</TUV>
+</NAME>
+<QUAL>Compare_Checksum</QUAL>
+<SERVICE id='_056DD050' oid='147C70627D3A473dA12CAD09BD2745A1' temploid='147C70627D3A473dA12CAD09BD2745A1' tmplref='_0C02A538' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Compare Checksum Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Compare_Checksum_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='C4401858EB7C486dB982E60642477D6B' temploid='C4401858EB7C486dB982E60642477D6B' shstaticref='_0C018E58' v='512'/>
+<SIMPLECOMPCONT oid='93D79499D28343a3BC7B9BF7D6C121E2' temploid='93D79499D28343a3BC7B9BF7D6C121E2' shproxyref='_0C027BC8'>
+<DATAOBJ oid='BE8F642FADB7415bBE5D0A44D9F6FB50' spec='no' dtref='_05695468'>
+<NAME>
+<TUV xml:lang='en-US'>MemoryAddress</TUV>
+</NAME>
+<QUAL>MemoryAddress</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='6FF6ED9927ED434aA9392489C24668A7' spec='no' dtref='_05695468'>
+<NAME>
+<TUV xml:lang='en-US'>MemorySize</TUV>
+</NAME>
+<QUAL>MemorySize</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='C289AE33D9004537BF5B4CFB361DFCE4' spec='no' dtref='_05695568'>
+<NAME>
+<TUV xml:lang='en-US'>LengthOfValueCheck</TUV>
+</NAME>
+<QUAL>LengthOfValueCheck</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='64F8CF2593FD46b8AA8DE6B8BE71D856' spec='no' dtref='_05695668'>
+<NAME>
+<TUV xml:lang='en-US'>CheckValue</TUV>
+</NAME>
+<QUAL>CheckValue</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='3ABBDDF43B06481bB0C7CA4D39BC8DFF' temploid='3ABBDDF43B06481bB0C7CA4D39BC8DFF' shproxyref='_0C027CB8'>
+<DATAOBJ oid='32F32B73A7304643BECA632CD3D6748C' temploid='32F32B73A7304643BECA632CD3D6748C' spec='no' dtref='_05694368'>
+<NAME>
+<TUV xml:lang='en-US'>match</TUV>
+</NAME>
+<QUAL>match</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='BF01FABA1D1E4fa59E31553D917BED0D' temploid='BF01FABA1D1E4fa59E31553D917BED0D' shproxyref='_0C028078'>
+<SPECDATAOBJ oid='C40BF035AFA44534AE550C9928DF4D00' temploid='C40BF035AFA44534AE550C9928DF4D00'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02BF78' oid='5200D95DE8664ba9A33529A4E06E2C84' temploid='5200D95DE8664ba9A33529A4E06E2C84' tmplref='_0C027AD8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Erase Memory</TUV>
+</NAME>
+<QUAL>Erase_Memory</QUAL>
+<SERVICE id='_056DD1B8' oid='51B5FEFBAD1243bd8EDF8164DC089650' temploid='51B5FEFBAD1243bd8EDF8164DC089650' tmplref='_0C02A538' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Erase Memory Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Erase_Memory_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='E0910EC662A54cb5852CF0CEEE925391' temploid='E0910EC662A54cb5852CF0CEEE925391' shstaticref='_0C018E58' v='65280'/>
+<SIMPLECOMPCONT oid='D07B3EBFABCA478a8F43FA1266C872CC' temploid='D07B3EBFABCA478a8F43FA1266C872CC' shproxyref='_0C027BC8'>
+<STRUCT oid='FF80B921791E4db0B958AED494205C45' temploid='FF80B921791E4db0B958AED494205C45' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>addressAndLengthFormatIdentifier</TUV>
+</NAME>
+<QUAL>addressAndLengthFormatIdentifier</QUAL>
+<DATAOBJ oid='8BF0F663DF25475688494C496236E7F1' temploid='8BF0F663DF25475688494C496236E7F1' spec='no' dtref='_05694A68'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength: memoryAddress Parameter</TUV>
+</NAME>
+<QUAL>byteLength_memoryAddress_Parameter</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='7916BDE36B6348c4AE0F601A03319044' temploid='7916BDE36B6348c4AE0F601A03319044' spec='no' dtref='_05694A68'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength: memorySize Parameter</TUV>
+</NAME>
+<QUAL>byteLength_memorySize_Parameter</QUAL>
+</DATAOBJ>
+</STRUCT>
+<DATAOBJ oid='1ADF3ABDF62D44b09D5B61246533B916' temploid='1ADF3ABDF62D44b09D5B61246533B916' spec='no' dtref='_05694568'>
+<NAME>
+<TUV xml:lang='en-US'>addressAndSize</TUV>
+</NAME>
+<QUAL>addressAndSize</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='3D829C27DAEB442bA1B6BDBC0539FA42' temploid='3D829C27DAEB442bA1B6BDBC0539FA42' shproxyref='_0C027CB8'>
+<DATAOBJ oid='B08E940F615F49f689B95BAA95AAB990' temploid='B08E940F615F49f689B95BAA95AAB990' spec='no' dtref='_05694368'>
+<NAME>
+<TUV xml:lang='en-US'>succeeded</TUV>
+</NAME>
+<QUAL>succeeded</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='7E278A9B14C64ab9A4A36B342BC6DCE3' temploid='7E278A9B14C64ab9A4A36B342BC6DCE3' shproxyref='_0C028078'>
+<SPECDATAOBJ oid='28AF082B77864b6f8B03285C3D89E786' temploid='28AF082B77864b6f8B03285C3D89E786'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+<DIAGINST id='_0C02C090' oid='A09B2275797E40cc9E749F5B55DAE744' temploid='A09B2275797E40cc9E749F5B55DAE744' tmplref='_0C027AD8' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Check Programming Dependencies</TUV>
+</NAME>
+<QUAL>Check_Programming_Dependencies</QUAL>
+<SERVICE id='_0C069938' oid='9E1110830CA94d35AA3A808508C5A37B' temploid='9E1110830CA94d35AA3A808508C5A37B' tmplref='_0C02A538' func='1' phys='1' respOnPhys='1' respOnFunc='1' req='0'>
+<NAME>
+<TUV xml:lang='en-US'>Start</TUV>
+</NAME>
+<QUAL>Start</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Check Programming Dependencies Start</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Check_Programming_Dependencies_Start</SHORTCUTQUAL>
+</SERVICE>
+<STATICVALUE oid='A6FC713940534a7c973FC8DAA632B394' temploid='A6FC713940534a7c973FC8DAA632B394' shstaticref='_0C018E58' v='65281'/>
+<SIMPLECOMPCONT oid='1ABAEEC337CF4d2894406ECCC109FB3B' temploid='1ABAEEC337CF4d2894406ECCC109FB3B' shproxyref='_0C027BC8'>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='519FF55C47534e65B175C67B4445BE57' temploid='519FF55C47534e65B175C67B4445BE57' shproxyref='_0C027CB8'>
+<DATAOBJ oid='BDAC6D61042B4220B004C2224257FBBB' temploid='BDAC6D61042B4220B004C2224257FBBB' spec='no' dtref='_05695768'>
+<NAME>
+<TUV xml:lang='en-US'>succeeded</TUV>
+</NAME>
+<QUAL>succeeded</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='ADF7085736B644cb86C80C06ABEC5147' temploid='ADF7085736B644cb86C80C06ABEC5147' shproxyref='_0C028078'>
+<SPECDATAOBJ oid='37F73BCFD7D3447cA99567CDC8A492E2' temploid='37F73BCFD7D3447cA99567CDC8A492E2'>
+<NAME>
+<TUV xml:lang='en-US'>Start NR</TUV>
+</NAME>
+<QUAL>Start_NR</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</DIAGCLASS>
+<DIAGINST id='_0C02C1A8' oid='3AE0D47EA74A441185F7211998588FEE' temploid='3AE0D47EA74A441185F7211998588FEE' tmplref='_0C028348' req='notReq'>
+<NAME>
+<TUV xml:lang='en-US'>Download</TUV>
+</NAME>
+<QUAL>Download</QUAL>
+<SERVICE id='_0C069AA0' oid='FCA4C2311B1E47c89B82870FD499BBF1' temploid='FCA4C2311B1E47c89B82870FD499BBF1' tmplref='_0C02A880' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Download Request</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Download_Request</SHORTCUTQUAL>
+</SERVICE>
+<SERVICE id='_0C069C08' oid='45258FBFA39743b2835193D2CFC60127' temploid='45258FBFA39743b2835193D2CFC60127' tmplref='_0C02A998' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Transmit</TUV>
+</NAME>
+<QUAL>Transmit</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Download Transmit</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Download_Transmit</SHORTCUTQUAL>
+</SERVICE>
+<SERVICE id='_0C069D70' oid='24737A523BFF47f99E85FE962997E44F' temploid='24737A523BFF47f99E85FE962997E44F' tmplref='_0C02AAB0' func='0' phys='1' respOnPhys='1' respOnFunc='0' req='0' mayBeExec='(2,3)'>
+<NAME>
+<TUV xml:lang='en-US'>Stop</TUV>
+</NAME>
+<QUAL>Stop</QUAL>
+<SHORTCUTNAME>
+<TUV xml:lang='en-US'>Download Stop</TUV>
+</SHORTCUTNAME>
+<SHORTCUTQUAL>Download_Stop</SHORTCUTQUAL>
+</SERVICE>
+<SIMPLECOMPCONT oid='26A5794FF77E4186B0F4C0916A45FD4A' temploid='26A5794FF77E4186B0F4C0916A45FD4A' shproxyref='_0C0288E8'>
+<STRUCT oid='2848DDA0590E45329983024BB62A9354' temploid='2848DDA0590E45329983024BB62A9354' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>dataFormatIdentifier</TUV>
+</NAME>
+<QUAL>dataFormatIdentifier</QUAL>
+<DATAOBJ oid='0544D5726D854cdbBAD7A6C17D2744F2' temploid='0544D5726D854cdbBAD7A6C17D2744F2' spec='no' dtref='_05694268'>
+<NAME>
+<TUV xml:lang='en-US'>encryptionMethod</TUV>
+</NAME>
+<QUAL>encryptionMethod</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='11E013EC528E4a4c9FC0A4690D58D993' temploid='11E013EC528E4a4c9FC0A4690D58D993' spec='no' dtref='_05694168'>
+<NAME>
+<TUV xml:lang='en-US'>compressionMethod</TUV>
+</NAME>
+<QUAL>compressionMethod</QUAL>
+</DATAOBJ>
+</STRUCT>
+<STRUCT oid='5FF4C275B47A4214A12E612C56C220D9' temploid='5FF4C275B47A4214A12E612C56C220D9' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>addressAndLengthFormatIdentifier</TUV>
+</NAME>
+<QUAL>addressAndLengthFormatIdentifier</QUAL>
+<DATAOBJ oid='3092BEDBE75F45ccA17C8B5BD18C5E9D' temploid='3092BEDBE75F45ccA17C8B5BD18C5E9D' spec='no' def='4' dtref='_05694A68'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength Address</TUV>
+</NAME>
+<QUAL>byteLength_Address</QUAL>
+</DATAOBJ>
+<DATAOBJ oid='A5FD744F943D4535BC9DD2521308339B' temploid='A5FD744F943D4535BC9DD2521308339B' spec='no' def='1' dtref='_05694A68'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength Size</TUV>
+</NAME>
+<QUAL>byteLength_Size</QUAL>
+</DATAOBJ>
+</STRUCT>
+<DATAOBJ oid='48BA9AC969A3428b884B6E1114FF2C7F' temploid='48BA9AC969A3428b884B6E1114FF2C7F' spec='no' dtref='_05694568'>
+<NAME>
+<TUV xml:lang='en-US'>addressAndSize</TUV>
+</NAME>
+<QUAL>addressAndSize</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='45A5AC6E238742fe86A729A400A15A81' temploid='45A5AC6E238742fe86A729A400A15A81' shproxyref='_0C0289D8'>
+<STRUCT oid='D7E0913F02634801AD849DFDB1262158' temploid='D7E0913F02634801AD849DFDB1262158' spec='no' dtref='_05694B68'>
+<NAME>
+<TUV xml:lang='en-US'>sizeFormatIdentifier</TUV>
+</NAME>
+<QUAL>sizeFormatIdentifier</QUAL>
+<GAPDATAOBJ oid='940C38B066AE43e584560B923F065EDB' temploid='940C38B066AE43e584560B923F065EDB' bl='4'>
+<NAME>
+<TUV xml:lang='en-US'>(reserved)</TUV>
+</NAME>
+<QUAL>_reserved</QUAL>
+</GAPDATAOBJ>
+<DATAOBJ oid='81294271F19D439d942873796C185EAB' temploid='81294271F19D439d942873796C185EAB' spec='no' dtref='_05694A68'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength MaxByteLengthBlockSize</TUV>
+</NAME>
+<QUAL>byteLength_MaxByteLengthBlockSize</QUAL>
+</DATAOBJ>
+</STRUCT>
+<DATAOBJ oid='A8244D50478E4e319AAA7291E5959F11' temploid='A8244D50478E4e319AAA7291E5959F11' spec='no' dtref='_05694468'>
+<NAME>
+<TUV xml:lang='en-US'>byteLength MaxBlockSize</TUV>
+</NAME>
+<QUAL>byteLength_MaxBlockSize</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='4461BE3296A64c94982EFE4537D3D14E' temploid='4461BE3296A64c94982EFE4537D3D14E' shproxyref='_0C028AC8'>
+<DATAOBJ oid='F0492B11F79843beA9BFA1A7A0C48F35' temploid='F0492B11F79843beA9BFA1A7A0C48F35' spec='no' dtref='_05694968'>
+<NAME>
+<TUV xml:lang='en-US'>blockSequenceCounter</TUV>
+</NAME>
+<QUAL>blockSequenceCounter</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='409CC5736405482fAA4E04F06AACFFAB' temploid='409CC5736405482fAA4E04F06AACFFAB' shproxyref='_0C028BB8'>
+<DATAOBJ oid='276324672D1E4d03AAD19292AC81A750' temploid='276324672D1E4d03AAD19292AC81A750' spec='no' dtref='_05694968'>
+<NAME>
+<TUV xml:lang='en-US'>blockSequenceCounter</TUV>
+</NAME>
+<QUAL>blockSequenceCounter</QUAL>
+</DATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='54ACD558D6FC4a0c9BC91B9092D8A908' temploid='54ACD558D6FC4a0c9BC91B9092D8A908' shproxyref='_0C028618'>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='491E0E0B14F8476588A9C54CFB8784E7' temploid='491E0E0B14F8476588A9C54CFB8784E7' shproxyref='_0C028708'>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='4894C26817B7478b947CA5B7208E09EC' temploid='4894C26817B7478b947CA5B7208E09EC' shproxyref='_0C028438'>
+<SPECDATAOBJ oid='972B66038DF84225BE639B2FF14750E1' temploid='972B66038DF84225BE639B2FF14750E1'>
+<NAME>
+<TUV xml:lang='en-US'>Request</TUV>
+</NAME>
+<QUAL>Request</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E29D8'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='8A75BF4D61904833AFF688BDDC8C928C' temploid='8A75BF4D61904833AFF688BDDC8C928C' shproxyref='_0C028528'>
+<SPECDATAOBJ oid='CCC988702E354f9f9BE7D7A7787E682A' temploid='CCC988702E354f9f9BE7D7A7787E682A'>
+<NAME>
+<TUV xml:lang='en-US'>Transmit</TUV>
+</NAME>
+<QUAL>Transmit</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+<SIMPLECOMPCONT oid='2DD64CDDB65E4de5A68B1DCE8699B42D' temploid='2DD64CDDB65E4de5A68B1DCE8699B42D' shproxyref='_0C0287F8'>
+<SPECDATAOBJ oid='ED2FCBB9D421459dA79E8E10A0A6BCE7' temploid='ED2FCBB9D421459dA79E8E10A0A6BCE7'>
+<NAME>
+<TUV xml:lang='en-US'>New Service 17</TUV>
+</NAME>
+<QUAL>New_Service_17</QUAL>
+<NEGRESCODEPROXIES>
+<NEGRESCODEPROXY idref='_056E2780'/>
+<NEGRESCODEPROXY idref='_056E3018'/>
+</NEGRESCODEPROXIES>
+</SPECDATAOBJ>
+</SIMPLECOMPCONT>
+</DIAGINST>
+</VAR>
+</ECU>
+</ECUDOC>
+</CANDELA>

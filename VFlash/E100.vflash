@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EcuFlashProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ToolVersion="5.0.2100.0">
+  <TemplateInfo>
+    <AllowSeveralDriver>false</AllowSeveralDriver>
+    <Security>
+      <SecurityAccess>
+        <SupportSecurityAccess>true</SupportSecurityAccess>
+      </SecurityAccess>
+      <Authentication>
+        <SupportAuthentication>false</SupportAuthentication>
+      </Authentication>
+    </Security>
+    <PotentialUseCase>Native Flash</PotentialUseCase>
+    <DefaultLengthOfMemorySize>4</DefaultLengthOfMemorySize>
+    <DefaultLengthOfMemoryAddress>4</DefaultLengthOfMemoryAddress>
+    <LogicalBlockSupport>
+      <DefaultLengthOfLogBlockIndex>0</DefaultLengthOfLogBlockIndex>
+      <UseLogicalBlockIndexForWrite>false</UseLogicalBlockIndexForWrite>
+      <UseLogicalBlockIndexForErase>false</UseLogicalBlockIndexForErase>
+      <IgnoreSegmentAddressesFromHexFiles>false</IgnoreSegmentAddressesFromHexFiles>
+    </LogicalBlockSupport>
+    <VersionInfo>
+      <TemplateName>SsangYong SLP2</TemplateName>
+      <Version>1.2</Version>
+      <ModificationDate>2018-02-13</ModificationDate>
+      <BaseToolVersion>3.5</BaseToolVersion>
+      <CompatibilityToolVersion>3.5</CompatibilityToolVersion>
+      <Protocol>UDS</Protocol>
+      <SpecificationVersion>SLP2</SpecificationVersion>
+      <OEM>SsangYong</OEM>
+    </VersionInfo>
+    <UseSeedExtension>true</UseSeedExtension>
+    <CompressionEncryption>
+      <SupportsEncryption>true</SupportsEncryption>
+      <SupportedCompressionTypes>
+        <SupportsLiveCompression>false</SupportsLiveCompression>
+        <SupportsPreCompression>true</SupportsPreCompression>
+      </SupportedCompressionTypes>
+    </CompressionEncryption>
+    <AvailableDatablockTypes>
+      <Type>Driver1</Type>
+      <Type>Driver2</Type>
+      <Type>Data</Type>
+    </AvailableDatablockTypes>
+  </TemplateInfo>
+  <TemplateVersionCodes>
+    <TemplateVersionCode>
+      <Type>DD</Type>
+      <Value>5BAD921104901FA6570F4D1FE0793FE7</Value>
+    </TemplateVersionCode>
+    <TemplateVersionCode>
+      <Type>S</Type>
+      <Value>223CE9B244A6F087B9C786A9C2D1DE30</Value>
+    </TemplateVersionCode>
+  </TemplateVersionCodes>
+  <FlashAttributes />
+  <FaultInjectionAttributes />
+  <FileReferences>
+    <FileReference>
+      <FileType>TemplateGuide</FileType>
+      <FilePath AbsolutePath="D:\07_Working\E100\VFlash\E100\Template Guide_SsangYong_SLP2.htm" RelativePath="E100\Template Guide_SsangYong_SLP2.htm" />
+    </FileReference>
+  </FileReferences>
+  <Use-Case>Native Flash</Use-Case>
+  <Scripting>
+    <FlashDB>
+      <FilePath AbsolutePath="D:\07_Working\E100\VFlash\E100\SsangYong_SLP2.cdd" RelativePath="E100\SsangYong_SLP2.cdd" />
+    </FlashDB>
+    <ScriptPackage Name="0">
+      <ScriptFile AbsolutePath="D:\07_Working\E100\VFlash\E100\Script.dll" RelativePath="E100\Script.dll" />
+    </ScriptPackage>
+  </Scripting>
+  <Communication>
+    <Ecu>
+      <EcuQualifier>SsangYong_SLP2</EcuQualifier>
+      <Name>SsangYong SLP2</Name>
+      <LogicalLink>Diagnostic_CAN</LogicalLink>
+      <CommunicationParam>
+        <Name>Request CAN Id Phys</Name>
+        <Value>0x763</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Response CAN Id</Name>
+        <Value>0x76B</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Req CAN Id Func</Name>
+        <Value>0x700</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Baudrate</Name>
+        <Value>500000</Value>
+        <Unit>Baud</Unit>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Secondary Baudrate</Name>
+        <Value>0</Value>
+        <Unit>Baud</Unit>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Secondary Target Address</Name>
+        <Value>0x0</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>CAN Id Type Phys</Name>
+        <Value>11</Value>
+        <Unit>Bit</Unit>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>CAN Id Type Func</Name>
+        <Value>11</Value>
+        <Unit>Bit</Unit>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Tseg1</Name>
+        <Value>8</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Tseg2</Name>
+        <Value>7</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>SJW</Name>
+        <Value>1</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>SAM</Name>
+        <Value>0</Value>
+        <Unit />
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>P2Handling</Name>
+        <Value>Override</Value>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>P2</Name>
+        <Value>150</Value>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>P2Star</Name>
+        <Value>5000</Value>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>StMinHandling</Name>
+        <Value>ECU Challenge</Value>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>StMinOverride</Name>
+        <Value>0xFFFF</Value>
+      </CommunicationParam>
+      <CommunicationParam>
+        <Name>Max TP Message Length</Name>
+        <Value>4095</Value>
+        <Unit />
+      </CommunicationParam>
+    </Ecu>
+  </Communication>
+  <Configuration>
+    <FlashData>
+      <NativeFlashData>
+        <Datablock>
+          <FilePath AbsolutePath="C:\Vector\CBD1800772_D00_Mpc57xx\BSW\Flash\Build\FlashDrv.hex" RelativePath="" />
+          <UseForReprogramming>true</UseForReprogramming>
+          <Type>Driver1</Type>
+          <LengthOfLogicalBlockIndex>1</LengthOfLogicalBlockIndex>
+          <LogicalBlockIndex>0</LogicalBlockIndex>
+          <Checksum>
+            <ChecksumPath AbsolutePath="C:\Vector\CBD1800772_D00_Mpc57xx\BSW\Flash\Build\FlashDrv.crc" RelativePath="" />
+          </Checksum>
+          <Signature />
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>0</MemoryAddress>
+          </Segment>
+          <CompressionEncryption>
+            <DataFormatdentifier>0</DataFormatdentifier>
+            <CompressionType>Pre-Compression</CompressionType>
+          </CompressionEncryption>
+        </Datablock>
+        <Datablock>
+          <FilePath />
+          <UseForReprogramming>false</UseForReprogramming>
+          <Type>Driver2</Type>
+          <LengthOfLogicalBlockIndex>1</LengthOfLogicalBlockIndex>
+          <LogicalBlockIndex>0</LogicalBlockIndex>
+          <Checksum>
+            <ChecksumPath AbsolutePath="" RelativePath="" />
+          </Checksum>
+          <Signature />
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>0</MemoryAddress>
+          </Segment>
+          <CompressionEncryption>
+            <DataFormatdentifier>0</DataFormatdentifier>
+            <CompressionType>Pre-Compression</CompressionType>
+          </CompressionEncryption>
+        </Datablock>
+        <Datablock>
+          <FilePath AbsolutePath="D:\07_Working\E100\HexFiles\E100_LDC_APPL.hex" RelativePath="..\HexFiles\E100_LDC_APPL.hex" />
+          <UseForReprogramming>true</UseForReprogramming>
+          <Type>Data</Type>
+          <LengthOfLogicalBlockIndex>1</LengthOfLogicalBlockIndex>
+          <LogicalBlockIndex>0</LogicalBlockIndex>
+          <Checksum>
+            <ChecksumPath AbsolutePath="D:\07_Working\E100\HexFiles\E100_LDC_APPL.crc" RelativePath="..\HexFiles\E100_LDC_APPL.crc" />
+          </Checksum>
+          <Signature />
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>16547840</MemoryAddress>
+          </Segment>
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>16551936</MemoryAddress>
+          </Segment>
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>16560128</MemoryAddress>
+          </Segment>
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>16560640</MemoryAddress>
+          </Segment>
+          <Segment>
+            <LengthOfMemorySize>4</LengthOfMemorySize>
+            <LengthOfMemoryAddress>4</LengthOfMemoryAddress>
+            <MemoryAddress>16594800</MemoryAddress>
+          </Segment>
+          <CompressionEncryption>
+            <DataFormatdentifier>0</DataFormatdentifier>
+            <CompressionType>Pre-Compression</CompressionType>
+          </CompressionEncryption>
+        </Datablock>
+      </NativeFlashData>
+    </FlashData>
+    <Procedure>
+      <SHdlr>
+        <Library AbsolutePath="D:\07_Working\E100\VFlash\E100\SHdlr.dll" RelativePath="E100\SHdlr.dll" />
+        <EA>E54C4801C24D67B6942948931F4EB70AC987E3B940210C0DBF99F4D560D84064B5A440CAD8BD5A7C951BEEED90F56B135191F2B53BD17C2D8698B34F81DC70132351447DE46BB86F933242293EABA9A6989C192A1CDAB4CC6AD952C10BD6FB9E66FA4B8916B073EFF8252E0D0414C0897E8F68F6157C28F56D5D05F23EF63E8FD8A513CE905BC6E709B560C41DA5F3521D2C15DEBACA8E50EB33E2CEF215223EDD5A4F4DD3AAC9216EF2DE338AE8BF113398346ADA8C6F0B1100AC177641D94E7703D59A8C199426B1325666F78E6CB5092AA59736B556E0594CEB2EB8AD70CDE786CB4413BB6DAB16F13D1F1D9DB500DFFF4B79584975008DAC2449AA8BFC9B9D4E5B61D8DA7899DB43789F633EF8D01D95E0268BD394DBFA45882AB4B47CAD446EE4273AA266B6EC8FD2C6DB7F8320B0DD4F94BC363BDBB7FCACA92B72DC6FB7AAABDA4CE07F8D3FC98EE1790DB26113EEAA284CA2D617DE0ED9E61C61633D9A602F2697325A035E4559D98AAC032CA81FC3AD89CAE8C57BC38918C74FC5B872BED0C9AA9A03202A8DF6B7300CC0FEC5965B79C1A6ADCBF3DBC70EBEDE1BB555AE94B1E00B10BF24A5660C839B97658951FD5D453E06661357677CB8B0E392F6E3562420134ABB366839E36924331504B65731B650127371C6E01A96F9DF2037630297D115C9D760BBBD38462FA108EB08900D9806154B1CCDE4CE1AFD24C022F2A5B066ECA1C1B2A6621898CF24B90F187DC4475E90B0C6A3DB0EF422C3B107C3838FA868FE1E6E44EA4589445FB4F2CE469A7C5D7B5991CB18349AF4D98F53C60CBF231B7F684978E538F272A1879FF50D2A9AE521A49E54B582FF7426E1C589874F4EF485737691B3576F75CE856FD091E963FC10A836D8D53682C1B125C451DB1BAD53DC5E5B540FBCFFF71A09DFA4EC3C2A2E9E02EC11E5F8AAEC85BACBF77629F58A250121F8AB448A94BA791EEE175B1751D0DB5463BA05E27A95C097BE75AE8024E42E9536AF1E1BA37097055F9ADDAAA2B825F7E3A28F9ADAB329888CDBCCA375A61C36C2534895B2BB14AC5992B7F074AF730DBAB3EBA3BD7FA41CA0FC84BA98F2EB51F5250B55C25479EE7818F271C601A00B04D0FC110328407C07150A05190327E17812738E7C22D2C71F6F2CBA27D733BE3B73C54573933F1726503C9C04BE3628D7D977824B0E0CF9A5249FE011B21A88D01D204DF3BF46EA5750DA321F62976AA94F2318B29B3D85BC452F9D1793CD6CABB20C6D930EFFFB6DFF32C6DDB63F13F4CD5F707D3E22DF7EFC5C7B3B4074B1568E57C4963E87944753578DDB06AD1C6022F86310CFA06BE342F83666247E20A7EFE3776939C6680A01DCE62BE65CAEC9719E3095272AC089BBBB25E4D5943DF96BE5884E1A9C275266C01139309D06D7A58A0F9F5B9220E4FCA10CC262F2617CE0C24E8608FA8D6B188CF3BA4DFA368C3AE1053A3E8140C0A0C5C7AAE3A6A2C428152A5432DDA4B10E08F9A94BC38B27BC353275A60CE05A9D02BA60825DF212E4E4815489A6F69D811AA3B08726A547662D18AFA0DFC80B03939D058F1436AA563F319963E0DE6FC87A58E351484C9BAA37D1F104B1183E5D97724ADAF8E424E6E75781FD9922EB2DA89D9CF7657145DE1B24BC510291773A8503611AE41920FB170416BF3A1ED7F8553190914626D018349D3B291F42DCC7CE42BFEF13073BD5096EB03B34B62D12718B20A1B92F990C418ABB85B17FEE4052873B58E71293DBDEEEAD14057CC39C54D99F8A8796F876666473763C8B9A74EE418C18CB1A0317CB1A80BDF2F58C132BCED06CAE8905CFAA626A92065C337BBF33CA917A9F37164C4EDACD5D5A78B2E449F5A5F2DE1A02A083F6C595770FFED6B51C2A92287110245AEDE665F15FE1083EF02E081EDE0B32582844C09364AE75F13A5A3910D715A65A0A072188FFA40DC1DF09E428A59DA62352B4FBA4EF1E7855345891D9AE89DBBB48C27A6EC2B9F3F54CE993854777A64EE7BB6D261CF2FD867425756C04601F03F48CA2A408B6F54917BFB643B5B57DC10C9618585A4D960B43C9C17B73D08E70E3EE2A64B183B2DB0751BCA3970B4EDBFE5934C2CC7B44870BF8A1A6F618FD965E1C88DC6044F0BB6DE757505D5552777B71FD78CEF1482D335BBC08DDA80B9E8B2ED708990E4A68AA79DA5D3307A29CA22AED7F17466EAB852AD6F31981BEB00573CF4DB629C1260BA1074EB3E3EDB83C68E7FEA970838882ADE4B48FEF4305F15E89C1BC6FF5D4A4FE2C1079B780CC77EDE9FAD35165B017BB829D8C18F9BE51C22278D9D63732B90C95D8D6329FA9064DC47FDEB6476B9BB3390ACEF0BD4281FFBEE87CE7C369267A357BBCE3A8AC63C92E3032D548225F76A5FAB5A5F4713341F06C4895A79CD76C24311DA4CBE0CD9DA2FD6D7C1C1B976154663F9DD6F7CDC1185992629265983A5CEBD6BB12C0C9B7D3E5CA82D5F52BD0903B73C2C4E0405F7281C1FC189C392AB64DD05E2B0A475D9698F8F13D4F3C2BCB3C9098F1F778D32EF4082FD31328BC8C530C1DAA18D1493F8EE93B7A60A4A270178AA446EEFCC7FCF8BE0DDF943C7F7D110D9F7ED38C4B5FA2B4171430F8128178C93623157D20EC4CC6060F2A258ECA6029F6C5FA8DF78C16D43AFF1A30C3EFC2784B256A3E03745AAA0AE3F4E5A0B4DF1D04C5DA67420F09C27BD8498191CF7A04FEA29E8F1BE4B9F49527811DC6633EA2753F5EC14F3F6BB69E172AB67D04248F0447A39DEE9FC3EC90D5AAC6F6E458E6E22C3C4C55EA7E1686E63BC5290AA74378B2761555EE88A62D3535D37BB5F7074FCB9218961BE2CC787433F7A11DAFC320F44FF1A9897455B242EBE352F84DC19B29EE003085269B21C2C35AFB6FD1BC63940AF0F2690499F53B7748548D10D8A57768BAE771547D24073C6F92EB46B7BE74EA5B7F6923BC615A7B3B290880692A9C0ACDB168E496525B32F60FD6C36A8D12D7FE0B1203F7A905CE37C6AE1C1C8947D8A5895C2DA3C567387AF6E798353062B1E6A655EEDDB93897511781385EE47E67F9AACCE65C5C584BAB235D28AC18778E2CC6B6A932FA26DB6C8D7A82BCE7557CACAE08</EA>
+      </SHdlr>
+      <SecurityAccess>
+        <SecurityLevel>2147483647</SecurityLevel>
+        <Activated>true</Activated>
+      </SecurityAccess>
+      <Param>
+        <Name>TesterSerialNbr</Name>
+        <Value>96402055</Value>
+        <Unit />
+      </Param>
+    </Procedure>
+    <FlashProcessControl>
+      <BaudrateSwitchActivated>false</BaudrateSwitchActivated>
+      <StayInBoot>
+        <ForceBootMode>false</ForceBootMode>
+      </StayInBoot>
+      <SecondaryFlexRayConnectionActivated>false</SecondaryFlexRayConnectionActivated>
+      <AllowIncompatibilityFlashware>false</AllowIncompatibilityFlashware>
+    </FlashProcessControl>
+    <CustomActions>
+      <Ecus>
+        <Ecu>
+          <EcuQualifier />
+          <VariantQualifier />
+          <AutomaticVariantIdentificationActivated>false</AutomaticVariantIdentificationActivated>
+        </Ecu>
+      </Ecus>
+      <Assemblies />
+      <Activated>false</Activated>
+      <ForcePostCustomAction>false</ForcePostCustomAction>
+    </CustomActions>
+  </Configuration>
+</EcuFlashProject>

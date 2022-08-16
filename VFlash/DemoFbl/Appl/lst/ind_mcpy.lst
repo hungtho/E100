@@ -1,0 +1,1637 @@
+
+                                   Fri Apr 10 08:32:25 2020           Page 1
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined
+                -stderr=err/ind_mcpy.err -elf -b1 -I../../../bsw/_common
+                -I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                -I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                -I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                -Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                -Igendata -Iinclude -IC:\ghs\comp_201754\lib\ppc5514
+                -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\ind_mcpy.dbo
+                -source=ind_mcpy.c -o obj\gh_00006u41.o -list=lst/ind_mcpy.lst
+                C:\Users\owner\AppData\Local\Temp\gh_00006u41.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_00006u41.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/ind_mcpy.lst -stderr=err/ind_mcpy.err
+                             6	#		-c -vle -DC_ENABLE_INSTRUCTION_SET_VLE -D__vle
+                             7	#		--prototype_warnings -Odebug -Osize -Ospace -G -dual_debug
+                             8	#		-nofloatio -cpu=ppc560xp -noobj -DRAM_48K -inline_prologue
+                             9	#		-pragma_asm_inline -noSPE --no_exceptions --no_commons
+                            10	#		-nokeeptempfiles -pnone --incorrect_pragma_warnings
+                            11	#		--slash_comment --long_long -preprocess_assembly_files
+                            12	#		-passsource -I../../../bsw/_common -I../../../bsw/eep
+                            13	#		-I../../../bsw/fbl -I../../../bsw/flash -I../../../bsw/flash_xd1
+                            14	#		-I../../../bsw/secmod -I../../../bsw/wrapnv
+                            15	#		-Ic:/ghs/comp_201754/ansi -Ic:/ghs/comp_201754/include/ppc
+                            16	#		-Ic:/ghs/comp_201754/src/libsys -Igendata -Iinclude
+                            17	#		C:/ghs/comp_201754/src/libstartup/ind_mcpy.c
+                            18	#Source File:   C:/ghs/comp_201754/src/libstartup/ind_mcpy.c
+                            19	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            20	#Compile Date:  Fri Apr 10 08:32:25 2020
+                            21	#Host OS:       Win32
+                            22	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            23	#Release:       Compiler v2017.5.4
+                            24	#Revision Date: Wed Oct 04 11:39:37 2017
+                            25	#Release Date:  Wed Oct 04 09:00:05 2017
+                            26	# ecom  -g -w -OMS
+                            27	
+                            28	#1: /*
+                            29	#2:                       Low-Level Startup Library
+                            30	#4:             Copyright 1983-2017 Green Hills Software, Inc.
+                            31	#6:     This program is the property of Green Hills Software, Inc,
+                            32	#7:     its contents are proprietary information and no part of it
+                            33	#8:     is to be disclosed to anyone except employees of Green Hills
+                            34	#9:     Software, Inc., or as agreed in writing signed by the President
+                            35	#10:     of Green Hills Software, Inc.
+                            36	#11: */
+                            37	#13: #include "ind_startup.h"
+                            38	#14: #include "indlibvariant.h"
+                            39	#16: #if defined(__i386__) && defined(__x86_64__)
+                            40	#17: /* For 64-bit x86, use this hand-optimized assembly implementation. This
+                            41	#18:  * implementation isn't written to work on 32-bit x86, so can't just be listed
+                            42	#19:  * in ind_mcpy.gpj. */
+
+                                   Fri Apr 10 08:32:25 2020           Page 2
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                            43	#20: #if !defined(__linux)
+                            44	#21: #pragma ghs static_call 0
+                            45	#22: #pragma ghs max_stack   0
+                            46	#23: #endif
+                            47	#24: void *(memcpy)(void *s1, const void *s2, size_t n);
+                            48	#25: #pragma asm
+                            49	#26: #include "ind_mcpy.86"
+                            50	#27: #pragma endasm
+                            51	#28: #else
+                            52	#30: /* The C version of memcpy doesn't have SIMD code, so it isn't built when
+                            53	#31:  * __GHS_SIMD_ALTERNATE_COMPILE is defined. */
+                            54	#32: #if !defined(__GHS_SIMD_ALTERNATE_COMPILE)
+                            55	#34: /*
+                            56	#35: #include <stdint.h>
+                            57	#36: #if SIZE_BIT == __INT_BIT
+                            58	#37: typedef signed int signed_size_t;
+                            59	#38: #elif SIZE_BIT == __LONG_BIT
+                            60	#39: typedef signed long signed_size_t;
+                            61	#40: #elif SIZE_BIT == __LLONG_BIT
+                            62	#41: typedef signed long long signed_size_t;
+                            63	#42: #else
+                            64	#43: #error Unknown type for size_t
+                            65	#44: #endif
+                            66	#45: */
+                            67	#47: #define are_both_aligned(x, y, type) \
+                            68	#48: 	(((((size_t)x)|((size_t)y)) &(sizeof(type)-1)) == 0)
+                            69	#49: #define MANUALLY_UNROLL_LOOP_FOR_SPEED 1
+                            70	#51: #define copy_one_by_type(x, y, type)				   \
+                            71	#52:         {                                                          \
+                            72	#53: 	type * tx = (type *)x; const type * ty = (const type *)y;  \
+                            73	#54: 	*tx++ = *ty++;                                             \
+                            74	#55: 	x = tx; y = ty;                                            \
+                            75	#56: 	} (void)0                                               
+                            76	#58: #define copy_four_by_type(x, y, type)				   \
+                            77	#59:         {                                                          \
+                            78	#60: 	type * tx = (type *)x; const type * ty = (const type *)y;  \
+                            79	#61: 	*tx++ = *ty++;                                             \
+                            80	#62: 	*tx++ = *ty++;                                             \
+                            81	#63: 	*tx++ = *ty++;                                             \
+                            82	#64: 	*tx++ = *ty++;                                             \
+                            83	#65: 	x = tx; y = ty;                                            \
+                            84	#66: 	} (void)0                                               
+                            85	#67: 	
+                            86		.section ".vletext", "vax"
+                            87		.vle
+                            88		.vle
+                            89	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cind_mcpy...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB089..0::
+                            90		.align	1
+                            91	..gh.f.p.5.a.1.r.0.e.0:
+                            92		.type	..gh.f.p.5.a.1.r.0.e.0,@object
+                            93		.size	..gh.f.p.5.a.1.r.0.e.0,0
+                            94		.global	memcpy
+                            95	memcpy:
+00000000 0137               96		se_mr	r7, r3
+                            97	#	    .bf
+                            98	.LDW01:
+
+                                   Fri Apr 10 08:32:25 2020           Page 3
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                            99	#68: void *(memcpy)(void *s1, const void *s2, size_t n)
+                           100	#69: {
+                           101	#70:     void * result = s1;
+                           102	#	    .bs
+                           103	.LDW11:
+                           104	#72: #if __INT_BIT > __CHAR_BIT
+                           105	#73:     if (are_both_aligned(s1, s2, int)) {
+00000002 7ce02378          106		or	r0, r7, r4
+00000006 1806c803          107		e_andi.	r6, r0, 3
+0000000a e200              108		se_bne	.L4
+                           109	#	    .bs
+                           110	.LDW21:
+                           111	#74: #if (__LLONG_BIT > __LONG_BIT) && __REG_BIT == 64
+                           112	#75: 	if (are_both_aligned(s1, s2, long long)) {
+                           113	#76: #if MANUALLY_UNROLL_LOOP_FOR_SPEED
+                           114	#77: 	    while (n >=  4*sizeof(long long)) {
+                           115	#78: 		n -= 4*sizeof(long long);
+                           116	#79: 		copy_four_by_type(s1, s2, long long);
+                           117	#80: 	    }
+                           118	#81: #endif	    
+                           119	#82: 	    while (n >= sizeof(long long)) {
+                           120	#83: 		n -= sizeof(long long);
+                           121	#84: 		copy_one_by_type(s1, s2, long long);
+                           122	#85: 	    }
+                           123	#86: 	} else 
+                           124	#87: #endif	/* __LLONG_BIT > __LONG_BIT */
+                           125	#88: #if __LONG_BIT > __INT_BIT
+                           126	#89: 	if (are_both_aligned(s1, s2, long)) {
+                           127	#90: #if MANUALLY_UNROLL_LOOP_FOR_SPEED
+                           128	#91: 	    while (n >=  4*sizeof(long)) {
+                           129	#92: 		n -= 4*sizeof(long);
+                           130	#93: 		copy_four_by_type(s1, s2, long);
+                           131	#94: 	    }
+                           132	#95: #endif	    
+                           133	#96: 	    while (n >= sizeof(long)) {
+                           134	#97: 		n -= sizeof(long);
+                           135	#98: 		copy_one_by_type(s1, s2, long);
+                           136	#99: 	    }
+                           137	#100: 	} else 
+                           138	#101: #endif	/* __LONG_BIT > __INT_BIT */
+                           139	#102: 	{
+                           140	#	    .bs
+                           141	.LDW31:
+                           142	#	    .bs
+                           143	.LDW41:
+                           144	#103: #if MANUALLY_UNROLL_LOOP_FOR_SPEED
+                           145	#104: 	    while (n >= 4*sizeof(int)) {
+                           146	#line104
+                           147	..lin.c2888830..d827590.0_1::
+                           148	.LDWlin1:
+0000000c 2434              149		se_subi	r4, 4
+0000000e 2437              150		se_subi	r7, 4
+00000010 e800              151		se_b	.L6
+                           152	.L8:
+                           153	#	    .bs
+                           154	.LDW51:
+
+                                   Fri Apr 10 08:32:25 2020           Page 4
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                           155	#105: 		n -= 4*sizeof(int);
+                           156	#	    .bs
+                           157	.LDW61:
+                           158	#106: 		copy_four_by_type(s1, s2, int);
+                           159	#line106
+                           160	..lin.c2888830..d827590.0_2::
+                           161	.LDWlin2:
+00000012 c104              162		se_lwz	r0, 4(r4)
+00000014 d107              163		se_stw	r0, 4(r7)
+00000016 c204              164		se_lwz	r0, 8(r4)
+00000018 d207              165		se_stw	r0, 8(r7)
+0000001a c304              166		se_lwz	r0, 12(r4)
+0000001c d307              167		se_stw	r0, 12(r7)
+0000001e 18040210          168		e_lwzu	r0, 16(r4)
+                           169	#	    .es
+                           170	.LDW71:
+                           171	#	    .es
+                           172	.LDW81:
+00000022 24f5              173		se_subi	r5, 16
+00000024 18070610          174		e_stwu	r0, 16(r7)
+                           175	.L6:
+00000028 22f5              176		se_cmpli	r5, 16
+0000002a e000              177		se_bge	.L8
+0000002c 2034              178		se_addi	r4, 4
+                           179	.L9:
+0000002e 2037              180		se_addi	r7, 4
+00000030 2235              181		se_cmpli	r5, 4
+00000032 e400              182		se_blt	.L25
+                           183	#	    .es
+                           184	.LDW91:
+                           185	#	    .bs
+                           186	.LDW02:
+                           187	#107: 	    }
+                           188	#108: #endif	    
+                           189	#109: 	    while (n >= sizeof(int)) {
+                           190	#	    .bs
+                           191	.LDW12:
+                           192	#110: 		n -= sizeof(int);
+                           193	#	    .bs
+                           194	.LDW22:
+                           195	#111: 		copy_one_by_type(s1, s2, int);
+                           196	#line111
+                           197	..lin.c2888830..d827590.0_3::
+                           198	.LDWlin3:
+00000034 c004              199		se_lwz	r0, 0(r4)
+                           200	#	    .es
+                           201	.LDW32:
+00000036 2435              202		se_subi	r5, 4
+00000038 2034              203		se_addi	r4, 4
+0000003a d007              204		se_stw	r0, 0(r7)
+                           205	#	    .es
+                           206	.LDW42:
+0000003c e800              207		se_b	.L9
+                           208	.L4:
+                           209	#	    .es
+                           210	.LDW52:
+
+                                   Fri Apr 10 08:32:25 2020           Page 5
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                           211	#	    .es
+                           212	.LDW62:
+                           213	#	    .es
+                           214	.LDW72:
+                           215	#	    .bs
+                           216	.LDW82:
+                           217	#	    .bs
+                           218	.LDW92:
+                           219	#112: 	    }
+                           220	#113: 	}
+                           221	#114:     } else 
+                           222	#115: #endif	/* __INT_BIT > __CHAR_BIT */
+                           223	#116: #if __SHRT_BIT > __CHAR_BIT
+                           224	#117:     if (are_both_aligned(s1, s2, short)) {
+                           225	#line117
+                           226	..lin.c2888830..d827590.0_4::
+                           227	.LDWlin4:
+0000003e 67f0              228		se_btsti	r0, 31
+00000040 e200              229		se_bne	.L22
+                           230	#	    .bs
+                           231	.LDW03:
+                           232	#	    .bs
+                           233	.LDW13:
+                           234	#118: #if MANUALLY_UNROLL_LOOP_FOR_SPEED
+                           235	#119: 	while (n >= 4*sizeof(short)) {
+                           236	#line119
+                           237	..lin.c2888830..d827590.0_5::
+                           238	.LDWlin5:
+00000042 2414              239		se_subi	r4, 2
+00000044 2417              240		se_subi	r7, 2
+00000046 e800              241		se_b	.L15
+                           242	.L17:
+                           243	#	    .bs
+                           244	.LDW23:
+                           245	#120: 	    n -= 4*sizeof(short);
+                           246	#	    .bs
+                           247	.LDW33:
+                           248	#121: 	    copy_four_by_type(s1, s2, short);
+                           249	#line121
+                           250	..lin.c2888830..d827590.0_6::
+                           251	.LDWlin6:
+00000048 a104              252		se_lhz	r0, 2(r4)
+0000004a b107              253		se_sth	r0, 2(r7)
+0000004c a204              254		se_lhz	r0, 4(r4)
+0000004e b207              255		se_sth	r0, 4(r7)
+00000050 a304              256		se_lhz	r0, 6(r4)
+00000052 b307              257		se_sth	r0, 6(r7)
+00000054 18040108          258		e_lhzu	r0, 8(r4)
+                           259	#	    .es
+                           260	.LDW43:
+                           261	#	    .es
+                           262	.LDW53:
+00000058 2475              263		se_subi	r5, 8
+0000005a 18070508          264		e_sthu	r0, 8(r7)
+                           265	.L15:
+0000005e 2275              266		se_cmpli	r5, 8
+
+                                   Fri Apr 10 08:32:25 2020           Page 6
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000060 e000              267		se_bge	.L17
+00000062 2014              268		se_addi	r4, 2
+                           269	.L18:
+00000064 2017              270		se_addi	r7, 2
+00000066 2215              271		se_cmpli	r5, 2
+00000068 e400              272		se_blt	.L25
+                           273	#	    .es
+                           274	.LDW63:
+                           275	#	    .bs
+                           276	.LDW73:
+                           277	#122: 	}
+                           278	#123: #endif
+                           279	#124: 	while (n >= sizeof(short)) {
+                           280	#	    .bs
+                           281	.LDW83:
+                           282	#125: 	    n -= sizeof(short);
+                           283	#	    .bs
+                           284	.LDW93:
+                           285	#126: 	    copy_one_by_type(s1, s2, short);
+                           286	#line126
+                           287	..lin.c2888830..d827590.0_7::
+                           288	.LDWlin7:
+0000006a a004              289		se_lhz	r0, 0(r4)
+                           290	#	    .es
+                           291	.LDW04:
+0000006c 2415              292		se_subi	r5, 2
+0000006e 2014              293		se_addi	r4, 2
+00000070 b007              294		se_sth	r0, 0(r7)
+                           295	#	    .es
+                           296	.LDW14:
+00000072 e800              297		se_b	.L18
+                           298	#	    .es
+                           299	.LDW24:
+                           300	#	    .es
+                           301	.LDW34:
+                           302	#127: 	}
+                           303	#128:     } else
+                           304	#129: #endif /* __SHRT_BIT > __CHAR_BIT */
+                           305	#130:     {
+                           306	#	    .bs
+                           307	.LDW44:
+                           308	#	    .bs
+                           309	.LDW54:
+                           310	#131: #if MANUALLY_UNROLL_LOOP_FOR_SPEED
+                           311	#132: 	while (n >= 4*sizeof(char)) {
+                           312	.L22:
+                           313	#line132
+                           314	..lin.c2888830..d827590.0_8::
+                           315	.LDWlin8:
+00000074 2235              316		se_cmpli	r5, 4
+00000076 e400              317		se_blt	.L25
+                           318	#	    .bs
+                           319	.LDW64:
+                           320	#133: 	    n -= 4*sizeof(char);
+                           321	#	    .bs
+                           322	.LDW74:
+
+                                   Fri Apr 10 08:32:25 2020           Page 7
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                           323	#134: 	    copy_four_by_type(s1, s2, char);
+                           324	#line134
+                           325	..lin.c2888830..d827590.0_9::
+                           326	.LDWlin9:
+00000078 8004              327		se_lbz	r0, 0(r4)
+0000007a 9007              328		se_stb	r0, 0(r7)
+0000007c 8104              329		se_lbz	r0, 1(r4)
+0000007e 9107              330		se_stb	r0, 1(r7)
+00000080 8204              331		se_lbz	r0, 2(r4)
+                           332	#	    .es
+                           333	.LDW84:
+00000082 9207              334		se_stb	r0, 2(r7)
+00000084 18040003          335		e_lbzu	r0, 3(r4)
+00000088 2004              336		se_addi	r4, 1
+0000008a 2435              337		se_subi	r5, 4
+0000008c 18070403          338		e_stbu	r0, 3(r7)
+00000090 2007              339		se_addi	r7, 1
+                           340	#	    .es
+                           341	.LDW94:
+00000092 e800              342		se_b	.L22
+                           343	.L27:
+                           344	#	    .es
+                           345	.LDW05:
+                           346	#	    .es
+                           347	.LDW15:
+                           348	#	    .es
+                           349	.LDW25:
+                           350	#	    .es
+                           351	.LDW35:
+                           352	#	    .es
+                           353	.LDW45:
+                           354	#	    .bs
+                           355	.LDW55:
+                           356	#135: 	}
+                           357	#136: #endif
+                           358	#137:     }
+                           359	#139:     while ((signed_size_t)--n >= 0)
+                           360	#140: 	copy_one_by_type(s1, s2, char);
+                           361	#	    .bs
+                           362	.LDW65:
+                           363	#line140
+                           364	..lin.c2888830..d827590.0_10::
+                           365	.LDWlin10:
+00000094 8004              366		se_lbz	r0, 0(r4)
+                           367	#	    .es
+                           368	.LDW75:
+00000096 2004              369		se_addi	r4, 1
+00000098 9007              370		se_stb	r0, 0(r7)
+0000009a 2007              371		se_addi	r7, 1
+                           372	.L25:
+0000009c 2605              373		se_subi.	r5, 1
+0000009e e000              374		se_bge	.L27
+                           375	#	    .es
+                           376	.LDW85:
+                           377	#142:     return result;    
+                           378	#	    .ef
+
+                                   Fri Apr 10 08:32:25 2020           Page 8
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                           379	.LDW95:
+                           380	#line142
+                           381	..lin.c2888830..d827590.0_11::
+                           382	.LDWlin11:
+000000a0 0004              383		se_blr
+                           384		.global	__ghs_eofn_memcpy
+                           385	__ghs_eofn_memcpy:
+                           386		.type	memcpy,@function
+                           387		.size	memcpy,$-memcpy
+                           388		.align	1
+                           389	
+                           390	#function:			memcpy
+                           391	#stack frame size:		0
+                           392	#
+                           393	#result	r3	local
+                           394	
+                           395	#s1	r7	param
+                           396	#s2	r4	param
+                           397	#n	r5	param
+                           398	
+                           399		.data
+                           400		.section ".vletext", "vax"
+                           401		.vle
+                           402		.vle
+                           403	
+                           404	#143: }
+                           405		.align	1
+                           406	
+                           407		.data
+                           408		.note ".PPC.EMB.apuinfo",""
+00000000 00000008          409		.long	0x00000008
+00000004 00000004          410		.long	4
+00000008 00000002          411		.long	0x00000002
+                           412		# "APUinfo\000"
+0000000c 41505569          413		.byte	65,80,85,105
+00000010 6e666f00          414		.byte	110,102,111,0
+00000014 01040001          415		.long	0x01040001
+                           416		.ghsnote version,20
+                           417		.ghsnote tools,3
+                           418		.ghsnote options,644
+                           419		.section ".vletext", "vax"
+                           420		.vle
+                           421		.vle
+                           422		.align	1
+                           423	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cind_mcpy...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB089..0::
+                           424		.section	.debug_info
+                           425	.Ldw_begin:
+00000000 00000336          426		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002              427		.byte	0,2
+00000006 00000000          428		.long	.Ldw_abbr_begin
+0000000a 04                429		.byte	4
+                           430		.section	.debug_abbrev
+                           431	.Ldw_abbr_begin:
+                           432		.section	.debug_info
+0000000b 01                433		.byte	1
+0000000c 00000000          434		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cind_mcpy...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB089..0
+
+                                   Fri Apr 10 08:32:25 2020           Page 9
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000010 00000000          435		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5Cind_mcpy...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB089..0
+00000014 433a2f6768732f63  436		.strz	"C:/ghs/comp_201754/src/libstartup/ind_mcpy.c"
+0000001c 6f6d705f32303137
+00000024 35342f7372632f6c
+0000002c 6962737461727475
+00000034 702f696e645f6d63
+0000003c 70792e6300      
+00000041 433a5c566563746f  437		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+00000049 725c434244313830
+00000051 303737325f443030
+00000059 5f4d706335377878
+00000061 5c44656d6f5c4465
+00000069 6d6f46626c5c4170
+00000071 706c00          
+00000074 4748532043203230  438		.strz	"GHS C 2017.5.4 [dual]"
+0000007c 31372e352e34205b
+00000084 6475616c5d00    
+0000008a 0001              439		.byte	0,1
+0000008c 00000000          440		.long	.Ldw_line_begin
+00000090 00000000          441		.long	.Ldw_macinfo_begin
+00000094 00                442		.byte	0
+                           443	
+                           444		.section	.debug_abbrev
+00000000 01                445		.byte	1
+00000001 11                446		.byte	17
+00000002 01                447		.byte	1
+00000003 1101              448		.byte	17,1
+00000005 1201              449		.byte	18,1
+00000007 0308              450		.byte	3,8
+00000009 1b08              451		.byte	27,8
+0000000b 2508              452		.byte	37,8
+0000000d 1305              453		.byte	19,5
+0000000f 1006              454		.byte	16,6
+00000011 4306              455		.byte	67,6
+00000013 420b              456		.byte	66,11
+00000015 0000              457		.byte	0,0
+                           458	
+                           459		.section	.debug_line
+                           460	.Ldw_line_begin:
+00000000 00000167          461		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002              462		.byte	0,2
+00000006 000000a4          463		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                           464	.Ldw_lpro_begin:
+0000000a 01                465		.byte	1
+0000000b 00                466		.byte	0
+0000000c 00                467		.byte	0
+0000000d 04                468		.byte	4
+0000000e 0a                469		.byte	10
+0000000f 000101            470		.byte	0,1,1
+00000012 010100            471		.byte	1,1,0
+00000015 000001            472		.byte	0,0,1
+00000018 00                473		.byte	0
+00000019 433a2f6768732f63  474		.strz	"C:/ghs/comp_201754/src/libstartup/ind_mcpy.c"
+00000021 6f6d705f32303137
+00000029 35342f7372632f6c
+00000031 6962737461727475
+00000039 702f696e645f6d63
+00000041 70792e6300      
+00000046 000000            475		.byte	0,0,0
+00000049 433a2f6768732f63  476		.strz	"C:/ghs/comp_201754/src/libstartup/ind_startup.h"
+00000051 6f6d705f32303137
+00000059 35342f7372632f6c
+00000061 6962737461727475
+00000069 702f696e645f7374
+00000071 61727475702e6800
+00000079 000000            477		.byte	0,0,0
+0000007c 633a2f6768732f63  478		.strz	"c:/ghs/comp_201754/src/libsys/indlibvariant.h"
+00000084 6f6d705f32303137
+0000008c 35342f7372632f6c
+00000094 69627379732f696e
+0000009c 646c696276617269
+000000a4 616e742e6800    
+000000aa 000000            479		.byte	0,0,0
+000000ad 00                480		.byte	0
+                           481	.Ldw_lpro_end:
+                           482		.section	.debug_macinfo
+                           483	.Ldw_macinfo_begin:
+                           484		.section	.debug_frame
+                           485	.LDW_4988f80:
+00000000 0000008c          486		.long	.LDW_unq_2-.LDW_unq_1
+                           487	.LDW_unq_1:
+00000004 ffffffff          488		.byte	255,255,255,255
+00000008 01                489		.byte	1
+00000009 00                490		.byte	0
+
+                                   Fri Apr 10 08:32:25 2020           Page 10
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+0000000a 01                491		.byte	1
+0000000b 01                492		.byte	1
+0000000c 6c                493		.byte	108
+0000000d 0c                494		.byte	12
+0000000e 01                495		.byte	1
+0000000f 00                496		.byte	0
+00000010 07                497		.byte	7
+00000011 00                498		.byte	0
+00000012 07                499		.byte	7
+00000013 01                500		.byte	1
+00000014 07                501		.byte	7
+00000015 02                502		.byte	2
+00000016 07                503		.byte	7
+00000017 03                504		.byte	3
+00000018 07                505		.byte	7
+00000019 04                506		.byte	4
+0000001a 07                507		.byte	7
+0000001b 05                508		.byte	5
+0000001c 07                509		.byte	7
+0000001d 06                510		.byte	6
+0000001e 07                511		.byte	7
+0000001f 07                512		.byte	7
+00000020 07                513		.byte	7
+00000021 08                514		.byte	8
+00000022 07                515		.byte	7
+00000023 09                516		.byte	9
+00000024 07                517		.byte	7
+00000025 0a                518		.byte	10
+00000026 07                519		.byte	7
+00000027 0b                520		.byte	11
+00000028 07                521		.byte	7
+00000029 0c                522		.byte	12
+0000002a 07                523		.byte	7
+0000002b 0d                524		.byte	13
+0000002c 07                525		.byte	7
+0000002d 0e                526		.byte	14
+0000002e 07                527		.byte	7
+0000002f 0f                528		.byte	15
+00000030 07                529		.byte	7
+00000031 10                530		.byte	16
+00000032 07                531		.byte	7
+00000033 11                532		.byte	17
+00000034 07                533		.byte	7
+00000035 12                534		.byte	18
+00000036 07                535		.byte	7
+00000037 13                536		.byte	19
+00000038 07                537		.byte	7
+00000039 14                538		.byte	20
+0000003a 07                539		.byte	7
+0000003b 15                540		.byte	21
+0000003c 07                541		.byte	7
+0000003d 16                542		.byte	22
+0000003e 07                543		.byte	7
+0000003f 17                544		.byte	23
+00000040 07                545		.byte	7
+00000041 18                546		.byte	24
+
+                                   Fri Apr 10 08:32:25 2020           Page 11
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000042 07                547		.byte	7
+00000043 19                548		.byte	25
+00000044 07                549		.byte	7
+00000045 1a                550		.byte	26
+00000046 07                551		.byte	7
+00000047 1b                552		.byte	27
+00000048 07                553		.byte	7
+00000049 1c                554		.byte	28
+0000004a 07                555		.byte	7
+0000004b 1d                556		.byte	29
+0000004c 07                557		.byte	7
+0000004d 1e                558		.byte	30
+0000004e 07                559		.byte	7
+0000004f 1f                560		.byte	31
+00000050 07                561		.byte	7
+00000051 20                562		.byte	32
+00000052 07                563		.byte	7
+00000053 21                564		.byte	33
+00000054 07                565		.byte	7
+00000055 22                566		.byte	34
+00000056 07                567		.byte	7
+00000057 23                568		.byte	35
+00000058 07                569		.byte	7
+00000059 24                570		.byte	36
+0000005a 07                571		.byte	7
+0000005b 25                572		.byte	37
+0000005c 07                573		.byte	7
+0000005d 26                574		.byte	38
+0000005e 07                575		.byte	7
+0000005f 27                576		.byte	39
+00000060 07                577		.byte	7
+00000061 28                578		.byte	40
+00000062 07                579		.byte	7
+00000063 29                580		.byte	41
+00000064 07                581		.byte	7
+00000065 2a                582		.byte	42
+00000066 07                583		.byte	7
+00000067 2b                584		.byte	43
+00000068 07                585		.byte	7
+00000069 2c                586		.byte	44
+0000006a 07                587		.byte	7
+0000006b 2d                588		.byte	45
+0000006c 07                589		.byte	7
+0000006d 2e                590		.byte	46
+0000006e 07                591		.byte	7
+0000006f 2f                592		.byte	47
+00000070 07                593		.byte	7
+00000071 30                594		.byte	48
+00000072 07                595		.byte	7
+00000073 31                596		.byte	49
+00000074 07                597		.byte	7
+00000075 32                598		.byte	50
+00000076 07                599		.byte	7
+00000077 33                600		.byte	51
+00000078 07                601		.byte	7
+00000079 34                602		.byte	52
+
+                                   Fri Apr 10 08:32:25 2020           Page 12
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+0000007a 07                603		.byte	7
+0000007b 35                604		.byte	53
+0000007c 07                605		.byte	7
+0000007d 36                606		.byte	54
+0000007e 07                607		.byte	7
+0000007f 37                608		.byte	55
+00000080 07                609		.byte	7
+00000081 38                610		.byte	56
+00000082 07                611		.byte	7
+00000083 39                612		.byte	57
+00000084 07                613		.byte	7
+00000085 3a                614		.byte	58
+00000086 07                615		.byte	7
+00000087 3b                616		.byte	59
+00000088 07                617		.byte	7
+00000089 3c                618		.byte	60
+0000008a 07                619		.byte	7
+0000008b 3d                620		.byte	61
+0000008c 07                621		.byte	7
+0000008d 3e                622		.byte	62
+0000008e 07                623		.byte	7
+0000008f 3f                624		.byte	63
+                           625	.LDW_unq_2:
+                           626		.section	.debug_info
+                           627	.LDW_498c640:
+00000095 27                628		.byte	39
+00000096 766f69642a00      629		.strz	"void*"
+0000009c 01                630		.byte	1
+0000009d 04                631		.byte	4
+                           632	
+                           633		.section	.debug_abbrev
+00000017 27                634		.byte	39
+00000018 24                635		.byte	36
+00000019 00                636		.byte	0
+0000001a 0308              637		.byte	3,8
+0000001c 3e0b              638		.byte	62,11
+0000001e 0b0b              639		.byte	11,11
+00000020 0000              640		.byte	0,0
+                           641	
+                           642		.section	.debug_info
+                           643	.LDW_5b9ad90:
+0000009e 2c                644		.byte	44
+                           645	
+                           646		.section	.debug_abbrev
+00000022 2c                647		.byte	44
+00000023 26                648		.byte	38
+00000024 00                649		.byte	0
+00000025 0000              650		.byte	0,0
+                           651	
+                           652		.section	.debug_info
+                           653	.LDW_498c870:
+0000009f 31                654		.byte	49
+000000a0 00000000          655		.long	.LDW_5b9ad90
+                           656	
+                           657		.section	.debug_abbrev
+00000027 31                658		.byte	49
+
+                                   Fri Apr 10 08:32:25 2020           Page 13
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000028 0f                659		.byte	15
+00000029 00                660		.byte	0
+0000002a 4910              661		.byte	73,16
+0000002c 0000              662		.byte	0,0
+                           663	
+                           664		.section	.debug_info
+                           665	.LDW_498c598:
+000000a4 27                666		.byte	39
+000000a5 756e7369676e6564  667		.strz	"unsigned int"
+000000ad 20696e7400      
+000000b2 07                668		.byte	7
+000000b3 04                669		.byte	4
+                           670	
+                           671	.LDW_498c9f8:
+000000b4 46                672		.byte	70
+000000b5 00000000          673		.long	.LDW_498c640
+000000b9 01                674		.byte	1
+                           675	
+                           676		.section	.debug_abbrev
+0000002e 46                677		.byte	70
+0000002f 15                678		.byte	21
+00000030 01                679		.byte	1
+00000031 4910              680		.byte	73,16
+00000033 270c              681		.byte	39,12
+00000035 0000              682		.byte	0,0
+                           683	
+                           684		.section	.debug_info
+                           685	.LDW_4983800:
+000000ba 14                686		.byte	20
+000000bb 00000000          687		.long	.LDW_498c640
+000000bf 00                688		.byte	0
+                           689	
+                           690		.section	.debug_abbrev
+00000037 14                691		.byte	20
+00000038 05                692		.byte	5
+00000039 00                693		.byte	0
+0000003a 4910              694		.byte	73,16
+0000003c 4b0c              695		.byte	75,12
+0000003e 0000              696		.byte	0,0
+                           697	
+                           698		.section	.debug_info
+                           699	.LDW_4983860:
+000000c0 14                700		.byte	20
+000000c1 00000000          701		.long	.LDW_498c870
+000000c5 00                702		.byte	0
+                           703	
+                           704	.LDW_4983830:
+000000c6 14                705		.byte	20
+000000c7 00000000          706		.long	.LDW_5b9ade8
+000000cb 00                707		.byte	0
+                           708	
+000000cc 00                709		.byte	0
+                           710	
+                           711	.LDW_498c4b8:
+000000cd 27                712		.byte	39
+000000ce 696e7400          713		.strz	"int"
+000000d2 05                714		.byte	5
+
+                                   Fri Apr 10 08:32:25 2020           Page 14
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+000000d3 04                715		.byte	4
+                           716	
+                           717	.LDW_498c4f0:
+000000d4 31                718		.byte	49
+000000d5 00000000          719		.long	.LDW_498c4b8
+                           720	
+                           721	.LDW_49cb528:
+000000d9 2b                722		.byte	43
+000000da 00000000          723		.long	.LDW_498c4b8
+                           724	
+                           725		.section	.debug_abbrev
+00000040 2b                726		.byte	43
+00000041 26                727		.byte	38
+00000042 00                728		.byte	0
+00000043 4910              729		.byte	73,16
+00000045 0000              730		.byte	0,0
+                           731	
+                           732		.section	.debug_info
+                           733	.LDW_498c528:
+000000de 31                734		.byte	49
+000000df 00000000          735		.long	.LDW_49cb528
+                           736	
+                           737	.LDW_498c678:
+000000e3 27                738		.byte	39
+000000e4 73686f727400      739		.strz	"short"
+000000ea 05                740		.byte	5
+000000eb 02                741		.byte	2
+                           742	
+                           743	.LDW_498c8a8:
+000000ec 31                744		.byte	49
+000000ed 00000000          745		.long	.LDW_498c678
+                           746	
+                           747	.LDW_49cb6e0:
+000000f1 2b                748		.byte	43
+000000f2 00000000          749		.long	.LDW_498c678
+                           750	
+                           751	.LDW_498c790:
+000000f6 31                752		.byte	49
+000000f7 00000000          753		.long	.LDW_49cb6e0
+                           754	
+                           755	.LDW_498c8e0:
+000000fb 27                756		.byte	39
+000000fc 6368617200        757		.strz	"char"
+00000101 08                758		.byte	8
+00000102 01                759		.byte	1
+                           760	
+                           761	.LDW_498c918:
+00000103 31                762		.byte	49
+00000104 00000000          763		.long	.LDW_498c8e0
+                           764	
+                           765	.LDW_49cbb28:
+00000108 2b                766		.byte	43
+00000109 00000000          767		.long	.LDW_498c8e0
+                           768	
+                           769	.LDW_498c560:
+0000010d 31                770		.byte	49
+
+                                   Fri Apr 10 08:32:25 2020           Page 15
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+0000010e 00000000          771		.long	.LDW_49cbb28
+                           772	
+                           773	.LDW_498c5d0:
+00000112 27                774		.byte	39
+00000113 696e7400          775		.strz	"int"
+00000117 05                776		.byte	5
+00000118 04                777		.byte	4
+                           778	
+                           779	.LDW_5b9ade8:
+00000119 2a                780		.byte	42
+0000011a 73797a655f7400    781		.strz	"syze_t"
+00000121 22                782		.byte	34
+00000122 1a                783		.byte	26
+00000123 02                784		.byte	2
+00000124 00000000          785		.long	.LDW_498c598
+                           786	
+                           787		.section	.debug_abbrev
+00000047 2a                788		.byte	42
+00000048 16                789		.byte	22
+00000049 00                790		.byte	0
+0000004a 0308              791		.byte	3,8
+0000004c 3b0f              792		.byte	59,15
+0000004e 390f              793		.byte	57,15
+00000050 3a0f              794		.byte	58,15
+00000052 4910              795		.byte	73,16
+00000054 0000              796		.byte	0,0
+                           797	
+                           798		.section	.debug_info
+                           799	.LDW_49cb8c0:
+00000128 2a                800		.byte	42
+00000129 7369676e65645f73  801		.strz	"signed_size_t"
+00000131 697a655f7400    
+00000137 23                802		.byte	35
+00000138 18                803		.byte	24
+00000139 02                804		.byte	2
+0000013a 00000000          805		.long	.LDW_498c5d0
+                           806	
+                           807	.LDW_5b9ae40:
+0000013e 16                808		.byte	22
+0000013f 6d656d63707900    809		.strz	"memcpy"
+00000146 44                810		.byte	68
+00000147 08                811		.byte	8
+00000148 01                812		.byte	1
+00000149 00000000          813		.long	.LDW_498c640
+0000014d 00000000          814		.long	memcpy
+00000151 00000000          815		.long	__ghs_eofn_memcpy
+00000155 0151              816		.byte	1,81
+00000157 03                817		.byte	3
+00000158 00                818		.byte	0
+00000159 00                819		.byte	0
+0000015a 00                820		.byte	0
+0000015b 00                821		.byte	0
+0000015c 00                822		.byte	0
+0000015d 00                823		.byte	0
+0000015e 01                824		.byte	1
+0000015f 01                825		.byte	1
+00000160 00                826		.byte	0
+
+                                   Fri Apr 10 08:32:25 2020           Page 16
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000161 01                827		.byte	1
+                           828	
+                           829		.section	.debug_abbrev
+00000056 16                830		.byte	22
+00000057 2e                831		.byte	46
+00000058 01                832		.byte	1
+00000059 0308              833		.byte	3,8
+0000005b 3b0f              834		.byte	59,15
+0000005d 390f              835		.byte	57,15
+0000005f 3a0f              836		.byte	58,15
+00000061 4910              837		.byte	73,16
+00000063 1101              838		.byte	17,1
+00000065 1201              839		.byte	18,1
+00000067 400a              840		.byte	64,10
+00000069 8341              841		.byte	131,65
+0000006b 0f                842		.byte	15
+0000006c 8741              843		.byte	135,65
+0000006e 0d                844		.byte	13
+0000006f 8541              845		.byte	133,65
+00000071 0f                846		.byte	15
+00000072 8641              847		.byte	134,65
+00000074 0d                848		.byte	13
+00000075 9241              849		.byte	146,65
+00000077 0f                850		.byte	15
+00000078 3c0c              851		.byte	60,12
+0000007a 200b              852		.byte	32,11
+0000007c 3f0c              853		.byte	63,12
+0000007e 320b              854		.byte	50,11
+00000080 4c0b              855		.byte	76,11
+00000082 270c              856		.byte	39,12
+00000084 0000              857		.byte	0,0
+                           858	
+                           859		.section	.debug_frame
+                           860	.LDW_49cefa8:
+00000090 00000014          861		.long	.LDW_unq_4-.LDW_unq_3
+                           862	.LDW_unq_3:
+00000094 00000000          863		.long	.LDW_4988f80
+00000098 00000000          864		.long	memcpy
+0000009c 000000a2          865		.long	__ghs_eofn_memcpy-memcpy
+000000a0 01                866		.byte	1
+000000a1 00000000          867		.long	.LDW95
+000000a5 00                868		.byte	0
+000000a6 00                869		.byte	0
+000000a7 00                870		.byte	0
+                           871	.LDW_unq_4:
+                           872		.section	.debug_line
+000000ae 000502            873		.byte	0,5,2
+000000b1 00000000          874		.long	memcpy
+000000b5 06                875		.byte	6
+000000b6 03                876		.byte	3
+000000b7 c400              877		.byte	196,0
+000000b9 02                878		.byte	2
+000000ba 00                879		.byte	0
+000000bb 01                880		.byte	1
+000000bc 03                881		.byte	3
+000000bd 04                882		.byte	4
+
+                                   Fri Apr 10 08:32:25 2020           Page 17
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+000000be 02                883		.byte	2
+000000bf 02                884		.byte	2
+000000c0 01                885		.byte	1
+000000c1 000502            886		.byte	0,5,2
+000000c4 00000000          887		.long	.LDWlin1
+000000c8 02                888		.byte	2
+000000c9 00                889		.byte	0
+000000ca 03                890		.byte	3
+000000cb 1f                891		.byte	31
+000000cc 02                892		.byte	2
+000000cd 00                893		.byte	0
+000000ce 01                894		.byte	1
+000000cf 000502            895		.byte	0,5,2
+000000d2 00000000          896		.long	.LDWlin2
+000000d6 0c                897		.byte	12
+000000d7 06                898		.byte	6
+000000d8 02                899		.byte	2
+000000d9 10                900		.byte	16
+000000da 06                901		.byte	6
+000000db 03                902		.byte	3
+000000dc 7e                903		.byte	126
+000000dd 02                904		.byte	2
+000000de 06                905		.byte	6
+000000df 01                906		.byte	1
+000000e0 000502            907		.byte	0,5,2
+000000e3 00000000          908		.long	.LDWlin3
+000000e7 0d                909		.byte	13
+000000e8 0c                910		.byte	12
+000000e9 0c                911		.byte	12
+000000ea 06                912		.byte	6
+000000eb 02                913		.byte	2
+000000ec 02                914		.byte	2
+000000ed 06                915		.byte	6
+000000ee 03                916		.byte	3
+000000ef 7e                917		.byte	126
+000000f0 02                918		.byte	2
+000000f1 06                919		.byte	6
+000000f2 01                920		.byte	1
+000000f3 000502            921		.byte	0,5,2
+000000f6 00000000          922		.long	.LDWlin4
+000000fa 0d                923		.byte	13
+000000fb 0c                924		.byte	12
+000000fc 0d                925		.byte	13
+000000fd 000502            926		.byte	0,5,2
+00000100 00000000          927		.long	.LDWlin5
+00000104 02                928		.byte	2
+00000105 00                929		.byte	0
+00000106 0c                930		.byte	12
+00000107 000502            931		.byte	0,5,2
+0000010a 00000000          932		.long	.LDWlin6
+0000010e 0c                933		.byte	12
+0000010f 06                934		.byte	6
+00000110 02                935		.byte	2
+00000111 10                936		.byte	16
+00000112 06                937		.byte	6
+00000113 03                938		.byte	3
+
+                                   Fri Apr 10 08:32:25 2020           Page 18
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000114 7e                939		.byte	126
+00000115 02                940		.byte	2
+00000116 06                941		.byte	6
+00000117 01                942		.byte	1
+00000118 000502            943		.byte	0,5,2
+0000011b 00000000          944		.long	.LDWlin7
+0000011f 0d                945		.byte	13
+00000120 0c                946		.byte	12
+00000121 0c                947		.byte	12
+00000122 06                948		.byte	6
+00000123 02                949		.byte	2
+00000124 02                950		.byte	2
+00000125 06                951		.byte	6
+00000126 03                952		.byte	3
+00000127 7e                953		.byte	126
+00000128 02                954		.byte	2
+00000129 06                955		.byte	6
+0000012a 01                956		.byte	1
+0000012b 000502            957		.byte	0,5,2
+0000012e 00000000          958		.long	.LDWlin8
+00000132 0d                959		.byte	13
+00000133 0b                960		.byte	11
+00000134 0c                961		.byte	12
+00000135 0c                962		.byte	12
+00000136 000502            963		.byte	0,5,2
+00000139 00000000          964		.long	.LDWlin9
+0000013d 0c                965		.byte	12
+0000013e 06                966		.byte	6
+0000013f 02                967		.byte	2
+00000140 0a                968		.byte	10
+00000141 06                969		.byte	6
+00000142 03                970		.byte	3
+00000143 7e                971		.byte	126
+00000144 02                972		.byte	2
+00000145 10                973		.byte	16
+00000146 01                974		.byte	1
+00000147 000502            975		.byte	0,5,2
+0000014a 00000000          976		.long	.LDWlin10
+0000014e 0d                977		.byte	13
+0000014f 0c                978		.byte	12
+00000150 02                979		.byte	2
+00000151 00                980		.byte	0
+00000152 0c                981		.byte	12
+00000153 0b                982		.byte	11
+00000154 06                983		.byte	6
+00000155 02                984		.byte	2
+00000156 02                985		.byte	2
+00000157 06                986		.byte	6
+00000158 03                987		.byte	3
+00000159 7f                988		.byte	127
+0000015a 02                989		.byte	2
+0000015b 06                990		.byte	6
+0000015c 01                991		.byte	1
+0000015d 000502            992		.byte	0,5,2
+00000160 00000000          993		.long	.LDWlin11
+00000164 0b                994		.byte	11
+
+                                   Fri Apr 10 08:32:25 2020           Page 19
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000165 0c                995		.byte	12
+00000166 02                996		.byte	2
+00000167 02                997		.byte	2
+00000168 000101            998		.byte	0,1,1
+                           999		.section	.debug_info
+                          1000	.LDW_5b9aed8:
+00000162 11               1001		.byte	17
+00000163 733100           1002		.strz	"s1"
+00000166 44               1003		.byte	68
+00000167 16               1004		.byte	22
+00000168 01               1005		.byte	1
+00000169 00000000         1006		.long	.LDW_498c640
+0000016d 00               1007		.byte	0
+0000016e 0157             1008		.byte	1,87
+                          1009	
+                          1010		.section	.debug_abbrev
+00000086 11               1011		.byte	17
+00000087 05               1012		.byte	5
+00000088 00               1013		.byte	0
+00000089 0308             1014		.byte	3,8
+0000008b 3b0f             1015		.byte	59,15
+0000008d 390f             1016		.byte	57,15
+0000008f 3a0f             1017		.byte	58,15
+00000091 4910             1018		.byte	73,16
+00000093 4b0c             1019		.byte	75,12
+00000095 020a             1020		.byte	2,10
+00000097 0000             1021		.byte	0,0
+                          1022	
+                          1023		.section	.debug_info
+                          1024	.LDW_5b9af30:
+00000170 11               1025		.byte	17
+00000171 733200           1026		.strz	"s2"
+00000174 44               1027		.byte	68
+00000175 26               1028		.byte	38
+00000176 01               1029		.byte	1
+00000177 00000000         1030		.long	.LDW_498c870
+0000017b 00               1031		.byte	0
+0000017c 0154             1032		.byte	1,84
+                          1033	
+                          1034	.LDW_5b9af88:
+0000017e 11               1035		.byte	17
+0000017f 6e00             1036		.strz	"n"
+00000181 44               1037		.byte	68
+00000182 31               1038		.byte	49
+00000183 01               1039		.byte	1
+00000184 00000000         1040		.long	.LDW_5b9ade8
+00000188 00               1041		.byte	0
+00000189 0155             1042		.byte	1,85
+                          1043	
+                          1044	.LDW_4983890:
+0000018b 1f               1045		.byte	31
+0000018c 00000000         1046		.long	.LDW01
+00000190 00000000         1047		.long	.LDW95
+                          1048	
+                          1049		.section	.debug_abbrev
+00000099 1f               1050		.byte	31
+
+                                   Fri Apr 10 08:32:25 2020           Page 20
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+0000009a 0b               1051		.byte	11
+0000009b 01               1052		.byte	1
+0000009c 1101             1053		.byte	17,1
+0000009e 1201             1054		.byte	18,1
+000000a0 0000             1055		.byte	0,0
+                          1056	
+                          1057		.section	.debug_info
+                          1058	.LDW_49cb478:
+00000194 06               1059		.byte	6
+00000195 726573756c7400   1060		.strz	"result"
+0000019c 46               1061		.byte	70
+0000019d 0c               1062		.byte	12
+0000019e 01               1063		.byte	1
+0000019f 00000000         1064		.long	.LDW_498c640
+000001a3 00               1065		.byte	0
+000001a4 00               1066		.byte	0
+000001a5 0153             1067		.byte	1,83
+                          1068	
+                          1069		.section	.debug_abbrev
+000000a2 06               1070		.byte	6
+000000a3 34               1071		.byte	52
+000000a4 00               1072		.byte	0
+000000a5 0308             1073		.byte	3,8
+000000a7 3b0f             1074		.byte	59,15
+000000a9 390f             1075		.byte	57,15
+000000ab 3a0f             1076		.byte	58,15
+000000ad 4910             1077		.byte	73,16
+000000af 3f0c             1078		.byte	63,12
+000000b1 3c0c             1079		.byte	60,12
+000000b3 020a             1080		.byte	2,10
+000000b5 0000             1081		.byte	0,0
+                          1082	
+                          1083		.section	.debug_info
+                          1084	.LDW_49837a0:
+000001a7 1f               1085		.byte	31
+000001a8 00000000         1086		.long	.LDW11
+000001ac 00000000         1087		.long	.LDW45
+                          1088	
+                          1089	.LDW_49837d0:
+000001b0 1f               1090		.byte	31
+000001b1 00000000         1091		.long	.LDW21
+000001b5 00000000         1092		.long	.LDW72
+                          1093	
+                          1094	.LDW_4983110:
+000001b9 1f               1095		.byte	31
+000001ba 00000000         1096		.long	.LDW31
+000001be 00000000         1097		.long	.LDW62
+                          1098	
+                          1099	.LDW_49831a0:
+000001c2 1f               1100		.byte	31
+000001c3 00000000         1101		.long	.LDW41
+000001c7 00000000         1102		.long	.LDW91
+                          1103	
+                          1104	.LDW_4983590:
+000001cb 1f               1105		.byte	31
+000001cc 00000000         1106		.long	.LDW51
+
+                                   Fri Apr 10 08:32:25 2020           Page 21
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+000001d0 00000000         1107		.long	.LDW81
+                          1108	
+                          1109	.LDW_49835c0:
+000001d4 1f               1110		.byte	31
+000001d5 00000000         1111		.long	.LDW61
+000001d9 00000000         1112		.long	.LDW71
+                          1113	
+                          1114	.LDW_49cb4d0:
+000001dd 07               1115		.byte	7
+000001de 747800           1116		.strz	"tx"
+000001e1 6a               1117		.byte	106
+000001e2 03               1118		.byte	3
+000001e3 01               1119		.byte	1
+000001e4 00000000         1120		.long	.LDW_498c4f0
+000001e8 00               1121		.byte	0
+000001e9 00               1122		.byte	0
+                          1123	
+                          1124		.section	.debug_abbrev
+000000b7 07               1125		.byte	7
+000000b8 34               1126		.byte	52
+000000b9 00               1127		.byte	0
+000000ba 0308             1128		.byte	3,8
+000000bc 3b0f             1129		.byte	59,15
+000000be 390f             1130		.byte	57,15
+000000c0 3a0f             1131		.byte	58,15
+000000c2 4910             1132		.byte	73,16
+000000c4 3f0c             1133		.byte	63,12
+000000c6 3c0c             1134		.byte	60,12
+000000c8 0000             1135		.byte	0,0
+                          1136	
+                          1137		.section	.debug_info
+                          1138	.LDW_49cb580:
+000001ea 07               1139		.byte	7
+000001eb 747900           1140		.strz	"ty"
+000001ee 6a               1141		.byte	106
+000001ef 03               1142		.byte	3
+000001f0 01               1143		.byte	1
+000001f1 00000000         1144		.long	.LDW_498c528
+000001f5 00               1145		.byte	0
+000001f6 00               1146		.byte	0
+                          1147	
+000001f7 00               1148		.byte	0
+                          1149	
+000001f8 00               1150		.byte	0
+                          1151	
+000001f9 00               1152		.byte	0
+                          1153	
+                          1154	.LDW_49834a0:
+000001fa 1f               1155		.byte	31
+000001fb 00000000         1156		.long	.LDW02
+000001ff 00000000         1157		.long	.LDW52
+                          1158	
+                          1159	.LDW_49836b0:
+00000203 1f               1160		.byte	31
+00000204 00000000         1161		.long	.LDW12
+00000208 00000000         1162		.long	.LDW42
+
+                                   Fri Apr 10 08:32:25 2020           Page 22
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                          1163	
+                          1164	.LDW_4983410:
+0000020c 1f               1165		.byte	31
+0000020d 00000000         1166		.long	.LDW22
+00000211 00000000         1167		.long	.LDW32
+                          1168	
+                          1169	.LDW_49cb5d8:
+00000215 07               1170		.byte	7
+00000216 747800           1171		.strz	"tx"
+00000219 6f               1172		.byte	111
+0000021a 03               1173		.byte	3
+0000021b 01               1174		.byte	1
+0000021c 00000000         1175		.long	.LDW_498c4f0
+00000220 00               1176		.byte	0
+00000221 00               1177		.byte	0
+                          1178	
+                          1179	.LDW_49cb630:
+00000222 07               1180		.byte	7
+00000223 747900           1181		.strz	"ty"
+00000226 6f               1182		.byte	111
+00000227 03               1183		.byte	3
+00000228 01               1184		.byte	1
+00000229 00000000         1185		.long	.LDW_498c528
+0000022d 00               1186		.byte	0
+0000022e 00               1187		.byte	0
+                          1188	
+0000022f 00               1189		.byte	0
+                          1190	
+00000230 00               1191		.byte	0
+                          1192	
+00000231 00               1193		.byte	0
+                          1194	
+00000232 00               1195		.byte	0
+                          1196	
+00000233 00               1197		.byte	0
+                          1198	
+                          1199	.LDW_49831d0:
+00000234 1f               1200		.byte	31
+00000235 00000000         1201		.long	.LDW82
+00000239 00000000         1202		.long	.LDW35
+                          1203	
+                          1204	.LDW_4983140:
+0000023d 1f               1205		.byte	31
+0000023e 00000000         1206		.long	.LDW92
+00000242 00000000         1207		.long	.LDW25
+                          1208	
+                          1209	.LDW_4983170:
+00000246 1f               1210		.byte	31
+00000247 00000000         1211		.long	.LDW03
+0000024b 00000000         1212		.long	.LDW34
+                          1213	
+                          1214	.LDW_4983200:
+0000024f 1f               1215		.byte	31
+00000250 00000000         1216		.long	.LDW13
+00000254 00000000         1217		.long	.LDW63
+                          1218	
+
+                                   Fri Apr 10 08:32:25 2020           Page 23
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                          1219	.LDW_4983440:
+00000258 1f               1220		.byte	31
+00000259 00000000         1221		.long	.LDW23
+0000025d 00000000         1222		.long	.LDW53
+                          1223	
+                          1224	.LDW_4983350:
+00000261 1f               1225		.byte	31
+00000262 00000000         1226		.long	.LDW33
+00000266 00000000         1227		.long	.LDW43
+                          1228	
+                          1229	.LDW_49cb688:
+0000026a 07               1230		.byte	7
+0000026b 747800           1231		.strz	"tx"
+0000026e 79               1232		.byte	121
+0000026f 06               1233		.byte	6
+00000270 01               1234		.byte	1
+00000271 00000000         1235		.long	.LDW_498c8a8
+00000275 00               1236		.byte	0
+00000276 00               1237		.byte	0
+                          1238	
+                          1239	.LDW_49cb738:
+00000277 07               1240		.byte	7
+00000278 747900           1241		.strz	"ty"
+0000027b 79               1242		.byte	121
+0000027c 06               1243		.byte	6
+0000027d 01               1244		.byte	1
+0000027e 00000000         1245		.long	.LDW_498c790
+00000282 00               1246		.byte	0
+00000283 00               1247		.byte	0
+                          1248	
+00000284 00               1249		.byte	0
+                          1250	
+00000285 00               1251		.byte	0
+                          1252	
+00000286 00               1253		.byte	0
+                          1254	
+                          1255	.LDW_49835f0:
+00000287 1f               1256		.byte	31
+00000288 00000000         1257		.long	.LDW73
+0000028c 00000000         1258		.long	.LDW24
+                          1259	
+                          1260	.LDW_49833b0:
+00000290 1f               1261		.byte	31
+00000291 00000000         1262		.long	.LDW83
+00000295 00000000         1263		.long	.LDW14
+                          1264	
+                          1265	.LDW_4983680:
+00000299 1f               1266		.byte	31
+0000029a 00000000         1267		.long	.LDW93
+0000029e 00000000         1268		.long	.LDW04
+                          1269	
+                          1270	.LDW_49cb790:
+000002a2 07               1271		.byte	7
+000002a3 747800           1272		.strz	"tx"
+000002a6 7e               1273		.byte	126
+000002a7 06               1274		.byte	6
+
+                                   Fri Apr 10 08:32:25 2020           Page 24
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+000002a8 01               1275		.byte	1
+000002a9 00000000         1276		.long	.LDW_498c8a8
+000002ad 00               1277		.byte	0
+000002ae 00               1278		.byte	0
+                          1279	
+                          1280	.LDW_49cbad0:
+000002af 07               1281		.byte	7
+000002b0 747900           1282		.strz	"ty"
+000002b3 7e               1283		.byte	126
+000002b4 06               1284		.byte	6
+000002b5 01               1285		.byte	1
+000002b6 00000000         1286		.long	.LDW_498c790
+000002ba 00               1287		.byte	0
+000002bb 00               1288		.byte	0
+                          1289	
+000002bc 00               1290		.byte	0
+                          1291	
+000002bd 00               1292		.byte	0
+                          1293	
+000002be 00               1294		.byte	0
+                          1295	
+000002bf 00               1296		.byte	0
+                          1297	
+                          1298	.LDW_4983260:
+000002c0 1f               1299		.byte	31
+000002c1 00000000         1300		.long	.LDW44
+000002c5 00000000         1301		.long	.LDW15
+                          1302	
+                          1303	.LDW_4983470:
+000002c9 1f               1304		.byte	31
+000002ca 00000000         1305		.long	.LDW54
+000002ce 00000000         1306		.long	.LDW05
+                          1307	
+                          1308	.LDW_4983620:
+000002d2 1f               1309		.byte	31
+000002d3 00000000         1310		.long	.LDW64
+000002d7 00000000         1311		.long	.LDW94
+                          1312	
+                          1313	.LDW_4983290:
+000002db 1f               1314		.byte	31
+000002dc 00000000         1315		.long	.LDW74
+000002e0 00000000         1316		.long	.LDW84
+                          1317	
+                          1318	.LDW_49cbe98:
+000002e4 07               1319		.byte	7
+000002e5 747800           1320		.strz	"tx"
+000002e8 8601             1321		.byte	134,1
+000002ea 06               1322		.byte	6
+000002eb 01               1323		.byte	1
+000002ec 00000000         1324		.long	.LDW_498c918
+000002f0 00               1325		.byte	0
+000002f1 00               1326		.byte	0
+                          1327	
+                          1328	.LDW_49cbef0:
+000002f2 07               1329		.byte	7
+000002f3 747900           1330		.strz	"ty"
+
+                                   Fri Apr 10 08:32:25 2020           Page 25
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+000002f6 8601             1331		.byte	134,1
+000002f8 06               1332		.byte	6
+000002f9 01               1333		.byte	1
+000002fa 00000000         1334		.long	.LDW_498c560
+000002fe 00               1335		.byte	0
+000002ff 00               1336		.byte	0
+                          1337	
+00000300 00               1338		.byte	0
+                          1339	
+00000301 00               1340		.byte	0
+                          1341	
+00000302 00               1342		.byte	0
+                          1343	
+00000303 00               1344		.byte	0
+                          1345	
+00000304 00               1346		.byte	0
+                          1347	
+00000305 00               1348		.byte	0
+                          1349	
+00000306 00               1350		.byte	0
+                          1351	
+                          1352	.LDW_49834d0:
+00000307 1f               1353		.byte	31
+00000308 00000000         1354		.long	.LDW55
+0000030c 00000000         1355		.long	.LDW85
+                          1356	
+                          1357	.LDW_4983650:
+00000310 1f               1358		.byte	31
+00000311 00000000         1359		.long	.LDW65
+00000315 00000000         1360		.long	.LDW75
+                          1361	
+                          1362	.LDW_49cbb80:
+00000319 07               1363		.byte	7
+0000031a 747800           1364		.strz	"tx"
+0000031d 8c01             1365		.byte	140,1
+0000031f 02               1366		.byte	2
+00000320 01               1367		.byte	1
+00000321 00000000         1368		.long	.LDW_498c918
+00000325 00               1369		.byte	0
+00000326 00               1370		.byte	0
+                          1371	
+                          1372	.LDW_49cbc88:
+00000327 07               1373		.byte	7
+00000328 747900           1374		.strz	"ty"
+0000032b 8c01             1375		.byte	140,1
+0000032d 02               1376		.byte	2
+0000032e 01               1377		.byte	1
+0000032f 00000000         1378		.long	.LDW_498c560
+00000333 00               1379		.byte	0
+00000334 00               1380		.byte	0
+                          1381	
+00000335 00               1382		.byte	0
+                          1383	
+00000336 00               1384		.byte	0
+                          1385	
+00000337 00               1386		.byte	0
+
+                                   Fri Apr 10 08:32:25 2020           Page 26
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+                          1387	
+00000338 00               1388		.byte	0
+                          1389	
+00000339 00               1390		.byte	0
+                          1391	
+                          1392		.section	.debug_line
+                          1393	.Ldw_line_end:
+                          1394		.section	.debug_macinfo
+00000000 01               1395		.byte	1
+00000001 00               1396		.byte	0
+00000002 5f5f434841525f42 1397		.strz	"__CHAR_BIT 8"
+0000000a 4954203800      
+0000000f 01               1398		.byte	1
+00000010 00               1399		.byte	0
+00000011 5f5f534852545f42 1400		.strz	"__SHRT_BIT 16"
+00000019 495420313600    
+0000001f 01               1401		.byte	1
+00000020 00               1402		.byte	0
+00000021 5f5f494e545f4249 1403		.strz	"__INT_BIT 32"
+00000029 5420333200      
+0000002e 01               1404		.byte	1
+0000002f 00               1405		.byte	0
+00000030 5f5f4c4f4e475f42 1406		.strz	"__LONG_BIT 32"
+00000038 495420333200    
+0000003e 01               1407		.byte	1
+0000003f 00               1408		.byte	0
+00000040 5f5f5054525f4249 1409		.strz	"__PTR_BIT 32"
+00000048 5420333200      
+0000004d 01               1410		.byte	1
+0000004e 00               1411		.byte	0
+0000004f 5f5f4c4c4f4e475f 1412		.strz	"__LLONG_BIT 64"
+00000057 42495420363400  
+0000005e 01               1413		.byte	1
+0000005f 00               1414		.byte	0
+00000060 5f5f5245475f4249 1415		.strz	"__REG_BIT 32"
+00000068 5420333200      
+0000006d 03               1416		.byte	3
+0000006e 00               1417		.byte	0
+0000006f 01               1418		.byte	1
+00000070 03               1419		.byte	3
+00000071 0d               1420		.byte	13
+00000072 02               1421		.byte	2
+00000073 01               1422		.byte	1
+00000074 2e               1423		.byte	46
+00000075 73697a655f742073 1424		.strz	"size_t syze_t"
+0000007d 797a655f7400    
+00000083 04               1425		.byte	4
+00000084 03               1426		.byte	3
+00000085 0e               1427		.byte	14
+00000086 03               1428		.byte	3
+00000087 04               1429		.byte	4
+00000088 01               1430		.byte	1
+00000089 2f               1431		.byte	47
+0000008a 6172655f626f7468 1432		.strz	"are_both_aligned(x,y,type) (((((size_t)x)|((size_t)y)) &(sizeof(type)-1)) == 0)"
+00000092 5f616c69676e6564
+0000009a 28782c792c747970
+000000a2 6529202828282828
+000000aa 73697a655f742978
+000000b2 297c282873697a65
+000000ba 5f74297929292026
+000000c2 2873697a656f6628
+000000ca 74797065292d3129
+000000d2 29203d3d20302900
+000000da 01               1433		.byte	1
+000000db 31               1434		.byte	49
+000000dc 4d414e55414c4c59 1435		.strz	"MANUALLY_UNROLL_LOOP_FOR_SPEED 1"
+000000e4 5f554e524f4c4c5f
+000000ec 4c4f4f505f464f52
+000000f4 5f53504545442031
+000000fc 00              
+000000fd 01               1436		.byte	1
+000000fe 33               1437		.byte	51
+000000ff 636f70795f6f6e65 1438		.strz	"copy_one_by_type(x,y,type) { type * tx = (type *)x; const type * ty = (const type *)y; *tx++ = *ty++; x = tx; y = ty; } (void)0"
+00000107 5f62795f74797065
+0000010f 28782c792c747970
+00000117 6529207b20747970
+0000011f 65202a207478203d
+00000127 202874797065202a
+0000012f 29783b20636f6e73
+00000137 742074797065202a
+0000013f 207479203d202863
+00000147 6f6e737420747970
+0000014f 65202a29793b202a
+00000157 74782b2b203d202a
+0000015f 74792b2b3b207820
+00000167 3d2074783b207920
+0000016f 3d2074793b207d20
+00000177 28766f6964293000
+0000017f 01               1439		.byte	1
+00000180 3a               1440		.byte	58
+00000181 636f70795f666f75 1441		.strz	"copy_four_by_type(x,y,type) { type * tx = (type *)x; const type * ty = (const type *)y; *tx++ = *ty++; *tx++ = *ty++; *tx++ = *ty++; *tx++ = *ty++; x = tx; y = ty; } (void)0"
+00000189 725f62795f747970
+00000191 6528782c792c7479
+00000199 706529207b207479
+000001a1 7065202a20747820
+000001a9 3d20287479706520
+000001b1 2a29783b20636f6e
+000001b9 7374207479706520
+000001c1 2a207479203d2028
+000001c9 636f6e7374207479
+000001d1 7065202a29793b20
+000001d9 2a74782b2b203d20
+000001e1 2a74792b2b3b202a
+000001e9 74782b2b203d202a
+000001f1 74792b2b3b202a74
+000001f9 782b2b203d202a74
+00000201 792b2b3b202a7478
+00000209 2b2b203d202a7479
+00000211 2b2b3b2078203d20
+00000219 74783b2079203d20
+00000221 74793b207d202876
+00000229 6f6964293000    
+0000022f 04               1442		.byte	4
+
+                                   Fri Apr 10 08:32:25 2020           Page 27
+                                   Fri Apr 10 08:32:25 2020   gh_00006u41.si
+00000230 00               1443		.byte	0
+                          1444		.section	.debug_abbrev
+000000ca 00               1445		.byte	0
+                          1446		.section	.debug_info
+                          1447	.Ldw_end:

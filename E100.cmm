@@ -1,0 +1,89 @@
+B::
+	PRINT "Start E100"
+;--------------------------------------------------------------------------------
+; CPU setup
+;--------------------------------------------------------------------------------
+
+	SYStem.RESet
+	
+	if SIMULATOR()
+		SYStem.CPU SPC570S50
+	else
+		SYStem.DETECT CPU
+		
+	;SYStem.Option.WATCHDOG OFF
+	SYStem.BdmClock 2MHz
+		
+	SYStem.Up
+
+;--------------------------------------------------------------------------------
+; Flash declaration
+;--------------------------------------------------------------------------------
+
+	FLASH.RESet
+
+; Low address space
+	FLASH.Create 1. 0x00404000--0x00405FFF NOP    Quad 0x0000 /INFO "BAF (read only)"
+	FLASH.Create 1. 0x00FC0000--0x00FC3FFF TARGET Quad 0x0001
+	FLASH.Create 1. 0x00FC4000--0x00FC7FFF TARGET Quad 0x0002
+	FLASH.Create 1. 0x00FC8000--0x00FCBFFF TARGET Quad 0x0003
+	FLASH.Create 1. 0x00FCC000--0x00FCFFFF TARGET Quad 0x0004
+	FLASH.Create 1. 0x00FD0000--0x00FD7FFF TARGET Quad 0x0005
+	FLASH.Create 1. 0x00FD8000--0x00FDFFFF TARGET Quad 0x0006
+	FLASH.Create 1. 0x00FE0000--0x00FEFFFF TARGET Quad 0x0007
+	FLASH.Create 1. 0x00FF0000--0x00FFFFFF TARGET Quad 0x0008
+; High address space (Data Flash)
+	DIALOG.YESNO "Do you want to keep the data of data-flash?"
+	LOCAL &progdataflash
+	ENTRY &progdataflash
+	IF !&progdataflash
+	(
+		FLASH.Create 3. 0x00800000--0x00801FFF TARGET Quad 0x0200
+		FLASH.Create 3. 0x00802000--0x00803FFF TARGET Quad 0x0201
+		FLASH.Create 3. 0x00804000--0x00805FFF TARGET Quad 0x0202
+		FLASH.Create 3. 0x00806000--0x00807FFF TARGET Quad 0x0203
+	)
+; 128k address space
+	IF CPUIS(SPC570S50*)
+	(
+		FLASH.Create 4. 0x01000000--0x0101FFFF TARGET Quad 0x0300
+		FLASH.Create 4. 0x01020000--0x0103FFFF TARGET Quad 0x0301
+	)
+; UTEST address space
+	FLASH.Create 6. 0x00400000--0x00401FFF TARGET Quad 0x0500 /OTP /INFO "UTEST"
+
+; Overlay enabled mapping
+	FLASH.CreateALIAS 0x08A00000--0x08FFFFFF 0x00A00000   ; Small & medium flash blocks
+	FLASH.CreateALIAS 0x09000000--0x09FFFFFF 0x01000000   ; Large flash blocks
+
+	FLASH.TARGET E:0x40000000 E:0x40002000 0x1000 ~~/demo/powerpc/flash/quad/c55fmspc570s.bin /STACKSIZE 0x0200
+
+;--------------------------------------------------------------------------------
+;Flash programming
+;--------------------------------------------------------------------------------
+	
+	FLASH.ReProgram ALL /Erase
+	
+	DIALOG.YESNO "Do you want to reprogram only application code??"
+	LOCAL &bootloader
+	ENTRY &bootloader
+	IF !&bootloader
+	(
+		Data.LOAD "D:\07_Working\E100\HexFiles\E100_LDC_Merge.s19"
+	)
+	ELSE
+	(
+		Data.LOAD "D:\07_Working\E100\build\out.elf"
+	)
+	
+	FLASH.ReProgram.off 
+
+;--------------------------------------------------------------------------------
+;Window
+;-------------------------------------------------------------------------------- 
+	
+	do trace_window.cmm
+
+	PRINT "Done"
+	
+ENDDO

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <style type="text/css">
+        body
+        {
+            margin: 20px;
+            font-size: 8pt;
+            font-family: Verdana, arial, sans-serif;
+            color: #000000;
+            background-color: #FFFFFF;
+            text-align: left;
+        }
+        
+        table
+        {
+            border-collapse: collapse;
+        }
+        
+        table, th, td
+        {
+            border: 1px solid black;
+            font-size: 8pt;
+            font-family: Verdana, arial, sans-serif;
+        }
+        
+        h1
+        {
+            font-size: 12pt;
+            font-weight: normal;
+        }
+        
+        h1 img
+        {
+            vertical-align: bottom;
+            padding-bottom: 2px;
+        }
+        
+        h2
+        {
+            height: 30px;
+            line-height: 30px;
+            text-align: left;
+            background-color: #E5E5E5;
+            font-size: 8pt;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+        
+        h3
+        {
+            font-size: 8pt;
+            padding-top: 5pt;
+            padding-left: 10px;
+        }
+        
+        p
+        {
+            padding-left: 10px;
+        }
+        
+        ul
+        {
+            padding-top: 0pt;
+            margin-top: 0px;
+        }
+        
+        .where:before
+        {
+            content: "Context: ";
+        }
+        
+        .where
+        {
+            font-size: 6pt;
+            font-style: normal;
+            display: block;
+            width: 65em;
+            padding-bottom: 5pt;
+        }
+    </style>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+    <meta name="description" content="Template Guide <TEMPLATE NAME>">
+    <title>Template Guide - TODO: &lt;TEMPLATE NAME&gt;</title>
+</head>
+<body>
+    <h1>
+        <span>SsangYong SLP2</span>
+    </h1>
+    <br />
+    <h2>
+        <a name="AvailableDatablockTypes">Available DatablockTypes</a>
+    </h2>
+    <p>
+        The different DatablockTypes optionally control special handlings for the respective
+        datablocks.
+        <ul>
+    <table border="1" cellpadding="5">
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>DRIVER1</td>
+        <td>Flash drivers have to be downloaded to an ECU if they do not permanently reside in the ECU (usually they don’t).<br>
+        DRIVER1 is the “erase driver”. If Flash DRIVER2 is not used, it also contains the “write driver”.</td>
+      </tr>
+      <tr>
+        <td>DRIVER2</td>
+        <td>DRIVER2 is the “write driver”.</td>
+      </tr>
+      <tr>
+        <td>DATA</td>
+        <td>The data containing for example all the calibration data for the application (characteristic curves, DTC, thresholds, etc.)  </td>
+      </tr>
+    </table>
+            <br />
+        </ul>
+    </p>
+    <p>
+        Downloading several drivers is supported. Optionally the drivers may even be different.
+    </p>
+    <h2>
+        <a name="Tester Serial Number">Tester Serial Number</a>
+    </h2>
+    <p>
+        The Tester Serial Number entered by the user must be 4 Bytes or 8 Bytes long.</br>
+		If no Tester Serial Number is entered, then '00000000' will be used.</br>
+    </p>
+    <h2>
+        <a name="Download">Download</a>
+    </h2>
+    <h3>
+        Logical Blocks</h3>
+    <p>
+        Logical Blocks are addressed by an address.
+    </p>
+    <p>
+        <ul>
+            <li>The logical block areas are erased by addresses.</li>
+            <li>The logical block areas are programmed by addresses.</li>
+        </ul>
+    </p>
+    <h3>
+        Encryption/Compression
+    </h3>
+    <p>
+        PreCompression and Encryption is supported.
+    </p>
+    <p>
+        <ul>
+            <li>PreCompression: Optionally the template can download already compressed flashware.
+                The download of the datablock is marked as compressed download. </li>
+            <li>Encryption: Optionally the template can download already encrypted flashware. The
+                download of the datablock is marked as encrypted download. </li>
+        </ul>
+    </p>
+    <h3>
+        Checksum</h3>
+    <p>
+        <ul>
+            <li>CRC: A CRC file can be selected for every datablock with a 32 bit checksum.</li>
+            <li>Signature: A signature file can be selected for every datablock. The usage of the signature is optional and depends on the security class.</li>
+        </ul>
+    </p>
+    <h2>
+        <a name="SecurityHandling">Security Handling</a>
+    </h2>
+    <p>
+        <ul>
+            <li>A SeedKey.dll is part of the template (only a demo dll).</li>
+            <li>4 Byte Seed Extension can be used.</li>
+            <li>If no Seed Extension is used, then an ECU specific SeedKey DLL is required.</li>
+        </ul>
+    </p>
+    <h2>
+        <a name="Communication">Communication</a>
+    </h2>
+    <p>
+        Only CAN interface is supported.</p>
+    <h3>
+        CAN</h3>
+    <p>
+        <ul>
+            <li>CAN ID Type usage: For functional and physical addressing different CAN ID Types (11 bit and 29 bit) may be used.</li>
+        </ul>
+    </p>
+    <br />
+</body>
+</html>

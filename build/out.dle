@@ -1,0 +1,35 @@
+------------------------------------------------
+dle output started at: Fri Apr 24 16:53:03 2020
+------------------------------------------------
+dblink = "C:\ghs\comp_201754\dblink"
+------------------------------------------------
+argv[0] = "C:\ghs\comp_201754\dblink.exe"
+argv[1] = "-dbopath=build/obj"
+argv[2] = "-nm=gnm"
+argv[3] = "C:\Users\owner\AppData\Local\Temp\gh_0000b6g1.nm"
+argv[4] = "-o"
+argv[5] = "build/out.dnm"
+argv[6] = "-Dscope.target=ppc"
+argv[7] = "-Dscope.processor=ppc"
+argv[8] = "-Dscope.cpuname=ppc5746mz0"
+argv[9] = "-Dscope.fputype=soft"
+argv[10] = "-Dscope.tools_dir=C:\ghs\comp_201754"
+argv[11] = "-Dscope.deflibdir=C:\ghs\comp_201754\lib\ppc5514"
+argv[12] = "-Dscope.double_hl=1"
+argv[13] = "C:\ghs\comp_201754\lib\ppc5514\libmulti.dba"
+argv[14] = "C:\ghs\comp_201754\lib\ppc5514\libfmalloc.dba"
+argv[15] = "C:\ghs\comp_201754\lib\ppc5514\libwchar_s32.dba"
+argv[16] = "C:\ghs\comp_201754\lib\ppc5514\libansi.dba"
+argv[17] = "C:\ghs\comp_201754\lib\ppc5514\libwc_s32.dba"
+argv[18] = "C:\ghs\comp_201754\lib\ppc5514\libmath.dba"
+argv[19] = "C:\ghs\comp_201754\lib\ppc5514\libind.dba"
+argv[20] = "C:\ghs\comp_201754\lib\ppc5514\libstartup.dba"
+argv[21] = "C:\ghs\comp_201754\lib\ppc5514\libsys.dba"
+argv[22] = "C:\ghs\comp_201754\lib\ppc5514\libarch.dba"
+------------------------------------------------
+dblink: WARNING: could not find .dbo for "C:\SPC5Studio\runtime-New_configuration2\velvetyflash\build\obj\SetLock.dlo" with magic="..bof.C.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash.5Cbuild.5Cobj.5CSetLock...43.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash..591C09AB..0". Source level debugging will not be available for this object.
+dblink: WARNING: could not find .dbo for "C:\SPC5Studio\runtime-New_configuration2\velvetyflash\build\obj\FlashProgram.dlo" with magic="..bof.C.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash.5Cbuild.5Cobj.5CFlashProgram...43.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash..591C0999..0". Source level debugging will not be available for this object.
+dblink: WARNING: could not find .dbo for "C:\SPC5Studio\runtime-New_configuration2\velvetyflash\build\obj\FlashInit.dlo" with magic="..bof.C.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash.5Cbuild.5Cobj.5CFlashInit...43.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash..591C0995..0". Source level debugging will not be available for this object.
+dblink: WARNING: could not find .dbo for "C:\SPC5Studio\runtime-New_configuration2\velvetyflash\build\obj\FlashErase.dlo" with magic="..bof.C.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash.5Cbuild.5Cobj.5CFlashErase...43.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash..591C0992..0". Source level debugging will not be available for this object.
+dblink: WARNING: could not find .dbo for "C:\SPC5Studio\runtime-New_configuration2\velvetyflash\build\obj\FlashCheckStatus.dlo" with magic="..bof.C.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash.5Cbuild.5Cobj.5CFlashCheckStatus...43.3A.5CSPC5Studio.5Cruntime.2DNew_configuration2.5Cvelvetyflash..591C0984..0". Source level debugging will not be available for this object.
+dblink: WARNING: during processing, some .dbo files were not found.  Use the "-dbo_trace" option to diagnose.

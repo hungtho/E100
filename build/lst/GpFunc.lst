@@ -1,0 +1,4445 @@
+
+                                   Fri Apr 24 16:52:50 2020           Page 1
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+Command Line:   C:\ghs\comp_201754\asppc.exe -w -noundefined -elf -b1 -I.
+                -I./components/spc570sxx_platform_component_rla/lib/include
+                -I./components/flash_driver/lib/include
+                -I./components/spc570sxx_board_initialization_component_rla/lib/include
+                -I./components/spc570sxx_clock_component_rla/lib/include
+                -I./components/spc570sxx_irq_component_rla/lib/include
+                -I./components/spc570sxx_osal_component_rla/lib/include
+                -I./components/spc570sxx_platform_component_rla/cfg
+                -I./components/spc570sxx_board_initialization_component_rla/cfg
+                -I./components/spc570sxx_clock_component_rla/cfg
+                -I./components/spc570sxx_irq_component_rla/cfg
+                -I./components/spc570sxx_osal_component_rla/cfg -I./source/
+                -I./source/ASW/ -I./source/BSW/ -I./source/BSW/BSW_Geny/
+                -I./source/BSW/BSW_Geny/Can/ -I./source/BSW/BSW_Geny/Common/
+                -I./source/BSW/BSW_Geny/Il/
+                -I./source/BSW/BSW_Geny/SipVersionCheck/
+                -I./source/BSW/BSW_Geny/Tp/ -I./source/BSW/BSW_Geny/VStdLib/
+                -I./source/BSW/CANbedded_Vector/ -I./source/FBL/ -I./source/Geny/
+                -I./source/Geny/Cdd/ -I./source/Geny/Cfg/ -I./source/Geny/Db/
+                -I./source/Geny/Prj/ -I./source/HAL/ -I./source/RTE/
+                -I./source/UDS/ -I./components -IC:\ghs\comp_201754\/ansi
+                -IC:\ghs\comp_201754\lib\ppc5514 -cpu=ppc5746mz0
+                -patch_dbo=D:\07_Working\E100\build\obj\GpFunc.dbo
+                -source=GpFunc.c -o build\obj\gh_0000c241.o
+                -list=build/lst/GpFunc.lst build\obj\gh_0000c241.s
+Source File:    build\obj\gh_0000c241.s
+Directory:      D:\07_Working\E100
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -c -cpu=ppc5746mz0 -Ospeed -Onounroll --ee -ansi
+                             2	#		--no_coverage_analysis -check=nomemory -inline_prologue -std=c99
+                             3	#		-G -dual_debug --gnu_asm -gnu99 --no_commons -w --ghstd=last
+                             4	#		-list -tmp=build/obj -list=build/lst/GpFunc.lst -DPPC_USE_VLE -MD
+                             5	#		-I. -I./components/spc570sxx_platform_component_rla/lib/include
+                             6	#		-I./components/flash_driver/lib/include
+                             7	#		-I./components/spc570sxx_board_initialization_component_rla/lib/include
+                             8	#		-I./components/spc570sxx_clock_component_rla/lib/include
+                             9	#		-I./components/spc570sxx_irq_component_rla/lib/include
+                            10	#		-I./components/spc570sxx_osal_component_rla/lib/include
+                            11	#		-I./components/spc570sxx_platform_component_rla/cfg
+                            12	#		-I./components/spc570sxx_board_initialization_component_rla/cfg
+                            13	#		-I./components/spc570sxx_clock_component_rla/cfg
+                            14	#		-I./components/spc570sxx_irq_component_rla/cfg
+                            15	#		-I./components/spc570sxx_osal_component_rla/cfg -I./source/
+                            16	#		-I./source/ASW/ -I./source/BSW/ -I./source/BSW/BSW_Geny/
+                            17	#		-I./source/BSW/BSW_Geny/Can/ -I./source/BSW/BSW_Geny/Common/
+                            18	#		-I./source/BSW/BSW_Geny/Il/
+                            19	#		-I./source/BSW/BSW_Geny/SipVersionCheck/
+                            20	#		-I./source/BSW/BSW_Geny/Tp/ -I./source/BSW/BSW_Geny/VStdLib/
+                            21	#		-I./source/BSW/CANbedded_Vector/ -I./source/FBL/ -I./source/Geny/
+                            22	#		-I./source/Geny/Cdd/ -I./source/Geny/Cfg/ -I./source/Geny/Db/
+                            23	#		-I./source/Geny/Prj/ -I./source/HAL/ -I./source/RTE/
+                            24	#		-I./source/UDS/ -I./components -IC:\ghs\comp_201754\/ansi
+                            25	#		./source/UDS/GpFunc.c -o build/obj/GpFunc.o
+                            26	#Source File:   ./source/UDS/GpFunc.c
+                            27	#Directory:     D:\07_Working\E100
+                            28	#Compile Date:  Fri Apr 24 16:52:50 2020
+
+                                   Fri Apr 24 16:52:50 2020           Page 2
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                            29	#Host OS:       Win32
+                            30	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            31	#Release:       Compiler v2017.5.4
+                            32	#Revision Date: Wed Oct 04 11:39:37 2017
+                            33	#Release Date:  Wed Oct 04 09:00:05 2017
+                            34	# ecom  -g -w -OLM
+                            35		.section ".vletext", "vax"
+                            36		.vle
+                            37		.vle
+                            38	..bof.D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc...44.3A.5C07_Working.5CE100..5EA29AD2..0::
+                            39		.align	1
+                            40	..gh.f.f.1.p.0.a.1.r.0.e.0:
+                            41		.type	..gh.f.f.1.p.0.a.1.r.0.e.0,@object
+                            42		.size	..gh.f.f.1.p.0.a.1.r.0.e.0,0
+                            43		.global	Gp_Func_Init
+                            44	Gp_Func_Init:
+00000000 182106f0           45		e_stwu	sp, -16(sp)
+00000004 0080               46		se_mflr	r0
+00000006 d2e1               47		se_stw	r30, 8(sp)
+00000008 d3f1               48		se_stw	r31, 12(sp)
+0000000a d501               49		se_stw	r0, 20(sp)
+                            50	#	    .bf
+                            51	.LDW01:
+0000000c 73c0e000           52		e_lis	r30, %hiadj(sts_FlashCfg)
+00000010 480f               53		se_li	r31, 0
+00000012 1c7e0000           54		e_add16i	r3, r30, %lo(sts_FlashCfg)
+00000016 78000001           55		e_bl	FlashInit
+0000001a 2a03               56		se_cmpi	r3, 0
+0000001c e200               57		se_bne	.L2
+                            58	.L8:
+                            59	#line107
+                            60	..lin.53ce59b4..9a0fd5da.0_1::
+                            61	.LDWlin1:
+0000001e 200f               62		se_addi	r31, 1
+00000020 1c7e0000           63		e_add16i	r3, r30, %lo(sts_FlashCfg)
+00000024 4824               64		se_li	r4, 2
+00000026 4805               65		se_li	r5, 0
+00000028 78000001           66		e_bl	SetLock
+0000002c 2a03               67		se_cmpi	r3, 0
+0000002e e600               68		se_beq	.L2
+00000030 709faf10           69		e_cmpl16i	r31, 10000
+00000034 e400               70		se_blt	.L8
+                            71	.L2:
+                            72	#	    .ef
+                            73	.LDW11:
+                            74	#line112
+                            75	..lin.53ce59b4..9a0fd5da.0_2::
+                            76	.LDWlin2:
+00000036 c501               77		se_lwz	r0, 20(sp)
+00000038 c2e1               78		se_lwz	r30, 8(sp)
+0000003a c3f1               79		se_lwz	r31, 12(sp)
+0000003c 0090               80		se_mtlr	r0
+0000003e 20f1               81		se_addi	sp, 16
+00000040 0004               82		se_blr
+                            83		.global	__ghs_eofn_Gp_Func_Init
+                            84	__ghs_eofn_Gp_Func_Init:
+
+                                   Fri Apr 24 16:52:50 2020           Page 3
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                            85		.type	Gp_Func_Init,@function
+                            86		.size	Gp_Func_Init,$-Gp_Func_Init
+                            87		.align	1
+                            88	
+                            89	#function:			Gp_Func_Init
+                            90	#stack frame size:		16
+                            91	#link area offset:		0
+                            92	#local storage area offset:	8
+                            93	#gpr save area offset:		8
+                            94	#
+                            95	#u32_Delay	r31	local
+                            96	
+                            97		.data
+                            98		.align	2
+                            99		.global	sts_FlashCfg..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           100	sts_FlashCfg..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.:
+00000000 fffe0000          101	sts_FlashCfg:	.byte	255,254,0,0
+00000004 00404000          102		.byte	0,64,64,0
+00000008 00000001          103		.byte	0,0,0,1
+0000000c 00000004          104		.byte	0,0,0,4
+00000010 00000002          105		.byte	0,0,0,2
+00000014 00000002          106		.byte	0,0,0,2
+00000018 00000000          107		.space	4
+0000001c 00000000          108		.space	4
+00000020 00000000          109		.space	4
+00000024 00000000          110		.space	4
+00000028 00000004          111		.byte	0,0,0,4
+0000002c 00000000          112		.space	4
+00000030 00000000          113		.space	4
+00000034 00000000          114		.space	4
+00000038 00000002          115		.byte	0,0,0,2
+0000003c 00400000          116		.byte	0,64,0,0
+00000040 01                117		.byte	1
+00000041 000000            118		.space	3
+00000044 00000080          119		.byte	0,0,0,128
+00000048 00                120		.space	1
+00000049 000000            121		.space	3
+                           122		.type	sts_FlashCfg..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,@object
+                           123		.size	sts_FlashCfg..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,76
+                           124		.type	sts_FlashCfg,@object
+                           125		.size	sts_FlashCfg,76
+                           126		.section ".vletext", "vax"
+                           127		.vle
+                           128		.vle
+                           129		.align	1
+                           130		.align	1
+                           131	..gh.f.f.1.p.5.a.1.r.0.e.1:
+                           132		.type	..gh.f.f.1.p.5.a.1.r.0.e.1,@object
+                           133		.size	..gh.f.f.1.p.5.a.1.r.0.e.1,0
+                           134		.global	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           135	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.:
+                           136	Flash_Drv_Program:
+00000042 182106c8          137		e_stwu	sp, -56(sp)
+00000046 dce1              138		se_stw	r30, 48(sp)
+00000048 0080              139		se_mflr	r0
+0000004a ddf1              140		se_stw	r31, 52(sp)
+
+                                   Fri Apr 24 16:52:50 2020           Page 4
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000004c df01              141		se_stw	r0, 60(sp)
+0000004e 0147              142		se_mr	r7, r4
+00000050 0156              143		se_mr	r6, r5
+                           144	#	    .bf
+                           145	.LDW21:
+00000052 0135              146		se_mr	r5, r3
+00000054 73c0e000          147		e_lis	r30, %hiadj(sts_FlashCfg)
+00000058 480f              148		se_li	r31, 0
+0000005a 1c7e0000          149		e_add16i	r3, r30, %lo(sts_FlashCfg)
+0000005e 01f4              150		se_mr	r4, r31
+00000060 1901800c          151		e_addi	r8, sp, 12
+00000064 78000001          152		e_bl	FlashProgram
+00000068 2a03              153		se_cmpi	r3, 0
+0000006a e200              154		se_bne	.L418
+                           155	.L420:
+                           156	#line248
+                           157	..lin.53ce59b4..61622075.0_3::
+                           158	.LDWlin3:
+0000006c 1c7e0000          159		e_add16i	r3, r30, %lo(sts_FlashCfg)
+00000070 4804              160		se_li	r4, 0
+00000072 18a18008          161		e_addi	r5, sp, 8
+00000076 18c1800c          162		e_addi	r6, sp, 12
+0000007a 78000001          163		e_bl	FlashCheckStatus
+0000007e 1883aa02          164		e_cmpli	r3, 131072
+00000082 e600              165		se_beq	.L420
+                           166	#line250
+                           167	..lin.53ce59b4..61622075.0_4::
+                           168	.LDWlin4:
+00000084 51810008          169		e_lwz	r12, 8(sp)
+00000088 180ca800          170		e_cmpi	r12, 0
+0000008c e600              171		se_beq	.L425
+                           172	.L418:
+                           173	#line254
+                           174	..lin.53ce59b4..61622075.0_5::
+                           175	.LDWlin5:
+0000008e 488f              176		se_li	r31, 8
+                           177	.L425:
+00000090 01f3              178		se_mr	r3, r31
+                           179	#	    .ef
+                           180	.LDW31:
+00000092 cf01              181		se_lwz	r0, 60(sp)
+00000094 cce1              182		se_lwz	r30, 48(sp)
+00000096 cdf1              183		se_lwz	r31, 52(sp)
+00000098 0090              184		se_mtlr	r0
+0000009a 18218038          185		e_addi	sp, sp, 56
+0000009e 0004              186		se_blr
+                           187	__ghs_eofn_Flash_Drv_Program:
+                           188		.type	Flash_Drv_Program,@function
+                           189		.size	Flash_Drv_Program,$-Flash_Drv_Program
+                           190		.type	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,@function
+                           191		.size	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,$-Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           192		.align	1
+                           193	
+                           194	#function:			Flash_Drv_Program
+                           195	#stack frame size:		56
+                           196	#link area offset:		0
+
+                                   Fri Apr 24 16:52:50 2020           Page 5
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           197	#local storage area offset:	8
+                           198	#gpr save area offset:		48
+                           199	#
+                           200	#u8_Ret	r31	local
+                           201	#u32_ChkSts	8(sp)	local
+                           202	#st_PgmCtxData	12(sp)	local
+                           203	
+                           204	#u32_Addr	r3	param
+                           205	#u32p_Buffer	r7	param
+                           206	#u32_Len	r6	param
+                           207	
+                           208		.data
+                           209		.section ".vletext", "vax"
+                           210		.vle
+                           211		.vle
+                           212		.align	1
+                           213		.align	1
+                           214	..gh.f.f.1.p.4.a.1.r.0.e.2:
+                           215		.type	..gh.f.f.1.p.4.a.1.r.0.e.2,@object
+                           216		.size	..gh.f.f.1.p.4.a.1.r.0.e.2,0
+                           217		.global	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           218	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.:
+                           219	Flash_Drv_Erase:
+000000a0 182106b8          220		e_stwu	sp, -72(sp)
+000000a4 0080              221		se_mflr	r0
+000000a6 57c10040          222		e_stw	r30, 64(sp)
+000000aa 57e10044          223		e_stw	r31, 68(sp)
+000000ae 5401004c          224		e_stw	r0, 76(sp)
+                           225	#	    .bf
+                           226	.LDW41:
+000000b2 480f              227		se_li	r31, 0
+000000b4 01f5              228		se_mr	r5, r31
+000000b6 d4f1              229		se_stw	r31, 16(sp)
+000000b8 0157              230		se_mr	r7, r5
+000000ba 2a24              231		se_cmpi	r4, 2
+000000bc e600              232		se_beq	.L599
+000000be 2a14              233		se_cmpi	r4, 1
+000000c0 e200              234		se_bne	.L598
+                           235	.L599:
+                           236	#line198
+                           237	..lin.53ce59b4..80223e2d.0_6::
+                           238	.LDWlin6:
+000000c2 4810              239		se_li	r0, 1
+000000c4 4230              240		se_slw	r0, r3
+000000c6 51010010          241		e_lwz	r8, 16(sp)
+000000ca d301              242		se_stw	r0, 12(sp)
+000000cc 19818014          243		e_addi	r12, sp, 20
+000000d0 73c0e000          244		e_lis	r30, %hiadj(sts_FlashCfg)
+000000d4 d501              245		se_stw	r0, 20(sp)
+000000d6 1fde0000          246		e_add16i	r30, r30, %lo(sts_FlashCfg)
+000000da 55010018          247		e_stw	r8, 24(sp)
+000000de 4804              248		se_li	r4, 0
+000000e0 01e3              249		se_mr	r3, r30
+000000e2 0146              250		se_mr	r6, r4
+000000e4 7d886378          251		mr	r8, r12
+000000e8 78000001          252		e_bl	FlashErase
+
+                                   Fri Apr 24 16:52:50 2020           Page 6
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000000ec 2a03              253		se_cmpi	r3, 0
+000000ee e600              254		se_beq	.L609
+000000f0 e800              255		se_b	.L608
+                           256	.L598:
+000000f2 d351              257		se_stw	r5, 12(sp)
+                           258	#line200
+                           259	..lin.53ce59b4..80223e2d.0_7::
+                           260	.LDWlin7:
+000000f4 2a34              261		se_cmpi	r4, 3
+000000f6 e200              262		se_bne	.L602
+                           263	#line202
+                           264	..lin.53ce59b4..80223e2d.0_8::
+                           265	.LDWlin8:
+000000f8 4817              266		se_li	r7, 1
+000000fa 51010010          267		e_lwz	r8, 16(sp)
+000000fe 4237              268		se_slw	r7, r3
+00000100 19818014          269		e_addi	r12, sp, 20
+00000104 73c0e000          270		e_lis	r30, %hiadj(sts_FlashCfg)
+00000108 d551              271		se_stw	r5, 20(sp)
+0000010a 1fde0000          272		e_add16i	r30, r30, %lo(sts_FlashCfg)
+0000010e 55010018          273		e_stw	r8, 24(sp)
+00000112 4804              274		se_li	r4, 0
+00000114 01e3              275		se_mr	r3, r30
+00000116 0146              276		se_mr	r6, r4
+00000118 7d886378          277		mr	r8, r12
+0000011c 78000001          278		e_bl	FlashErase
+00000120 2a03              279		se_cmpi	r3, 0
+00000122 e600              280		se_beq	.L609
+00000124 e800              281		se_b	.L608
+                           282	.L602:
+                           283	#line206
+                           284	..lin.53ce59b4..80223e2d.0_9::
+                           285	.LDWlin9:
+00000126 2a04              286		se_cmpi	r4, 0
+00000128 e200              287		se_bne	.L601
+                           288	#line208
+                           289	..lin.53ce59b4..80223e2d.0_10::
+                           290	.LDWlin10:
+0000012a 4815              291		se_li	r5, 1
+0000012c 4235              292		se_slw	r5, r3
+                           293	.L601:
+0000012e c301              294		se_lwz	r0, 12(sp)
+00000130 19818014          295		e_addi	r12, sp, 20
+00000134 51010010          296		e_lwz	r8, 16(sp)
+00000138 73c0e000          297		e_lis	r30, %hiadj(sts_FlashCfg)
+0000013c 1fde0000          298		e_add16i	r30, r30, %lo(sts_FlashCfg)
+00000140 d501              299		se_stw	r0, 20(sp)
+00000142 4804              300		se_li	r4, 0
+00000144 55010018          301		e_stw	r8, 24(sp)
+00000148 01e3              302		se_mr	r3, r30
+0000014a 0146              303		se_mr	r6, r4
+0000014c 7d886378          304		mr	r8, r12
+00000150 78000001          305		e_bl	FlashErase
+00000154 2a03              306		se_cmpi	r3, 0
+00000156 e600              307		se_beq	.L609
+                           308	.L608:
+
+                                   Fri Apr 24 16:52:50 2020           Page 7
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           309	#line215
+                           310	..lin.53ce59b4..80223e2d.0_11::
+                           311	.LDWlin11:
+00000158 484f              312		se_li	r31, 4
+                           313	.L609:
+0000015a 01e3              314		se_mr	r3, r30
+0000015c 4814              315		se_li	r4, 1
+0000015e 18a18008          316		e_addi	r5, sp, 8
+00000162 18c1801c          317		e_addi	r6, sp, 28
+00000166 78000001          318		e_bl	FlashCheckStatus
+0000016a 1883aa02          319		e_cmpli	r3, 131072
+0000016e e600              320		se_beq	.L609
+                           321	#line221
+                           322	..lin.53ce59b4..80223e2d.0_12::
+                           323	.LDWlin12:
+00000170 51610008          324		e_lwz	r11, 8(sp)
+00000174 4840              325		se_li	r0, 4
+00000176 180ba800          326		e_cmpi	r11, 0
+0000017a 7fff009e          327		iseleq	r31, r31, r0
+0000017e 1be3c0ff          328		e_andi	r3, r31, 255
+                           329	#	    .ef
+                           330	.LDW51:
+00000182 5001004c          331		e_lwz	r0, 76(sp)
+00000186 53c10040          332		e_lwz	r30, 64(sp)
+0000018a 53e10044          333		e_lwz	r31, 68(sp)
+0000018e 0090              334		se_mtlr	r0
+00000190 18218048          335		e_addi	sp, sp, 72
+00000194 0004              336		se_blr
+                           337	__ghs_eofn_Flash_Drv_Erase:
+                           338		.type	Flash_Drv_Erase,@function
+                           339		.size	Flash_Drv_Erase,$-Flash_Drv_Erase
+                           340		.type	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,@function
+                           341		.size	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,$-Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           342		.align	1
+                           343	
+                           344	#function:			Flash_Drv_Erase
+                           345	#stack frame size:		72
+                           346	#link area offset:		0
+                           347	#local storage area offset:	8
+                           348	#gpr save area offset:		64
+                           349	#
+                           350	#u32_LowBlockSelect	r5	local
+                           351	#u32_HighBlockSelect	r7	local
+                           352	#u8_Ret	r31	local
+                           353	#u32_ChkSts	8(sp)	local
+                           354	#st_LargeBlockSelect	12(sp)	local
+                           355	#st_DummyCtxData	28(sp)	local
+                           356	
+                           357	#u8_Block	r3	param
+                           358	#u8_FlashSpace	r4	param
+                           359	
+                           360		.data
+                           361		.section ".vletext", "vax"
+                           362		.vle
+                           363		.vle
+                           364		.align	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 8
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           365		.align	1
+                           366	..gh.f.f.1.p.4.a.1.r.0.e.3:
+                           367		.type	..gh.f.f.1.p.4.a.1.r.0.e.3,@object
+                           368		.size	..gh.f.f.1.p.4.a.1.r.0.e.3,0
+                           369		.global	EEP_WriteDataByIdentifier
+                           370	EEP_WriteDataByIdentifier:
+00000196 182106f0          371		e_stwu	sp, -16(sp)
+0000019a 0080              372		se_mflr	r0
+0000019c d2e1              373		se_stw	r30, 8(sp)
+0000019e d501              374		se_stw	r0, 20(sp)
+000001a0 d3f1              375		se_stw	r31, 12(sp)
+000001a2 0130              376		se_mr	r0, r3
+000001a4 014f              377		se_mr	r31, r4
+                           378	#	    .bf
+                           379	.LDW61:
+000001a6 0143              380		se_mr	r3, r4
+000001a8 0104              381		se_mr	r4, r0
+000001aa 4a05              382		se_li	r5, 32
+000001ac 78000001          383		se_bl	Flash_Drv_Program
+000001b0 2a03              384		se_cmpi	r3, 0
+000001b2 e200              385		se_bne	.L871
+                           386	#line126
+                           387	..lin.53ce59b4..922f3241.0_13::
+                           388	.LDWlin13:
+000001b4 7160e080          389		e_lis	r11, 128
+000001b8 1d6b1f80          390		e_add16i	r11, r11, 8064
+000001bc 73c0e000          391		e_lis	r30, %hiadj(present_addr)
+000001c0 7c1f5840          392		cmplw	r31, r11
+000001c4 e600              393		se_beq	.L876
+000001c6 6280              394		se_bgeni	r0, 8
+000001c8 1c003fe0          395		e_add16i	r0, r0, 16352
+000001cc 0d0f              396		se_cmpl	r31, r0
+000001ce e600              397		se_beq	.L877
+000001d0 519e0000          398		e_lwz	r12, %lo(present_addr)(r30)
+000001d4 198c8020          399		e_addi	r12, r12, 32
+000001d8 559e0000          400		e_stw	r12, %lo(present_addr)(r30)
+000001dc e800              401		se_b	.L871
+                           402	.L876:
+                           403	#line129
+                           404	..lin.53ce59b4..922f3241.0_14::
+                           405	.LDWlin14:
+000001de 4813              406		se_li	r3, 1
+000001e0 4834              407		se_li	r4, 3
+000001e2 78000001          408		se_bl	Flash_Drv_Erase
+000001e6 2a03              409		se_cmpi	r3, 0
+000001e8 e200              410		se_bne	.L871
+000001ea e800              411		se_b	.L878
+                           412	.L877:
+                           413	#line135
+                           414	..lin.53ce59b4..922f3241.0_15::
+                           415	.LDWlin15:
+000001ec 4834              416		se_li	r4, 3
+000001ee 78000001          417		se_bl	Flash_Drv_Erase
+000001f2 2a03              418		se_cmpi	r3, 0
+000001f4 e200              419		se_bne	.L871
+                           420	#line137
+
+                                   Fri Apr 24 16:52:50 2020           Page 9
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           421	..lin.53ce59b4..922f3241.0_16::
+                           422	.LDWlin16:
+000001f6 7140e080          423		e_lis	r10, 128
+000001fa 555e0000          424		e_stw	r10, %lo(present_addr)(r30)
+000001fe c501              425		se_lwz	r0, 20(sp)
+00000200 c2e1              426		se_lwz	r30, 8(sp)
+00000202 c3f1              427		se_lwz	r31, 12(sp)
+00000204 0090              428		se_mtlr	r0
+00000206 20f1              429		se_addi	sp, 16
+00000208 0004              430		se_blr
+                           431	.L878:
+0000020a 519e0000          432		e_lwz	r12, %lo(present_addr)(r30)
+0000020e 198c8020          433		e_addi	r12, r12, 32
+00000212 559e0000          434		e_stw	r12, %lo(present_addr)(r30)
+                           435	.L871:
+                           436	#	    .ef
+                           437	.LDW71:
+00000216 c501              438		se_lwz	r0, 20(sp)
+00000218 c2e1              439		se_lwz	r30, 8(sp)
+0000021a c3f1              440		se_lwz	r31, 12(sp)
+0000021c 0090              441		se_mtlr	r0
+0000021e 20f1              442		se_addi	sp, 16
+00000220 0004              443		se_blr
+                           444		.global	__ghs_eofn_EEP_WriteDataByIdentifier
+                           445	__ghs_eofn_EEP_WriteDataByIdentifier:
+                           446		.type	EEP_WriteDataByIdentifier,@function
+                           447		.size	EEP_WriteDataByIdentifier,$-EEP_WriteDataByIdentifier
+                           448		.align	1
+                           449	
+                           450	#function:			EEP_WriteDataByIdentifier
+                           451	#stack frame size:		16
+                           452	#link area offset:		0
+                           453	#local storage area offset:	8
+                           454	#gpr save area offset:		8
+                           455	#
+                           456	
+                           457	#u32_dtcbuffer	r0	param
+                           458	#Address	r31	param
+                           459	
+                           460		.data
+                           461		.section ".vletext", "vax"
+                           462		.vle
+                           463		.vle
+                           464		.align	1
+                           465		.align	1
+                           466	..gh.f.f.1.p.3.a.1.r.0.e.4:
+                           467		.type	..gh.f.f.1.p.3.a.1.r.0.e.4,@object
+                           468		.size	..gh.f.f.1.p.3.a.1.r.0.e.4,0
+                           469		.global	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           470	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.:
+                           471	MemoryGetuint32_t:
+                           472	#	    .bf
+                           473	.LDW81:
+00000222 c033              474		se_lwz	r3, 0(r3)
+                           475	#	    .ef
+                           476	.LDW91:
+
+                                   Fri Apr 24 16:52:50 2020           Page 10
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000224 0004              477		se_blr
+                           478	__ghs_eofn_MemoryGetuint32_t:
+                           479		.type	MemoryGetuint32_t,@function
+                           480		.size	MemoryGetuint32_t,$-MemoryGetuint32_t
+                           481		.type	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,@function
+                           482		.size	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.,$-MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                           483		.align	1
+                           484	
+                           485	#function:			MemoryGetuint32_t
+                           486	#stack frame size:		0
+                           487	#
+                           488	
+                           489	#u32_Addr	r3	param
+                           490	
+                           491		.data
+                           492		.section ".vletext", "vax"
+                           493		.vle
+                           494		.vle
+                           495		.align	1
+                           496		.align	1
+                           497	..gh.f.f.1.p.3.a.1.r.0.e.5:
+                           498		.type	..gh.f.f.1.p.3.a.1.r.0.e.5,@object
+                           499		.size	..gh.f.f.1.p.3.a.1.r.0.e.5,0
+                           500		.global	EEP_ReadDataByIdentifier
+                           501	EEP_ReadDataByIdentifier:
+                           502	#	    .bf
+                           503	.LDW02:
+00000226 e800              504		se_b	MemoryGetuint32_t
+                           505	#	    .ef
+                           506	.LDW12:
+                           507	..lin.53ce59b4..75be2512.0_17::
+                           508	.LDWlin17:
+                           509		.global	__ghs_eofn_EEP_ReadDataByIdentifier
+                           510	__ghs_eofn_EEP_ReadDataByIdentifier:
+                           511		.type	EEP_ReadDataByIdentifier,@function
+                           512		.size	EEP_ReadDataByIdentifier,$-EEP_ReadDataByIdentifier
+                           513		.align	1
+                           514	
+                           515	#function:			EEP_ReadDataByIdentifier
+                           516	#stack frame size:		0
+                           517	#
+                           518	
+                           519	#u32_Addr	none	param
+                           520	
+                           521		.data
+                           522		.section ".vletext", "vax"
+                           523		.vle
+                           524		.vle
+                           525		.align	1
+                           526	#present_addr	present_addr	import
+                           527	#sts_FlashCfg	sts_FlashCfg	static
+                           528	
+                           529		.data
+                           530		.note ".PPC.EMB.apuinfo",""
+00000000 00000008          531		.long	0x00000008
+00000004 00000004          532		.long	4
+
+                                   Fri Apr 24 16:52:50 2020           Page 11
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000008 00000002          533		.long	0x00000002
+                           534		# "APUinfo\000"
+0000000c 41505569          535		.byte	65,80,85,105
+00000010 6e666f00          536		.byte	110,102,111,0
+00000014 01040001          537		.long	0x01040001
+                           538		.ghsnote version,20
+                           539		.ghsnote tools,3
+                           540		.ghsnote options,644
+                           541		.section ".vletext", "vax"
+                           542		.vle
+                           543		.vle
+                           544		.align	1
+                           545	..eof.D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc...44.3A.5C07_Working.5CE100..5EA29AD2..0::
+                           546		.section	.debug_info
+                           547	.Ldw_begin:
+00000000 00000aa8          548		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002              549		.byte	0,2
+00000006 00000000          550		.long	.Ldw_abbr_begin
+0000000a 04                551		.byte	4
+                           552		.section	.debug_abbrev
+                           553	.Ldw_abbr_begin:
+                           554		.section	.debug_info
+0000000b 01                555		.byte	1
+0000000c 00000000          556		.long	..bof.D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc...44.3A.5C07_Working.5CE100..5EA29AD2..0
+00000010 00000000          557		.long	..eof.D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc...44.3A.5C07_Working.5CE100..5EA29AD2..0
+00000014 2e2f736f75726365  558		.strz	"./source/UDS/GpFunc.c"
+0000001c 2f5544532f477046
+00000024 756e632e6300    
+0000002a 443a5c30375f576f  559		.strz	"D:\\07_Working\\E100"
+00000032 726b696e675c4531
+0000003a 303000          
+0000003d 4748532043203230  560		.strz	"GHS C 2017.5.4 [dual]"
+00000045 31372e352e34205b
+0000004d 6475616c5d00    
+00000053 0001              561		.byte	0,1
+00000055 00000000          562		.long	.Ldw_line_begin
+00000059 00000000          563		.long	.Ldw_macinfo_begin
+0000005d 00                564		.byte	0
+                           565	
+                           566		.section	.debug_abbrev
+00000000 01                567		.byte	1
+00000001 11                568		.byte	17
+00000002 01                569		.byte	1
+00000003 1101              570		.byte	17,1
+00000005 1201              571		.byte	18,1
+00000007 0308              572		.byte	3,8
+00000009 1b08              573		.byte	27,8
+0000000b 2508              574		.byte	37,8
+0000000d 1305              575		.byte	19,5
+0000000f 1006              576		.byte	16,6
+00000011 4306              577		.byte	67,6
+00000013 420b              578		.byte	66,11
+00000015 0000              579		.byte	0,0
+                           580	
+                           581		.section	.debug_line
+                           582	.Ldw_line_begin:
+00000000 00000904          583		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002              584		.byte	0,2
+00000006 00000793          585		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                           586	.Ldw_lpro_begin:
+0000000a 01                587		.byte	1
+0000000b 00                588		.byte	0
+
+                                   Fri Apr 24 16:52:50 2020           Page 12
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000000c 00                589		.byte	0
+0000000d 04                590		.byte	4
+0000000e 0a                591		.byte	10
+0000000f 000101            592		.byte	0,1,1
+00000012 010100            593		.byte	1,1,0
+00000015 000001            594		.byte	0,0,1
+00000018 00                595		.byte	0
+00000019 2e2f736f75726365  596		.strz	"./source/UDS/GpFunc.c"
+00000021 2f5544532f477046
+00000029 756e632e6300    
+0000002f 000000            597		.byte	0,0,0
+00000032 2e2f736f75726365  598		.strz	"./source/UDS/GpFunc.h"
+0000003a 2f5544532f477046
+00000042 756e632e6800    
+00000048 000000            599		.byte	0,0,0
+0000004b 2e2f636f6d706f6e  600		.strz	"./components/components.h"
+00000053 656e74732f636f6d
+0000005b 706f6e656e74732e
+00000063 6800            
+00000065 000000            601		.byte	0,0,0
+00000068 2e2f636f6d706f6e  602		.strz	"./components/spc570sxx_platform_component_rla/lib/include/platform.h"
+00000070 656e74732f737063
+00000078 3537307378785f70
+00000080 6c6174666f726d5f
+00000088 636f6d706f6e656e
+00000090 745f726c612f6c69
+00000098 622f696e636c7564
+000000a0 652f706c6174666f
+000000a8 726d2e6800      
+000000ad 000000            603		.byte	0,0,0
+000000b0 2e2f636f6d706f6e  604		.strz	"./components/spc570sxx_platform_component_rla/cfg/core.h"
+000000b8 656e74732f737063
+000000c0 3537307378785f70
+000000c8 6c6174666f726d5f
+000000d0 636f6d706f6e656e
+000000d8 745f726c612f6366
+000000e0 672f636f72652e68
+000000e8 00              
+000000e9 000000            605		.byte	0,0,0
+000000ec 2e2f636f6d706f6e  606		.strz	"./components/spc570sxx_platform_component_rla/cfg/toolchain.h"
+000000f4 656e74732f737063
+000000fc 3537307378785f70
+00000104 6c6174666f726d5f
+0000010c 636f6d706f6e656e
+00000114 745f726c612f6366
+0000011c 672f746f6f6c6368
+00000124 61696e2e6800    
+0000012a 000000            607		.byte	0,0,0
+0000012d 2e2f636f6d706f6e  608		.strz	"./components/spc570sxx_platform_component_rla/lib/include/intc.h"
+00000135 656e74732f737063
+0000013d 3537307378785f70
+00000145 6c6174666f726d5f
+0000014d 636f6d706f6e656e
+00000155 745f726c612f6c69
+0000015d 622f696e636c7564
+00000165 652f696e74632e68
+0000016d 00              
+0000016e 000000            609		.byte	0,0,0
+00000171 2e2f636f6d706f6e  610		.strz	"./components/spc570sxx_platform_component_rla/lib/include/typedefs.h"
+00000179 656e74732f737063
+00000181 3537307378785f70
+00000189 6c6174666f726d5f
+00000191 636f6d706f6e656e
+00000199 745f726c612f6c69
+000001a1 622f696e636c7564
+000001a9 652f747970656465
+000001b1 66732e6800      
+000001b6 000000            611		.byte	0,0,0
+000001b9 433a5c6768735c63  612		.strz	"C:\\ghs\\comp_201754\\/ansi/stdint.h"
+000001c1 6f6d705f32303137
+000001c9 35345c2f616e7369
+000001d1 2f737464696e742e
+000001d9 6800            
+000001db 000000            613		.byte	0,0,0
+000001de 433a5c6768735c63  614		.strz	"C:\\ghs\\comp_201754\\/ansi/stddef.h"
+000001e6 6f6d705f32303137
+000001ee 35345c2f616e7369
+000001f6 2f7374646465662e
+000001fe 6800            
+00000200 000000            615		.byte	0,0,0
+00000203 433a5c6768735c63  616		.strz	"C:\\ghs\\comp_201754\\/ansi/ghs_null.h"
+0000020b 6f6d705f32303137
+00000213 35345c2f616e7369
+0000021b 2f6768735f6e756c
+00000223 6c2e6800        
+00000227 000000            617		.byte	0,0,0
+0000022a 433a5c6768735c63  618		.strz	"C:\\ghs\\comp_201754\\/ansi/ghs_wchar.h"
+00000232 6f6d705f32303137
+0000023a 35345c2f616e7369
+00000242 2f6768735f776368
+0000024a 61722e6800      
+0000024f 000000            619		.byte	0,0,0
+00000252 433a5c6768735c63  620		.strz	"C:\\ghs\\comp_201754\\/ansi/stdbool.h"
+0000025a 6f6d705f32303137
+00000262 35345c2f616e7369
+0000026a 2f737464626f6f6c
+00000272 2e6800          
+00000275 000000            621		.byte	0,0,0
+00000278 2e2f636f6d706f6e  622		.strz	"./components/spc570sxx_platform_component_rla/lib/include/spr.h"
+00000280 656e74732f737063
+00000288 3537307378785f70
+00000290 6c6174666f726d5f
+00000298 636f6d706f6e656e
+000002a0 745f726c612f6c69
+000002a8 622f696e636c7564
+000002b0 652f7370722e6800
+000002b8 000000            623		.byte	0,0,0
+000002bb 433a5c6768735c63  624		.strz	"C:\\ghs\\comp_201754\\include\\ppc\\ppc_ghs.h"
+000002c3 6f6d705f32303137
+000002cb 35345c696e636c75
+000002d3 64655c7070635c70
+000002db 70635f6768732e68
+000002e3 00              
+000002e4 000000            625		.byte	0,0,0
+000002e7 2e2f636f6d706f6e  626		.strz	"./components/spc570sxx_platform_component_rla/lib/include/spc570s_registry.h"
+000002ef 656e74732f737063
+000002f7 3537307378785f70
+000002ff 6c6174666f726d5f
+00000307 636f6d706f6e656e
+0000030f 745f726c612f6c69
+00000317 622f696e636c7564
+0000031f 652f737063353730
+00000327 735f726567697374
+0000032f 72792e6800      
+00000334 000000            627		.byte	0,0,0
+00000337 2e2f636f6d706f6e  628		.strz	"./components/spc570sxx_platform_component_rla/lib/include/xpc570s.h"
+0000033f 656e74732f737063
+00000347 3537307378785f70
+0000034f 6c6174666f726d5f
+00000357 636f6d706f6e656e
+0000035f 745f726c612f6c69
+00000367 622f696e636c7564
+0000036f 652f787063353730
+00000377 732e6800        
+0000037b 000000            629		.byte	0,0,0
+0000037e 2e2f636f6d706f6e  630		.strz	"./components/spc570sxx_board_initialization_component_rla/cfg/board.h"
+00000386 656e74732f737063
+0000038e 3537307378785f62
+00000396 6f6172645f696e69
+0000039e 7469616c697a6174
+000003a6 696f6e5f636f6d70
+000003ae 6f6e656e745f726c
+000003b6 612f6366672f626f
+000003be 6172642e6800    
+000003c4 000000            631		.byte	0,0,0
+000003c7 2e2f636f6d706f6e  632		.strz	"./components/spc570sxx_board_initialization_component_rla/lib/include/pal.h"
+000003cf 656e74732f737063
+000003d7 3537307378785f62
+000003df 6f6172645f696e69
+000003e7 7469616c697a6174
+000003ef 696f6e5f636f6d70
+000003f7 6f6e656e745f726c
+000003ff 612f6c69622f696e
+00000407 636c7564652f7061
+0000040f 6c2e6800        
+00000413 000000            633		.byte	0,0,0
+00000416 2e2f636f6d706f6e  634		.strz	"./components/spc570sxx_clock_component_rla/lib/include/clock.h"
+0000041e 656e74732f737063
+00000426 3537307378785f63
+0000042e 6c6f636b5f636f6d
+00000436 706f6e656e745f72
+0000043e 6c612f6c69622f69
+00000446 6e636c7564652f63
+0000044e 6c6f636b2e6800  
+00000455 000000            635		.byte	0,0,0
+00000458 2e2f636f6d706f6e  636		.strz	"./components/spc570sxx_irq_component_rla/lib/include/irq.h"
+00000460 656e74732f737063
+00000468 3537307378785f69
+00000470 72715f636f6d706f
+00000478 6e656e745f726c61
+00000480 2f6c69622f696e63
+00000488 6c7564652f697271
+00000490 2e6800          
+00000493 000000            637		.byte	0,0,0
+00000496 2e2f636f6d706f6e  638		.strz	"./components/spc570sxx_irq_component_rla/lib/include/vectors.h"
+0000049e 656e74732f737063
+000004a6 3537307378785f69
+000004ae 72715f636f6d706f
+000004b6 6e656e745f726c61
+000004be 2f6c69622f696e63
+000004c6 6c7564652f766563
+000004ce 746f72732e6800  
+000004d5 000000            639		.byte	0,0,0
+000004d8 2e2f636f6d706f6e  640		.strz	"./components/spc570sxx_irq_component_rla/cfg/irq_cfg.h"
+000004e0 656e74732f737063
+000004e8 3537307378785f69
+000004f0 72715f636f6d706f
+000004f8 6e656e745f726c61
+00000500 2f6366672f697271
+00000508 5f6366672e6800  
+0000050f 000000            641		.byte	0,0,0
+00000512 2e2f636f6d706f6e  642		.strz	"./components/spc570sxx_clock_component_rla/cfg/clock_cfg.h"
+0000051a 656e74732f737063
+00000522 3537307378785f63
+0000052a 6c6f636b5f636f6d
+00000532 706f6e656e745f72
+0000053a 6c612f6366672f63
+00000542 6c6f636b5f636667
+0000054a 2e6800          
+0000054d 000000            643		.byte	0,0,0
+00000550 2e2f636f6d706f6e  644		.strz	"./components/spc570sxx_irq_component_rla/cfg/eirq_cfg.h"
+00000558 656e74732f737063
+00000560 3537307378785f69
+00000568 72715f636f6d706f
+00000570 6e656e745f726c61
+00000578 2f6366672f656972
+00000580 715f6366672e6800
+
+                                   Fri Apr 24 16:52:50 2020           Page 13
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000588 000000            645		.byte	0,0,0
+0000058b 2e2f636f6d706f6e  646		.strz	"./components/spc570sxx_irq_component_rla/lib/include/eirq.h"
+00000593 656e74732f737063
+0000059b 3537307378785f69
+000005a3 72715f636f6d706f
+000005ab 6e656e745f726c61
+000005b3 2f6c69622f696e63
+000005bb 6c7564652f656972
+000005c3 712e6800        
+000005c7 000000            647		.byte	0,0,0
+000005ca 2e2f636f6d706f6e  648		.strz	"./components/spc570sxx_osal_component_rla/lib/include/osal.h"
+000005d2 656e74732f737063
+000005da 3537307378785f6f
+000005e2 73616c5f636f6d70
+000005ea 6f6e656e745f726c
+000005f2 612f6c69622f696e
+000005fa 636c7564652f6f73
+00000602 616c2e6800      
+00000607 000000            649		.byte	0,0,0
+0000060a 2e2f636f6d706f6e  650		.strz	"./components/spc570sxx_osal_component_rla/cfg/osal_cfg.h"
+00000612 656e74732f737063
+0000061a 3537307378785f6f
+00000622 73616c5f636f6d70
+0000062a 6f6e656e745f726c
+00000632 612f6366672f6f73
+0000063a 616c5f6366672e68
+00000642 00              
+00000643 000000            651		.byte	0,0,0
+00000646 2e2f636f6d706f6e  652		.strz	"./components/spc570sxx_osal_component_rla/lib/include/systimer.h"
+0000064e 656e74732f737063
+00000656 3537307378785f6f
+0000065e 73616c5f636f6d70
+00000666 6f6e656e745f726c
+0000066e 612f6c69622f696e
+00000676 636c7564652f7379
+0000067e 7374696d65722e68
+00000686 00              
+00000687 000000            653		.byte	0,0,0
+0000068a 2e2f636f6d706f6e  654		.strz	"./components/flash_driver/lib/include/flashdriver.h"
+00000692 656e74732f666c61
+0000069a 73685f6472697665
+000006a2 722f6c69622f696e
+000006aa 636c7564652f666c
+000006b2 6173686472697665
+000006ba 722e6800        
+000006be 000000            655		.byte	0,0,0
+000006c1 2e2f636f6d706f6e  656		.strz	"./components/flash_driver/lib/include/ssd_types.h"
+000006c9 656e74732f666c61
+000006d1 73685f6472697665
+000006d9 722f6c69622f696e
+000006e1 636c7564652f7373
+000006e9 645f74797065732e
+000006f1 6800            
+000006f3 000000            657		.byte	0,0,0
+000006f6 2e2f636f6d706f6e  658		.strz	"./components/flash_driver/lib/include/ssd_c55.h"
+000006fe 656e74732f666c61
+00000706 73685f6472697665
+0000070e 722f6c69622f696e
+00000716 636c7564652f7373
+0000071e 645f6335352e6800
+00000726 000000            659		.byte	0,0,0
+00000729 2e2f636f6d706f6e  660		.strz	"./components/flash_driver/lib/include/FlashMap.h"
+00000731 656e74732f666c61
+00000739 73685f6472697665
+00000741 722f6c69622f696e
+00000749 636c7564652f466c
+00000751 6173684d61702e68
+00000759 00              
+0000075a 000000            661		.byte	0,0,0
+0000075d 2e2f736f75726365  662		.strz	"./source/UDS/Defines.h"
+00000765 2f5544532f446566
+0000076d 696e65732e6800  
+00000774 000000            663		.byte	0,0,0
+00000777 433a5c6768735c63  664		.strz	"C:\\ghs\\comp_201754\\/ansi/stdlib.h"
+0000077f 6f6d705f32303137
+00000787 35345c2f616e7369
+0000078f 2f7374646c69622e
+00000797 6800            
+00000799 000000            665		.byte	0,0,0
+0000079c 00                666		.byte	0
+                           667	.Ldw_lpro_end:
+                           668		.section	.debug_macinfo
+                           669	.Ldw_macinfo_begin:
+                           670		.section	.debug_frame
+                           671	.LDW_63faa50:
+00000000 0000008c          672		.long	.LDW_unq_2-.LDW_unq_1
+                           673	.LDW_unq_1:
+00000004 ffffffff          674		.byte	255,255,255,255
+00000008 01                675		.byte	1
+00000009 00                676		.byte	0
+0000000a 01                677		.byte	1
+0000000b 01                678		.byte	1
+0000000c 6c                679		.byte	108
+0000000d 0c                680		.byte	12
+0000000e 01                681		.byte	1
+0000000f 00                682		.byte	0
+00000010 07                683		.byte	7
+00000011 00                684		.byte	0
+00000012 07                685		.byte	7
+00000013 01                686		.byte	1
+00000014 07                687		.byte	7
+00000015 02                688		.byte	2
+00000016 07                689		.byte	7
+00000017 03                690		.byte	3
+00000018 07                691		.byte	7
+00000019 04                692		.byte	4
+0000001a 07                693		.byte	7
+0000001b 05                694		.byte	5
+0000001c 07                695		.byte	7
+0000001d 06                696		.byte	6
+0000001e 07                697		.byte	7
+0000001f 07                698		.byte	7
+00000020 07                699		.byte	7
+00000021 08                700		.byte	8
+
+                                   Fri Apr 24 16:52:50 2020           Page 14
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000022 07                701		.byte	7
+00000023 09                702		.byte	9
+00000024 07                703		.byte	7
+00000025 0a                704		.byte	10
+00000026 07                705		.byte	7
+00000027 0b                706		.byte	11
+00000028 07                707		.byte	7
+00000029 0c                708		.byte	12
+0000002a 07                709		.byte	7
+0000002b 0d                710		.byte	13
+0000002c 07                711		.byte	7
+0000002d 0e                712		.byte	14
+0000002e 07                713		.byte	7
+0000002f 0f                714		.byte	15
+00000030 07                715		.byte	7
+00000031 10                716		.byte	16
+00000032 07                717		.byte	7
+00000033 11                718		.byte	17
+00000034 07                719		.byte	7
+00000035 12                720		.byte	18
+00000036 07                721		.byte	7
+00000037 13                722		.byte	19
+00000038 07                723		.byte	7
+00000039 14                724		.byte	20
+0000003a 07                725		.byte	7
+0000003b 15                726		.byte	21
+0000003c 07                727		.byte	7
+0000003d 16                728		.byte	22
+0000003e 07                729		.byte	7
+0000003f 17                730		.byte	23
+00000040 07                731		.byte	7
+00000041 18                732		.byte	24
+00000042 07                733		.byte	7
+00000043 19                734		.byte	25
+00000044 07                735		.byte	7
+00000045 1a                736		.byte	26
+00000046 07                737		.byte	7
+00000047 1b                738		.byte	27
+00000048 07                739		.byte	7
+00000049 1c                740		.byte	28
+0000004a 07                741		.byte	7
+0000004b 1d                742		.byte	29
+0000004c 07                743		.byte	7
+0000004d 1e                744		.byte	30
+0000004e 07                745		.byte	7
+0000004f 1f                746		.byte	31
+00000050 07                747		.byte	7
+00000051 20                748		.byte	32
+00000052 07                749		.byte	7
+00000053 21                750		.byte	33
+00000054 07                751		.byte	7
+00000055 22                752		.byte	34
+00000056 07                753		.byte	7
+00000057 23                754		.byte	35
+00000058 07                755		.byte	7
+00000059 24                756		.byte	36
+
+                                   Fri Apr 24 16:52:50 2020           Page 15
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000005a 07                757		.byte	7
+0000005b 25                758		.byte	37
+0000005c 07                759		.byte	7
+0000005d 26                760		.byte	38
+0000005e 07                761		.byte	7
+0000005f 27                762		.byte	39
+00000060 07                763		.byte	7
+00000061 28                764		.byte	40
+00000062 07                765		.byte	7
+00000063 29                766		.byte	41
+00000064 07                767		.byte	7
+00000065 2a                768		.byte	42
+00000066 07                769		.byte	7
+00000067 2b                770		.byte	43
+00000068 07                771		.byte	7
+00000069 2c                772		.byte	44
+0000006a 07                773		.byte	7
+0000006b 2d                774		.byte	45
+0000006c 07                775		.byte	7
+0000006d 2e                776		.byte	46
+0000006e 07                777		.byte	7
+0000006f 2f                778		.byte	47
+00000070 07                779		.byte	7
+00000071 30                780		.byte	48
+00000072 07                781		.byte	7
+00000073 31                782		.byte	49
+00000074 07                783		.byte	7
+00000075 32                784		.byte	50
+00000076 07                785		.byte	7
+00000077 33                786		.byte	51
+00000078 07                787		.byte	7
+00000079 34                788		.byte	52
+0000007a 07                789		.byte	7
+0000007b 35                790		.byte	53
+0000007c 07                791		.byte	7
+0000007d 36                792		.byte	54
+0000007e 07                793		.byte	7
+0000007f 37                794		.byte	55
+00000080 07                795		.byte	7
+00000081 38                796		.byte	56
+00000082 07                797		.byte	7
+00000083 39                798		.byte	57
+00000084 07                799		.byte	7
+00000085 3a                800		.byte	58
+00000086 07                801		.byte	7
+00000087 3b                802		.byte	59
+00000088 07                803		.byte	7
+00000089 3c                804		.byte	60
+0000008a 07                805		.byte	7
+0000008b 3d                806		.byte	61
+0000008c 07                807		.byte	7
+0000008d 3e                808		.byte	62
+0000008e 07                809		.byte	7
+0000008f 3f                810		.byte	63
+                           811	.LDW_unq_2:
+                           812		.section	.debug_info
+
+                                   Fri Apr 24 16:52:50 2020           Page 16
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           813	.LDW_4a9d0b8:
+0000005e 27                814		.byte	39
+0000005f 756e7369676e6564  815		.strz	"unsigned int"
+00000067 20696e7400      
+0000006c 07                816		.byte	7
+0000006d 04                817		.byte	4
+                           818	
+                           819		.section	.debug_abbrev
+00000017 27                820		.byte	39
+00000018 24                821		.byte	36
+00000019 00                822		.byte	0
+0000001a 0308              823		.byte	3,8
+0000001c 3e0b              824		.byte	62,11
+0000001e 0b0b              825		.byte	11,11
+00000020 0000              826		.byte	0,0
+                           827	
+                           828		.section	.debug_info
+                           829	.LDW_4a9d1d0:
+0000006e 47                830		.byte	71
+0000006f 01                831		.byte	1
+                           832	
+                           833		.section	.debug_abbrev
+00000022 47                834		.byte	71
+00000023 15                835		.byte	21
+00000024 01                836		.byte	1
+00000025 270c              837		.byte	39,12
+00000027 0000              838		.byte	0,0
+                           839	
+                           840		.section	.debug_info
+00000070 00                841		.byte	0
+                           842	
+                           843	.LDW_4a9ccc8:
+00000071 27                844		.byte	39
+00000072 756e7369676e6564  845		.strz	"unsigned long"
+0000007a 206c6f6e6700    
+00000080 07                846		.byte	7
+00000081 04                847		.byte	4
+                           848	
+                           849	.LDW_4a9cbb0:
+00000082 31                850		.byte	49
+00000083 00000000          851		.long	.LDW_6106e50
+                           852	
+                           853		.section	.debug_abbrev
+00000029 31                854		.byte	49
+0000002a 0f                855		.byte	15
+0000002b 00                856		.byte	0
+0000002c 4910              857		.byte	73,16
+0000002e 0000              858		.byte	0,0
+                           859	
+                           860		.section	.debug_info
+                           861	.LDW_4a9d0f0:
+00000087 47                862		.byte	71
+00000088 01                863		.byte	1
+                           864	
+                           865	.LDW_4a98130:
+00000089 14                866		.byte	20
+0000008a 00000000          867		.long	.LDW_4a9cbb0
+0000008e 00                868		.byte	0
+
+                                   Fri Apr 24 16:52:50 2020           Page 17
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           869	
+                           870		.section	.debug_abbrev
+00000030 14                871		.byte	20
+00000031 05                872		.byte	5
+00000032 00                873		.byte	0
+00000033 4910              874		.byte	73,16
+00000035 4b0c              875		.byte	75,12
+00000037 0000              876		.byte	0,0
+                           877	
+                           878		.section	.debug_info
+                           879	.LDW_5d0e2f0:
+0000008f 14                880		.byte	20
+00000090 00000000          881		.long	.LDW_6106e50
+00000094 00                882		.byte	0
+                           883	
+00000095 00                884		.byte	0
+                           885	
+                           886	.LDW_4a9cbe8:
+00000096 46                887		.byte	70
+00000097 00000000          888		.long	.LDW_6106148
+0000009b 01                889		.byte	1
+                           890	
+                           891		.section	.debug_abbrev
+00000039 46                892		.byte	70
+0000003a 15                893		.byte	21
+0000003b 01                894		.byte	1
+0000003c 4910              895		.byte	73,16
+0000003e 270c              896		.byte	39,12
+00000040 0000              897		.byte	0,0
+                           898	
+                           899		.section	.debug_info
+                           900	.LDW_5d0e500:
+0000009c 14                901		.byte	20
+0000009d 00000000          902		.long	.LDW_6106148
+000000a1 00                903		.byte	0
+                           904	
+000000a2 00                905		.byte	0
+                           906	
+                           907	.LDW_4a9cc20:
+000000a3 27                908		.byte	39
+000000a4 756e7369676e6564  909		.strz	"unsigned char"
+000000ac 206368617200    
+000000b2 08                910		.byte	8
+000000b3 01                911		.byte	1
+                           912	
+                           913	.LDW_4a9ce50:
+000000b4 46                914		.byte	70
+000000b5 00000000          915		.long	.LDW_4ad9148
+000000b9 01                916		.byte	1
+                           917	
+                           918	.LDW_5d0e530:
+000000ba 14                919		.byte	20
+000000bb 00000000          920		.long	.LDW_4ad9148
+000000bf 00                921		.byte	0
+                           922	
+                           923	.LDW_5d0e680:
+000000c0 14                924		.byte	20
+
+                                   Fri Apr 24 16:52:50 2020           Page 18
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000000c1 00000000          925		.long	.LDW_4ad9148
+000000c5 00                926		.byte	0
+                           927	
+000000c6 00                928		.byte	0
+                           929	
+                           930	.LDW_4a9cd00:
+000000c7 46                931		.byte	70
+000000c8 00000000          932		.long	.LDW_4ad9148
+000000cc 01                933		.byte	1
+                           934	
+                           935	.LDW_5d0e2c0:
+000000cd 14                936		.byte	20
+000000ce 00000000          937		.long	.LDW_6106e50
+000000d2 00                938		.byte	0
+                           939	
+                           940	.LDW_5d0e740:
+000000d3 14                941		.byte	20
+000000d4 00000000          942		.long	.LDW_4a9cbb0
+000000d8 00                943		.byte	0
+                           944	
+                           945	.LDW_5d0e320:
+000000d9 14                946		.byte	20
+000000da 00000000          947		.long	.LDW_6106e50
+000000de 00                948		.byte	0
+                           949	
+000000df 00                950		.byte	0
+                           951	
+                           952	.LDW_4a9cd38:
+000000e0 46                953		.byte	70
+000000e1 00000000          954		.long	.LDW_6106148
+000000e5 01                955		.byte	1
+                           956	
+                           957	.LDW_5d0e6e0:
+000000e6 14                958		.byte	20
+000000e7 00000000          959		.long	.LDW_6106148
+000000eb 00                960		.byte	0
+                           961	
+000000ec 00                962		.byte	0
+                           963	
+                           964	.LDW_4ad8108:
+000000ed 27                965		.byte	39
+000000ee 696e7400          966		.strz	"int"
+000000f2 05                967		.byte	5
+000000f3 04                968		.byte	4
+                           969	
+                           970	.LDW_4addc10:
+000000f4 2d                971		.byte	45
+000000f5 00000000          972		.long	.LDW_6106148
+                           973	
+                           974		.section	.debug_abbrev
+00000042 2d                975		.byte	45
+00000043 35                976		.byte	53
+00000044 00                977		.byte	0
+00000045 4910              978		.byte	73,16
+00000047 0000              979		.byte	0,0
+                           980	
+
+                                   Fri Apr 24 16:52:50 2020           Page 19
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                           981		.section	.debug_info
+                           982	.LDW_4ad8098:
+000000f9 31                983		.byte	49
+000000fa 00000000          984		.long	.LDW_64af760
+                           985	
+                           986	.LDW_4ad7ea0:
+000000fe 31                987		.byte	49
+000000ff 00000000          988		.long	.LDW_64affa0
+                           989	
+                           990	.LDW_4ad8178:
+00000103 27                991		.byte	39
+00000104 766f69642a00      992		.strz	"void*"
+0000010a 01                993		.byte	1
+0000010b 04                994		.byte	4
+                           995	
+                           996	.LDW_4ad8290:
+0000010c 31                997		.byte	49
+0000010d 00000000          998		.long	.LDW_4ad92a8
+                           999	
+                          1000	.LDW_64cef28:
+00000111 46               1001		.byte	70
+00000112 00000000         1002		.long	.LDW_6106e50
+00000116 01               1003		.byte	1
+                          1004	
+                          1005	.LDW_64cd200:
+00000117 14               1006		.byte	20
+00000118 00000000         1007		.long	.LDW_64aff48
+0000011c 00               1008		.byte	0
+                          1009	
+0000011d 00               1010		.byte	0
+                          1011	
+                          1012	.LDW_64cefd0:
+0000011e 46               1013		.byte	70
+0000011f 00000000         1014		.long	.LDW_6106e50
+00000123 01               1015		.byte	1
+                          1016	
+                          1017	.LDW_64cd320:
+00000124 14               1018		.byte	20
+00000125 00000000         1019		.long	.LDW_64aff48
+00000129 00               1020		.byte	0
+                          1021	
+                          1022	.LDW_64cd2f0:
+0000012a 14               1023		.byte	20
+0000012b 00000000         1024		.long	.LDW_64af918
+0000012f 00               1025		.byte	0
+                          1026	
+                          1027	.LDW_64cd3b0:
+00000130 14               1028		.byte	20
+00000131 00000000         1029		.long	.LDW_6106e50
+00000135 00               1030		.byte	0
+                          1031	
+                          1032	.LDW_64cd410:
+00000136 14               1033		.byte	20
+00000137 00000000         1034		.long	.LDW_6106e50
+0000013b 00               1035		.byte	0
+                          1036	
+
+                                   Fri Apr 24 16:52:50 2020           Page 20
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                          1037	.LDW_64cd590:
+0000013c 14               1038		.byte	20
+0000013d 00000000         1039		.long	.LDW_6106e50
+00000141 00               1040		.byte	0
+                          1041	
+                          1042	.LDW_64cd5c0:
+00000142 14               1043		.byte	20
+00000143 00000000         1044		.long	.LDW_4ad8fe8
+00000147 00               1045		.byte	0
+                          1046	
+00000148 00               1047		.byte	0
+                          1048	
+                          1049	.LDW_64ceef0:
+00000149 46               1050		.byte	70
+0000014a 00000000         1051		.long	.LDW_6106e50
+0000014e 01               1052		.byte	1
+                          1053	
+                          1054	.LDW_64d12b0:
+0000014f 14               1055		.byte	20
+00000150 00000000         1056		.long	.LDW_64aff48
+00000154 00               1057		.byte	0
+                          1058	
+                          1059	.LDW_64d13a0:
+00000155 14               1060		.byte	20
+00000156 00000000         1061		.long	.LDW_64afd90
+0000015a 00               1062		.byte	0
+                          1063	
+                          1064	.LDW_64d11c0:
+0000015b 14               1065		.byte	20
+0000015c 00000000         1066		.long	.LDW_6106e50
+00000160 00               1067		.byte	0
+                          1068	
+                          1069	.LDW_64d1370:
+00000161 14               1070		.byte	20
+00000162 00000000         1071		.long	.LDW_6106e50
+00000166 00               1072		.byte	0
+                          1073	
+                          1074	.LDW_64d14f0:
+00000167 14               1075		.byte	20
+00000168 00000000         1076		.long	.LDW_6106e50
+0000016c 00               1077		.byte	0
+                          1078	
+                          1079	.LDW_64d1700:
+0000016d 14               1080		.byte	20
+0000016e 00000000         1081		.long	.LDW_64c46f8
+00000172 00               1082		.byte	0
+                          1083	
+00000173 00               1084		.byte	0
+                          1085	
+                          1086	.LDW_64ceb00:
+00000174 46               1087		.byte	70
+00000175 00000000         1088		.long	.LDW_6106e50
+00000179 01               1089		.byte	1
+                          1090	
+                          1091	.LDW_64d1760:
+0000017a 14               1092		.byte	20
+
+                                   Fri Apr 24 16:52:50 2020           Page 21
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000017b 00000000         1093		.long	.LDW_64aff48
+0000017f 00               1094		.byte	0
+                          1095	
+                          1096	.LDW_64d1310:
+00000180 14               1097		.byte	20
+00000181 00000000         1098		.long	.LDW_64af918
+00000185 00               1099		.byte	0
+                          1100	
+                          1101	.LDW_64d1490:
+00000186 14               1102		.byte	20
+00000187 00000000         1103		.long	.LDW_4a9cbb0
+0000018b 00               1104		.byte	0
+                          1105	
+                          1106	.LDW_64d1340:
+0000018c 14               1107		.byte	20
+0000018d 00000000         1108		.long	.LDW_64c46f8
+00000191 00               1109		.byte	0
+                          1110	
+00000192 00               1111		.byte	0
+                          1112	
+                          1113	.LDW_64ceeb8:
+00000193 46               1114		.byte	70
+00000194 00000000         1115		.long	.LDW_6106e50
+00000198 01               1116		.byte	1
+                          1117	
+                          1118	.LDW_64d1400:
+00000199 14               1119		.byte	20
+0000019a 00000000         1120		.long	.LDW_64aff48
+0000019e 00               1121		.byte	0
+                          1122	
+                          1123	.LDW_64d1430:
+0000019f 14               1124		.byte	20
+000001a0 00000000         1125		.long	.LDW_64af918
+000001a4 00               1126		.byte	0
+                          1127	
+                          1128	.LDW_64d1460:
+000001a5 14               1129		.byte	20
+000001a6 00000000         1130		.long	.LDW_6106e50
+000001aa 00               1131		.byte	0
+                          1132	
+000001ab 00               1133		.byte	0
+                          1134	
+                          1135	.LDW_4ad9148:
+000001ac 2a               1136		.byte	42
+000001ad 75696e74385f7400 1137		.strz	"uint8_t"
+000001b5 19               1138		.byte	25
+000001b6 19               1139		.byte	25
+000001b7 09               1140		.byte	9
+000001b8 00000000         1141		.long	.LDW_4a9cc20
+                          1142	
+                          1143		.section	.debug_abbrev
+00000049 2a               1144		.byte	42
+0000004a 16               1145		.byte	22
+0000004b 00               1146		.byte	0
+0000004c 0308             1147		.byte	3,8
+0000004e 3b0f             1148		.byte	59,15
+
+                                   Fri Apr 24 16:52:50 2020           Page 22
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000050 390f             1149		.byte	57,15
+00000052 3a0f             1150		.byte	58,15
+00000054 4910             1151		.byte	73,16
+00000056 0000             1152		.byte	0,0
+                          1153	
+                          1154		.section	.debug_info
+                          1155	.LDW_6106148:
+000001bc 2a               1156		.byte	42
+000001bd 75696e7433325f74 1157		.strz	"uint32_t"
+000001c5 00              
+000001c6 28               1158		.byte	40
+000001c7 18               1159		.byte	24
+000001c8 09               1160		.byte	9
+000001c9 00000000         1161		.long	.LDW_4a9d0b8
+                          1162	
+                          1163	.LDW_64afd90:
+000001cd 2a               1164		.byte	42
+000001ce 424f4f4c00       1165		.strz	"BOOL"
+000001d3 2f               1166		.byte	47
+000001d4 17               1167		.byte	23
+000001d5 1f               1168		.byte	31
+000001d6 00000000         1169		.long	.LDW_4a9cc20
+                          1170	
+                          1171	.LDW_64af918:
+000001da 2a               1172		.byte	42
+000001db 55494e543800     1173		.strz	"UINT8"
+000001e1 32               1174		.byte	50
+000001e2 17               1175		.byte	23
+000001e3 1f               1176		.byte	31
+000001e4 00000000         1177		.long	.LDW_4a9cc20
+                          1178	
+                          1179	.LDW_6106e50:
+000001e8 2a               1180		.byte	42
+000001e9 55494e54333200   1181		.strz	"UINT32"
+000001f0 3c               1182		.byte	60
+000001f1 17               1183		.byte	23
+000001f2 1f               1184		.byte	31
+000001f3 00000000         1185		.long	.LDW_4a9ccc8
+                          1186	
+                          1187	.LDW_64afc88:
+000001f7 42               1188		.byte	66
+000001f8 5f6335355f626c6f 1189		.strz	"_c55_block_info"
+00000200 636b5f696e666f00
+00000208 ad02             1190		.byte	173,2
+0000020a 10               1191		.byte	16
+0000020b 20               1192		.byte	32
+0000020c 10               1193		.byte	16
+0000020d 01               1194		.byte	1
+                          1195	
+                          1196		.section	.debug_abbrev
+00000058 42               1197		.byte	66
+00000059 13               1198		.byte	19
+0000005a 01               1199		.byte	1
+0000005b 0308             1200		.byte	3,8
+0000005d 3b0f             1201		.byte	59,15
+0000005f 390f             1202		.byte	57,15
+00000061 3a0f             1203		.byte	58,15
+00000063 0b0f             1204		.byte	11,15
+
+                                   Fri Apr 24 16:52:50 2020           Page 23
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000065 320b             1205		.byte	50,11
+00000067 0000             1206		.byte	0,0
+                          1207	
+                          1208		.section	.debug_info
+                          1209	.LDW_64b7468:
+0000020e 25               1210		.byte	37
+0000020f 6e384b426c6f636b 1211		.strz	"n8KBlockNum"
+00000217 4e756d00        
+0000021b af02             1212		.byte	175,2
+0000021d 0c               1213		.byte	12
+0000021e 20               1214		.byte	32
+0000021f 00000000         1215		.long	.LDW_6106e50
+00000223 0223             1216		.byte	2,35
+00000225 00               1217		.byte	0
+00000226 01               1218		.byte	1
+                          1219	
+                          1220		.section	.debug_abbrev
+00000069 25               1221		.byte	37
+0000006a 0d               1222		.byte	13
+0000006b 00               1223		.byte	0
+0000006c 0308             1224		.byte	3,8
+0000006e 3b0f             1225		.byte	59,15
+00000070 390f             1226		.byte	57,15
+00000072 3a0f             1227		.byte	58,15
+00000074 4910             1228		.byte	73,16
+00000076 380a             1229		.byte	56,10
+00000078 320b             1230		.byte	50,11
+0000007a 0000             1231		.byte	0,0
+                          1232	
+                          1233		.section	.debug_info
+                          1234	.LDW_64b7150:
+00000227 25               1235		.byte	37
+00000228 6e31364b426c6f63 1236		.strz	"n16KBlockNum"
+00000230 6b4e756d00      
+00000235 b002             1237		.byte	176,2
+00000237 09               1238		.byte	9
+00000238 20               1239		.byte	32
+00000239 00000000         1240		.long	.LDW_6106e50
+0000023d 0223             1241		.byte	2,35
+0000023f 04               1242		.byte	4
+00000240 01               1243		.byte	1
+                          1244	
+                          1245	.LDW_64b7078:
+00000241 25               1246		.byte	37
+00000242 6e33324b426c6f63 1247		.strz	"n32KBlockNum"
+0000024a 6b4e756d00      
+0000024f b102             1248		.byte	177,2
+00000251 0c               1249		.byte	12
+00000252 20               1250		.byte	32
+00000253 00000000         1251		.long	.LDW_6106e50
+00000257 0223             1252		.byte	2,35
+00000259 08               1253		.byte	8
+0000025a 01               1254		.byte	1
+                          1255	
+                          1256	.LDW_64b6ec8:
+0000025b 25               1257		.byte	37
+0000025c 6e36344b426c6f63 1258		.strz	"n64KBlockNum"
+00000264 6b4e756d00      
+00000269 b202             1259		.byte	178,2
+0000026b 0c               1260		.byte	12
+
+                                   Fri Apr 24 16:52:50 2020           Page 24
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000026c 20               1261		.byte	32
+0000026d 00000000         1262		.long	.LDW_6106e50
+00000271 0223             1263		.byte	2,35
+00000273 0c               1264		.byte	12
+00000274 01               1265		.byte	1
+                          1266	
+00000275 00               1267		.byte	0
+                          1268	
+                          1269	.LDW_64afef0:
+00000276 2a               1270		.byte	42
+00000277 424c4f434b5f494e 1271		.strz	"BLOCK_INFO"
+0000027f 464f00          
+00000282 b302             1272		.byte	179,2
+00000284 03               1273		.byte	3
+00000285 20               1274		.byte	32
+00000286 00000000         1275		.long	.LDW_64afc88
+                          1276	
+                          1277	.LDW_64af760:
+0000028a 42               1278		.byte	66
+0000028b 5f6335355f737364 1279		.strz	"_c55_ssd_config"
+00000293 5f636f6e66696700
+0000029b b602             1280		.byte	182,2
+0000029d 10               1281		.byte	16
+0000029e 20               1282		.byte	32
+0000029f 4c               1283		.byte	76
+000002a0 01               1284		.byte	1
+                          1285	
+                          1286	.LDW_64b6fa0:
+000002a1 25               1287		.byte	37
+000002a2 6335355265674261 1288		.strz	"c55RegBase"
+000002aa 736500          
+000002ad b802             1289		.byte	184,2
+000002af 0c               1290		.byte	12
+000002b0 20               1291		.byte	32
+000002b1 00000000         1292		.long	.LDW_6106e50
+000002b5 0223             1293		.byte	2,35
+000002b7 00               1294		.byte	0
+000002b8 01               1295		.byte	1
+                          1296	
+                          1297	.LDW_64b7540:
+000002b9 25               1298		.byte	37
+000002ba 6d61696e41727261 1299		.strz	"mainArrayBase"
+000002c2 794261736500    
+000002c8 b902             1300		.byte	185,2
+000002ca 0c               1301		.byte	12
+000002cb 20               1302		.byte	32
+000002cc 00000000         1303		.long	.LDW_6106e50
+000002d0 0223             1304		.byte	2,35
+000002d2 04               1305		.byte	4
+000002d3 01               1306		.byte	1
+                          1307	
+                          1308	.LDW_64b6fe8:
+000002d4 25               1309		.byte	37
+000002d5 6c6f77426c6f636b 1310		.strz	"lowBlockInfo"
+000002dd 496e666f00      
+000002e2 ba02             1311		.byte	186,2
+000002e4 10               1312		.byte	16
+000002e5 20               1313		.byte	32
+000002e6 00000000         1314		.long	.LDW_64afef0
+000002ea 0223             1315		.byte	2,35
+000002ec 08               1316		.byte	8
+
+                                   Fri Apr 24 16:52:50 2020           Page 25
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000002ed 01               1317		.byte	1
+                          1318	
+                          1319	.LDW_64b7300:
+000002ee 25               1320		.byte	37
+000002ef 6d6964426c6f636b 1321		.strz	"midBlockInfo"
+000002f7 496e666f00      
+000002fc bb02             1322		.byte	187,2
+000002fe 10               1323		.byte	16
+000002ff 20               1324		.byte	32
+00000300 00000000         1325		.long	.LDW_64afef0
+00000304 0223             1326		.byte	2,35
+00000306 18               1327		.byte	24
+00000307 01               1328		.byte	1
+                          1329	
+                          1330	.LDW_64b6f58:
+00000308 25               1331		.byte	37
+00000309 68696768426c6f63 1332		.strz	"highBlockInfo"
+00000311 6b496e666f00    
+00000317 bc02             1333		.byte	188,2
+00000319 10               1334		.byte	16
+0000031a 20               1335		.byte	32
+0000031b 00000000         1336		.long	.LDW_64afef0
+0000031f 0223             1337		.byte	2,35
+00000321 28               1338		.byte	40
+00000322 01               1339		.byte	1
+                          1340	
+                          1341	.LDW_64b7030:
+00000323 25               1342		.byte	37
+00000324 6e4c61726765426c 1343		.strz	"nLargeBlockNum"
+0000032c 6f636b4e756d00  
+00000333 bd02             1344		.byte	189,2
+00000335 0c               1345		.byte	12
+00000336 20               1346		.byte	32
+00000337 00000000         1347		.long	.LDW_6106e50
+0000033b 0223             1348		.byte	2,35
+0000033d 38               1349		.byte	56
+0000033e 01               1350		.byte	1
+                          1351	
+                          1352	.LDW_64b7618:
+0000033f 25               1353		.byte	37
+00000340 7554657374417272 1354		.strz	"uTestArrayBase"
+00000348 61794261736500  
+0000034f be02             1355		.byte	190,2
+00000351 0c               1356		.byte	12
+00000352 20               1357		.byte	32
+00000353 00000000         1358		.long	.LDW_6106e50
+00000357 0223             1359		.byte	2,35
+00000359 3c               1360		.byte	60
+0000035a 01               1361		.byte	1
+                          1362	
+                          1363	.LDW_64b7108:
+0000035b 25               1364		.byte	37
+0000035c 6d61696e496e7465 1365		.strz	"mainInterfaceFlag"
+00000364 7266616365466c61
+0000036c 6700            
+0000036e bf02             1366		.byte	191,2
+00000370 0a               1367		.byte	10
+00000371 20               1368		.byte	32
+00000372 00000000         1369		.long	.LDW_64afd90
+00000376 0223             1370		.byte	2,35
+00000378 40               1371		.byte	64
+00000379 01               1372		.byte	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 26
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                          1373	
+                          1374	.LDW_64b7198:
+0000037a 25               1375		.byte	37
+0000037b 70726f6772616d6d 1376		.strz	"programmableSize"
+00000383 61626c6553697a65
+0000038b 00              
+0000038c c002             1377		.byte	192,2
+0000038e 0c               1378		.byte	12
+0000038f 20               1379		.byte	32
+00000390 00000000         1380		.long	.LDW_6106e50
+00000394 0223             1381		.byte	2,35
+00000396 44               1382		.byte	68
+00000397 01               1383		.byte	1
+                          1384	
+                          1385	.LDW_64b7660:
+00000398 25               1386		.byte	37
+00000399 42444d456e61626c 1387		.strz	"BDMEnable"
+000003a1 6500            
+000003a3 c102             1388		.byte	193,2
+000003a5 0a               1389		.byte	10
+000003a6 20               1390		.byte	32
+000003a7 00000000         1391		.long	.LDW_64afd90
+000003ab 0223             1392		.byte	2,35
+000003ad 48               1393		.byte	72
+000003ae 01               1394		.byte	1
+                          1395	
+000003af 00               1396		.byte	0
+                          1397	
+                          1398	.LDW_64afd38:
+000003b0 2a               1399		.byte	42
+000003b1 5353445f434f4e46 1400		.strz	"SSD_CONFIG"
+000003b9 494700          
+000003bc c202             1401		.byte	194,2
+000003be 03               1402		.byte	3
+000003bf 20               1403		.byte	32
+000003c0 00000000         1404		.long	.LDW_64af760
+                          1405	
+                          1406	.LDW_64aff48:
+000003c4 2a               1407		.byte	42
+000003c5 505353445f434f4e 1408		.strz	"PSSD_CONFIG"
+000003cd 46494700        
+000003d1 c202             1409		.byte	194,2
+000003d3 10               1410		.byte	16
+000003d4 20               1411		.byte	32
+000003d5 00000000         1412		.long	.LDW_4ad8098
+                          1413	
+                          1414	.LDW_64affa0:
+000003d9 42               1415		.byte	66
+000003da 5f6335355f6d6973 1416		.strz	"_c55_misr"
+000003e2 7200            
+000003e4 c502             1417		.byte	197,2
+000003e6 10               1418		.byte	16
+000003e7 20               1419		.byte	32
+000003e8 28               1420		.byte	40
+000003e9 01               1421		.byte	1
+                          1422	
+                          1423	.LDW_64b70c0:
+000003ea 25               1424		.byte	37
+000003eb 573000           1425		.strz	"W0"
+000003ee c702             1426		.byte	199,2
+000003f0 0c               1427		.byte	12
+000003f1 20               1428		.byte	32
+
+                                   Fri Apr 24 16:52:50 2020           Page 27
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000003f2 00000000         1429		.long	.LDW_6106e50
+000003f6 0223             1430		.byte	2,35
+000003f8 00               1431		.byte	0
+000003f9 01               1432		.byte	1
+                          1433	
+                          1434	.LDW_64b74f8:
+000003fa 25               1435		.byte	37
+000003fb 573100           1436		.strz	"W1"
+000003fe c802             1437		.byte	200,2
+00000400 0c               1438		.byte	12
+00000401 20               1439		.byte	32
+00000402 00000000         1440		.long	.LDW_6106e50
+00000406 0223             1441		.byte	2,35
+00000408 04               1442		.byte	4
+00000409 01               1443		.byte	1
+                          1444	
+                          1445	.LDW_64b7348:
+0000040a 25               1446		.byte	37
+0000040b 573200           1447		.strz	"W2"
+0000040e c902             1448		.byte	201,2
+00000410 0c               1449		.byte	12
+00000411 20               1450		.byte	32
+00000412 00000000         1451		.long	.LDW_6106e50
+00000416 0223             1452		.byte	2,35
+00000418 08               1453		.byte	8
+00000419 01               1454		.byte	1
+                          1455	
+                          1456	.LDW_64b74b0:
+0000041a 25               1457		.byte	37
+0000041b 573300           1458		.strz	"W3"
+0000041e ca02             1459		.byte	202,2
+00000420 0c               1460		.byte	12
+00000421 20               1461		.byte	32
+00000422 00000000         1462		.long	.LDW_6106e50
+00000426 0223             1463		.byte	2,35
+00000428 0c               1464		.byte	12
+00000429 01               1465		.byte	1
+                          1466	
+                          1467	.LDW_64b76a8:
+0000042a 25               1468		.byte	37
+0000042b 573400           1469		.strz	"W4"
+0000042e cb02             1470		.byte	203,2
+00000430 0c               1471		.byte	12
+00000431 20               1472		.byte	32
+00000432 00000000         1473		.long	.LDW_6106e50
+00000436 0223             1474		.byte	2,35
+00000438 10               1475		.byte	16
+00000439 01               1476		.byte	1
+                          1477	
+                          1478	.LDW_64b71e0:
+0000043a 25               1479		.byte	37
+0000043b 573500           1480		.strz	"W5"
+0000043e cc02             1481		.byte	204,2
+00000440 0c               1482		.byte	12
+00000441 20               1483		.byte	32
+00000442 00000000         1484		.long	.LDW_6106e50
+
+                                   Fri Apr 24 16:52:50 2020           Page 28
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000446 0223             1485		.byte	2,35
+00000448 14               1486		.byte	20
+00000449 01               1487		.byte	1
+                          1488	
+                          1489	.LDW_64b7270:
+0000044a 25               1490		.byte	37
+0000044b 573600           1491		.strz	"W6"
+0000044e cd02             1492		.byte	205,2
+00000450 0c               1493		.byte	12
+00000451 20               1494		.byte	32
+00000452 00000000         1495		.long	.LDW_6106e50
+00000456 0223             1496		.byte	2,35
+00000458 18               1497		.byte	24
+00000459 01               1498		.byte	1
+                          1499	
+                          1500	.LDW_64b75d0:
+0000045a 25               1501		.byte	37
+0000045b 573700           1502		.strz	"W7"
+0000045e ce02             1503		.byte	206,2
+00000460 0c               1504		.byte	12
+00000461 20               1505		.byte	32
+00000462 00000000         1506		.long	.LDW_6106e50
+00000466 0223             1507		.byte	2,35
+00000468 1c               1508		.byte	28
+00000469 01               1509		.byte	1
+                          1510	
+                          1511	.LDW_64b72b8:
+0000046a 25               1512		.byte	37
+0000046b 573800           1513		.strz	"W8"
+0000046e cf02             1514		.byte	207,2
+00000470 0c               1515		.byte	12
+00000471 20               1516		.byte	32
+00000472 00000000         1517		.long	.LDW_6106e50
+00000476 0223             1518		.byte	2,35
+00000478 20               1519		.byte	32
+00000479 01               1520		.byte	1
+                          1521	
+                          1522	.LDW_64b76f0:
+0000047a 25               1523		.byte	37
+0000047b 573900           1524		.strz	"W9"
+0000047e d002             1525		.byte	208,2
+00000480 0c               1526		.byte	12
+00000481 20               1527		.byte	32
+00000482 00000000         1528		.long	.LDW_6106e50
+00000486 0223             1529		.byte	2,35
+00000488 24               1530		.byte	36
+00000489 01               1531		.byte	1
+                          1532	
+0000048a 00               1533		.byte	0
+                          1534	
+                          1535	.LDW_64b0158:
+0000048b 2a               1536		.byte	42
+0000048c 504d49535200     1537		.strz	"PMISR"
+00000492 d102             1538		.byte	209,2
+00000494 0a               1539		.byte	10
+00000495 20               1540		.byte	32
+
+                                   Fri Apr 24 16:52:50 2020           Page 29
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000496 00000000         1541		.long	.LDW_4ad7ea0
+                          1542	
+                          1543	.LDW_4ad92a8:
+0000049a 42               1544		.byte	66
+0000049b 5f6335355f636f6e 1545		.strz	"_c55_context_data"
+000004a3 746578745f646174
+000004ab 6100            
+000004ad d402             1546		.byte	212,2
+000004af 10               1547		.byte	16
+000004b0 20               1548		.byte	32
+000004b1 24               1549		.byte	36
+000004b2 01               1550		.byte	1
+                          1551	
+                          1552	.LDW_64b7588:
+000004b3 25               1553		.byte	37
+000004b4 6465737400       1554		.strz	"dest"
+000004b9 d602             1555		.byte	214,2
+000004bb 0c               1556		.byte	12
+000004bc 20               1557		.byte	32
+000004bd 00000000         1558		.long	.LDW_6106e50
+000004c1 0223             1559		.byte	2,35
+000004c3 00               1560		.byte	0
+000004c4 01               1561		.byte	1
+                          1562	
+                          1563	.LDW_64b7390:
+000004c5 25               1564		.byte	37
+000004c6 73697a6500       1565		.strz	"size"
+000004cb d702             1566		.byte	215,2
+000004cd 0c               1567		.byte	12
+000004ce 20               1568		.byte	32
+000004cf 00000000         1569		.long	.LDW_6106e50
+000004d3 0223             1570		.byte	2,35
+000004d5 04               1571		.byte	4
+000004d6 01               1572		.byte	1
+                          1573	
+                          1574	.LDW_64b73d8:
+000004d7 25               1575		.byte	37
+000004d8 736f7572636500   1576		.strz	"source"
+000004df d802             1577		.byte	216,2
+000004e1 0c               1578		.byte	12
+000004e2 20               1579		.byte	32
+000004e3 00000000         1580		.long	.LDW_6106e50
+000004e7 0223             1581		.byte	2,35
+000004e9 08               1582		.byte	8
+000004ea 01               1583		.byte	1
+                          1584	
+                          1585	.LDW_64b7780:
+000004eb 25               1586		.byte	37
+000004ec 704661696c656441 1587		.strz	"pFailedAddress"
+000004f4 64647265737300  
+000004fb d902             1588		.byte	217,2
+000004fd 0d               1589		.byte	13
+000004fe 20               1590		.byte	32
+000004ff 00000000         1591		.long	.LDW_4a9cbb0
+00000503 0223             1592		.byte	2,35
+00000505 0c               1593		.byte	12
+00000506 01               1594		.byte	1
+                          1595	
+                          1596	.LDW_64b7e88:
+
+                                   Fri Apr 24 16:52:50 2020           Page 30
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000507 25               1597		.byte	37
+00000508 704661696c656444 1598		.strz	"pFailedData"
+00000510 61746100        
+00000514 da02             1599		.byte	218,2
+00000516 0d               1600		.byte	13
+00000517 20               1601		.byte	32
+00000518 00000000         1602		.long	.LDW_4a9cbb0
+0000051c 0223             1603		.byte	2,35
+0000051e 10               1604		.byte	16
+0000051f 01               1605		.byte	1
+                          1606	
+                          1607	.LDW_64b8038:
+00000520 25               1608		.byte	37
+00000521 704661696c656453 1609		.strz	"pFailedSource"
+00000529 6f7572636500    
+0000052f db02             1610		.byte	219,2
+00000531 0d               1611		.byte	13
+00000532 20               1612		.byte	32
+00000533 00000000         1613		.long	.LDW_4a9cbb0
+00000537 0223             1614		.byte	2,35
+00000539 14               1615		.byte	20
+0000053a 01               1616		.byte	1
+                          1617	
+                          1618	.LDW_64b7f18:
+0000053b 25               1619		.byte	37
+0000053c 7053756d00       1620		.strz	"pSum"
+00000541 dc02             1621		.byte	220,2
+00000543 0d               1622		.byte	13
+00000544 20               1623		.byte	32
+00000545 00000000         1624		.long	.LDW_4a9cbb0
+00000549 0223             1625		.byte	2,35
+0000054b 18               1626		.byte	24
+0000054c 01               1627		.byte	1
+                          1628	
+                          1629	.LDW_64b8080:
+0000054d 25               1630		.byte	37
+0000054e 704d69737200     1631		.strz	"pMisr"
+00000554 dd02             1632		.byte	221,2
+00000556 0b               1633		.byte	11
+00000557 20               1634		.byte	32
+00000558 00000000         1635		.long	.LDW_64b0158
+0000055c 0223             1636		.byte	2,35
+0000055e 1c               1637		.byte	28
+0000055f 01               1638		.byte	1
+                          1639	
+                          1640	.LDW_64b7a98:
+00000560 25               1641		.byte	37
+00000561 70526571436f6d70 1642		.strz	"pReqCompletionFn"
+00000569 6c6574696f6e466e
+00000571 00              
+00000572 de02             1643		.byte	222,2
+00000574 0b               1644		.byte	11
+00000575 20               1645		.byte	32
+00000576 00000000         1646		.long	.LDW_4ad8178
+0000057a 0223             1647		.byte	2,35
+0000057c 20               1648		.byte	32
+0000057d 01               1649		.byte	1
+                          1650	
+0000057e 00               1651		.byte	0
+                          1652	
+
+                                   Fri Apr 24 16:52:50 2020           Page 31
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                          1653	.LDW_4ad9300:
+0000057f 2a               1654		.byte	42
+00000580 434f4e544558545f 1655		.strz	"CONTEXT_DATA"
+00000588 4441544100      
+0000058d df02             1656		.byte	223,2
+0000058f 03               1657		.byte	3
+00000590 20               1658		.byte	32
+00000591 00000000         1659		.long	.LDW_4ad92a8
+                          1660	
+                          1661	.LDW_64c46f8:
+00000595 2a               1662		.byte	42
+00000596 50434f4e54455854 1663		.strz	"PCONTEXT_DATA"
+0000059e 5f4441544100    
+000005a4 df02             1664		.byte	223,2
+000005a6 12               1665		.byte	18
+000005a7 20               1666		.byte	32
+000005a8 00000000         1667		.long	.LDW_4ad8290
+                          1668	
+                          1669	.LDW_4ad9250:
+000005ac 42               1670		.byte	66
+000005ad 5f6335355f6e4c61 1671		.strz	"_c55_nLarge_block_sel"
+000005b5 7267655f626c6f63
+000005bd 6b5f73656c00    
+000005c3 e202             1672		.byte	226,2
+000005c5 10               1673		.byte	16
+000005c6 20               1674		.byte	32
+000005c7 08               1675		.byte	8
+000005c8 01               1676		.byte	1
+                          1677	
+                          1678	.LDW_64b7f60:
+000005c9 25               1679		.byte	37
+000005ca 66697273744c6172 1680		.strz	"firstLargeBlockSelect"
+000005d2 6765426c6f636b53
+000005da 656c65637400    
+000005e0 e402             1681		.byte	228,2
+000005e2 0c               1682		.byte	12
+000005e3 20               1683		.byte	32
+000005e4 00000000         1684		.long	.LDW_6106e50
+000005e8 0223             1685		.byte	2,35
+000005ea 00               1686		.byte	0
+000005eb 01               1687		.byte	1
+                          1688	
+                          1689	.LDW_64b7b28:
+000005ec 25               1690		.byte	37
+000005ed 7365636f6e644c61 1691		.strz	"secondLargeBlockSelect"
+000005f5 726765426c6f636b
+000005fd 53656c65637400  
+00000604 e502             1692		.byte	229,2
+00000606 0c               1693		.byte	12
+00000607 20               1694		.byte	32
+00000608 00000000         1695		.long	.LDW_6106e50
+0000060c 0223             1696		.byte	2,35
+0000060e 04               1697		.byte	4
+0000060f 01               1698		.byte	1
+                          1699	
+00000610 00               1700		.byte	0
+                          1701	
+                          1702	.LDW_4ad8fe8:
+00000611 2a               1703		.byte	42
+00000612 4e4c415247455f42 1704		.strz	"NLARGE_BLOCK_SEL"
+0000061a 4c4f434b5f53454c
+00000622 00              
+00000623 e602             1705		.byte	230,2
+00000625 03               1706		.byte	3
+00000626 20               1707		.byte	32
+00000627 00000000         1708		.long	.LDW_4ad9250
+
+                                   Fri Apr 24 16:52:50 2020           Page 32
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                          1709	
+                          1710	.LDW_64c5098:
+0000062b 07               1711		.byte	7
+0000062c 70726573656e745f 1712		.strz	"present_addr"
+00000634 6164647200      
+00000639 44               1713		.byte	68
+0000063a 11               1714		.byte	17
+0000063b 02               1715		.byte	2
+0000063c 00000000         1716		.long	.LDW_6106148
+00000640 01               1717		.byte	1
+00000641 01               1718		.byte	1
+                          1719	
+                          1720		.section	.debug_abbrev
+0000007c 07               1721		.byte	7
+0000007d 34               1722		.byte	52
+0000007e 00               1723		.byte	0
+0000007f 0308             1724		.byte	3,8
+00000081 3b0f             1725		.byte	59,15
+00000083 390f             1726		.byte	57,15
+00000085 3a0f             1727		.byte	58,15
+00000087 4910             1728		.byte	73,16
+00000089 3f0c             1729		.byte	63,12
+0000008b 3c0c             1730		.byte	60,12
+0000008d 0000             1731		.byte	0,0
+                          1732	
+                          1733		.section	.debug_info
+                          1734	.LDW_64c4f90:
+00000642 06               1735		.byte	6
+00000643 7374735f466c6173 1736		.strz	"sts_FlashCfg"
+0000064b 6843666700      
+00000650 48               1737		.byte	72
+00000651 13               1738		.byte	19
+00000652 01               1739		.byte	1
+00000653 00000000         1740		.long	.LDW_64afd38
+00000657 00               1741		.byte	0
+00000658 00               1742		.byte	0
+00000659 0503             1743		.byte	5,3
+0000065b 00000000         1744		.long	sts_FlashCfg..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+                          1745	
+                          1746		.section	.debug_abbrev
+0000008f 06               1747		.byte	6
+00000090 34               1748		.byte	52
+00000091 00               1749		.byte	0
+00000092 0308             1750		.byte	3,8
+00000094 3b0f             1751		.byte	59,15
+00000096 390f             1752		.byte	57,15
+00000098 3a0f             1753		.byte	58,15
+0000009a 4910             1754		.byte	73,16
+0000009c 3f0c             1755		.byte	63,12
+0000009e 3c0c             1756		.byte	60,12
+000000a0 020a             1757		.byte	2,10
+000000a2 0000             1758		.byte	0,0
+                          1759	
+                          1760		.section	.debug_info
+                          1761	.LDW_64cf548:
+0000065f 18               1762		.byte	24
+00000660 466c617368496e69 1763		.strz	"FlashInit"
+00000668 7400            
+0000066a ec02             1764		.byte	236,2
+
+                                   Fri Apr 24 16:52:50 2020           Page 33
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000066c 0f               1765		.byte	15
+0000066d 20               1766		.byte	32
+0000066e 00000000         1767		.long	.LDW_6106e50
+00000672 01               1768		.byte	1
+00000673 00               1769		.byte	0
+00000674 01               1770		.byte	1
+00000675 01               1771		.byte	1
+00000676 00               1772		.byte	0
+00000677 01               1773		.byte	1
+                          1774	
+                          1775		.section	.debug_abbrev
+000000a4 18               1776		.byte	24
+000000a5 2e               1777		.byte	46
+000000a6 01               1778		.byte	1
+000000a7 0308             1779		.byte	3,8
+000000a9 3b0f             1780		.byte	59,15
+000000ab 390f             1781		.byte	57,15
+000000ad 3a0f             1782		.byte	58,15
+000000af 4910             1783		.byte	73,16
+000000b1 3c0c             1784		.byte	60,12
+000000b3 200b             1785		.byte	32,11
+000000b5 3f0c             1786		.byte	63,12
+000000b7 320b             1787		.byte	50,11
+000000b9 4c0b             1788		.byte	76,11
+000000bb 270c             1789		.byte	39,12
+000000bd 0000             1790		.byte	0,0
+                          1791	
+                          1792		.section	.debug_info
+00000678 00               1793		.byte	0
+                          1794	
+                          1795	.LDW_64d02f0:
+00000679 18               1796		.byte	24
+0000067a 466c617368457261 1797		.strz	"FlashErase"
+00000682 736500          
+00000685 ee02             1798		.byte	238,2
+00000687 0f               1799		.byte	15
+00000688 20               1800		.byte	32
+00000689 00000000         1801		.long	.LDW_6106e50
+0000068d 01               1802		.byte	1
+0000068e 00               1803		.byte	0
+0000068f 01               1804		.byte	1
+00000690 01               1805		.byte	1
+00000691 00               1806		.byte	0
+00000692 01               1807		.byte	1
+                          1808	
+00000693 00               1809		.byte	0
+                          1810	
+                          1811	.LDW_64cfaa0:
+00000694 18               1812		.byte	24
+00000695 466c61736850726f 1813		.strz	"FlashProgram"
+0000069d 6772616d00      
+000006a2 8203             1814		.byte	130,3
+000006a4 0f               1815		.byte	15
+000006a5 20               1816		.byte	32
+000006a6 00000000         1817		.long	.LDW_6106e50
+000006aa 01               1818		.byte	1
+000006ab 00               1819		.byte	0
+000006ac 01               1820		.byte	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 34
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000006ad 01               1821		.byte	1
+000006ae 00               1822		.byte	0
+000006af 01               1823		.byte	1
+                          1824	
+000006b0 00               1825		.byte	0
+                          1826	
+                          1827	.LDW_64cfd00:
+000006b1 18               1828		.byte	24
+000006b2 466c617368436865 1829		.strz	"FlashCheckStatus"
+000006ba 636b537461747573
+000006c2 00              
+000006c3 9403             1830		.byte	148,3
+000006c5 0f               1831		.byte	15
+000006c6 20               1832		.byte	32
+000006c7 00000000         1833		.long	.LDW_6106e50
+000006cb 01               1834		.byte	1
+000006cc 00               1835		.byte	0
+000006cd 01               1836		.byte	1
+000006ce 01               1837		.byte	1
+000006cf 00               1838		.byte	0
+000006d0 01               1839		.byte	1
+                          1840	
+000006d1 00               1841		.byte	0
+                          1842	
+                          1843	.LDW_64cf250:
+000006d2 18               1844		.byte	24
+000006d3 5365744c6f636b00 1845		.strz	"SetLock"
+000006db 9f03             1846		.byte	159,3
+000006dd 0f               1847		.byte	15
+000006de 20               1848		.byte	32
+000006df 00000000         1849		.long	.LDW_6106e50
+000006e3 01               1850		.byte	1
+000006e4 00               1851		.byte	0
+000006e5 01               1852		.byte	1
+000006e6 01               1853		.byte	1
+000006e7 00               1854		.byte	0
+000006e8 01               1855		.byte	1
+                          1856	
+000006e9 00               1857		.byte	0
+                          1858	
+                          1859	.LDW_6106db8:
+000006ea 15               1860		.byte	21
+000006eb 47705f46756e635f 1861		.strz	"Gp_Func_Init"
+000006f3 496e697400      
+000006f8 62               1862		.byte	98
+000006f9 06               1863		.byte	6
+000006fa 01               1864		.byte	1
+000006fb 00000000         1865		.long	Gp_Func_Init
+000006ff 00000000         1866		.long	__ghs_eofn_Gp_Func_Init
+00000703 0151             1867		.byte	1,81
+00000705 808080800c       1868		.byte	128,128,128,128,12
+0000070a 08               1869		.byte	8
+0000070b 00               1870		.byte	0
+0000070c 10               1871		.byte	16
+0000070d 00               1872		.byte	0
+0000070e 00               1873		.byte	0
+0000070f 00               1874		.byte	0
+00000710 01               1875		.byte	1
+00000711 01               1876		.byte	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 35
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000712 00               1877		.byte	0
+00000713 01               1878		.byte	1
+                          1879	
+                          1880		.section	.debug_abbrev
+000000bf 15               1881		.byte	21
+000000c0 2e               1882		.byte	46
+000000c1 01               1883		.byte	1
+000000c2 0308             1884		.byte	3,8
+000000c4 3b0f             1885		.byte	59,15
+000000c6 390f             1886		.byte	57,15
+000000c8 3a0f             1887		.byte	58,15
+000000ca 1101             1888		.byte	17,1
+000000cc 1201             1889		.byte	18,1
+000000ce 400a             1890		.byte	64,10
+000000d0 8341             1891		.byte	131,65
+000000d2 0f               1892		.byte	15
+000000d3 8741             1893		.byte	135,65
+000000d5 0d               1894		.byte	13
+000000d6 8541             1895		.byte	133,65
+000000d8 0f               1896		.byte	15
+000000d9 8641             1897		.byte	134,65
+000000db 0d               1898		.byte	13
+000000dc 9241             1899		.byte	146,65
+000000de 0f               1900		.byte	15
+000000df 3c0c             1901		.byte	60,12
+000000e1 200b             1902		.byte	32,11
+000000e3 3f0c             1903		.byte	63,12
+000000e5 320b             1904		.byte	50,11
+000000e7 4c0b             1905		.byte	76,11
+000000e9 270c             1906		.byte	39,12
+000000eb 0000             1907		.byte	0,0
+                          1908	
+                          1909		.section	.debug_frame
+                          1910	.LDW_6106bc8:
+00000090 00000014         1911		.long	.LDW_unq_4-.LDW_unq_3
+                          1912	.LDW_unq_3:
+00000094 00000000         1913		.long	.LDW_63faa50
+00000098 00000000         1914		.long	Gp_Func_Init
+0000009c 00000042         1915		.long	__ghs_eofn_Gp_Func_Init-Gp_Func_Init
+000000a0 01               1916		.byte	1
+000000a1 00000000         1917		.long	.LDW11
+000000a5 00               1918		.byte	0
+000000a6 00               1919		.byte	0
+000000a7 00               1920		.byte	0
+                          1921	.LDW_unq_4:
+                          1922		.section	.debug_line
+0000079d 000502           1923		.byte	0,5,2
+000007a0 00000000         1924		.long	Gp_Func_Init
+000007a4 06               1925		.byte	6
+000007a5 03               1926		.byte	3
+000007a6 e200             1927		.byte	226,0
+000007a8 02               1928		.byte	2
+000007a9 00               1929		.byte	0
+000007aa 01               1930		.byte	1
+000007ab 3c               1931		.byte	60
+000007ac 1c               1932		.byte	28
+
+                                   Fri Apr 24 16:52:50 2020           Page 36
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000007ad 000502           1933		.byte	0,5,2
+000007b0 00000000         1934		.long	.LDWlin1
+000007b4 0b               1935		.byte	11
+000007b5 0b               1936		.byte	11
+000007b6 0c               1937		.byte	12
+000007b7 13               1938		.byte	19
+000007b8 3b               1939		.byte	59
+000007b9 000502           1940		.byte	0,5,2
+000007bc 00000000         1941		.long	.LDWlin2
+000007c0 02               1942		.byte	2
+000007c1 00               1943		.byte	0
+000007c2 0b               1944		.byte	11
+000007c3 02               1945		.byte	2
+000007c4 00               1946		.byte	0
+000007c5 0c               1947		.byte	12
+000007c6 02               1948		.byte	2
+000007c7 0c               1949		.byte	12
+000007c8 000101           1950		.byte	0,1,1
+                          1951		.section	.debug_info
+                          1952	.LDW_4a98100:
+00000714 1f               1953		.byte	31
+00000715 00000000         1954		.long	.LDW01
+00000719 00000000         1955		.long	.LDW11
+                          1956	
+                          1957		.section	.debug_abbrev
+000000ed 1f               1958		.byte	31
+000000ee 0b               1959		.byte	11
+000000ef 01               1960		.byte	1
+000000f0 1101             1961		.byte	17,1
+000000f2 1201             1962		.byte	18,1
+000000f4 0000             1963		.byte	0,0
+                          1964	
+                          1965		.section	.debug_info
+                          1966	.LDW_6106ea8:
+0000071d 07               1967		.byte	7
+0000071e 7533325f52657400 1968		.strz	"u32_Ret"
+00000726 64               1969		.byte	100
+00000727 09               1970		.byte	9
+00000728 01               1971		.byte	1
+00000729 00000000         1972		.long	.LDW_6106e50
+0000072d 00               1973		.byte	0
+0000072e 00               1974		.byte	0
+                          1975	
+                          1976	.LDW_6106f00:
+0000072f 06               1977		.byte	6
+00000730 7533325f44656c61 1978		.strz	"u32_Delay"
+00000738 7900            
+0000073a 65               1979		.byte	101
+0000073b 0b               1980		.byte	11
+0000073c 01               1981		.byte	1
+0000073d 00000000         1982		.long	.LDW_6106148
+00000741 00               1983		.byte	0
+00000742 00               1984		.byte	0
+00000743 016f             1985		.byte	1,111
+                          1986	
+00000745 00               1987		.byte	0
+                          1988	
+
+                                   Fri Apr 24 16:52:50 2020           Page 37
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000746 00               1989		.byte	0
+                          1990	
+                          1991	.LDW_5d0e978:
+00000747 15               1992		.byte	21
+00000748 4545505f57726974 1993		.strz	"EEP_WriteDataByIdentifier"
+00000750 6544617461427949
+00000758 64656e7469666965
+00000760 7200            
+00000762 7a               1994		.byte	122
+00000763 06               1995		.byte	6
+00000764 01               1996		.byte	1
+00000765 00000000         1997		.long	EEP_WriteDataByIdentifier
+00000769 00000000         1998		.long	__ghs_eofn_EEP_WriteDataByIdentifier
+0000076d 0151             1999		.byte	1,81
+0000076f 808080800c       2000		.byte	128,128,128,128,12
+00000774 08               2001		.byte	8
+00000775 00               2002		.byte	0
+00000776 10               2003		.byte	16
+00000777 00               2004		.byte	0
+00000778 00               2005		.byte	0
+00000779 00               2006		.byte	0
+0000077a 01               2007		.byte	1
+0000077b 01               2008		.byte	1
+0000077c 00               2009		.byte	0
+0000077d 01               2010		.byte	1
+                          2011	
+                          2012		.section	.debug_frame
+                          2013	.LDW_6106748:
+000000a8 00000014         2014		.long	.LDW_unq_6-.LDW_unq_5
+                          2015	.LDW_unq_5:
+000000ac 00000000         2016		.long	.LDW_63faa50
+000000b0 00000000         2017		.long	EEP_WriteDataByIdentifier
+000000b4 0000008c         2018		.long	__ghs_eofn_EEP_WriteDataByIdentifier-EEP_WriteDataByIdentifier
+000000b8 01               2019		.byte	1
+000000b9 00000000         2020		.long	.LDW71
+000000bd 00               2021		.byte	0
+000000be 00               2022		.byte	0
+000000bf 00               2023		.byte	0
+                          2024	.LDW_unq_6:
+                          2025		.section	.debug_line
+000007cb 000502           2026		.byte	0,5,2
+000007ce 00000000         2027		.long	EEP_WriteDataByIdentifier
+000007d2 06               2028		.byte	6
+000007d3 03               2029		.byte	3
+000007d4 fa00             2030		.byte	250,0
+000007d6 02               2031		.byte	2
+000007d7 00               2032		.byte	0
+000007d8 01               2033		.byte	1
+000007d9 4b               2034		.byte	75
+000007da 000502           2035		.byte	0,5,2
+000007dd 00000000         2036		.long	.LDWlin13
+000007e1 0b               2037		.byte	11
+000007e2 0b               2038		.byte	11
+000007e3 000502           2039		.byte	0,5,2
+000007e6 00000000         2040		.long	.LDWlin14
+000007ea 0d               2041		.byte	13
+000007eb 02               2042		.byte	2
+000007ec 00               2043		.byte	0
+000007ed 000502           2044		.byte	0,5,2
+
+                                   Fri Apr 24 16:52:50 2020           Page 38
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000007f0 00000000         2045		.long	.LDWlin15
+000007f4 0d               2046		.byte	13
+000007f5 02               2047		.byte	2
+000007f6 00               2048		.byte	0
+000007f7 0b               2049		.byte	11
+000007f8 0c               2050		.byte	12
+000007f9 02               2051		.byte	2
+000007fa 00               2052		.byte	0
+000007fb 000502           2053		.byte	0,5,2
+000007fe 00000000         2054		.long	.LDWlin16
+00000802 0b               2055		.byte	11
+00000803 0b               2056		.byte	11
+00000804 06               2057		.byte	6
+00000805 03               2058		.byte	3
+00000806 7a               2059		.byte	122
+00000807 02               2060		.byte	2
+00000808 14               2061		.byte	20
+00000809 01               2062		.byte	1
+0000080a 06               2063		.byte	6
+0000080b 03               2064		.byte	3
+0000080c 07               2065		.byte	7
+0000080d 02               2066		.byte	2
+0000080e 00               2067		.byte	0
+0000080f 01               2068		.byte	1
+00000810 02               2069		.byte	2
+00000811 00               2070		.byte	0
+00000812 0b               2071		.byte	11
+00000813 0b               2072		.byte	11
+00000814 0b               2073		.byte	11
+00000815 3b               2074		.byte	59
+00000816 0b               2075		.byte	11
+00000817 0b               2076		.byte	11
+00000818 02               2077		.byte	2
+00000819 00               2078		.byte	0
+0000081a 0c               2079		.byte	12
+0000081b 02               2080		.byte	2
+0000081c 0c               2081		.byte	12
+0000081d 000101           2082		.byte	0,1,1
+                          2083		.section	.debug_info
+                          2084	.LDW_6106f58:
+0000077e 11               2085		.byte	17
+0000077f 7533325f64746362 2086		.strz	"u32_dtcbuffer"
+00000787 756666657200    
+0000078d 7a               2087		.byte	122
+0000078e 2a               2088		.byte	42
+0000078f 01               2089		.byte	1
+00000790 00000000         2090		.long	.LDW_4a9cbb0
+00000794 00               2091		.byte	0
+00000795 0150             2092		.byte	1,80
+                          2093	
+                          2094		.section	.debug_abbrev
+000000f6 11               2095		.byte	17
+000000f7 05               2096		.byte	5
+000000f8 00               2097		.byte	0
+000000f9 0308             2098		.byte	3,8
+000000fb 3b0f             2099		.byte	59,15
+000000fd 390f             2100		.byte	57,15
+
+                                   Fri Apr 24 16:52:50 2020           Page 39
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000000ff 3a0f             2101		.byte	58,15
+00000101 4910             2102		.byte	73,16
+00000103 4b0c             2103		.byte	75,12
+00000105 020a             2104		.byte	2,10
+00000107 0000             2105		.byte	0,0
+                          2106	
+                          2107		.section	.debug_info
+                          2108	.LDW_5d0ea10:
+00000797 11               2109		.byte	17
+00000798 4164647265737300 2110		.strz	"Address"
+000007a0 7a               2111		.byte	122
+000007a1 40               2112		.byte	64
+000007a2 01               2113		.byte	1
+000007a3 00000000         2114		.long	.LDW_6106e50
+000007a7 00               2115		.byte	0
+000007a8 016f             2116		.byte	1,111
+                          2117	
+                          2118	.LDW_5d0e200:
+000007aa 1f               2119		.byte	31
+000007ab 00000000         2120		.long	.LDW61
+000007af 00000000         2121		.long	.LDW71
+                          2122	
+000007b3 00               2123		.byte	0
+                          2124	
+000007b4 00               2125		.byte	0
+                          2126	
+                          2127	.LDW_5d0ea68:
+000007b5 16               2128		.byte	22
+000007b6 4545505f52656164 2129		.strz	"EEP_ReadDataByIdentifier"
+000007be 4461746142794964
+000007c6 656e746966696572
+000007ce 00              
+000007cf 9d01             2130		.byte	157,1
+000007d1 0a               2131		.byte	10
+000007d2 01               2132		.byte	1
+000007d3 00000000         2133		.long	.LDW_6106148
+000007d7 00000000         2134		.long	EEP_ReadDataByIdentifier
+000007db 00000000         2135		.long	__ghs_eofn_EEP_ReadDataByIdentifier
+000007df 0151             2136		.byte	1,81
+000007e1 03               2137		.byte	3
+000007e2 00               2138		.byte	0
+000007e3 00               2139		.byte	0
+000007e4 00               2140		.byte	0
+000007e5 00               2141		.byte	0
+000007e6 00               2142		.byte	0
+000007e7 00               2143		.byte	0
+000007e8 01               2144		.byte	1
+000007e9 01               2145		.byte	1
+000007ea 00               2146		.byte	0
+000007eb 01               2147		.byte	1
+                          2148	
+                          2149		.section	.debug_abbrev
+00000109 16               2150		.byte	22
+0000010a 2e               2151		.byte	46
+0000010b 01               2152		.byte	1
+0000010c 0308             2153		.byte	3,8
+0000010e 3b0f             2154		.byte	59,15
+00000110 390f             2155		.byte	57,15
+00000112 3a0f             2156		.byte	58,15
+
+                                   Fri Apr 24 16:52:50 2020           Page 40
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000114 4910             2157		.byte	73,16
+00000116 1101             2158		.byte	17,1
+00000118 1201             2159		.byte	18,1
+0000011a 400a             2160		.byte	64,10
+0000011c 8341             2161		.byte	131,65
+0000011e 0f               2162		.byte	15
+0000011f 8741             2163		.byte	135,65
+00000121 0d               2164		.byte	13
+00000122 8541             2165		.byte	133,65
+00000124 0f               2166		.byte	15
+00000125 8641             2167		.byte	134,65
+00000127 0d               2168		.byte	13
+00000128 9241             2169		.byte	146,65
+0000012a 0f               2170		.byte	15
+0000012b 3c0c             2171		.byte	60,12
+0000012d 200b             2172		.byte	32,11
+0000012f 3f0c             2173		.byte	63,12
+00000131 320b             2174		.byte	50,11
+00000133 4c0b             2175		.byte	76,11
+00000135 270c             2176		.byte	39,12
+00000137 0000             2177		.byte	0,0
+                          2178	
+                          2179		.section	.debug_frame
+                          2180	.LDW_6106588:
+000000c0 00000014         2181		.long	.LDW_unq_8-.LDW_unq_7
+                          2182	.LDW_unq_7:
+000000c4 00000000         2183		.long	.LDW_63faa50
+000000c8 00000000         2184		.long	EEP_ReadDataByIdentifier
+000000cc 00000002         2185		.long	__ghs_eofn_EEP_ReadDataByIdentifier-EEP_ReadDataByIdentifier
+000000d0 01               2186		.byte	1
+000000d1 00000000         2187		.long	.LDW12
+000000d5 00               2188		.byte	0
+000000d6 00               2189		.byte	0
+000000d7 00               2190		.byte	0
+                          2191	.LDW_unq_8:
+                          2192		.section	.debug_line
+00000820 000502           2193		.byte	0,5,2
+00000823 00000000         2194		.long	EEP_ReadDataByIdentifier
+00000827 06               2195		.byte	6
+00000828 03               2196		.byte	3
+00000829 a001             2197		.byte	160,1
+0000082b 02               2198		.byte	2
+0000082c 00               2199		.byte	0
+0000082d 01               2200		.byte	1
+0000082e 000502           2201		.byte	0,5,2
+00000831 00000000         2202		.long	__ghs_eofn_EEP_ReadDataByIdentifier
+00000835 0c               2203		.byte	12
+00000836 000101           2204		.byte	0,1,1
+                          2205		.section	.debug_info
+                          2206	.LDW_5d0eb00:
+000007ec 11               2207		.byte	17
+000007ed 7533325f41646472 2208		.strz	"u32_Addr"
+000007f5 00              
+000007f6 9d01             2209		.byte	157,1
+000007f8 2e               2210		.byte	46
+000007f9 01               2211		.byte	1
+000007fa 00000000         2212		.long	.LDW_6106148
+
+                                   Fri Apr 24 16:52:50 2020           Page 41
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000007fe 00               2213		.byte	0
+000007ff 0153             2214		.byte	1,83
+                          2215	
+                          2216	.LDW_5d0e290:
+00000801 1f               2217		.byte	31
+00000802 00000000         2218		.long	.LDW02
+00000806 00000000         2219		.long	.LDW12
+                          2220	
+                          2221	.LDW_5d0eb58:
+0000080a 07               2222		.byte	7
+0000080b 7533325f52656164 2223		.strz	"u32_ReadMode"
+00000813 4d6f646500      
+00000818 9f01             2224		.byte	159,1
+0000081a 0b               2225		.byte	11
+0000081b 01               2226		.byte	1
+0000081c 00000000         2227		.long	.LDW_6106148
+00000820 00               2228		.byte	0
+00000821 00               2229		.byte	0
+                          2230	
+00000822 00               2231		.byte	0
+                          2232	
+00000823 00               2233		.byte	0
+                          2234	
+                          2235	.LDW_5d0ebb0:
+00000824 16               2236		.byte	22
+00000825 466c6173685f4472 2237		.strz	"Flash_Drv_Erase"
+0000082d 765f457261736500
+00000835 b401             2238		.byte	180,1
+00000837 10               2239		.byte	16
+00000838 01               2240		.byte	1
+00000839 00000000         2241		.long	.LDW_4ad9148
+0000083d 00000000         2242		.long	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000841 00000000         2243		.long	__ghs_eofn_Flash_Drv_Erase
+00000845 0151             2244		.byte	1,81
+00000847 808080800c       2245		.byte	128,128,128,128,12
+0000084c c000             2246		.byte	192,0
+0000084e 00               2247		.byte	0
+0000084f c800             2248		.byte	200,0
+00000851 00               2249		.byte	0
+00000852 00               2250		.byte	0
+00000853 00               2251		.byte	0
+00000854 00               2252		.byte	0
+00000855 01               2253		.byte	1
+00000856 00               2254		.byte	0
+00000857 01               2255		.byte	1
+                          2256	
+                          2257		.section	.debug_frame
+                          2258	.LDW_6106888:
+000000d8 00000014         2259		.long	.LDW_unq_a-.LDW_unq_9
+                          2260	.LDW_unq_9:
+000000dc 00000000         2261		.long	.LDW_63faa50
+000000e0 00000000         2262		.long	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+000000e4 000000f6         2263		.long	__ghs_eofn_Flash_Drv_Erase-Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+000000e8 01               2264		.byte	1
+000000e9 00000000         2265		.long	.LDW51
+000000ed 00               2266		.byte	0
+000000ee 00               2267		.byte	0
+000000ef 00               2268		.byte	0
+
+                                   Fri Apr 24 16:52:50 2020           Page 42
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+                          2269	.LDW_unq_a:
+                          2270		.section	.debug_line
+00000839 000502           2271		.byte	0,5,2
+0000083c 00000000         2272		.long	Flash_Drv_Erase..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000840 06               2273		.byte	6
+00000841 03               2274		.byte	3
+00000842 b401             2275		.byte	180,1
+00000844 02               2276		.byte	2
+00000845 00               2277		.byte	0
+00000846 01               2278		.byte	1
+00000847 03               2279		.byte	3
+00000848 04               2280		.byte	4
+00000849 02               2281		.byte	2
+0000084a 12               2282		.byte	18
+0000084b 01               2283		.byte	1
+0000084c 03               2284		.byte	3
+0000084d 05               2285		.byte	5
+0000084e 02               2286		.byte	2
+0000084f 02               2287		.byte	2
+00000850 01               2288		.byte	1
+00000851 14               2289		.byte	20
+00000852 14               2290		.byte	20
+00000853 14               2291		.byte	20
+00000854 000502           2292		.byte	0,5,2
+00000857 00000000         2293		.long	.LDWlin6
+0000085b 0b               2294		.byte	11
+0000085c 0b               2295		.byte	11
+0000085d 000502           2296		.byte	0,5,2
+00000860 00000000         2297		.long	.LDWlin7
+00000864 0b               2298		.byte	11
+00000865 0b               2299		.byte	11
+00000866 000502           2300		.byte	0,5,2
+00000869 00000000         2301		.long	.LDWlin8
+0000086d 0b               2302		.byte	11
+0000086e 0b               2303		.byte	11
+0000086f 000502           2304		.byte	0,5,2
+00000872 00000000         2305		.long	.LDWlin9
+00000876 0b               2306		.byte	11
+00000877 0c               2307		.byte	12
+00000878 0b               2308		.byte	11
+00000879 000502           2309		.byte	0,5,2
+0000087c 00000000         2310		.long	.LDWlin10
+00000880 0b               2311		.byte	11
+00000881 0b               2312		.byte	11
+00000882 1b               2313		.byte	27
+00000883 02               2314		.byte	2
+00000884 00               2315		.byte	0
+00000885 0b               2316		.byte	11
+00000886 02               2317		.byte	2
+00000887 00               2318		.byte	0
+00000888 0d               2319		.byte	13
+00000889 000502           2320		.byte	0,5,2
+0000088c 00000000         2321		.long	.LDWlin11
+00000890 0b               2322		.byte	11
+00000891 0b               2323		.byte	11
+00000892 13               2324		.byte	19
+
+                                   Fri Apr 24 16:52:50 2020           Page 43
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000893 02               2325		.byte	2
+00000894 00               2326		.byte	0
+00000895 0d               2327		.byte	13
+00000896 000502           2328		.byte	0,5,2
+00000899 00000000         2329		.long	.LDWlin12
+0000089d 02               2330		.byte	2
+0000089e 00               2331		.byte	0
+0000089f 0c               2332		.byte	12
+000008a0 53               2333		.byte	83
+000008a1 0c               2334		.byte	12
+000008a2 02               2335		.byte	2
+000008a3 00               2336		.byte	0
+000008a4 0c               2337		.byte	12
+000008a5 02               2338		.byte	2
+000008a6 14               2339		.byte	20
+000008a7 000101           2340		.byte	0,1,1
+                          2341		.section	.debug_info
+                          2342	.LDW_4ad9618:
+00000858 11               2343		.byte	17
+00000859 75385f426c6f636b 2344		.strz	"u8_Block"
+00000861 00              
+00000862 b401             2345		.byte	180,1
+00000864 2a               2346		.byte	42
+00000865 01               2347		.byte	1
+00000866 00000000         2348		.long	.LDW_4ad9148
+0000086a 00               2349		.byte	0
+0000086b 0153             2350		.byte	1,83
+                          2351	
+                          2352	.LDW_4ad91f8:
+0000086d 11               2353		.byte	17
+0000086e 75385f466c617368 2354		.strz	"u8_FlashSpace"
+00000876 537061636500    
+0000087c b401             2355		.byte	180,1
+0000087e 3c               2356		.byte	60
+0000087f 01               2357		.byte	1
+00000880 00000000         2358		.long	.LDW_4ad9148
+00000884 00               2359		.byte	0
+00000885 0154             2360		.byte	1,84
+                          2361	
+                          2362	.LDW_5d0e710:
+00000887 1f               2363		.byte	31
+00000888 00000000         2364		.long	.LDW41
+0000088c 00000000         2365		.long	.LDW51
+                          2366	
+                          2367	.LDW_4ad95c0:
+00000890 06               2368		.byte	6
+00000891 7533325f4c6f7742 2369		.strz	"u32_LowBlockSelect"
+00000899 6c6f636b53656c65
+000008a1 637400          
+000008a4 b601             2370		.byte	182,1
+000008a6 09               2371		.byte	9
+000008a7 01               2372		.byte	1
+000008a8 00000000         2373		.long	.LDW_6106e50
+000008ac 00               2374		.byte	0
+000008ad 00               2375		.byte	0
+000008ae 0155             2376		.byte	1,85
+                          2377	
+                          2378	.LDW_4ad9460:
+000008b0 07               2379		.byte	7
+000008b1 7533325f4d696442 2380		.strz	"u32_MidBlockSelect"
+000008b9 6c6f636b53656c65
+000008c1 637400          
+
+                                   Fri Apr 24 16:52:50 2020           Page 44
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000008c4 b701             2381		.byte	183,1
+000008c6 09               2382		.byte	9
+000008c7 01               2383		.byte	1
+000008c8 00000000         2384		.long	.LDW_6106e50
+000008cc 00               2385		.byte	0
+000008cd 00               2386		.byte	0
+                          2387	
+                          2388	.LDW_4ad9098:
+000008ce 06               2389		.byte	6
+000008cf 7533325f48696768 2390		.strz	"u32_HighBlockSelect"
+000008d7 426c6f636b53656c
+000008df 65637400        
+000008e3 b801             2391		.byte	184,1
+000008e5 09               2392		.byte	9
+000008e6 01               2393		.byte	1
+000008e7 00000000         2394		.long	.LDW_6106e50
+000008eb 00               2395		.byte	0
+000008ec 00               2396		.byte	0
+000008ed 0157             2397		.byte	1,87
+                          2398	
+                          2399	.LDW_4ad94b8:
+000008ef 06               2400		.byte	6
+000008f0 75385f52657400   2401		.strz	"u8_Ret"
+000008f7 b901             2402		.byte	185,1
+000008f9 0a               2403		.byte	10
+000008fa 01               2404		.byte	1
+000008fb 00000000         2405		.long	.LDW_4ad9148
+000008ff 00               2406		.byte	0
+00000900 00               2407		.byte	0
+00000901 016f             2408		.byte	1,111
+                          2409	
+                          2410	.LDW_4ad91a0:
+00000903 06               2411		.byte	6
+00000904 7533325f43686b53 2412		.strz	"u32_ChkSts"
+0000090c 747300          
+0000090f ba01             2413		.byte	186,1
+00000911 09               2414		.byte	9
+00000912 01               2415		.byte	1
+00000913 00000000         2416		.long	.LDW_6106e50
+00000917 00               2417		.byte	0
+00000918 00               2418		.byte	0
+00000919 0271             2419		.byte	2,113
+0000091b 08               2420		.byte	8
+                          2421	
+                          2422	.LDW_4ad9510:
+0000091c 06               2423		.byte	6
+0000091d 73745f4c61726765 2424		.strz	"st_LargeBlockSelect"
+00000925 426c6f636b53656c
+0000092d 65637400        
+00000931 bb01             2425		.byte	187,1
+00000933 13               2426		.byte	19
+00000934 01               2427		.byte	1
+00000935 00000000         2428		.long	.LDW_4ad8fe8
+00000939 00               2429		.byte	0
+0000093a 00               2430		.byte	0
+0000093b 0271             2431		.byte	2,113
+0000093d 0c               2432		.byte	12
+                          2433	
+                          2434	.LDW_4ad9358:
+0000093e 06               2435		.byte	6
+0000093f 73745f44756d6d79 2436		.strz	"st_DummyCtxData"
+00000947 4374784461746100
+
+                                   Fri Apr 24 16:52:50 2020           Page 45
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000094f bc01             2437		.byte	188,1
+00000951 0f               2438		.byte	15
+00000952 01               2439		.byte	1
+00000953 00000000         2440		.long	.LDW_4ad9300
+00000957 00               2441		.byte	0
+00000958 00               2442		.byte	0
+00000959 0271             2443		.byte	2,113
+0000095b 1c               2444		.byte	28
+                          2445	
+0000095c 00               2446		.byte	0
+                          2447	
+0000095d 00               2448		.byte	0
+                          2449	
+                          2450	.LDW_5d0ec48:
+0000095e 16               2451		.byte	22
+0000095f 466c6173685f4472 2452		.strz	"Flash_Drv_Program"
+00000967 765f50726f677261
+0000096f 6d00            
+00000971 ec01             2453		.byte	236,1
+00000973 10               2454		.byte	16
+00000974 01               2455		.byte	1
+00000975 00000000         2456		.long	.LDW_4ad9148
+00000979 00000000         2457		.long	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+0000097d 00000000         2458		.long	__ghs_eofn_Flash_Drv_Program
+00000981 0151             2459		.byte	1,81
+00000983 808080800c       2460		.byte	128,128,128,128,12
+00000988 30               2461		.byte	48
+00000989 00               2462		.byte	0
+0000098a 38               2463		.byte	56
+0000098b 00               2464		.byte	0
+0000098c 00               2465		.byte	0
+0000098d 00               2466		.byte	0
+0000098e 00               2467		.byte	0
+0000098f 01               2468		.byte	1
+00000990 00               2469		.byte	0
+00000991 01               2470		.byte	1
+                          2471	
+                          2472		.section	.debug_frame
+                          2473	.LDW_6106508:
+000000f0 00000014         2474		.long	.LDW_unq_c-.LDW_unq_b
+                          2475	.LDW_unq_b:
+000000f4 00000000         2476		.long	.LDW_63faa50
+000000f8 00000000         2477		.long	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+000000fc 0000005e         2478		.long	__ghs_eofn_Flash_Drv_Program-Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000100 01               2479		.byte	1
+00000101 00000000         2480		.long	.LDW31
+00000105 00               2481		.byte	0
+00000106 00               2482		.byte	0
+00000107 00               2483		.byte	0
+                          2484	.LDW_unq_c:
+                          2485		.section	.debug_line
+000008aa 000502           2486		.byte	0,5,2
+000008ad 00000000         2487		.long	Flash_Drv_Program..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+000008b1 06               2488		.byte	6
+000008b2 03               2489		.byte	3
+000008b3 ec01             2490		.byte	236,1
+000008b5 02               2491		.byte	2
+000008b6 00               2492		.byte	0
+
+                                   Fri Apr 24 16:52:50 2020           Page 46
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000008b7 01               2493		.byte	1
+000008b8 03               2494		.byte	3
+000008b9 08               2495		.byte	8
+000008ba 02               2496		.byte	2
+000008bb 10               2497		.byte	16
+000008bc 01               2498		.byte	1
+000008bd 000502           2499		.byte	0,5,2
+000008c0 00000000         2500		.long	.LDWlin3
+000008c4 0b               2501		.byte	11
+000008c5 0c               2502		.byte	12
+000008c6 000502           2503		.byte	0,5,2
+000008c9 00000000         2504		.long	.LDWlin4
+000008cd 02               2505		.byte	2
+000008ce 00               2506		.byte	0
+000008cf 0c               2507		.byte	12
+000008d0 06               2508		.byte	6
+000008d1 000502           2509		.byte	0,5,2
+000008d4 00000000         2510		.long	.LDWlin5
+000008d8 02               2511		.byte	2
+000008d9 00               2512		.byte	0
+000008da 06               2513		.byte	6
+000008db 02               2514		.byte	2
+000008dc 00               2515		.byte	0
+000008dd 02               2516		.byte	2
+000008de 00               2517		.byte	0
+000008df 0b               2518		.byte	11
+000008e0 0c               2519		.byte	12
+000008e1 0b               2520		.byte	11
+000008e2 13               2521		.byte	19
+000008e3 02               2522		.byte	2
+000008e4 00               2523		.byte	0
+000008e5 03               2524		.byte	3
+000008e6 04               2525		.byte	4
+000008e7 02               2526		.byte	2
+000008e8 00               2527		.byte	0
+000008e9 01               2528		.byte	1
+000008ea 06               2529		.byte	6
+000008eb 02               2530		.byte	2
+000008ec 02               2531		.byte	2
+000008ed 02               2532		.byte	2
+000008ee 0e               2533		.byte	14
+000008ef 000101           2534		.byte	0,1,1
+                          2535		.section	.debug_info
+                          2536	.LDW_4ad93b0:
+00000992 11               2537		.byte	17
+00000993 7533325f41646472 2538		.strz	"u32_Addr"
+0000099b 00              
+0000099c ec01             2539		.byte	236,1
+0000099e 2b               2540		.byte	43
+0000099f 01               2541		.byte	1
+000009a0 00000000         2542		.long	.LDW_6106e50
+000009a4 00               2543		.byte	0
+000009a5 0153             2544		.byte	1,83
+                          2545	
+                          2546	.LDW_4ad9720:
+000009a7 11               2547		.byte	17
+000009a8 753332705f427566 2548		.strz	"u32p_Buffer"
+000009b0 66657200        
+
+                                   Fri Apr 24 16:52:50 2020           Page 47
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000009b4 ec01             2549		.byte	236,1
+000009b6 3d               2550		.byte	61
+000009b7 01               2551		.byte	1
+000009b8 00000000         2552		.long	.LDW_4a9cbb0
+000009bc 00               2553		.byte	0
+000009bd 0157             2554		.byte	1,87
+                          2555	
+                          2556	.LDW_4ad9408:
+000009bf 11               2557		.byte	17
+000009c0 7533325f4c656e00 2558		.strz	"u32_Len"
+000009c8 ec01             2559		.byte	236,1
+000009ca 51               2560		.byte	81
+000009cb 01               2561		.byte	1
+000009cc 00000000         2562		.long	.LDW_6106e50
+000009d0 00               2563		.byte	0
+000009d1 0156             2564		.byte	1,86
+                          2565	
+                          2566	.LDW_5d0e650:
+000009d3 1f               2567		.byte	31
+000009d4 00000000         2568		.long	.LDW21
+000009d8 00000000         2569		.long	.LDW31
+                          2570	
+                          2571	.LDW_4ad9568:
+000009dc 06               2572		.byte	6
+000009dd 75385f52657400   2573		.strz	"u8_Ret"
+000009e4 ee01             2574		.byte	238,1
+000009e6 0b               2575		.byte	11
+000009e7 01               2576		.byte	1
+000009e8 00000000         2577		.long	.LDW_4ad9148
+000009ec 00               2578		.byte	0
+000009ed 00               2579		.byte	0
+000009ee 016f             2580		.byte	1,111
+                          2581	
+                          2582	.LDW_4ad9670:
+000009f0 07               2583		.byte	7
+000009f1 7533325f42756666 2584		.strz	"u32_BufferPointer"
+000009f9 6572506f696e7465
+00000a01 7200            
+00000a03 ef01             2585		.byte	239,1
+00000a05 0a               2586		.byte	10
+00000a06 01               2587		.byte	1
+00000a07 00000000         2588		.long	.LDW_6106e50
+00000a0b 00               2589		.byte	0
+00000a0c 00               2590		.byte	0
+                          2591	
+                          2592	.LDW_4ad96c8:
+00000a0d 06               2593		.byte	6
+00000a0e 7533325f43686b53 2594		.strz	"u32_ChkSts"
+00000a16 747300          
+00000a19 f001             2595		.byte	240,1
+00000a1b 0a               2596		.byte	10
+00000a1c 01               2597		.byte	1
+00000a1d 00000000         2598		.long	.LDW_6106e50
+00000a21 00               2599		.byte	0
+00000a22 00               2600		.byte	0
+00000a23 0271             2601		.byte	2,113
+00000a25 08               2602		.byte	8
+                          2603	
+                          2604	.LDW_4ad9040:
+
+                                   Fri Apr 24 16:52:50 2020           Page 48
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000a26 06               2605		.byte	6
+00000a27 73745f50676d4374 2606		.strz	"st_PgmCtxData"
+00000a2f 784461746100    
+00000a35 f101             2607		.byte	241,1
+00000a37 10               2608		.byte	16
+00000a38 01               2609		.byte	1
+00000a39 00000000         2610		.long	.LDW_4ad9300
+00000a3d 00               2611		.byte	0
+00000a3e 00               2612		.byte	0
+00000a3f 0271             2613		.byte	2,113
+00000a41 0c               2614		.byte	12
+                          2615	
+00000a42 00               2616		.byte	0
+                          2617	
+00000a43 00               2618		.byte	0
+                          2619	
+                          2620	.LDW_5d0ece0:
+00000a44 16               2621		.byte	22
+00000a45 4d656d6f72794765 2622		.strz	"MemoryGetuint32_t"
+00000a4d 7475696e7433325f
+00000a55 7400            
+00000a57 8d02             2623		.byte	141,2
+00000a59 11               2624		.byte	17
+00000a5a 01               2625		.byte	1
+00000a5b 00000000         2626		.long	.LDW_6106148
+00000a5f 00000000         2627		.long	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000a63 00000000         2628		.long	__ghs_eofn_MemoryGetuint32_t
+00000a67 0151             2629		.byte	1,81
+00000a69 03               2630		.byte	3
+00000a6a 00               2631		.byte	0
+00000a6b 00               2632		.byte	0
+00000a6c 00               2633		.byte	0
+00000a6d 00               2634		.byte	0
+00000a6e 00               2635		.byte	0
+00000a6f 00               2636		.byte	0
+00000a70 00               2637		.byte	0
+00000a71 01               2638		.byte	1
+00000a72 00               2639		.byte	0
+00000a73 01               2640		.byte	1
+                          2641	
+                          2642		.section	.debug_frame
+                          2643	.LDW_6106788:
+00000108 00000014         2644		.long	.LDW_unq_e-.LDW_unq_d
+                          2645	.LDW_unq_d:
+0000010c 00000000         2646		.long	.LDW_63faa50
+00000110 00000000         2647		.long	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000114 00000004         2648		.long	__ghs_eofn_MemoryGetuint32_t-MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+00000118 01               2649		.byte	1
+00000119 00000000         2650		.long	.LDW91
+0000011d 00               2651		.byte	0
+0000011e 00               2652		.byte	0
+0000011f 00               2653		.byte	0
+                          2654	.LDW_unq_e:
+                          2655		.section	.debug_line
+000008f2 000502           2656		.byte	0,5,2
+000008f5 00000000         2657		.long	MemoryGetuint32_t..D.3A.5C07_Working.5CE100.5Cbuild.5Cobj.5CGpFunc.
+000008f9 06               2658		.byte	6
+000008fa 03               2659		.byte	3
+000008fb 9202             2660		.byte	146,2
+
+                                   Fri Apr 24 16:52:50 2020           Page 49
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000008fd 02               2661		.byte	2
+000008fe 00               2662		.byte	0
+000008ff 01               2663		.byte	1
+00000900 06               2664		.byte	6
+00000901 02               2665		.byte	2
+00000902 02               2666		.byte	2
+00000903 02               2667		.byte	2
+00000904 02               2668		.byte	2
+00000905 000101           2669		.byte	0,1,1
+                          2670		.section	.debug_info
+                          2671	.LDW_4ad90f0:
+00000a74 11               2672		.byte	17
+00000a75 7533325f41646472 2673		.strz	"u32_Addr"
+00000a7d 00              
+00000a7e 8d02             2674		.byte	141,2
+00000a80 2e               2675		.byte	46
+00000a81 01               2676		.byte	1
+00000a82 00000000         2677		.long	.LDW_6106148
+00000a86 00               2678		.byte	0
+00000a87 0153             2679		.byte	1,83
+                          2680	
+                          2681	.LDW_5d0e350:
+00000a89 1f               2682		.byte	31
+00000a8a 00000000         2683		.long	.LDW81
+00000a8e 00000000         2684		.long	.LDW91
+                          2685	
+                          2686	.LDW_4adb108:
+00000a92 07               2687		.byte	7
+00000a93 7533325f4d656d44 2688		.strz	"u32_MemData"
+00000a9b 61746100        
+00000a9f 8f02             2689		.byte	143,2
+00000aa1 0b               2690		.byte	11
+00000aa2 01               2691		.byte	1
+00000aa3 00000000         2692		.long	.LDW_6106148
+00000aa7 00               2693		.byte	0
+00000aa8 00               2694		.byte	0
+                          2695	
+00000aa9 00               2696		.byte	0
+                          2697	
+00000aaa 00               2698		.byte	0
+                          2699	
+00000aab 00               2700		.byte	0
+                          2701	
+                          2702		.section	.debug_line
+                          2703	.Ldw_line_end:
+                          2704		.section	.debug_macinfo
+00000000 01               2705		.byte	1
+00000001 00               2706		.byte	0
+00000002 5f5f6768735f5f20 2707		.strz	"__ghs__ 1"
+0000000a 3100            
+0000000c 01               2708		.byte	1
+0000000d 00               2709		.byte	0
+0000000e 5f5f535444435f5f 2710		.strz	"__STDC__ 1"
+00000016 203100          
+00000019 01               2711		.byte	1
+0000001a 00               2712		.byte	0
+0000001b 5f5f535444435f56 2713		.strz	"__STDC_VERSION__ 199901L"
+00000023 455253494f4e5f5f
+0000002b 203139393930314c
+00000033 00              
+00000034 01               2714		.byte	1
+00000035 00               2715		.byte	0
+00000036 5f5f415454524942 2716		.strz	"__ATTRIBUTES 1"
+0000003e 55544553203100  
+
+                                   Fri Apr 24 16:52:50 2020           Page 50
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000045 01               2717		.byte	1
+00000046 00               2718		.byte	0
+00000047 5f5f4544475f5f20 2719		.strz	"__EDG__ 1"
+0000004f 3100            
+00000051 01               2720		.byte	1
+00000052 00               2721		.byte	0
+00000053 5f5f536f66747761 2722		.strz	"__SoftwareDouble__ 1"
+0000005b 7265446f75626c65
+00000063 5f5f203100      
+00000068 01               2723		.byte	1
+00000069 00               2724		.byte	0
+0000006a 5f5f707063203100 2725		.strz	"__ppc 1"
+00000072 01               2726		.byte	1
+00000073 00               2727		.byte	0
+00000074 5f5f6768735f6d61 2728		.strz	"__ghs_max_pack_value 16"
+0000007c 785f7061636b5f76
+00000084 616c756520313600
+0000008c 01               2729		.byte	1
+0000008d 00               2730		.byte	0
+0000008e 5f5f57434841525f 2731		.strz	"__WCHAR_TYPE__ long"
+00000096 545950455f5f206c
+0000009e 6f6e6700        
+000000a2 01               2732		.byte	1
+000000a3 00               2733		.byte	0
+000000a4 5f5f434841525f42 2734		.strz	"__CHAR_BIT 8"
+000000ac 4954203800      
+000000b1 01               2735		.byte	1
+000000b2 00               2736		.byte	0
+000000b3 5f5f534852545f42 2737		.strz	"__SHRT_BIT 16"
+000000bb 495420313600    
+000000c1 01               2738		.byte	1
+000000c2 00               2739		.byte	0
+000000c3 5f5f494e545f4249 2740		.strz	"__INT_BIT 32"
+000000cb 5420333200      
+000000d0 01               2741		.byte	1
+000000d1 00               2742		.byte	0
+000000d2 5f5f4c4f4e475f42 2743		.strz	"__LONG_BIT 32"
+000000da 495420333200    
+000000e0 01               2744		.byte	1
+000000e1 00               2745		.byte	0
+000000e2 5f5f57434841525f 2746		.strz	"__WCHAR_BIT 32"
+000000ea 42495420333200  
+000000f1 01               2747		.byte	1
+000000f2 00               2748		.byte	0
+000000f3 5f5f5054525f4249 2749		.strz	"__PTR_BIT 32"
+000000fb 5420333200      
+00000100 01               2750		.byte	1
+00000101 00               2751		.byte	0
+00000102 5f5f4c4c4f4e475f 2752		.strz	"__LLONG_BIT 64"
+0000010a 42495420363400  
+00000111 01               2753		.byte	1
+00000112 00               2754		.byte	0
+00000113 5f5f5245475f4249 2755		.strz	"__REG_BIT 32"
+0000011b 5420333200      
+00000120 03               2756		.byte	3
+00000121 00               2757		.byte	0
+00000122 01               2758		.byte	1
+00000123 01               2759		.byte	1
+00000124 1c               2760		.byte	28
+00000125 475046554e435f43 2761		.strz	"GPFUNC_C_SRC "
+0000012d 5f5352432000    
+00000133 03               2762		.byte	3
+00000134 23               2763		.byte	35
+00000135 02               2764		.byte	2
+00000136 03               2765		.byte	3
+00000137 24               2766		.byte	36
+00000138 03               2767		.byte	3
+00000139 03               2768		.byte	3
+0000013a 24               2769		.byte	36
+0000013b 04               2770		.byte	4
+0000013c 03               2771		.byte	3
+0000013d 16               2772		.byte	22
+
+                                   Fri Apr 24 16:52:50 2020           Page 51
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000013e 05               2773		.byte	5
+0000013f 01               2774		.byte	1
+00000140 1f               2775		.byte	31
+00000141 5f53504335373053 2776		.strz	"_SPC570Sxx_ "
+00000149 78785f2000      
+0000014e 04               2777		.byte	4
+0000014f 03               2778		.byte	3
+00000150 17               2779		.byte	23
+00000151 06               2780		.byte	6
+00000152 04               2781		.byte	4
+00000153 03               2782		.byte	3
+00000154 18               2783		.byte	24
+00000155 07               2784		.byte	7
+00000156 04               2785		.byte	4
+00000157 03               2786		.byte	3
+00000158 1a               2787		.byte	26
+00000159 08               2788		.byte	8
+0000015a 03               2789		.byte	3
+0000015b 15               2790		.byte	21
+0000015c 09               2791		.byte	9
+0000015d 01               2792		.byte	1
+0000015e 9901             2793		.byte	153,1
+00000160 5f5f5f4641535433 2794		.strz	"___FAST32 int"
+00000168 3220696e7400    
+0000016e 01               2795		.byte	1
+0000016f 9a01             2796		.byte	154,1
+00000171 5f5f5f4641535433 2797		.strz	"___FAST32_BIT __REG_BIT"
+00000179 325f424954205f5f
+00000181 5245475f42495400
+00000189 01               2798		.byte	1
+0000018a 8502             2799		.byte	133,2
+0000018c 5f5f5f494c343842 2800		.strz	"___IL48BIT __LLONG_BIT"
+00000194 4954205f5f4c4c4f
+0000019c 4e475f42495400  
+000001a3 01               2801		.byte	1
+000001a4 a502             2802		.byte	165,2
+000001a6 5f5f5f494c363442 2803		.strz	"___IL64BIT __LLONG_BIT"
+000001ae 4954205f5f4c4c4f
+000001b6 4e475f42495400  
+000001bd 01               2804		.byte	1
+000001be 9003             2805		.byte	144,3
+000001c0 5f5f5f494d424954 2806		.strz	"___IMBIT __LLONG_BIT"
+000001c8 205f5f4c4c4f4e47
+000001d0 5f42495400      
+000001d5 04               2807		.byte	4
+000001d6 03               2808		.byte	3
+000001d7 16               2809		.byte	22
+000001d8 0a               2810		.byte	10
+000001d9 01               2811		.byte	1
+000001da 11               2812		.byte	17
+000001db 5f5354444445465f 2813		.strz	"_STDDEF_H "
+000001e3 482000          
+000001e6 03               2814		.byte	3
+000001e7 13               2815		.byte	19
+000001e8 0b               2816		.byte	11
+000001e9 01               2817		.byte	1
+000001ea 24               2818		.byte	36
+000001eb 4e554c4c20282876 2819		.strz	"NULL ((void *)0)"
+000001f3 6f6964202a293029
+000001fb 00              
+000001fc 01               2820		.byte	1
+000001fd 2e               2821		.byte	46
+000001fe 5f53495a455f5420 2822		.strz	"_SIZE_T "
+00000206 00              
+00000207 01               2823		.byte	1
+00000208 2f               2824		.byte	47
+00000209 5f53495a455f545f 2825		.strz	"_SIZE_T_DEFINED "
+00000211 444546494e454420
+00000219 00              
+0000021a 04               2826		.byte	4
+0000021b 03               2827		.byte	3
+0000021c 14               2828		.byte	20
+
+                                   Fri Apr 24 16:52:50 2020           Page 52
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000021d 0c               2829		.byte	12
+0000021e 01               2830		.byte	1
+0000021f 38               2831		.byte	56
+00000220 5f57434841525f54 2832		.strz	"_WCHAR_T "
+00000228 2000            
+0000022a 01               2833		.byte	1
+0000022b 39               2834		.byte	57
+0000022c 5f57434841525f54 2835		.strz	"_WCHAR_T_DEFINED "
+00000234 5f444546494e4544
+0000023c 2000            
+0000023e 04               2836		.byte	4
+0000023f 04               2837		.byte	4
+00000240 03               2838		.byte	3
+00000241 17               2839		.byte	23
+00000242 0d               2840		.byte	13
+00000243 04               2841		.byte	4
+00000244 04               2842		.byte	4
+00000245 03               2843		.byte	3
+00000246 1b               2844		.byte	27
+00000247 0e               2845		.byte	14
+00000248 03               2846		.byte	3
+00000249 16               2847		.byte	22
+0000024a 0f               2848		.byte	15
+0000024b 01               2849		.byte	1
+0000024c 11               2850		.byte	17
+0000024d 5f5f52454756414c 2851		.strz	"__REGVAL unsigned int"
+00000255 20756e7369676e65
+0000025d 6420696e7400    
+00000263 01               2852		.byte	1
+00000264 15               2853		.byte	21
+00000265 5f5f415454524942 2854		.strz	"__ATTRIBUTE(x) __attribute__(x)"
+0000026d 555445287829205f
+00000275 5f61747472696275
+0000027d 74655f5f28782900
+00000285 04               2855		.byte	4
+00000286 04               2856		.byte	4
+00000287 03               2857		.byte	3
+00000288 1c               2858		.byte	28
+00000289 10               2859		.byte	16
+0000028a 01               2860		.byte	1
+0000028b b301             2861		.byte	179,1
+0000028d 535043355f534955 2862		.strz	"SPC5_SIUL_EIRQ_HAS_0_HANDLER TRUE"
+00000295 4c5f454952515f48
+0000029d 41535f305f48414e
+000002a5 444c455220545255
+000002ad 4500            
+000002af 01               2863		.byte	1
+000002b0 b401             2864		.byte	180,1
+000002b2 535043355f534955 2865		.strz	"SPC5_SIUL_EIRQ_HAS_1_HANDLER TRUE"
+000002ba 4c5f454952515f48
+000002c2 41535f315f48414e
+000002ca 444c455220545255
+000002d2 4500            
+000002d4 01               2866		.byte	1
+000002d5 b501             2867		.byte	181,1
+000002d7 535043355f534955 2868		.strz	"SPC5_SIUL_EIRQ_HAS_2_HANDLER TRUE"
+000002df 4c5f454952515f48
+000002e7 41535f325f48414e
+000002ef 444c455220545255
+000002f7 4500            
+000002f9 01               2869		.byte	1
+000002fa b601             2870		.byte	182,1
+000002fc 535043355f534955 2871		.strz	"SPC5_SIUL_EIRQ_HAS_3_5_HANDLER TRUE"
+00000304 4c5f454952515f48
+0000030c 41535f335f355f48
+00000314 414e444c45522054
+0000031c 52554500        
+00000320 01               2872		.byte	1
+00000321 b701             2873		.byte	183,1
+00000323 535043355f534955 2874		.strz	"SPC5_SIUL_EIRQ_0_HANDLER vector243"
+0000032b 4c5f454952515f30
+00000333 5f48414e444c4552
+0000033b 20766563746f7232
+00000343 343300          
+00000346 01               2875		.byte	1
+00000347 b801             2876		.byte	184,1
+00000349 535043355f534955 2877		.strz	"SPC5_SIUL_EIRQ_1_HANDLER vector244"
+00000351 4c5f454952515f31
+00000359 5f48414e444c4552
+00000361 20766563746f7232
+00000369 343400          
+0000036c 01               2878		.byte	1
+0000036d b901             2879		.byte	185,1
+0000036f 535043355f534955 2880		.strz	"SPC5_SIUL_EIRQ_2_HANDLER vector245"
+00000377 4c5f454952515f32
+0000037f 5f48414e444c4552
+00000387 20766563746f7232
+0000038f 343500          
+00000392 01               2881		.byte	1
+00000393 ba01             2882		.byte	186,1
+00000395 535043355f534955 2883		.strz	"SPC5_SIUL_EIRQ_3_5_HANDLER vector246"
+0000039d 4c5f454952515f33
+000003a5 5f355f48414e444c
+000003ad 455220766563746f
+000003b5 7232343600      
+000003ba 04               2884		.byte	4
+
+                                   Fri Apr 24 16:52:50 2020           Page 53
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000003bb 03               2885		.byte	3
+000003bc 1d               2886		.byte	29
+000003bd 11               2887		.byte	17
+000003be 04               2888		.byte	4
+000003bf 04               2889		.byte	4
+000003c0 03               2890		.byte	3
+000003c1 25               2891		.byte	37
+000003c2 12               2892		.byte	18
+000003c3 03               2893		.byte	3
+000003c4 11               2894		.byte	17
+000003c5 13               2895		.byte	19
+000003c6 03               2896		.byte	3
+000003c7 19               2897		.byte	25
+000003c8 14               2898		.byte	20
+000003c9 03               2899		.byte	3
+000003ca 1a               2900		.byte	26
+000003cb 15               2901		.byte	21
+000003cc 03               2902		.byte	3
+000003cd 18               2903		.byte	24
+000003ce 16               2904		.byte	22
+000003cf 01               2905		.byte	1
+000003d0 22               2906		.byte	34
+000003d1 564543544f52535f 2907		.strz	"VECTORS_NUMBER 1024"
+000003d9 4e554d4245522031
+000003e1 30323400        
+000003e5 04               2908		.byte	4
+000003e6 03               2909		.byte	3
+000003e7 19               2910		.byte	25
+000003e8 17               2911		.byte	23
+000003e9 01               2912		.byte	1
+000003ea 21               2913		.byte	33
+000003eb 46414c5345203055 2914		.strz	"FALSE 0U"
+000003f3 00              
+000003f4 01               2915		.byte	1
+000003f5 25               2916		.byte	37
+000003f6 5452554520315500 2917		.strz	"TRUE 1U"
+000003fe 04               2918		.byte	4
+000003ff 01               2919		.byte	1
+00000400 36               2920		.byte	54
+00000401 4952515f48414e44 2921		.strz	"IRQ_HANDLER(id) void id(void)"
+00000409 4c45522869642920
+00000411 766f696420696428
+00000419 766f69642900    
+0000041f 04               2922		.byte	4
+00000420 03               2923		.byte	3
+00000421 1b               2924		.byte	27
+00000422 18               2925		.byte	24
+00000423 01               2926		.byte	1
+00000424 14               2927		.byte	20
+00000425 535043355f584f53 2928		.strz	"SPC5_XOSC_DISABLED FALSE"
+0000042d 435f44495341424c
+00000435 45442046414c5345
+0000043d 00              
+0000043e 01               2929		.byte	1
+0000043f 15               2930		.byte	21
+00000440 535043355f584f53 2931		.strz	"SPC5_XOSC_CLK 40000000U"
+00000448 435f434c4b203430
+00000450 3030303030305500
+00000458 01               2932		.byte	1
+00000459 17               2933		.byte	23
+0000045a 535043355f4e4f5f 2934		.strz	"SPC5_NO_INIT FALSE"
+00000462 494e49542046414c
+0000046a 534500          
+0000046d 01               2935		.byte	1
+0000046e 18               2936		.byte	24
+0000046f 535043355f414c4c 2937		.strz	"SPC5_ALLOW_OVERCLOCK FALSE"
+00000477 4f575f4f56455243
+0000047f 4c4f434b2046414c
+00000487 534500          
+0000048a 01               2938		.byte	1
+0000048b 19               2939		.byte	25
+0000048c 535043355f454e41 2940		.strz	"SPC5_ENABLE_CLOCKOUT FALSE"
+00000494 424c455f434c4f43
+0000049c 4b4f55542046414c
+000004a4 534500          
+
+                                   Fri Apr 24 16:52:50 2020           Page 54
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000004a7 01               2941		.byte	1
+000004a8 1a               2942		.byte	26
+000004a9 535043355f444953 2943		.strz	"SPC5_DISABLE_WATCHDOG TRUE"
+000004b1 41424c455f574154
+000004b9 4348444f47205452
+000004c1 554500          
+000004c4 01               2944		.byte	1
+000004c5 1c               2945		.byte	28
+000004c6 535043355f434c4f 2946		.strz	"SPC5_CLOCK_FAILURE_HOOK() irqSysHalt()"
+000004ce 434b5f4641494c55
+000004d6 52455f484f4f4b28
+000004de 2920697271537973
+000004e6 48616c74282900  
+000004ed 01               2947		.byte	1
+000004ee 1d               2948		.byte	29
+000004ef 535043355f504c4c 2949		.strz	"SPC5_PLL0_PREDIV_VALUE 2U"
+000004f7 305f505245444956
+000004ff 5f56414c55452032
+00000507 5500            
+00000509 01               2950		.byte	1
+0000050a 1e               2951		.byte	30
+0000050b 535043355f504c4c 2952		.strz	"SPC5_PLL0_MFD_VALUE 20U"
+00000513 305f4d46445f5641
+0000051b 4c55452032305500
+00000523 01               2953		.byte	1
+00000524 1f               2954		.byte	31
+00000525 535043355f504c4c 2955		.strz	"SPC5_PLL0_RFDPHI_VALUE 5U"
+0000052d 305f524644504849
+00000535 5f56414c55452035
+0000053d 5500            
+0000053f 01               2956		.byte	1
+00000540 20               2957		.byte	32
+00000541 535043355f504c4c 2958		.strz	"SPC5_PLL0_RFDPHI1_VALUE 15U"
+00000549 305f524644504849
+00000551 315f56414c554520
+00000559 31355500        
+0000055d 01               2959		.byte	1
+0000055e 21               2960		.byte	33
+0000055f 535043355f504c4c 2961		.strz	"SPC5_PLL1_MFD_VALUE 20U"
+00000567 315f4d46445f5641
+0000056f 4c55452032305500
+00000577 01               2962		.byte	1
+00000578 22               2963		.byte	34
+00000579 535043355f504c4c 2964		.strz	"SPC5_PLL1_RFDPHI_VALUE 5U"
+00000581 315f524644504849
+00000589 5f56414c55452035
+00000591 5500            
+00000593 01               2965		.byte	1
+00000594 23               2966		.byte	35
+00000595 535043355f43474d 2967		.strz	"SPC5_CGM_SC_DC0_DIV_VALUE 1U"
+0000059d 5f53435f4443305f
+000005a5 4449565f56414c55
+000005ad 4520315500      
+000005b2 01               2968		.byte	1
+000005b3 24               2969		.byte	36
+000005b4 535043355f43474d 2970		.strz	"SPC5_CGM_SC_DC1_DIV_VALUE 2U"
+000005bc 5f53435f4443315f
+000005c4 4449565f56414c55
+000005cc 4520325500      
+000005d1 01               2971		.byte	1
+000005d2 25               2972		.byte	37
+000005d3 535043355f43474d 2973		.strz	"SPC5_CGM_SC_DC2_DIV_VALUE 4U"
+000005db 5f53435f4443325f
+000005e3 4449565f56414c55
+000005eb 4520345500      
+000005f0 01               2974		.byte	1
+000005f1 26               2975		.byte	38
+000005f2 535043355f43474d 2976		.strz	"SPC5_CGM_AC0_SC_BITS SPC5_CGM_SC_PLL0PHI"
+000005fa 5f4143305f53435f
+00000602 4249545320535043
+0000060a 355f43474d5f5343
+00000612 5f504c4c30504849
+0000061a 00              
+0000061b 01               2977		.byte	1
+0000061c 27               2978		.byte	39
+0000061d 535043355f43474d 2979		.strz	"SPC5_CGM_AC0_DC0_DIV_VALUE 5U"
+00000625 5f4143305f444330
+0000062d 5f4449565f56414c
+00000635 554520355500    
+0000063b 01               2980		.byte	1
+0000063c 28               2981		.byte	40
+0000063d 535043355f43474d 2982		.strz	"SPC5_CGM_AC0_DC1_DIV_VALUE 8U"
+00000645 5f4143305f444331
+0000064d 5f4449565f56414c
+00000655 554520385500    
+0000065b 01               2983		.byte	1
+0000065c 29               2984		.byte	41
+0000065d 535043355f43474d 2985		.strz	"SPC5_CGM_AC0_DC2_DIV_VALUE 1U"
+00000665 5f4143305f444332
+0000066d 5f4449565f56414c
+00000675 554520315500    
+0000067b 01               2986		.byte	1
+0000067c 2a               2987		.byte	42
+0000067d 535043355f43474d 2988		.strz	"SPC5_CGM_AC0_DC3_DIV_VALUE 4U"
+00000685 5f4143305f444333
+0000068d 5f4449565f56414c
+00000695 554520345500    
+0000069b 01               2989		.byte	1
+0000069c 2b               2990		.byte	43
+0000069d 535043355f43474d 2991		.strz	"SPC5_CGM_AC0_DC4_DIV_VALUE 4U"
+000006a5 5f4143305f444334
+000006ad 5f4449565f56414c
+000006b5 554520345500    
+000006bb 01               2992		.byte	1
+000006bc 2c               2993		.byte	44
+000006bd 535043355f43474d 2994		.strz	"SPC5_CGM_AC0_DC5_DIV_VALUE 1U"
+000006c5 5f4143305f444335
+000006cd 5f4449565f56414c
+000006d5 554520315500    
+000006db 01               2995		.byte	1
+000006dc 2d               2996		.byte	45
+
+                                   Fri Apr 24 16:52:50 2020           Page 55
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000006dd 535043355f43474d 2997		.strz	"SPC5_CGM_AC1_SC_BITS SPC5_CGM_SC_XOSC"
+000006e5 5f4143315f53435f
+000006ed 4249545320535043
+000006f5 355f43474d5f5343
+000006fd 5f584f534300    
+00000703 01               2998		.byte	1
+00000704 2e               2999		.byte	46
+00000705 535043355f43474d 3000		.strz	"SPC5_CGM_AC1_DC0_DIV_VALUE 2U"
+0000070d 5f4143315f444330
+00000715 5f4449565f56414c
+0000071d 554520325500    
+00000723 01               3001		.byte	1
+00000724 2f               3002		.byte	47
+00000725 535043355f43474d 3003		.strz	"SPC5_CGM_AC2_SC_BITS SPC5_CGM_SC_XOSC"
+0000072d 5f4143325f53435f
+00000735 4249545320535043
+0000073d 355f43474d5f5343
+00000745 5f584f534300    
+0000074b 01               3004		.byte	1
+0000074c 30               3005		.byte	48
+0000074d 535043355f43474d 3006		.strz	"SPC5_CGM_AC3_SC_BITS SPC5_CGM_SC_XOSC"
+00000755 5f4143335f53435f
+0000075d 4249545320535043
+00000765 355f43474d5f5343
+0000076d 5f584f534300    
+00000773 01               3007		.byte	1
+00000774 31               3008		.byte	49
+00000775 535043355f4d455f 3009		.strz	"SPC5_ME_ME_BITS (0UL | SPC5_ME_ME_RESET | SPC5_ME_ME_SAFE | SPC5_ME_ME_DRUN | SPC5_ME_ME_RUN0 | SPC5_ME_ME_RUN1 | SPC5_ME_ME_RUN2 | SPC5_ME_ME_RUN3 | SPC5_ME_ME_HALT0 | SPC5_ME_ME_STOP0)"
+0000077d 4d455f4249545320
+00000785 2830554c207c2053
+0000078d 5043355f4d455f4d
+00000795 455f524553455420
+0000079d 7c20535043355f4d
+000007a5 455f4d455f534146
+000007ad 45207c2053504335
+000007b5 5f4d455f4d455f44
+000007bd 52554e207c205350
+000007c5 43355f4d455f4d45
+000007cd 5f52554e30207c20
+000007d5 535043355f4d455f
+000007dd 4d455f52554e3120
+000007e5 7c20535043355f4d
+000007ed 455f4d455f52554e
+000007f5 32207c2053504335
+000007fd 5f4d455f4d455f52
+00000805 554e33207c205350
+0000080d 43355f4d455f4d45
+00000815 5f48414c5430207c
+0000081d 20535043355f4d45
+00000825 5f4d455f53544f50
+0000082d 302900          
+00000830 01               3010		.byte	1
+00000831 32               3011		.byte	50
+00000832 535043355f4d455f 3012		.strz	"SPC5_ME_SAFE_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_PDO | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+0000083a 534146455f4d435f
+00000842 4249545320283055
+0000084a 4c207c2053504335
+00000852 5f4d455f4d435f50
+0000085a 57524c564c283029
+00000862 207c20535043355f
+0000086a 4d455f4d435f5044
+00000872 4f207c2053504335
+0000087a 5f4d455f4d435f4d
+00000882 56524f4e207c2053
+0000088a 5043355f4d455f4d
+00000892 435f464c414f4e5f
+0000089a 4e4f524d414c207c
+000008a2 20535043355f4d45
+000008aa 5f4d435f4952434f
+000008b2 4e207c2053504335
+000008ba 5f4d455f4d435f53
+000008c2 5953434c4b5f4952
+000008ca 432900          
+000008cd 01               3013		.byte	1
+000008ce 33               3014		.byte	51
+000008cf 535043355f4d455f 3015		.strz	"SPC5_ME_DRUN_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_PLL0ON | SPC5_ME_MC_XOSCON | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_PLL0PHI)"
+000008d7 4452554e5f4d435f
+000008df 4249545320283055
+000008e7 4c207c2053504335
+000008ef 5f4d455f4d435f50
+000008f7 57524c564c283029
+000008ff 207c20535043355f
+00000907 4d455f4d435f4d56
+0000090f 524f4e207c205350
+00000917 43355f4d455f4d43
+0000091f 5f464c414f4e5f4e
+00000927 4f524d414c207c20
+0000092f 535043355f4d455f
+00000937 4d435f504c4c304f
+0000093f 4e207c2053504335
+00000947 5f4d455f4d435f58
+0000094f 4f53434f4e207c20
+00000957 535043355f4d455f
+0000095f 4d435f4952434f4e
+00000967 207c20535043355f
+0000096f 4d455f4d435f5359
+00000977 53434c4b5f504c4c
+0000097f 305048492900    
+00000985 01               3016		.byte	1
+00000986 34               3017		.byte	52
+00000987 535043355f4d455f 3018		.strz	"SPC5_ME_RUN0_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_PLL1ON | SPC5_ME_MC_PLL0ON | SPC5_ME_MC_XOSCON | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_PLL1PHI)"
+0000098f 52554e305f4d435f
+00000997 4249545320283055
+0000099f 4c207c2053504335
+000009a7 5f4d455f4d435f50
+000009af 57524c564c283029
+000009b7 207c20535043355f
+000009bf 4d455f4d435f4d56
+000009c7 524f4e207c205350
+000009cf 43355f4d455f4d43
+000009d7 5f464c414f4e5f4e
+000009df 4f524d414c207c20
+000009e7 535043355f4d455f
+000009ef 4d435f504c4c314f
+000009f7 4e207c2053504335
+000009ff 5f4d455f4d435f50
+00000a07 4c4c304f4e207c20
+00000a0f 535043355f4d455f
+00000a17 4d435f584f53434f
+00000a1f 4e207c2053504335
+00000a27 5f4d455f4d435f49
+00000a2f 52434f4e207c2053
+00000a37 5043355f4d455f4d
+00000a3f 435f535953434c4b
+00000a47 5f504c4c31504849
+00000a4f 2900            
+00000a51 01               3019		.byte	1
+00000a52 35               3020		.byte	53
+00000a53 535043355f4d455f 3021		.strz	"SPC5_ME_RUN1_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+00000a5b 52554e315f4d435f
+00000a63 4249545320283055
+00000a6b 4c207c2053504335
+00000a73 5f4d455f4d435f50
+00000a7b 57524c564c283029
+00000a83 207c20535043355f
+00000a8b 4d455f4d435f4d56
+00000a93 524f4e207c205350
+00000a9b 43355f4d455f4d43
+00000aa3 5f464c414f4e5f4e
+00000aab 4f524d414c207c20
+00000ab3 535043355f4d455f
+00000abb 4d435f4952434f4e
+00000ac3 207c20535043355f
+00000acb 4d455f4d435f5359
+00000ad3 53434c4b5f495243
+00000adb 2900            
+00000add 01               3022		.byte	1
+00000ade 36               3023		.byte	54
+00000adf 535043355f4d455f 3024		.strz	"SPC5_ME_RUN2_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+00000ae7 52554e325f4d435f
+00000aef 4249545320283055
+00000af7 4c207c2053504335
+00000aff 5f4d455f4d435f50
+00000b07 57524c564c283029
+00000b0f 207c20535043355f
+00000b17 4d455f4d435f4d56
+00000b1f 524f4e207c205350
+00000b27 43355f4d455f4d43
+00000b2f 5f464c414f4e5f4e
+00000b37 4f524d414c207c20
+00000b3f 535043355f4d455f
+00000b47 4d435f4952434f4e
+00000b4f 207c20535043355f
+00000b57 4d455f4d435f5359
+00000b5f 53434c4b5f495243
+00000b67 2900            
+00000b69 01               3025		.byte	1
+00000b6a 37               3026		.byte	55
+00000b6b 535043355f4d455f 3027		.strz	"SPC5_ME_RUN3_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_NORMAL | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+00000b73 52554e335f4d435f
+00000b7b 4249545320283055
+00000b83 4c207c2053504335
+00000b8b 5f4d455f4d435f50
+00000b93 57524c564c283029
+00000b9b 207c20535043355f
+00000ba3 4d455f4d435f4d56
+00000bab 524f4e207c205350
+00000bb3 43355f4d455f4d43
+00000bbb 5f464c414f4e5f4e
+00000bc3 4f524d414c207c20
+00000bcb 535043355f4d455f
+00000bd3 4d435f4952434f4e
+00000bdb 207c20535043355f
+00000be3 4d455f4d435f5359
+00000beb 53434c4b5f495243
+00000bf3 2900            
+00000bf5 01               3028		.byte	1
+00000bf6 38               3029		.byte	56
+00000bf7 535043355f4d455f 3030		.strz	"SPC5_ME_HALT0_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_LP | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+00000bff 48414c54305f4d43
+00000c07 5f42495453202830
+00000c0f 554c207c20535043
+00000c17 355f4d455f4d435f
+00000c1f 5057524c564c2830
+00000c27 29207c2053504335
+00000c2f 5f4d455f4d435f4d
+00000c37 56524f4e207c2053
+00000c3f 5043355f4d455f4d
+00000c47 435f464c414f4e5f
+00000c4f 4c50207c20535043
+00000c57 355f4d455f4d435f
+00000c5f 4952434f4e207c20
+00000c67 535043355f4d455f
+00000c6f 4d435f535953434c
+00000c77 4b5f4952432900  
+00000c7e 01               3031		.byte	1
+00000c7f 39               3032		.byte	57
+00000c80 535043355f4d455f 3033		.strz	"SPC5_ME_STOP0_MC_BITS (0UL | SPC5_ME_MC_PWRLVL(0) | SPC5_ME_MC_MVRON | SPC5_ME_MC_FLAON_PD | SPC5_ME_MC_IRCON | SPC5_ME_MC_SYSCLK_IRC)"
+00000c88 53544f50305f4d43
+00000c90 5f42495453202830
+00000c98 554c207c20535043
+00000ca0 355f4d455f4d435f
+00000ca8 5057524c564c2830
+00000cb0 29207c2053504335
+00000cb8 5f4d455f4d435f4d
+00000cc0 56524f4e207c2053
+00000cc8 5043355f4d455f4d
+00000cd0 435f464c414f4e5f
+00000cd8 5044207c20535043
+00000ce0 355f4d455f4d435f
+00000ce8 4952434f4e207c20
+00000cf0 535043355f4d455f
+00000cf8 4d435f535953434c
+00000d00 4b5f4952432900  
+00000d07 01               3034		.byte	1
+00000d08 3a               3035		.byte	58
+00000d09 535043355f4d455f 3036		.strz	"SPC5_ME_MC_IS_XOSCON TRUE"
+00000d11 4d435f49535f584f
+00000d19 53434f4e20545255
+00000d21 4500            
+00000d23 01               3037		.byte	1
+00000d24 3b               3038		.byte	59
+00000d25 535043355f4d455f 3039		.strz	"SPC5_ME_RUN_PC3_BITS (0UL)"
+00000d2d 52554e5f5043335f
+00000d35 4249545320283055
+00000d3d 4c2900          
+00000d40 01               3040		.byte	1
+00000d41 3c               3041		.byte	60
+00000d42 535043355f4d455f 3042		.strz	"SPC5_ME_RUN_PC4_BITS (0UL)"
+00000d4a 52554e5f5043345f
+00000d52 4249545320283055
+00000d5a 4c2900          
+00000d5d 01               3043		.byte	1
+00000d5e 3d               3044		.byte	61
+00000d5f 535043355f4d455f 3045		.strz	"SPC5_ME_RUN_PC5_BITS (0UL)"
+00000d67 52554e5f5043355f
+00000d6f 4249545320283055
+00000d77 4c2900          
+00000d7a 01               3046		.byte	1
+00000d7b 3e               3047		.byte	62
+00000d7c 535043355f4d455f 3048		.strz	"SPC5_ME_RUN_PC6_BITS (0UL)"
+00000d84 52554e5f5043365f
+00000d8c 4249545320283055
+00000d94 4c2900          
+00000d97 01               3049		.byte	1
+00000d98 3f               3050		.byte	63
+00000d99 535043355f4d455f 3051		.strz	"SPC5_ME_RUN_PC7_BITS (0UL)"
+00000da1 52554e5f5043375f
+00000da9 4249545320283055
+00000db1 4c2900          
+00000db4 01               3052		.byte	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 56
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000db5 40               3053		.byte	64
+00000db6 535043355f4d455f 3054		.strz	"SPC5_ME_LP_PC4_BITS (0UL)"
+00000dbe 4c505f5043345f42
+00000dc6 495453202830554c
+00000dce 2900            
+00000dd0 01               3055		.byte	1
+00000dd1 41               3056		.byte	65
+00000dd2 535043355f4d455f 3057		.strz	"SPC5_ME_LP_PC5_BITS (0UL)"
+00000dda 4c505f5043355f42
+00000de2 495453202830554c
+00000dea 2900            
+00000dec 01               3058		.byte	1
+00000ded 42               3059		.byte	66
+00000dee 535043355f4d455f 3060		.strz	"SPC5_ME_LP_PC6_BITS (0UL)"
+00000df6 4c505f5043365f42
+00000dfe 495453202830554c
+00000e06 2900            
+00000e08 01               3061		.byte	1
+00000e09 43               3062		.byte	67
+00000e0a 535043355f4d455f 3063		.strz	"SPC5_ME_LP_PC7_BITS (0UL)"
+00000e12 4c505f5043375f42
+00000e1a 495453202830554c
+00000e22 2900            
+00000e24 01               3064		.byte	1
+00000e25 44               3065		.byte	68
+00000e26 535043355f46494e 3066		.strz	"SPC5_FINAL_RUNMODE SPC5_RUNMODE_RUN0"
+00000e2e 414c5f52554e4d4f
+00000e36 444520535043355f
+00000e3e 52554e4d4f44455f
+00000e46 52554e3000      
+00000e4b 04               3067		.byte	4
+00000e4c 01               3068		.byte	1
+00000e4d 38               3069		.byte	56
+00000e4e 535043355f584f53 3070		.strz	"SPC5_XOSC_CLK_MIN 8000000U"
+00000e56 435f434c4b5f4d49
+00000e5e 4e20383030303030
+00000e66 305500          
+00000e69 01               3071		.byte	1
+00000e6a 3d               3072		.byte	61
+00000e6b 535043355f584f53 3073		.strz	"SPC5_XOSC_CLK_MAX 40000000U"
+00000e73 435f434c4b5f4d41
+00000e7b 5820343030303030
+00000e83 30305500        
+00000e87 01               3074		.byte	1
+00000e88 56               3075		.byte	86
+00000e89 535043355f504c4c 3076		.strz	"SPC5_PLL0VCO_MIN 600000000U"
+00000e91 3056434f5f4d494e
+00000e99 2036303030303030
+00000ea1 30305500        
+00000ea5 01               3077		.byte	1
+00000ea6 5b               3078		.byte	91
+00000ea7 535043355f504c4c 3079		.strz	"SPC5_PLL0VCO_MAX 1250000000U"
+00000eaf 3056434f5f4d4158
+00000eb7 2031323530303030
+00000ebf 3030305500      
+00000ec4 01               3080		.byte	1
+00000ec5 60               3081		.byte	96
+00000ec6 535043355f504c4c 3082		.strz	"SPC5_PLL1VCO_MIN 600000000U"
+00000ece 3156434f5f4d494e
+00000ed6 2036303030303030
+00000ede 30305500        
+00000ee2 01               3083		.byte	1
+00000ee3 65               3084		.byte	101
+00000ee4 535043355f504c4c 3085		.strz	"SPC5_PLL1VCO_MAX 1250000000U"
+00000eec 3156434f5f4d4158
+00000ef4 2031323530303030
+00000efc 3030305500      
+00000f01 01               3086		.byte	1
+00000f02 6a               3087		.byte	106
+00000f03 535043355f504c4c 3088		.strz	"SPC5_PLL0_CLK_MIN 4762000U"
+00000f0b 305f434c4b5f4d49
+00000f13 4e20343736323030
+00000f1b 305500          
+00000f1e 01               3089		.byte	1
+00000f1f 6f               3090		.byte	111
+00000f20 535043355f504c4c 3091		.strz	"SPC5_PLL0_CLK_MAX 625000000U"
+00000f28 305f434c4b5f4d41
+00000f30 5820363235303030
+00000f38 3030305500      
+00000f3d 01               3092		.byte	1
+00000f3e 74               3093		.byte	116
+00000f3f 535043355f504c4c 3094		.strz	"SPC5_PLL1_CLK_MIN 4762000U"
+00000f47 315f434c4b5f4d49
+00000f4f 4e20343736323030
+00000f57 305500          
+00000f5a 01               3095		.byte	1
+00000f5b 79               3096		.byte	121
+00000f5c 535043355f504c4c 3097		.strz	"SPC5_PLL1_CLK_MAX 625000000U"
+00000f64 315f434c4b5f4d41
+00000f6c 5820363235303030
+00000f74 3030305500      
+00000f79 01               3098		.byte	1
+00000f7a 7e               3099		.byte	126
+00000f7b 535043355f504552 3100		.strz	"SPC5_PER_CLK_MAX 80000000U"
+00000f83 5f434c4b5f4d4158
+00000f8b 2038303030303030
+00000f93 305500          
+00000f96 01               3101		.byte	1
+00000f97 8301             3102		.byte	131,1
+00000f99 535043355f534152 3103		.strz	"SPC5_SAR_CLK_MAX 12000000U"
+00000fa1 5f434c4b5f4d4158
+00000fa9 2031323030303030
+00000fb1 305500          
+00000fb4 01               3104		.byte	1
+00000fb5 8801             3105		.byte	136,1
+00000fb7 535043355f435455 3106		.strz	"SPC5_CTU_CLK_MAX 80000000U"
+00000fbf 5f434c4b5f4d4158
+00000fc7 2038303030303030
+00000fcf 305500          
+00000fd2 01               3107		.byte	1
+00000fd3 8d01             3108		.byte	141,1
+
+                                   Fri Apr 24 16:52:50 2020           Page 57
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00000fd5 535043355f445350 3109		.strz	"SPC5_DSPI_CLK_MAX 80000000U"
+00000fdd 495f434c4b5f4d41
+00000fe5 5820383030303030
+00000fed 30305500        
+00000ff1 01               3110		.byte	1
+00000ff2 9201             3111		.byte	146,1
+00000ff4 535043355f4c494e 3112		.strz	"SPC5_LIN_CLK_MAX 80000000U"
+00000ffc 5f434c4b5f4d4158
+00001004 2038303030303030
+0000100c 305500          
+0000100f 01               3113		.byte	1
+00001010 9701             3114		.byte	151,1
+00001012 535043355f455449 3115		.strz	"SPC5_ETIMER_CLK_MAX 80000000U"
+0000101a 4d45525f434c4b5f
+00001022 4d41582038303030
+0000102a 303030305500    
+00001030 01               3116		.byte	1
+00001031 9c01             3117		.byte	156,1
+00001033 535043355f43414e 3118		.strz	"SPC5_CAN_CLK_MAX 40000000U"
+0000103b 5f434c4b5f4d4158
+00001043 2034303030303030
+0000104b 305500          
+0000104e 01               3119		.byte	1
+0000104f e201             3120		.byte	226,1
+00001051 535043355f43474d 3121		.strz	"SPC5_CGM_SC_IRC (0UL << 24)"
+00001059 5f53435f49524320
+00001061 2830554c203c3c20
+00001069 32342900        
+0000106d 01               3122		.byte	1
+0000106e e301             3123		.byte	227,1
+00001070 535043355f43474d 3124		.strz	"SPC5_CGM_SC_XOSC (1UL << 24)"
+00001078 5f53435f584f5343
+00001080 202831554c203c3c
+00001088 2032342900      
+0000108d 01               3125		.byte	1
+0000108e e401             3126		.byte	228,1
+00001090 535043355f43474d 3127		.strz	"SPC5_CGM_SC_PLL0PHI (2UL << 24)"
+00001098 5f53435f504c4c30
+000010a0 504849202832554c
+000010a8 203c3c2032342900
+000010b0 01               3128		.byte	1
+000010b1 9a07             3129		.byte	154,7
+000010b3 535043355f415558 3130		.strz	"SPC5_AUX0_CLK SPC5_PLL0_PHI_CLK"
+000010bb 305f434c4b205350
+000010c3 43355f504c4c305f
+000010cb 5048495f434c4b00
+000010d3 01               3131		.byte	1
+000010d4 a107             3132		.byte	161,7
+000010d6 535043355f415558 3133		.strz	"SPC5_AUX1_CLK SPC5_XOSC_CLK"
+000010de 315f434c4b205350
+000010e6 43355f584f53435f
+000010ee 434c4b00        
+000010f2 01               3134		.byte	1
+000010f3 ac07             3135		.byte	172,7
+000010f5 535043355f504c4c 3136		.strz	"SPC5_PLL0_INPUT_CLK SPC5_XOSC_CLK"
+000010fd 305f494e5055545f
+00001105 434c4b2053504335
+0000110d 5f584f53435f434c
+00001115 4b00            
+00001117 01               3137		.byte	1
+00001118 b307             3138		.byte	179,7
+0000111a 535043355f504c4c 3139		.strz	"SPC5_PLL1_INPUT_CLK SPC5_XOSC_CLK"
+00001122 315f494e5055545f
+0000112a 434c4b2053504335
+00001132 5f584f53435f434c
+0000113a 4b00            
+0000113c 01               3140		.byte	1
+0000113d a508             3141		.byte	165,8
+0000113f 535043355f504c4c 3142		.strz	"SPC5_PLL0_VCO_CLK ((SPC5_PLL0_INPUT_CLK / SPC5_PLL0_PREDIV_VALUE) * (2U * SPC5_PLL0_MFD_VALUE))"
+00001147 305f56434f5f434c
+0000114f 4b20282853504335
+00001157 5f504c4c305f494e
+0000115f 5055545f434c4b20
+00001167 2f20535043355f50
+0000116f 4c4c305f50524544
+00001177 49565f56414c5545
+0000117f 29202a2028325520
+00001187 2a20535043355f50
+0000118f 4c4c305f4d46445f
+00001197 56414c5545292900
+0000119f 01               3143		.byte	1
+000011a0 b108             3144		.byte	177,8
+000011a2 535043355f504c4c 3145		.strz	"SPC5_PLL0_PHI_CLK ((SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI_VALUE) / 2U)"
+000011aa 305f5048495f434c
+000011b2 4b20282853504335
+000011ba 5f504c4c305f5643
+000011c2 4f5f434c4b202f20
+000011ca 535043355f504c4c
+000011d2 305f524644504849
+000011da 5f56414c55452920
+000011e2 2f2032552900    
+000011e8 01               3146		.byte	1
+000011e9 bd08             3147		.byte	189,8
+000011eb 535043355f504c4c 3148		.strz	"SPC5_PLL0_PHI1_CLK ((SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI1_VALUE) / 2U)"
+000011f3 305f504849315f43
+000011fb 4c4b202828535043
+00001203 355f504c4c305f56
+0000120b 434f5f434c4b202f
+00001213 20535043355f504c
+0000121b 4c305f5246445048
+00001223 49315f56414c5545
+0000122b 29202f2032552900
+00001233 01               3149		.byte	1
+00001234 c908             3150		.byte	201,8
+00001236 535043355f504c4c 3151		.strz	"SPC5_PLL1_VCO_CLK (SPC5_PLL1_INPUT_CLK * SPC5_PLL1_MFD_VALUE)"
+0000123e 315f56434f5f434c
+00001246 4b2028535043355f
+0000124e 504c4c315f494e50
+00001256 55545f434c4b202a
+0000125e 20535043355f504c
+00001266 4c315f4d46445f56
+0000126e 414c55452900    
+00001274 01               3152		.byte	1
+00001275 d608             3153		.byte	214,8
+00001277 535043355f504c4c 3154		.strz	"SPC5_PLL1_PHI_CLK ((SPC5_PLL1_VCO_CLK / SPC5_PLL1_RFDPHI_VALUE) / 2U)"
+0000127f 315f5048495f434c
+00001287 4b20282853504335
+0000128f 5f504c4c315f5643
+00001297 4f5f434c4b202f20
+0000129f 535043355f504c4c
+000012a7 315f524644504849
+000012af 5f56414c55452920
+000012b7 2f2032552900    
+000012bd 01               3155		.byte	1
+000012be e508             3156		.byte	229,8
+000012c0 535043355f504552 3157		.strz	"SPC5_PER_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC0_DIV_VALUE)"
+000012c8 5f434c4b20285350
+000012d0 43355f415558305f
+000012d8 434c4b202f205350
+000012e0 43355f43474d5f41
+000012e8 43305f4443305f44
+000012f0 49565f56414c5545
+000012f8 2900            
+000012fa 01               3158		.byte	1
+000012fb f308             3159		.byte	243,8
+000012fd 535043355f534152 3160		.strz	"SPC5_SAR_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC1_DIV_VALUE)"
+00001305 5f434c4b20285350
+0000130d 43355f415558305f
+00001315 434c4b202f205350
+0000131d 43355f43474d5f41
+00001325 43305f4443315f44
+0000132d 49565f56414c5545
+00001335 2900            
+00001337 01               3161		.byte	1
+00001338 8109             3162		.byte	129,9
+0000133a 535043355f435455 3163		.strz	"SPC5_CTU_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC2_DIV_VALUE)"
+00001342 5f434c4b20285350
+0000134a 43355f415558305f
+00001352 434c4b202f205350
+0000135a 43355f43474d5f41
+00001362 43305f4443325f44
+0000136a 49565f56414c5545
+00001372 2900            
+00001374 01               3164		.byte	1
+
+                                   Fri Apr 24 16:52:50 2020           Page 58
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+00001375 8f09             3165		.byte	143,9
+00001377 535043355f445350 3166		.strz	"SPC5_DSPI_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC3_DIV_VALUE)"
+0000137f 495f434c4b202853
+00001387 5043355f41555830
+0000138f 5f434c4b202f2053
+00001397 5043355f43474d5f
+0000139f 4143305f4443335f
+000013a7 4449565f56414c55
+000013af 452900          
+000013b2 01               3167		.byte	1
+000013b3 9d09             3168		.byte	157,9
+000013b5 535043355f4c494e 3169		.strz	"SPC5_LIN_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC4_DIV_VALUE)"
+000013bd 5f434c4b20285350
+000013c5 43355f415558305f
+000013cd 434c4b202f205350
+000013d5 43355f43474d5f41
+000013dd 43305f4443345f44
+000013e5 49565f56414c5545
+000013ed 2900            
+000013ef 01               3170		.byte	1
+000013f0 ab09             3171		.byte	171,9
+000013f2 535043355f455449 3172		.strz	"SPC5_ETIMER_CLK (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC5_DIV_VALUE)"
+000013fa 4d45525f434c4b20
+00001402 28535043355f4155
+0000140a 58305f434c4b202f
+00001412 20535043355f4347
+0000141a 4d5f4143305f4443
+00001422 355f4449565f5641
+0000142a 4c55452900      
+0000142f 01               3173		.byte	1
+00001430 b909             3174		.byte	185,9
+00001432 535043355f43414e 3175		.strz	"SPC5_CAN_CLK (SPC5_AUX1_CLK / SPC5_CGM_AC1_DC0_DIV_VALUE)"
+0000143a 5f434c4b20285350
+00001442 43355f415558315f
+0000144a 434c4b202f205350
+00001452 43355f43474d5f41
+0000145a 43315f4443305f44
+00001462 49565f56414c5545
+0000146a 2900            
+0000146c 04               3176		.byte	4
+0000146d 04               3177		.byte	4
+0000146e 04               3178		.byte	4
+0000146f 03               3179		.byte	3
+00001470 27               3180		.byte	39
+00001471 19               3181		.byte	25
+00001472 03               3182		.byte	3
+00001473 18               3183		.byte	24
+00001474 1a               3184		.byte	26
+00001475 04               3185		.byte	4
+00001476 04               3186		.byte	4
+00001477 03               3187		.byte	3
+00001478 29               3188		.byte	41
+00001479 1b               3189		.byte	27
+0000147a 03               3190		.byte	3
+0000147b 19               3191		.byte	25
+0000147c 1c               3192		.byte	28
+0000147d 01               3193		.byte	1
+0000147e 25               3194		.byte	37
+0000147f 4f53414c5f465245 3195		.strz	"OSAL_FREERTOS_ENABLE FALSE"
+00001487 4552544f535f454e
+0000148f 41424c452046414c
+00001497 534500          
+0000149a 01               3196		.byte	1
+0000149b 2f               3197		.byte	47
+0000149c 4f53414c5f4f535f 3198		.strz	"OSAL_OS_ENABLE FALSE"
+000014a4 454e41424c452046
+000014ac 414c534500      
+000014b1 01               3199		.byte	1
+000014b2 3f               3200		.byte	63
+000014b3 4f53414c5f535953 3201		.strz	"OSAL_SYSTIMER_ENABLE FALSE"
+000014bb 54494d45525f454e
+000014c3 41424c452046414c
+000014cb 534500          
+000014ce 04               3202		.byte	4
+000014cf 03               3203		.byte	3
+000014d0 1a               3204		.byte	26
+000014d1 1d               3205		.byte	29
+000014d2 04               3206		.byte	4
+000014d3 04               3207		.byte	4
+000014d4 03               3208		.byte	3
+000014d5 2a               3209		.byte	42
+000014d6 1e               3210		.byte	30
+000014d7 03               3211		.byte	3
+000014d8 12               3212		.byte	18
+000014d9 1f               3213		.byte	31
+000014da 04               3214		.byte	4
+000014db 03               3215		.byte	3
+000014dc 13               3216		.byte	19
+000014dd 20               3217		.byte	32
+000014de 01               3218		.byte	1
+000014df 9b01             3219		.byte	155,1
+000014e1 4335355f4f4b2030 3220		.strz	"C55_OK 0x00000000UL"
+000014e9 7830303030303030
+000014f1 30554c00        
+
+                                   Fri Apr 24 16:52:50 2020           Page 59
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+000014f5 01               3221		.byte	1
+000014f6 ad01             3222		.byte	173,1
+000014f8 4335355f494e5052 3223		.strz	"C55_INPROGRESS 0x00020000UL"
+00001500 4f47524553532030
+00001508 7830303032303030
+00001510 30554c00        
+00001514 01               3224		.byte	1
+00001515 b401             3225		.byte	180,1
+00001517 4335355f4d4f4445 3226		.strz	"C55_MODE_OP_PROGRAM 0x00U"
+0000151f 5f4f505f50524f47
+00001527 52414d2030783030
+0000152f 5500            
+00001531 01               3227		.byte	1
+00001532 b501             3228		.byte	181,1
+00001534 4335355f4d4f4445 3229		.strz	"C55_MODE_OP_ERASE 0x01U"
+0000153c 5f4f505f45524153
+00001544 4520307830315500
+0000154c 01               3230		.byte	1
+0000154d be01             3231		.byte	190,1
+0000154f 4335355f424c4f43 3232		.strz	"C55_BLOCK_HIGH 0x02U"
+00001557 4b5f484947482030
+0000155f 7830325500      
+00001564 01               3233		.byte	1
+00001565 e501             3234		.byte	229,1
+00001567 4335355f45524153 3235		.strz	"C55_ERASE_MAIN 0x00U"
+0000156f 455f4d41494e2030
+00001577 7830305500      
+0000157c 04               3236		.byte	4
+0000157d 03               3237		.byte	3
+0000157e 14               3238		.byte	20
+0000157f 21               3239		.byte	33
+00001580 01               3240		.byte	1
+00001581 1b               3241		.byte	27
+00001582 4335355f5245475f 3242		.strz	"C55_REG_BASE 0xFFFE0000UL"
+0000158a 4241534520307846
+00001592 4646453030303055
+0000159a 4c00            
+0000159c 01               3243		.byte	1
+0000159d 1c               3244		.byte	28
+0000159e 4d41494e5f415252 3245		.strz	"MAIN_ARRAY_BASE 0x00404000UL"
+000015a6 41595f4241534520
+000015ae 3078303034303430
+000015b6 3030554c00      
+000015bb 01               3246		.byte	1
+000015bc 1d               3247		.byte	29
+000015bd 55544553545f4152 3248		.strz	"UTEST_ARRAY_BASE 0x00400000UL"
+000015c5 5241595f42415345
+000015cd 2030783030343030
+000015d5 303030554c00    
+000015db 01               3249		.byte	1
+000015dc 20               3250		.byte	32
+000015dd 4335355f50524f47 3251		.strz	"C55_PROGRAMMABLE_SIZE 0x80UL"
+000015e5 52414d4d41424c45
+000015ed 5f53495a45203078
+000015f5 3830554c00      
+000015fa 01               3252		.byte	1
+000015fb 26               3253		.byte	38
+000015fc 554e4c4f434b5f41 3254		.strz	"UNLOCK_ALL_BLOCKS 0x00000000UL"
+00001604 4c4c5f424c4f434b
+0000160c 5320307830303030
+00001614 30303030554c00  
+0000161b 04               3255		.byte	4
+0000161c 04               3256		.byte	4
+0000161d 04               3257		.byte	4
+0000161e 03               3258		.byte	3
+0000161f 25               3259		.byte	37
+00001620 22               3260		.byte	34
+00001621 01               3261		.byte	1
+00001622 2d               3262		.byte	45
+00001623 424c4f434b305f41 3263		.strz	"BLOCK0_ADDR ( 0x00800000U )"
+0000162b 4444522028203078
+00001633 3030383030303030
+0000163b 55202900        
+0000163f 01               3264		.byte	1
+00001640 2e               3265		.byte	46
+00001641 424c4f434b315f41 3266		.strz	"BLOCK1_ADDR ( 0x00802000U )"
+00001649 4444522028203078
+00001651 3030383032303030
+00001659 55202900        
+0000165d 01               3267		.byte	1
+0000165e 2f               3268		.byte	47
+0000165f 424c4f434b325f41 3269		.strz	"BLOCK2_ADDR ( 0x00804000U )"
+00001667 4444522028203078
+0000166f 3030383034303030
+00001677 55202900        
+0000167b 04               3270		.byte	4
+0000167c 03               3271		.byte	3
+0000167d 26               3272		.byte	38
+0000167e 23               3273		.byte	35
+0000167f 01               3274		.byte	1
+00001680 11               3275		.byte	17
+00001681 5f5354444c49425f 3276		.strz	"_STDLIB_H "
+00001689 482000          
+
+                                   Fri Apr 24 16:52:50 2020           Page 60
+                                   Fri Apr 24 16:52:52 2020    gh_0000c241.s
+0000168c 03               3277		.byte	3
+0000168d 13               3278		.byte	19
+0000168e 0b               3279		.byte	11
+0000168f 04               3280		.byte	4
+00001690 03               3281		.byte	3
+00001691 14               3282		.byte	20
+00001692 0c               3283		.byte	12
+00001693 04               3284		.byte	4
+00001694 01               3285		.byte	1
+00001695 46               3286		.byte	70
+00001696 5f5f526573747269 3287		.strz	"__Restrict restrict"
+0000169e 6374207265737472
+000016a6 69637400        
+000016aa 01               3288		.byte	1
+000016ab 59               3289		.byte	89
+000016ac 5f5f43585831315f 3290		.strz	"__CXX11_NOEXCEPT "
+000016b4 4e4f455843455054
+000016bc 2000            
+000016be 04               3291		.byte	4
+000016bf 01               3292		.byte	1
+000016c0 2d               3293		.byte	45
+000016c1 464c4153485f4c4f 3294		.strz	"FLASH_LOW_SPACE ( 0x00U )"
+000016c9 575f535041434520
+000016d1 2820307830305520
+000016d9 2900            
+000016db 01               3295		.byte	1
+000016dc 2e               3296		.byte	46
+000016dd 464c4153485f3132 3297		.strz	"FLASH_128K_SPACE ( 0x01U )"
+000016e5 384b5f5350414345
+000016ed 2028203078303155
+000016f5 202900          
+000016f8 01               3298		.byte	1
+000016f9 2f               3299		.byte	47
+000016fa 464c4153485f3235 3300		.strz	"FLASH_256K_SPACE ( 0x02U )"
+00001702 364b5f5350414345
+0000170a 2028203078303255
+00001712 202900          
+00001715 01               3301		.byte	1
+00001716 30               3302		.byte	48
+00001717 464c4153485f4849 3303		.strz	"FLASH_HIGH_SPACE ( 0x03U )"
+0000171f 47485f5350414345
+00001727 2028203078303355
+0000172f 202900          
+00001732 01               3304		.byte	1
+00001733 32               3305		.byte	50
+00001734 464c4153485f4f4b 3306		.strz	"FLASH_OK ( 0x00U )"
+0000173c 2028203078303055
+00001744 202900          
+00001747 01               3307		.byte	1
+00001748 35               3308		.byte	53
+00001749 464c4153485f4552 3309		.strz	"FLASH_ERROR_ERASE ( 0x04U )"
+00001751 524f525f45524153
+00001759 4520282030783034
+00001761 55202900        
+00001765 01               3310		.byte	1
+00001766 36               3311		.byte	54
+00001767 464c4153485f4552 3312		.strz	"FLASH_ERROR_PROGRAM ( 0x08U )"
+0000176f 524f525f50524f47
+00001777 52414d2028203078
+0000177f 303855202900    
+00001785 04               3313		.byte	4
+00001786 04               3314		.byte	4
+00001787 00               3315		.byte	0
+                          3316		.section	.debug_abbrev
+00000139 00               3317		.byte	0
+                          3318		.section	.debug_info
+                          3319	.Ldw_end:

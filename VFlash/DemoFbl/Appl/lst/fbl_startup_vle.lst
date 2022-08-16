@@ -1,0 +1,335 @@
+
+                                   Fri Apr 10 08:32:19 2020           Page 1
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined
+                -stderr=err/fbl_startup_vle.err -elf -b1
+                -IC:\ghs\comp_201754\lib\ppc5514 -cpu=ppc560xp
+                -source=Source/fbl_startup_vle.asm -asm3g
+                -asm3g_driver=C:\ghs\comp_201754\ccppc
+                -asm3g_args=@@obj\fbl_startup_vle.a3g -accept_unsafe_op_names -o
+                obj\gh_00009m41.o -list=lst/fbl_startup_vle.lst
+                C:\Users\owner\AppData\Local\Temp\gh_00009m41.si
+Original File:  Source/fbl_startup_vle.asm
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_00009m41.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             0	#line 1 "Source/fbl_startup_vle.asm"
+                             1	;-----------------------------------------------------------------------------------------------------------------------
+                             2	;   FILE DESCRIPTION
+                             3	;-----------------------------------------------------------------------------------------------------------------------
+                             4	; Project Name: Flash Bootloader
+                             5	;    File Name: fbl_startup_vle.asm
+                             6	;
+                             7	; Description:  This file contains the startup code for the Freescale/STM
+                             8	;               xPC57xx MCU (VLE)
+                             9	;
+                            10	;-----------------------------------------------------------------------------------------------------------------------
+                            11	;   COPYRIGHT
+                            12	;-----------------------------------------------------------------------------------------------------------------------
+                            13	;   Copyright (c) 2016 by Vector Informatik GmbH.                                                  All rights reserved.
+                            14	; 
+                            15	;                 This software is copyright protected and proprietary to Vector Informatik GmbH.
+                            16	;                 Vector Informatik GmbH grants to you only those rights as set out in the license conditions.
+                            17	;                 All other rights remain with Vector Informatik GmbH.
+                            18	;
+                            19	; Please note, that this file contains a startup code to be used with the Flash Bootloader. These functions may
+                            20	; influence the behaviour of the bootloader in principle. Therefore, great care must be taken to verify the correctness
+                            21	; of the implementation.
+                            22	;
+                            23	; The contents of the originally delivered files are only examples resp. implementation proposals. With regard to
+                            24	; the fact that these functions are meant for demonstration purposes only, Vector Informatik's liability shall be
+                            25	; expressly excluded in cases of ordinary negligence, to the extent admissible by law or statute.
+                            26	;
+                            27	;-----------------------------------------------------------------------------------------------------------------------
+                            28	;   AUTHOR IDENTITY
+                            29	;-----------------------------------------------------------------------------------------------------------------------
+                            30	;   Name                          Initials      Company
+                            31	;-----------------------------------------------------------------------------------------------------------------------
+                            32	;   Achim Strobelt                Ach           Vector Informatik GmbH
+                            33	;-----------------------------------------------------------------------------------------------------------------------
+                            34	;   REVISION HISTORY
+                            35	;-----------------------------------------------------------------------------------------------------------------------
+                            36	;   Version    Date        Author  Change Id          Description
+                            37	;-----------------------------------------------------------------------------------------------------------------------
+                            38	;   01.00.01  2013-07-20   Ach     -                  Initial version
+                            39	;   01.01.00  2015-04-17   Ach     -                  Reworked exception table handling
+                            40	;   01.02.00  2015-06-01   Ach     -                  Adapted NMI handling for GHS
+                            41	;   01.03.00  2015-07-20   Ach     -                  Adapted filter rules
+                            42	;   01.03.01  2015-09-10   Ach     -                  Change RAM copy target address handling for Diab compiler
+                            43	;   01.03.02  2016-01-27   Ach     -                  Corrected GHS configuration
+
+                                   Fri Apr 10 08:32:19 2020           Page 2
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+                            44	;-----------------------------------------------------------------------------------------------------------------------
+                            45	
+                            46	; Configuration
+                            47	; RAM initialization
+                            48	;
+                            49	; Please note that this RAM initialization is adapted to work with the
+                            50	; dummy EEPROM driver. If you don't use the dummy EEPROM any more you
+                            51	; have to remove the initialized flag handling make sure that all
+                            52	; RAM is initialized on every startup of your ECU which affect RAM
+                            53	; contents. Please check if the reset detection can be removed as well.
+                            54	;
+                            55	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                            56	; Configure RAM parameters here
+                            57	   ramStart = 0x40000000                  ; RAM start address
+                            58	   ramSize = 0x9000                       ; RAM size - System RAM only (384K)
+                            59	   ramCount =  ramSize/128                ; calculate count variable
+                            60	
+                            61	; Configure reset module (RGM)
+                            62	   rgmBase = 0xFFFA8000                   ; Address of RGM module
+                            63	   rgmDesOffset = 0x00                    ; Offset of RGM_DES compared to RGM base address
+                            64	   desCompare = 0x01000001                ; Low voltage and power on reset
+                            65	   rgmFesOffset = 0x300                   ; Offset of RGM_FES compared to RGM base address
+                            66	   fesCompare = 0x01000000                ; Low voltage reset
+                            67	                                          ; for debugging it may be useful in use with several
+                            68	                                          ; debuggers (e.g. Trace32) to set the external reset
+                            69	                                          ; flag in this mask to avoid issues with RAM initialization
+                            70	                                          ; External reset uses BIT 0 in fesCompare
+                            71	
+                            72	
+                            73	; Configure reset configuration halfword
+                            74	; Please select correct configuration
+                            75	; Please use for MPC574xB/C/G and other derivatives with a multi-core RCHW
+                            76	;   RCHW_VALUE = 0x005A0002               ; MPC57xx derivatives - VLE always enabled, use CPU0
+                            77	; Default RCHW
+                            78	;    RCHW_VALUE = 0x015A0000               ; MPC57xx derivatives - VLE always enabled
+                            79	    RCHW_VALUE = 0x005A0000               ; MPC57xx derivatives - VLE always enabled
+                            80	
+                            81	   .file   "crt0_57xx_vle.ppc"
+                            82	
+                            83	
+                            84	
+                            85	
+                            86	   .extern __ghsbinfo_copy
+                            87	   .extern __ghseinfo_copy
+                            88	
+                            89	; RCHW/ Boot header placement
+                            90	   .vle
+                            91	   .global _start
+                            92	   .global _nmibase
+                            93	   .section ".rchw","vax"          ; RCHW location
+00000000 005a0000           94	   .long       RCHW_VALUE
+00000004 00000000           95	   .long       _start              ; CPU2 entry point
+                            96	
+                            97	; Extended boot header - needed for certain derivatives
+                            98	; Please use for MPC574xB/C/G and other derivatives with a multi-core RCHW
+                            99	;  .long 0
+
+                                   Fri Apr 10 08:32:19 2020           Page 3
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+                           100	;  .long 0
+                           101	;  .long       _start              ; CPU0 entry point
+                           102	;  .long       _start              ; CPU1 entry point
+                           103	;  .long 0
+                           104	
+                           105	; Startup code
+                           106	_start:
+00000008 1800d000          107	   nop                                                   ; nop statements included to allow debugging with iSystem debugger
+0000000c 1800d000          108	   nop                                                   ; jump to the second nop statement to test resets
+                           109	
+00000010 70e0e000          110	   e_lis       r7, _nmibase@ha                           ; r7 = _nmibase
+00000014 1ce70000          111	   e_add16i    r7, r7, _nmibase@l
+00000018 7cff0ba6          112	   mtspr       63, r7                                    ; IVPR = r7 (upper Vector Base Register)
+                           113	
+0000001c 70ffe7fb          114	   e_lis       r7, rgmBase@ha
+00000020 1ce78000          115	   e_add16i    r7, r7, rgmBase@l                         ; Load r7 with RGM base address
+00000024 50470000          116	   e_lwz       r2, rgmDesOffset(r7)                      ; Determine reset cause (desctructive)
+00000028 70c0e100          117	   e_lis       r6, desCompare@ha                         ; Load reset compare value (destructive)
+0000002c 1cc60001          118	   e_add16i    r6, r6, desCompare@l
+00000030 4662              119	   se_and      r2,r6                                     ; Store comparison result in r2
+                           120	
+00000032 50670300          121	   e_lwz       r3, rgmFesOffset(r7)                      ; Determine reset cause (functional)
+00000036 70c0e100          122	   e_lis       r6, fesCompare@ha                         ; Load reset compare value (functional)
+0000003a 1cc60000          123	   e_add16i    r6, r6, fesCompare@l
+0000003e 4663              124	   se_and      r3, r6                                    ; Store comparison result in r3
+                           125	
+00000040 4432              126	   se_or       r2, r3                                    ; Combine comparison results
+00000042 2a02              127	   se_cmpi     r2,0                                      ; Check combined comparison results
+00000044 e600              128	   se_bc       1,2,_no_init_l2ram                        ; No reset defined in reset compare mask detected - do not initialize RAM
+                           129	
+                           130	_init_l2ram:
+00000046 7040e000          131	   e_lis       r2, ramCount@ha                           ; Loop counter to get all of L2SRAM
+0000004a 1c420120          132	   e_add16i    r2, r2, ramCount@l
+0000004e 00b2              133	   se_mtctr    r2                                        ; Store in count register
+00000050 7028e000          134	   e_lis       r1, ramStart@ha                           ; r1 holds base address of the L2SRAM, 64-bit word aligned
+00000054 1c210000          135	   e_add16i    r1, r1, ramStart@l                        ; Add low address
+                           136	
+                           137	_init_l2ram_loop:
+00000058 18010900          138	   e_stmw      r0,0(r1)                                  ; Write values of all 32 GPR at once
+0000005c 18218080          139	   e_addi      r1,r1,128                                 ; Increment write address
+00000060 7a200000          140	   e_bdnz      _init_l2ram_loop                          ; Decrement count register and jump
+                           141	
+00000064 70c0e100          142	   e_lis       r6, desCompare@ha                         ; Load reset compare value (destructive)
+00000068 1cc60001          143	   e_add16i    r6, r6, desCompare@l
+0000006c 54c70000          144	   e_stw       r6, rgmDesOffset(r7)                      ; Remove reset indication flags from RGM_DES
+00000070 70c0e100          145	   e_lis       r6, fesCompare@ha                         ; Load reset compare value (functional)
+00000074 1cc60000          146	   e_add16i    r6, r6, fesCompare@l
+00000078 54c70300          147	   e_stw       r6, rgmFesOffset(r7)                      ; Remove reset indication flags from RGM_FES
+                           148	
+                           149	; Initialize memory pointer registers
+                           150	_no_init_l2ram:
+0000007c 7020e000          151	   e_lis       sp,%hiadj(__ghsend_stack-8)        ; Set SP
+00000080 1c21fff8          152	   e_add16i    sp,sp,%lo(__ghsend_stack-8)
+00000084 71a0e000          153	   e_lis       r13,%hiadj(__ghsbegin_sdabase + 0x8000)   ; SDA base register
+00000088 1dad8000          154	   e_add16i    r13,r13,%lo(__ghsbegin_sdabase + 0x8000)
+0000008c 7040e000          155	   e_lis       r2,%hiadj(__ghsbegin_sdata2 + 0x8000)     ; SDA2 base register
+
+                                   Fri Apr 10 08:32:19 2020           Page 4
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+00000090 1c428000          156	   e_add16i    r2,r2,%lo(__ghsbegin_sdata2 + 0x8000)
+                           157	
+                           158	;***********************************************************************************************************************
+                           159	;   _romcopy
+                           160	;**********************************************************************************************************************
+                           161	; PURPOSE      : This function copies initialized data from Flash to SRAM    
+                           162	;                 for the ".data" and ".sdata" sections.                     
+                           163	;                                                                            
+                           164	; INPUT NOTES  : _ghsbinfo_copy - defined by the linker                      
+                           165	;                _ghseinfo_copy - defined by the linker                      
+                           166	;                                                                            
+                           167	; RETURN NOTES : None                                                        
+                           168	; WARNING      : Registers used: R4, R5 : store begin and end of the copy    
+                           169	;                                         table                              
+                           170	;                                R28    : temporary register                 
+                           171	;                                R29-R31: addresses and size of current      
+                           172	;                                         section                            
+                           173	;                                R0     : hold the copy data                 
+                           174	;*********************************************************************************************************************
+                           175	
+                           176	_romcopy:
+00000094 7080e000          177	   e_lis       r4, %hiadj(__ghsbinfo_copy)               ; Load upper copy table begin address into R4
+00000098 1c840000          178	   e_add16i    r4, r4, %lo(__ghsbinfo_copy)              ; Load lower copy table begin address into R4
+0000009c 70a0e000          179	   e_lis       r5, %hiadj(__ghseinfo_copy)               ; Load upper copy table end address into R5
+000000a0 1ca50000          180	   e_add16i    r5, r5, %lo(__ghseinfo_copy)              ; Load lower copy table end address into R5
+                           181	
+                           182	_romcopy_tableloop:
+000000a4 0c54              183	   se_cmp      r4, r5                                    ; Check if end of copy table is reached
+000000a6 e000              184	   se_bc       0, 0, _romcopy_end                        ; End of copy table is reached, copy finished
+                           185	
+000000a8 1ba40800          186	   e_lmw       r29, 0(r4)                                ; Read 3 words from copy table (target address, source address and size)
+000000ac 1884800c          187	   e_addi      r4, r4, 12                                ; Prepare address for next section
+                           188	
+000000b0 2a0f              189	   se_cmpi     r31,0                                     ; Check size of section
+000000b2 e600              190	   se_bc       1,2,_romcopy_tableloop                    ; Omit empty sections
+                           191	
+000000b4 1bfcc003          192	   e_andi      r28, r31, 0x03                            ; Mask length which is not word aligned
+000000b8 682f              193	   se_srwi     r31, 2                                    ; Divide length by 4
+                           194	
+000000ba 1fbdfffc          195	   e_add16i    r29, r29, -4                              ; Prepare target address
+000000be 1fdefffc          196	   e_add16i    r30, r30, -4                              ; Prepare source address
+                           197	
+000000c2 2a0f              198	   se_cmpi     r31,0                                     ; Check if size of section is < 4
+000000c4 e600              199	   se_bc       1,2,_romcopy_checkbytes                   ; Jump to byte copy loop
+                           200	
+000000c6 00bf              201	   se_mtctr    r31                                       ; Set count register (wordcount of current section)
+                           202	
+                           203	_romcopy_wordloop:
+000000c8 181e0204          204	   e_lwzu      r0, 4(r30)                                ; Increment read address and read word
+000000cc 181d0604          205	   e_stwu      r0, 4(r29)                                ; Increment write address and write word
+000000d0 7a200000          206	   e_bdnz      _romcopy_wordloop
+                           207	
+                           208	_romcopy_checkbytes:
+000000d4 701c9800          209	   e_cmpwi     r28,0                                     ; Check if any bytes are left
+000000d8 e600              210	   se_bc       1,2,_romcopy_tableloop                    ; Next table entry
+                           211	
+
+                                   Fri Apr 10 08:32:19 2020           Page 5
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+000000da 00bc              212	   se_mtctr    r28                                       ; Prepare byte copy
+                           213	
+000000dc 1fbd0003          214	   e_add16i    r29, r29, 3                               ; Prepare target address
+000000e0 1fde0003          215	   e_add16i    r30, r30, 3                               ; Prepare source address
+                           216	
+                           217	_romcopy_byteloop:
+000000e4 181e0001          218	   e_lbzu      r0, 1(r30)                                ; Increment source address and read byte
+000000e8 181d0401          219	   e_stbu      r0, 1(r29)                                ; Increment target address and write byte
+000000ec 7a200000          220	   e_bdnz      _romcopy_byteloop
+                           221	
+000000f0 78000000          222	   e_b         _romcopy_tableloop                        ; Current section finished, jump to next section
+                           223	_romcopy_end:
+                           224	
+000000f4 78000000          225	   e_b         main                                      ; go to c language code
+                           226	
+                           227	
+                           228	    .fsize  8
+                           229	    .scall  __dotsyscall
+                           230	    .scall  __ghs_ind_crt0
+                           231	    .type   _start,@function
+                           232	    .size   _start,$-_start
+                           233	
+                           234	
+                           235	
+                           236	 
+                           237	
+                           238	    .section ".secinfo","a"
+                           239	
+                           240	
+                           241	
+                           242	
+                           243	; Exception table configuration - no fbl_vect.c used in MPC57xx Bootloaders
+                           244	; Offset 0x00 is not used - reserved for system reset, but system reset
+                           245	; is defined by boot header
+                           246	   .vle
+                           247	   .global _start
+                           248	   .section ".nmi","vax"          ; NMI location. Please check alignment requirements
+                           249	
+                           250	_nmibase:
+00000000 00000000          251	   .long       0                   ; Start address of startup code (BAM jumps to it)
+00000004 4400440044004400  252	   .align 4                        ; NMI vector #1    (Machine check)
+0000000c 44004400        
+00000010 78000000          253	   e_b        _start
+00000014 4400440044004400  254	   .align 4                        ; NMI vector #2    (Data storage)
+0000001c 44004400        
+00000020 78000000          255	   e_b        _start
+00000024 4400440044004400  256	   .align 4                        ; NMI vector #3    (Instruction storage)
+0000002c 44004400        
+00000030 78000000          257	   e_b        _start
+00000034 4400440044004400  258	   .align 4                        ; NMI vector #4    (External Input)
+0000003c 44004400        
+00000040 78000000          259	   e_b        _start
+00000044 4400440044004400  260	   .align 4                        ; NMI vector #5    (Alignment)
+0000004c 44004400        
+00000050 78000000          261	   e_b        _start
+00000054 4400440044004400  262	   .align 4                        ; NMI vector #6    (Program)
+0000005c 44004400        
+00000060 78000000          263	   e_b        _start
+00000064 4400440044004400  264	   .align 4                        ; NMI vector #7    (Performance Monitor)
+0000006c 44004400        
+00000070 78000000          265	   e_b        _start
+00000074 4400440044004400  266	   .align 4                        ; NMI vector #8    (System call)
+0000007c 44004400        
+00000080 78000000          267	   e_b        _start
+
+                                   Fri Apr 10 08:32:19 2020           Page 6
+                                   Wed Jan 02 16:12:18 2019   fbl_startup_vle.asm
+00000084 4400440044004400  268	   .align 4                        ; NMI vector #9    (Debug)
+0000008c 44004400        
+00000090 78000000          269	   e_b        _start
+00000094 4400440044004400  270	   .align 4                        ; NMI vector #10   (EFPU Data Exception)
+0000009c 44004400        
+000000a0 78000000          271	   e_b        _start
+000000a4 4400440044004400  272	   .align 4                        ; NMI vector #11   (EFPU Round Exception)
+000000ac 44004400        
+000000b0 78000000          273	   e_b        _start
+000000b4 4400440044004400  274	   .align 4                        ; NMI vector #12   (Reserved)
+000000bc 44004400        
+000000c0 78000000          275	   e_b        _start
+000000c4 4400440044004400  276	   .align 4                        ; NMI vector #13   (Reserved)
+000000cc 44004400        
+000000d0 78000000          277	   e_b        _start
+000000d4 4400440044004400  278	   .align 4                        ; NMI vector #14   (Reserved)
+000000dc 44004400        
+000000e0 78000000          279	   e_b        _start
+000000e4 4400440044004400  280	   .align 4                        ; NMI vector #15   (Reserved)
+000000ec 44004400        
+000000f0 78000000          281	   e_b        _start

@@ -1,0 +1,1 @@
+start "SPC5 Studio" "C:\SPC5Studio\eclipse\SPC5Studio.exe"

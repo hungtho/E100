@@ -1,0 +1,219 @@
+###############################################################################
+#  Makefile.project.part.defines
+###############################################################################
+# MakeSupport type: Vector
+# Derived product: FlashBootLoader
+# Folder structure: Legacy
+
+
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# Root of the project (dir where the additionally used components reside) from the
+# scope of the makefile location.
+# E.g. makefile is located under
+#    d:\usr\develop\can\PAG\HC08\COSMIC\testsuit\appl
+# and the components like drv, il reside under
+#    d:\usr\develop\can\PAG\HC08\COSMIC
+# The root is given (relative to the Makefile)
+#    ROOT = ..\..
+#------------------------------------------------------------------------------
+ROOT = ..\..\..
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# $(GENTOOL_DIR) contains the path to your version.info file
+# E.g.:    GENTOOL_DIR = $(ROOT)\Generators\Components
+#------------------------------------------------------------------------------
+GENTOOL_DIR = $(ROOT)\Generators\Components
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# Version of Makefile.project.part.defines
+#------------------------------------------------------------------------------
+MPPD_VERSION = 32
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# Path to which *.obj, *.err, *.lst will be moved/generated
+#------------------------------------------------------------------------------
+OBJ_PATH = obj
+ERR_PATH = err
+LST_PATH = lst
+LOG_PATH = log
+LIB_PATH = lib
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# Redirect error output to stdout (and not only to *.err files)
+#------------------------------------------------------------------------------
+ERR_TO_STDOUT = 1
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# $(GENDATA_DIR) contains the directory into which the ecu specific data is
+# generated
+# E.g.: GENDATA_DIR = GenData
+#------------------------------------------------------------------------------
+GENDATA_DIR = GenData
+
+#------------------------------------------------------------------------------
+#------------------------- MUST be filled out ---------------------------------
+# $(GENDATA_OS_DIR) contains the directory into which the ecu osspecific data is
+# generated
+# E.g.: GENDATA_OS_DIR = GenDataOs
+#------------------------------------------------------------------------------
+GENDATA_OS_DIR = $(GENDATA_DIR)
+
+
+
+###############################################################################
+#  Modules
+###############################################################################
+MODULE_LIST_PROJECT                                              += DRVEEP_DUMMY
+MODULE_LIST_PROJECT                                              += FBLDIAG_14229_CORE
+MODULE_LIST_PROJECT                                              += FBLDIAG_14229_SYMC
+MODULE_LIST_PROJECT                                              += FBLDRVCAN_MPC5700FLEXCAN3CRX
+MODULE_LIST_PROJECT                                              += FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_MAIN
+MODULE_LIST_PROJECT                                              += FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_XD1
+MODULE_LIST_PROJECT                                              += FBLLIB_MEM
+MODULE_LIST_PROJECT                                              += FBLMAIN
+MODULE_LIST_PROJECT                                              += FBLMIO
+MODULE_LIST_PROJECT                                              += FBLTP_ISO
+MODULE_LIST_PROJECT                                              += FBLVTABAPPL_MPC5500
+MODULE_LIST_PROJECT                                              += FBLWD
+MODULE_LIST_PROJECT                                              += FBLWRAPPERCOM_CAN
+MODULE_LIST_PROJECT                                              += FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_MAIN
+MODULE_LIST_PROJECT                                              += FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_XD1
+MODULE_LIST_PROJECT                                              += SYSSERVICE_SECMODHIS
+MODULE_LIST_PROJECT                                              += LIBRARY
+
+
+DRVEEP_DUMMY_USED                                                = 1
+FBLDIAG_14229_CORE_USED                                          = 1
+FBLDIAG_14229_SYMC_USED                                          = 1
+FBLDRVCAN_MPC5700FLEXCAN3CRX_USED                                = 1
+FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_MAIN_USED                      = 0
+FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_XD1_USED                       = 1
+FBLLIB_MEM_USED                                                  = 1
+FBLMAIN_USED                                                     = 1
+FBLMIO_USED                                                      = 1
+FBLTP_ISO_USED                                                   = 1
+FBLVTABAPPL_MPC5500_USED                                         = 1
+FBLWD_USED                                                       = 1
+FBLWRAPPERCOM_CAN_USED                                           = 1
+FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_MAIN_USED                  = 1
+FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_XD1_USED                   = 1
+SYSSERVICE_SECMODHIS_USED                                        = 1
+# LIBRARY files: 1=compile files / 0=use library
+LIBRARY_USED                                                     = 1
+
+
+# DrvEep_Dummy@Implementation
+DRVEEP_DUMMY_SOURCES                                             += BSW\Eep\EepIO.c
+
+# FblDiag_14229_Core@Implementation
+FBLDIAG_14229_CORE_SOURCES                                       += BSW\Fbl\fbl_diag_core.c
+
+# FblDiag_14229_Symc@Implementation
+FBLDIAG_14229_SYMC_SOURCES                                       += BSW\Fbl\fbl_diag_oem.c
+FBLDIAG_14229_SYMC_DATA                                          += $(GENDATA_DIR)\fbl_mtab.c
+
+# FblDrvCan_Mpc5700Flexcan3Crx@Implementation
+FBLDRVCAN_MPC5700FLEXCAN3CRX_SOURCES                             += BSW\Fbl\fbl_hw.c
+
+# FblDrvFlash_Mpc5700C55fmcHis@Impl_Main
+FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_MAIN_SOURCES                   += BSW\Flash\flashdrv.c
+
+# FblDrvFlash_Mpc5700C55fmcHis@Impl_XD1
+FBLDRVFLASH_MPC5700C55FMCHIS_IMPL_XD1_SOURCES                    += BSW\Flash_XD1\flashdrv_xd1.c
+
+# FblLib_Mem@Implementation
+FBLLIB_MEM_SOURCES                                               += BSW\Fbl\fbl_mem.c
+
+# FblMain@Implementation
+FBLMAIN_SOURCES                                                  += BSW\Fbl\fbl_main.c
+
+# FblMio@Implementation
+FBLMIO_SOURCES                                                   += BSW\Fbl\fbl_mio.c
+FBLMIO_DATA                                                      += $(GENDATA_DIR)\fbl_apfb.c
+
+# FblTp_Iso@Implementation
+FBLTP_ISO_SOURCES                                                += BSW\Fbl\fbl_tp.c
+
+# FblVtabAppl_Mpc5500@Implementation
+FBLVTABAPPL_MPC5500_SOURCES                                      += BSW\Fbl\fbl_applvect.c
+
+# FblWd@Implementation
+FBLWD_SOURCES                                                    += BSW\Fbl\fbl_wd.c
+
+# FblWrapperCom_Can@Implementation
+FBLWRAPPERCOM_CAN_SOURCES                                        += BSW\Fbl\fbl_cw.c
+FBLWRAPPERCOM_CAN_DATA                                           += $(GENDATA_DIR)\fbl_cw_cfg.c
+
+# FblWrapperFlash_Mpc5700C55fmcHis@Impl_Main
+FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_MAIN_SOURCES               += BSW\Fbl\fbl_flio.c
+
+# FblWrapperFlash_Mpc5700C55fmcHis@Impl_XD1
+FBLWRAPPERFLASH_MPC5700C55FMCHIS_IMPL_XD1_SOURCES                += BSW\Fbl\fbl_flio_xd1.c
+
+# SysService_SecModHis@Impl_Crc
+SYSSERVICE_SECMODHIS_SOURCES                                     += BSW\SecMod\Sec_Crc.c
+
+# SysService_SecModHis@Impl_SeedKey
+SYSSERVICE_SECMODHIS_SOURCES                                     += BSW\SecMod\Sec_SeedKey.c
+
+# SysService_SecModHis@Impl_Verification
+SYSSERVICE_SECMODHIS_SOURCES                                     += BSW\SecMod\Sec_Verification.c
+
+# SysService_SecModHis@Implementation
+SYSSERVICE_SECMODHIS_SOURCES                                     += BSW\SecMod\Sec.c
+SYSSERVICE_SECMODHIS_DATA                                        += $(GENDATA_DIR)\SecMPar.c
+
+# LIBRARY: all sources that shall/can be delivered as part of a library
+LIBRARY_SOURCES                                                  += 
+
+
+DATA_SOURCE_LST += $(GENDATA_DIR)\v_par.c
+
+# Additional BSW include directories
+ADDITIONAL_INCLUDES                                              += $(ROOT)\BSW\_Common
+ADDITIONAL_INCLUDES                                              += $(ROOT)\BSW\WrapNv
+ADDITIONAL_INCLUDES                                              += $(ROOT)\BSW\Flash
+ADDITIONAL_INCLUDES                                              += $(ROOT)\BSW\Flash_XD1
+
+
+
+
+###############################################################################
+#  Application (DemoFblBrs)
+###############################################################################
+# FblKbApi_Frame_Symc@Implementation
+APP_SOURCE_LST += Source\fbl_ap.c
+
+
+# FblKbApi_FrameDiag_Symc@Implementation
+APP_SOURCE_LST += Source\fbl_apdi.c
+
+
+# FblKbApi_FrameNv_Symc@Implementation
+APP_SOURCE_LST += Source\fbl_apnv.c
+
+
+# FblKbApi_FrameWd@Implementation
+APP_SOURCE_LST += Source\fbl_apwd.c
+
+
+# additional application include directories
+ADDITIONAL_INCLUDES += Include
+
+
+# application source files
+APP_SOURCE_LST += Source\Sec_SeedKeyVendor.c
+APP_SOURCE_LST += Source\BrsHw.c
+APP_SOURCE_LST += Source\BrsIntTb.c
+ASM_SOURCES += Source\fbl_startup_vle.asm
+#APP_SOURCE_LST += Source\BrsStartup.c
+
+
+

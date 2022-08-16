@@ -1,0 +1,2968 @@
+
+                                   Fri Apr 10 08:31:45 2020           Page 1
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+Command Line:   C:\ghs\comp_201754\asppc.exe -noundefined -stderr=err/Sec_Crc.err
+                -elf -b1 -I../../../bsw/_common -I../../../bsw/eep
+                -I../../../bsw/fbl -I../../../bsw/flash -I../../../bsw/flash_xd1
+                -I../../../bsw/secmod -I../../../bsw/wrapnv
+                -Ic:/ghs/comp_201754/ansi -Ic:/ghs/comp_201754/include/ppc
+                -Ic:/ghs/comp_201754/src/libsys -Igendata -Iinclude
+                -IC:\ghs\comp_201754\lib\ppc5514 -cpu=ppc560xp
+                -patch_dbo=C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl\obj\Sec_Crc.dbo
+                -source=Sec_Crc.c -o obj\gh_000090k1.o -list=lst/Sec_Crc.lst
+                C:\Users\owner\AppData\Local\Temp\gh_000090k1.si
+Source File:    C:\Users\owner\AppData\Local\Temp\gh_000090k1.si
+Directory:      C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+Host OS:        Windows
+AS: Copyright (C) 1983-2017 Green Hills Software.  All Rights Reserved.
+Release: Compiler v2017.5.4
+Build Directory: [Directory] COMP-VAL-WIN50:c:/autoval2/v2017.5-2017-10-03/win32-comp-ecom
+Revision: [VCInfo] http://toolsvc/branches/release-branch-2017-5-comp/src@603870 (built by auto-compiler)
+Revision Date: Wed Oct 04 11:30:08 2017
+
+Release Date: Wed Oct 04 09:00:05 2017
+
+                             1	#Driver Command: ccppc -DBRS_DERIVATIVE_SPC570S50 -DBRS_OSC_CLK=40
+                             2	#		-DBRS_TIMEBASE_CLOCK=80 -DBRS_OS_USECASE_BRS
+                             3	#		-DBRS_EVA_BOARD_DEFAULT -DBRS_PLATFORM_MPC57XX -DBRS_COMP_GHS
+                             4	#		-DBRSHW_INSTRUCTION_SET_VLE -DBRS_CPU_STARTUP_ID=0
+                             5	#		-object_dir=obj -list=lst/Sec_Crc.lst -stderr=err/Sec_Crc.err -c
+                             6	#		-vle -DC_ENABLE_INSTRUCTION_SET_VLE -D__vle --prototype_warnings
+                             7	#		-Odebug -Osize -Ospace -G -dual_debug -nofloatio -cpu=ppc560xp
+                             8	#		-noobj -DRAM_48K -inline_prologue -pragma_asm_inline -noSPE
+                             9	#		--no_exceptions --no_commons -nokeeptempfiles -pnone
+                            10	#		--incorrect_pragma_warnings --slash_comment --long_long
+                            11	#		-preprocess_assembly_files -passsource -I../../../bsw/_common
+                            12	#		-I../../../bsw/eep -I../../../bsw/fbl -I../../../bsw/flash
+                            13	#		-I../../../bsw/flash_xd1 -I../../../bsw/secmod
+                            14	#		-I../../../bsw/wrapnv -Ic:/ghs/comp_201754/ansi
+                            15	#		-Ic:/ghs/comp_201754/include/ppc -Ic:/ghs/comp_201754/src/libsys
+                            16	#		-Igendata -Iinclude ../../../BSW/SecMod/Sec_Crc.c
+                            17	#Source File:   ../../../BSW/SecMod/Sec_Crc.c
+                            18	#Directory:     C:\Vector\CBD1800772_D00_Mpc57xx\Demo\DemoFbl\Appl
+                            19	#Compile Date:  Fri Apr 10 08:31:45 2020
+                            20	#Host OS:       Win32
+                            21	#Version:       C-POWERPC 2017.5.4 RELEASE VERSION
+                            22	#Release:       Compiler v2017.5.4
+                            23	#Revision Date: Wed Oct 04 11:39:37 2017
+                            24	#Release Date:  Wed Oct 04 09:00:05 2017
+                            25	# ecom  -g -w -OMS
+                            26	
+                            27	#1: /**********************************************************************************************************************
+                            28	#2:  *  FILE DESCRIPTION
+                            29	#3:  *  -----------------------------------------------------------------------------------------------------------------*/
+                            30	#4: /** \file
+                            31	#5:  *  \brief        Implementation of the HIS security module - CRC calculation
+                            32	#6:  *
+                            33	#7:  *  \description  Offers CRC calculation (CRC-16 / CRC-32 / CRC-64)
+                            34	#8:  *  -------------------------------------------------------------------------------------------------------------------
+                            35	#9:  *  COPYRIGHT
+                            36	#10:  *  -------------------------------------------------------------------------------------------------------------------
+                            37	#11:  *  \par Copyright
+                            38	#12:  *  \verbatim
+                            39	#13:  *  Copyright (c) 2018 by Vector Informatik GmbH.                                                  All rights reserved.
+                            40	#14:  *
+                            41	#15:  *                This software is copyright protected and proprietary to Vector Informatik GmbH.
+                            42	#16:  *                Vector Informatik GmbH grants to you only those rights as set out in the license conditions.
+                            43	#17:  *                All other rights remain with Vector Informatik GmbH.
+
+                                   Fri Apr 10 08:31:45 2020           Page 2
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                            44	#18:  *  \endverbatim
+                            45	#19:  */
+                            46	#20: /*********************************************************************************************************************/
+                            47	#22: /***********************************************************************************************************************
+                            48	#23:  *  AUTHOR IDENTITY
+                            49	#24:  *  --------------------------------------------------------------------------------------------------------------------
+                            50	#25:  *  Name                          Initials      Company
+                            51	#26:  *  --------------------------------------------------------------------------------------------------------------------
+                            52	#27:  *  Joern Herwig                  JHg           Vector Informatik GmbH
+                            53	#28:  *  Achim Strobelt                Ach           Vector Informatik GmbH
+                            54	#29:  *  --------------------------------------------------------------------------------------------------------------------
+                            55	#30:  *  REVISION HISTORY
+                            56	#31:  *  --------------------------------------------------------------------------------------------------------------------
+                            57	#32:  *  Version    Date        Author  Change Id        Description
+                            58	#33:  *  --------------------------------------------------------------------------------------------------------------------
+                            59	#34:  *  01.00.00   2013-06-20  JHg     ESCAN00068213    Initial release based on FblSecMod_Vector 02.02.00
+                            60	#35:  *  02.00.00   2013-11-08  JHg     ESCAN00071176    Major refactoring
+                            61	#36:  *                                                   Moved to separate sub-package
+                            62	#37:  *                                                   Renamed file name (was SecMCrc.c)
+                            63	#38:  *                                                   Added CRC-16 CCITT implementation
+                            64	#39:  *                                                   Function for CRC table generation made static
+                            65	#40:  *  02.00.01   2014-01-20  JHg     ESCAN00073016    Resolved compiler warnings
+                            66	#41:  *  02.01.00   2014-02-10  JHg     ESCAN00073559    CRC algorithm selectable at compile time
+                            67	#42:  *  02.02.00   2015-11-11  JHg     ESCAN00085510    Added SecM_InitPowerOn, intializes state of lookup table
+                            68	#43:  *  02.03.00   2015-11-25  JHg     ESCAN00086750    Allow overwrite of CRC parameters in configuration
+                            69	#44:  *  02.04.00   2017-01-18  JHg     ESCAN00093623    Added support for CRC-64 (defaults to ISO-3309)
+                            70	#45:  *                                                  Multiple CRC widths available at runtime
+                            71	#46:  *                                                  Allow overwrite of bit order mode in configuration
+                            72	#47:  *  02.04.01   2018-01-23  JHg     ESCAN00098101    Removed CRC zero value constant
+                            73	#48:  *  02.04.02   2018-07-24  Ach     ESCAN00100154    Speed optimized CRC32 is not calculated correctly
+                            74	#49:  **********************************************************************************************************************/
+                            75	#51: /***********************************************************************************************************************
+                            76	#52:  *  INCLUDES
+                            77	#53:  **********************************************************************************************************************/
+                            78	#55: /* Security module configuration settings */
+                            79	#56: #include "Sec_Inc.h" /* PRQA S 0883 */ /* MD_SecInc_0883 */
+                            80	#58: /* Global type definitions for security module */
+                            81	#59: #include "Sec_Types.h"
+                            82	#61: /* Security module interface */
+                            83	#62: #include "Sec.h"     /* PRQA S 0883 */ /* MD_SecInc_0883 */
+                            84	#64: /***********************************************************************************************************************
+                            85	#65:  *   VERSION
+                            86	#66:  **********************************************************************************************************************/
+                            87	#68: #if ( SYSSERVICE_SECMODHIS_CRC_VERSION != 0x0204u ) || \
+                            88	#69:     ( SYSSERVICE_SECMODHIS_CRC_RELEASE_VERSION != 0x02u )
+                            89	#70: # error "Error in SEC_CRC.C: Source and header file are inconsistent!"
+                            90	#71: #endif
+                            91	#73: /***********************************************************************************************************************
+                            92	#74:  *  DEFINES
+                            93	#75:  **********************************************************************************************************************/
+                            94	#77: /* PRQA S 3453 TAG_SecCrc_3453_1 */ /* MD_CBD_19.7 */
+                            95	#79: #if ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                            96	#80: /* Large lookup table in RAM */
+                            97	#81: /** Number of bits used to index entries */
+                            98	#82: # define CRC_INDEX_BITS    8u
+                            99	#83: /** Mask for table indices */
+
+                                   Fri Apr 10 08:31:45 2020           Page 3
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           100	#84: # define CRC_INDEX_MASK    0xFFul
+                           101	#85: /** Size of lookup table */
+                           102	#86: # define CRC_TABLE_SIZE    256u
+                           103	#87: #elif ( SEC_CRC_OPT == SEC_CRC_SIZE_OPTIMIZED )
+                           104	#88: /* Small lookup table in ROM */
+                           105	#89: /** Number of bits used to index entries */
+                           106	#90: # define CRC_INDEX_BITS    4u
+                           107	#91: /** Mask for table indices */
+                           108	#92: # define CRC_INDEX_MASK    0x0Ful
+                           109	#93: /** Size of lookup table */
+                           110	#94: # define CRC_TABLE_SIZE    16u
+                           111	#95: #endif /* SEC_CRC_OPT */
+                           112	#97: /* Allow override of CRC parameters by configuration (e.g. don't complement CRC value during finalization) */
+                           113	#99: #if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           114	#100: # if defined( SEC_CRC_32_INITIAL )
+                           115	#101: # else
+                           116	#102: /** Initialization value for CRC */
+                           117	#103: #  define SEC_CRC_32_INITIAL        0xFFFFFFFFul
+                           118	#104: # endif /* SEC_CRC_32_INITIAL */
+                           119	#105: # if defined( SEC_CRC_32_POLYNOMIAL )
+                           120	#106: # else
+                           121	#107: /** Reflected CRC-32 polynomial. This value can be found in literature in reverse bit order: 0x04C11DB7 */
+                           122	#108: #  define SEC_CRC_32_POLYNOMIAL     0xEDB88320ul
+                           123	#109: # endif /* SEC_CRC_32_POLYNOMIAL */
+                           124	#110: # if defined( SEC_CRC_32_MODE )
+                           125	#111: # else
+                           126	#112: /* Operation mode of CRC (reflected) */
+                           127	#113: #  define SEC_CRC_32_MODE           SEC_CRC_MODE_REFLECTED
+                           128	#114: # endif /* SEC_CRC_32_MODE */
+                           129	#115: # if defined( SEC_CRC_32_FINAL )
+                           130	#116: # else
+                           131	#117: /** Finalization value for CRC: Complement CRC value */
+                           132	#118: #  define SEC_CRC_32_FINAL          0xFFFFFFFFul
+                           133	#119: # endif /* SEC_CRC_32_FINAL */
+                           134	#121: /** Value to indicate uninitialized RAM lookup table */
+                           135	#122: # define SEC_CRC_32_UNINIT_PATTERN  0xA5A5A5A5ul
+                           136	#123: /** Magic value to indicate initialized RAM lookup table */
+                           137	#124: # define SEC_CRC_32_INIT_PATTERN    0xC2C3274Bul
+                           138	#125: #endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           139	#128: #if defined( SEC_ENABLE_CRC_STRUCT_TYPE )
+                           140	#129: # define SEC_GET_BASE_CRC(crc)      ((crc).lowWord)
+                           141	#130: #else
+                           142	#131: # define SEC_GET_BASE_CRC(crc)      (crc)
+                           143	#132: #endif /* SEC_ENABLE_CRC_STRUCT_TYPE */
+                           144	#134: #if ( SEC_CRC_OPT == SEC_CRC_SIZE_OPTIMIZED )
+                           145	#135: /* Macros for compile-time generation of small lookup table in ROM */
+                           146	#137: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           147	#138: #  if ( SEC_CRC_32_MODE == SEC_CRC_MODE_NON_REFLECTED )
+                           148	#139: /** Update CRC-32 value according to next input bit */
+                           149	#140: #   define CRC_32_BIT(in)        ((((in) & 0x7FFFFFFFul) << 1u) ^ ((((in) >> 31u) & 0x01u) * SEC_CRC_32_POLYNOMIAL))
+                           150	#141: /** Calculate CRC-32 table entry for given input index */
+                           151	#142: #   define CRC_32_CALC(in)       CRC_32_NIBBLE(((in) & 0x0Ful) << 28u)
+                           152	#143: #  else /* SEC_CRC_32_MODE == SEC_CRC_MODE_REFLECTED */
+                           153	#144: /** Update CRC-32 value according to next input bit */
+                           154	#145: #   define CRC_32_BIT(in)        (((in) >> 1u) ^ (((in) & 0x01u) * SEC_CRC_32_POLYNOMIAL))
+                           155	#146: /** Calculate CRC-32 table entry for given input index */
+
+                                   Fri Apr 10 08:31:45 2020           Page 4
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           156	#147: #   define CRC_32_CALC(in)       CRC_32_NIBBLE((in))
+                           157	#148: #  endif /* SEC_CRC_32_MODE */
+                           158	#150: /** Calculate entry for CRC-32 calculation table based on 4-bit algorithm */
+                           159	#151: #  define CRC_32_NIBBLE(in)      (CRC_32_BIT(CRC_32_BIT(CRC_32_BIT(CRC_32_BIT(in)))))
+                           160	#153: /** Calculate 4 entries of CRC-32 calculation table */
+                           161	#154: #  define CRC_32_ENTRIES_4(i)    \
+                           162	#155:    CRC_32_CALC((i)),             \
+                           163	#156:    CRC_32_CALC((i) + 1u),        \
+                           164	#157:    CRC_32_CALC((i) + 2u),        \
+                           165	#158:    CRC_32_CALC((i) + 3u)
+                           166	#160: /** Calculate 16 entries of CRC-32 calculation table */
+                           167	#161: #  define CRC_32_ENTRIES_16(i)   \
+                           168	#162:    CRC_32_ENTRIES_4((i)),        \
+                           169	#163:    CRC_32_ENTRIES_4((i) + 4u),   \
+                           170	#164:    CRC_32_ENTRIES_4((i) + 8u),   \
+                           171	#165:    CRC_32_ENTRIES_4((i) + 12u)
+                           172	#166: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           173	#168: #endif /* SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED */
+                           174	#170: /* PRQA L:TAG_SecCrc_3453_1 */
+                           175	#172: /**********************************************************************************************************************
+                           176	#173:  *  LOCAL FUNCTION PROTOTYPES
+                           177	#174:  *********************************************************************************************************************/
+                           178	#176: #if ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                           179	#177: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           180	#178: static void SecM_GenerateLookupCrc32( FL_WDTriggerFctType pWatchdog );
+                           181	#179: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           182	#180: #endif /* SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED */
+                           183	#182: #if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           184	#183: static void SecM_UpdateCrc32( V_MEMRAM1 SecM_CRCParamType V_MEMRAM2 V_MEMRAM2 * pCrcParam );
+                           185	#184: #endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           186	#186: /***********************************************************************************************************************
+                           187	#187:  *  LOCAL DATA
+                           188	#188:  **********************************************************************************************************************/
+                           189	#190:  /* PRQA S 3218 TAG_SecCrc_3218_1 */ /* MD_SecCrc_3218 */
+                           190	#192: #if ( SEC_CRC_OPT == SEC_CRC_SIZE_OPTIMIZED )
+                           191	#193: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           192	#194: /** CRC-32 calculation table based on 4-bit algorithm */
+                           193	#195: V_MEMROM0 static V_MEMROM1 SecM_Crc32Type V_MEMROM2 lookupCrc32[CRC_TABLE_SIZE] =
+                           194	#196: {
+                           195	#197:    CRC_32_ENTRIES_16(0x00u)
+                           196	#198: };
+                           197	#199: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           198	#200: #elif ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                           199	#201: /* For speed optimization, the CRC table is dynamically generated in RAM */
+                           200	#202: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           201	#203: /** CRC-32 calculation table based on 8-bit algorithm */
+                           202	#204: V_MEMRAM0 static V_MEMRAM1 SecM_Crc32Type V_MEMRAM2 lookupCrc32[CRC_TABLE_SIZE + 1u];
+                           203	#205: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           204	#207: #endif /* SEC_CRC_OPT */
+                           205	#209: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           206	#210: /** Initialization value for CRC */
+                           207	#211: V_MEMROM0 static V_MEMROM1 SecM_CRCType   V_MEMROM2 initialValueCrc32   = SEC_INITIAL_VAL(SEC_CRC_32_INITIAL);
+                           208	#212: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           209	#214: /* PRQA L:TAG_SecCrc_3218_1 */
+                           210	#216: /**********************************************************************************************************************
+                           211	#217:  *  LOCAL FUNCTIONS
+
+                                   Fri Apr 10 08:31:45 2020           Page 5
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           212	#218:  *********************************************************************************************************************/
+                           213	#220: #if ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                           214	#222: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           215	#223: /***********************************************************************************************************************
+                           216	#224:  *  SecM_GenerateLookupCrc32
+                           217	#225:  **********************************************************************************************************************/
+                           218	#226: /*! \brief       Generates the CRC-32 lookup table
+                           219	#227:  *  \param[in]   pWatchdog Pointer to watchdog trigger function
+                           220	#228:  **********************************************************************************************************************/
+                           221	#229: static void SecM_GenerateLookupCrc32( FL_WDTriggerFctType pWatchdog )
+                           222	#230: {
+                           223	#231:    /* Create CRC table in RAM */
+                           224	#232:    SecM_ShortFastType   tableIndex;
+                           225	#233:    SecM_ByteFastType    bitIndex;
+                           226	#234:    SecM_Crc32Type       crc;
+                           227	#236:    /* Fill lookup table */
+                           228	#237:    for (tableIndex = 0u; tableIndex < CRC_TABLE_SIZE; tableIndex++)
+                           229	#238:    {
+                           230	#239:       /* Serve watchdog (every n-th cycle) */
+                           231	#240:       SEC_WATCHDOG_CYCLE_TRIGGER(pWatchdog, tableIndex); /* PRQA S 3109 */ /* MD_MSR_14.3 */
+                           232	#242:       /* Start value equals part of table index */
+                           233	#243: #  if ( SEC_CRC_32_MODE == SEC_CRC_MODE_NON_REFLECTED )
+                           234	#244:       /* Non-reflected algorithm */
+                           235	#245:       crc = (SecM_Crc32Type)tableIndex << (32u - CRC_INDEX_BITS);
+                           236	#246: #  else /* SEC_CRC_32_MODE == SEC_CRC_MODE_REFLECTED */
+                           237	#247:       /* Reflected algorithm */
+                           238	#248:       crc = tableIndex;
+                           239	#249: #  endif /* SEC_CRC_32_MODE */
+                           240	#251:       /* Iterate all index bits */
+                           241	#252:       for (bitIndex = 0u; bitIndex < CRC_INDEX_BITS; bitIndex++)
+                           242	#253:       {
+                           243	#254: #  if ( SEC_CRC_32_MODE == SEC_CRC_MODE_NON_REFLECTED )
+                           244	#255:          /* Non-reflected algorithm takes most significant bit */
+                           245	#256:          if ((crc & (0x01ul << 31u)) != 0x00ul)
+                           246	#257:          {
+                           247	#258:             crc <<= 1u;
+                           248	#259:             crc ^= SEC_CRC_32_POLYNOMIAL;
+                           249	#260:          }
+                           250	#261:          else
+                           251	#262:          {
+                           252	#263:             crc <<= 1u;
+                           253	#264:          }
+                           254	#265: #  else /* SEC_CRC_32_MODE == SEC_CRC_MODE_REFLECTED */
+                           255	#266:          /* Reflected algorithm takes least significant bit */
+                           256	#267:          if ((crc & 0x01u) != 0x00u)
+                           257	#268:          {
+                           258	#269:             crc >>= 1u;
+                           259	#270:             crc ^= SEC_CRC_32_POLYNOMIAL;
+                           260	#271:          }
+                           261	#272:          else
+                           262	#273:          {
+                           263	#274:             crc >>= 1u;
+                           264	#275:          }
+                           265	#276: #  endif /* SEC_CRC_32_MODE */
+                           266	#277:       }
+                           267	#279:       /* Store calculated lookup value */
+
+                                   Fri Apr 10 08:31:45 2020           Page 6
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           268	#280:       lookupCrc32[tableIndex] = crc;
+                           269	#281:    }
+                           270	#283:    /* Mark table as initialized by setting magic value */
+                           271	#284:    lookupCrc32[CRC_TABLE_SIZE] = SEC_CRC_32_INIT_PATTERN;
+                           272	#285: }
+                           273	#286: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           274	#288: #endif /* SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED */
+                           275	#291: #if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           276	#292: /***********************************************************************************************************************
+                           277	#293:  *  SecM_UpdateCrc32
+                           278	#294:  **********************************************************************************************************************/
+                           279	#295: /*! \brief       Computes the CRC upon the given data buffer
+                           280	#296:  *  \param[in,out] crcParam Pointer to parameter structure
+                           281	#297:  **********************************************************************************************************************/
+                           282		.section ".vletext", "vax"
+                           283		.vle
+                           284		.vle
+                           285	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB061..0::
+                           286		.align	1
+                           287	..gh.f.p.3.a.1.r.0.e.0:
+                           288		.type	..gh.f.p.3.a.1.r.0.e.0,@object
+                           289		.size	..gh.f.p.3.a.1.r.0.e.0,0
+                           290		.global	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+                           291	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.:
+                           292	SecM_UpdateCrc32:
+00000000 182106e0          293		e_stwu	sp, -32(sp)
+00000004 1b61090c          294		e_stmw	r27, 12(sp)
+00000008 0080              295		se_mflr	r0
+0000000a d901              296		se_stw	r0, 36(sp)
+0000000c 013e              297		se_mr	r30, r3
+                           298	#	    .bf
+                           299	.LDW01:
+                           300	#298: static void SecM_UpdateCrc32( V_MEMRAM1 SecM_CRCParamType V_MEMRAM2 V_MEMRAM2 * pCrcParam )
+                           301	#299: {
+                           302	#300:    SecM_ShortFastType      tableIndex;    /* Index for CRC table access */
+                           303	#301:    SecM_LengthFastType     sourceIndex;   /* Index for source data buffer */
+                           304	#302:    SecM_LengthFastType     byteCount;
+                           305	#303:    SecM_Crc32Type          tmpCrc;
+                           306	#304:    SecM_ByteType           currentData;
+                           307	#305:    FL_WDTriggerFctType     pWatchdog;
+                           308	#307:    /* Operate on local copy of CRC */
+                           309	#308:    tmpCrc      = (SecM_Crc32Type)SEC_GET_BASE_CRC(pCrcParam->currentCRC);
+0000000e c0f3              310		se_lwz	r31, 0(r3)
+                           311	#309:    byteCount   = pCrcParam->crcByteCount;
+00000010 a6b3              312		se_lhz	r27, 12(r3)
+                           313	#310:    pWatchdog   = pCrcParam->wdTriggerFct;
+00000012 c4c3              314		se_lwz	r28, 16(r3)
+                           315	#312:    /* Loop all input bytes */
+                           316	#313:    for (sourceIndex = 0u; sourceIndex < byteCount; sourceIndex++)
+00000014 480d              317		se_li	r29, 0
+00000016 e800              318		se_b	.L7
+                           319	.L6:
+                           320	#314:    {
+                           321	#315:       /* Serve watchdog (every n-th cycle) */
+                           322	#316:       SEC_WATCHDOG_CYCLE_TRIGGER(pWatchdog, sourceIndex); /* PRQA S 3109 */ /* MD_MSR_14.3 */
+                           323	#line316
+
+                                   Fri Apr 10 08:31:45 2020           Page 7
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           324	..lin.6a987d4f..f5df82ac.0_1::
+                           325	.LDWlin1:
+00000018 1ba0c81f          326		e_andi.	r0, r29, 31
+0000001c e200              327		se_bne	.L8
+                           328	#line316
+                           329	..lin.6a987d4f..f5df82ac.0_2::
+                           330	.LDWlin2:
+0000001e 2a0c              331		se_cmpi	r28, 0
+00000020 e600              332		se_beq	.L8
+                           333	#line316
+                           334	..lin.6a987d4f..f5df82ac.0_3::
+                           335	.LDWlin3:
+00000022 00bc              336		se_mtctr	r28
+00000024 0007              337		se_bctrl
+                           338	.L8:
+                           339	#318:       /* Read current data byte */
+                           340	#319:       currentData = pCrcParam->crcSourceBuffer[sourceIndex];
+00000026 c27e              341		se_lwz	r7, 8(r30)
+00000028 7c07e8ae          342		lbzx	r0, r7, r29
+                           343	#321: # if ( SEC_CRC_32_MODE == SEC_CRC_MODE_NON_REFLECTED )
+                           344	#322: #  if (SEC_CRC_OPT == SEC_CRC_SIZE_OPTIMIZED)
+                           345	#323:       /* Calculate CRC with small table in ROM */
+                           346	#324:       /* Calculate high-nibble first */
+                           347	#325:       tableIndex  = (SecM_ShortFastType)(((currentData >> (8u - CRC_INDEX_BITS)) ^ (tmpCrc >> (32u - CRC_INDEX_BITS))) & CRC_INDEX_MASK);
+                           348	#326:       tmpCrc      = (SecM_Crc32Type)((tmpCrc << CRC_INDEX_BITS) ^ lookupCrc32[tableIndex]);
+                           349	#327: #  endif /* SEC_CRC_OPT */
+                           350	#328:       tableIndex  = (SecM_ShortFastType)((currentData ^ (tmpCrc >> (32u - CRC_INDEX_BITS))) & CRC_INDEX_MASK);
+                           351	#329:       tmpCrc      = (SecM_Crc32Type)((tmpCrc << CRC_INDEX_BITS) ^ lookupCrc32[tableIndex]);
+                           352	#330: # else /* SEC_CRC_32_MODE == SEC_CRC_MODE_REFLECTED */
+                           353	#331:       /* Reflected */
+                           354	#332:       tableIndex  = (SecM_ShortFastType)((currentData ^ tmpCrc) & CRC_INDEX_MASK);
+0000002c 70e0e000          355		e_lis	r7, %hiadj(lookupCrc32)
+                           356	#333:       tmpCrc      = (SecM_Crc32Type)((tmpCrc >> CRC_INDEX_BITS) ^ lookupCrc32[tableIndex]);
+00000030 1ce70000          357		e_add16i	r7, r7, %lo(lookupCrc32)
+00000034 7c06fa78          358		xor	r6, r0, r31
+00000038 74c616bb          359		e_rlwinm	r6, r6, 2, 26, 29
+0000003c 7cc6382e          360		lwzx	r6, r6, r7
+00000040 684f              361		se_srwi	r31, 4
+00000042 6a40              362		se_srawi	r0, 4
+                           363	#334: #  if ( SEC_CRC_OPT == SEC_CRC_SIZE_OPTIMIZED )
+                           364	#335:       /* Calculate CRC with small table in ROM */
+                           365	#336:       /* Calculate low-nibble */
+                           366	#337:       tableIndex  = (SecM_ShortFastType)(((currentData >> (8u - CRC_INDEX_BITS)) ^ tmpCrc) & CRC_INDEX_MASK);
+00000044 7fff3278          367		xor	r31, r31, r6
+00000048 7c00fa78          368		xor	r0, r0, r31
+                           369	#338:       tmpCrc      = (SecM_Crc32Type)((tmpCrc >> CRC_INDEX_BITS) ^ lookupCrc32[tableIndex]);
+0000004c 740616bb          370		e_rlwinm	r6, r0, 2, 26, 29
+00000050 7c06382e          371		lwzx	r0, r6, r7
+00000054 684f              372		se_srwi	r31, 4
+00000056 200d              373		se_addi	r29, 1
+00000058 7fff0278          374		xor	r31, r31, r0
+                           375	.L7:
+0000005c 0dbd              376		se_cmpl	r29, r27
+0000005e e400              377		se_blt	.L6
+                           378	#339: #  endif /* SEC_CRC_OPT */
+                           379	#340: # endif /* SEC_CRC_32_MODE */
+
+                                   Fri Apr 10 08:31:45 2020           Page 8
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           380	#341:    }
+                           381	#343:    /* Update external CRC value */
+                           382	#344:    SEC_GET_BASE_CRC(pCrcParam->currentCRC) = tmpCrc;
+                           383	#line344
+                           384	..lin.6a987d4f..f5df82ac.0_4::
+                           385	.LDWlin4:
+00000060 d0fe              386		se_stw	r31, 0(r30)
+                           387	#345: }
+                           388	#	    .ef
+                           389	.LDW11:
+00000062 c901              390		se_lwz	r0, 36(sp)
+00000064 1b61080c          391		e_lmw	r27, 12(sp)
+00000068 21f1              392		se_addi	sp, 32
+0000006a 0090              393		se_mtlr	r0
+0000006c 0004              394		se_blr
+                           395	__ghs_eofn_SecM_UpdateCrc32:
+                           396		.type	SecM_UpdateCrc32,@function
+                           397		.size	SecM_UpdateCrc32,$-SecM_UpdateCrc32
+                           398		.type	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.,@function
+                           399		.size	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.,$-SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+                           400		.align	1
+                           401	
+                           402	#function:			SecM_UpdateCrc32
+                           403	#stack frame size:		32
+                           404	#link area offset:		0
+                           405	#local storage area offset:	12
+                           406	#gpr save area offset:		12
+                           407	#
+                           408	#sourceIndex	r29	local
+                           409	#byteCount	r27	local
+                           410	#tmpCrc	r31	local
+                           411	#currentData	r0	local
+                           412	#pWatchdog	r28	local
+                           413	
+                           414	#pCrcParam	r30	param
+                           415	
+                           416		.section ".rodata","a"
+                           417		.align	2
+                           418		.global	lookupCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+                           419	lookupCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.:
+00000000 00000000          420	lookupCrc32:	.space	4
+00000004 1db71064          421		.byte	29,183,16,100
+00000008 3b6e20c8          422		.byte	59,110,32,200
+0000000c 26d930ac          423		.byte	38,217,48,172
+00000010 76dc4190          424		.byte	118,220,65,144
+00000014 6b6b51f4          425		.byte	107,107,81,244
+00000018 4db26158          426		.byte	77,178,97,88
+0000001c 5005713c          427		.byte	80,5,113,60
+00000020 edb88320          428		.byte	237,184,131,32
+00000024 f00f9344          429		.byte	240,15,147,68
+00000028 d6d6a3e8          430		.byte	214,214,163,232
+0000002c cb61b38c          431		.byte	203,97,179,140
+00000030 9b64c2b0          432		.byte	155,100,194,176
+00000034 86d3d2d4          433		.byte	134,211,210,212
+00000038 a00ae278          434		.byte	160,10,226,120
+0000003c bdbdf21c          435		.byte	189,189,242,28
+
+                                   Fri Apr 10 08:31:45 2020           Page 9
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           436		.type	lookupCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.,@object
+                           437		.size	lookupCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.,64
+                           438		.type	lookupCrc32,@object
+                           439		.size	lookupCrc32,64
+                           440		.data
+                           441		.section ".vletext", "vax"
+                           442		.vle
+                           443		.vle
+                           444	
+                           445	
+                           446	#346: #endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           447	#349: /**********************************************************************************************************************
+                           448	#350:  *  GLOBAL FUNCTIONS
+                           449	#351:  *********************************************************************************************************************/
+                           450	#353: /**********************************************************************************************************************
+                           451	#354:  *  SecM_InitPowerOnCRC
+                           452	#355:  *********************************************************************************************************************/
+                           453	#356: /*! \brief         Initialize CRC module
+                           454	#357:  *********************************************************************************************************************/
+                           455		.align	1
+                           456		.align	1
+                           457	..gh.f.p.0.a.1.r.0.e.1:
+                           458		.type	..gh.f.p.0.a.1.r.0.e.1,@object
+                           459		.size	..gh.f.p.0.a.1.r.0.e.1,0
+                           460		.global	SecM_InitPowerOnCRC
+                           461	SecM_InitPowerOnCRC:
+                           462	#	    .bf
+                           463	.LDW21:
+                           464	#358: void SecM_InitPowerOnCRC( void )
+                           465	#359: {
+                           466	#360: #if ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                           467	#361:    /* Mark lookup table as potentially uninitialized */
+                           468	#362: # if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           469	#363:    lookupCrc32[CRC_TABLE_SIZE] = SEC_CRC_32_UNINIT_PATTERN;
+                           470	#364: # endif /* SEC_ENABLE_CRC_TYPE_CRC32 */
+                           471	#365: #endif /* SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED */
+                           472	#366: }
+                           473	#	    .ef
+                           474	.LDW31:
+0000006e 0004              475		se_blr
+                           476		.global	__ghs_eofn_SecM_InitPowerOnCRC
+                           477	__ghs_eofn_SecM_InitPowerOnCRC:
+                           478		.type	SecM_InitPowerOnCRC,@function
+                           479		.size	SecM_InitPowerOnCRC,$-SecM_InitPowerOnCRC
+                           480		.align	1
+                           481	
+                           482	#function:			SecM_InitPowerOnCRC
+                           483	#stack frame size:		0
+                           484	#
+                           485	
+                           486		.data
+                           487		.section ".vletext", "vax"
+                           488		.vle
+                           489		.vle
+                           490	
+                           491	
+
+                                   Fri Apr 10 08:31:45 2020           Page 10
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           492	#368: /***********************************************************************************************************************
+                           493	#369:  *  SecM_ComputeCRC
+                           494	#370:  **********************************************************************************************************************/
+                           495	#371: /*! \brief       Function that manages the state of CRC computation
+                           496	#372:  *  \param[in,out] crcParam Pointer to parameter structure
+                           497	#373:  *  \return      SECM_OK if operation was successful
+                           498	#374:  *               SECM_NOT_OK
+                           499	#375:  **********************************************************************************************************************/
+                           500	#376: SecM_StatusType SecM_ComputeCRC( V_MEMRAM1 SecM_CRCParamType V_MEMRAM2 V_MEMRAM2 * crcParam )
+                           501	#377: {
+                           502	#378: #if ( SEC_CRC_TYPE == SEC_CRC16 )
+                           503	#379:    return SecM_ComputeCrc16(crcParam);
+                           504	#380: #elif ( SEC_CRC_TYPE == SEC_CRC32 )
+                           505	#381:    return SecM_ComputeCrc32(crcParam);
+                           506	#382: #else /* SEC_CRC_TYPE == SEC_CRC64 */
+                           507	#383:    return SecM_ComputeCrc64(crcParam);
+                           508	#384: #endif /* SEC_CRC_TYPE */
+                           509	#385: }
+                           510	#388: #if defined( SEC_ENABLE_CRC_TYPE_CRC32 )
+                           511	#389: /***********************************************************************************************************************
+                           512	#390:  *  SecM_ComputeCrc32
+                           513	#391:  **********************************************************************************************************************/
+                           514	#392: /*! \brief       Function that manages the state of CRC-32 computation
+                           515	#393:  *  \param[in,out] crcParam Pointer to parameter structure
+                           516	#394:  *  \return      SECM_OK if operation was successful
+                           517	#395:  *               SECM_NOT_OK
+                           518	#396:  **********************************************************************************************************************/
+                           519		.align	1
+                           520		.align	1
+                           521	..gh.f.p.3.a.1.r.0.e.2:
+                           522		.type	..gh.f.p.3.a.1.r.0.e.2,@object
+                           523		.size	..gh.f.p.3.a.1.r.0.e.2,0
+                           524		.global	SecM_ComputeCrc32
+                           525	SecM_ComputeCrc32:
+00000070 182106f0          526		e_stwu	sp, -16(sp)
+00000074 0080              527		se_mflr	r0
+00000076 d3f1              528		se_stw	r31, 12(sp)
+00000078 d501              529		se_stw	r0, 20(sp)
+0000007a 013f              530		se_mr	r31, r3
+                           531	#	    .bf
+                           532	.LDW41:
+                           533	#397: SecM_StatusType SecM_ComputeCrc32( V_MEMRAM1 SecM_CRCParamType V_MEMRAM2 V_MEMRAM3 * crcParam )
+                           534	#398: {
+                           535	#399:    SecM_StatusType result;
+                           536	#400:    SecM_Crc32Type  crcTransferred;
+                           537	#402:    result = SECM_NOT_OK;
+0000007c 8473              538		se_lbz	r7, 4(r3)
+                           539	#404:    switch (crcParam->crcState)
+0000007e 2c80              540		se_bmaski	r0, 8
+00000080 2207              541		se_cmpli	r7, 1
+00000082 e400              542		se_blt	.L147
+00000084 e600              543		se_beq	.L141
+00000086 2227              544		se_cmpli	r7, 3
+00000088 e400              545		se_blt	.L142
+0000008a e600              546		se_beq	.L143
+0000008c 2237              547		se_cmpli	r7, 4
+
+                                   Fri Apr 10 08:31:45 2020           Page 11
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000008e e600              548		se_beq	.L144
+00000090 e800              549		se_b	.L147
+                           550	.L141:
+                           551	#405:    {
+                           552	#406:       case SEC_CRC_INIT:
+                           553	#407:       {
+                           554	#408: # if ( SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED )
+                           555	#409:          /* Check magic value to verify whether lookup table was already initialized */
+                           556	#410:          if (SEC_CRC_32_INIT_PATTERN != lookupCrc32[CRC_TABLE_SIZE])
+                           557	#411:          {
+                           558	#412:             /* Initialize lookup table in RAM */
+                           559	#413:             SecM_GenerateLookupCrc32(crcParam->wdTriggerFct);
+                           560	#414:          }
+                           561	#415: # endif /* SEC_CRC_OPT == SEC_CRC_SPEED_OPTIMIZED */
+                           562	#417:          /* Set initial CRC value */
+                           563	#418:          crcParam->currentCRC = initialValueCrc32;
+                           564	#line418
+                           565	..lin.6a987d4f..6df19b66.0_5::
+                           566	.LDWlin5:
+00000092 2c00              567		se_bmaski	r0, 0
+                           568	#420:          result = SECM_OK;
+                           569	#422:          break;
+00000094 e800              570		se_b	.L313
+                           571	.L143:
+                           572	#432:       }
+                           573	#433:       case SEC_CRC_FINALIZE:
+                           574	#434:       {
+                           575	#435:          /* Complement CRC value */
+                           576	#436:          SEC_GET_BASE_CRC(crcParam->currentCRC) ^= SEC_CRC_32_FINAL;
+                           577	#line436
+                           578	..lin.6a987d4f..6df19b66.0_6::
+                           579	.LDWlin6:
+00000096 c003              580		se_lwz	r0, 0(r3)
+00000098 0020              581		se_not	r0
+                           582	.L313:
+0000009a d003              583		se_stw	r0, 0(r3)
+                           584	#438:          result = SECM_OK;
+                           585	#440:          break;
+0000009c e800              586		se_b	.L194
+                           587	.L142:
+                           588	#423:       }
+                           589	#424:       case SEC_CRC_COMPUTE:
+                           590	#425:       {
+                           591	#426:          /* Update CRC using provided data */
+                           592	#427:          SecM_UpdateCrc32(crcParam);
+                           593	#line427
+                           594	..lin.6a987d4f..6df19b66.0_7::
+                           595	.LDWlin7:
+0000009e e900              596		se_bl	SecM_UpdateCrc32
+                           597	#429:          result = SECM_OK;
+                           598	#431:          break;
+000000a0 e800              599		se_b	.L194
+                           600	.L144:
+                           601	#441:       }
+                           602	#442:       case SEC_CRC_VERIFY:
+                           603	#443:       {
+
+                                   Fri Apr 10 08:31:45 2020           Page 12
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           604	#444:          if (crcParam->crcByteCount == SEC_SIZE_CHECKSUM_CRC_32)
+                           605	#line444
+                           606	..lin.6a987d4f..6df19b66.0_8::
+                           607	.LDWlin8:
+000000a2 a673              608		se_lhz	r7, 12(r3)
+000000a4 2a47              609		se_cmpi	r7, 4
+000000a6 e200              610		se_bne	.L147
+                           611	#445:          {
+                           612	#446:             /* Convert byte array to big-endian CRC value */
+                           613	#447:             crcTransferred = (SecM_Crc32Type)SecM_GetInteger(SEC_SIZE_CHECKSUM_CRC_32, crcParam->crcSourceBuffer);
+                           614	#line447
+                           615	..lin.6a987d4f..6df19b66.0_9::
+                           616	.LDWlin9:
+000000a8 c243              617		se_lwz	r4, 8(r3)
+000000aa 4843              618		se_li	r3, 4
+000000ac 78000001          619		e_bl	SecM_GetInteger
+                           620	#449:             /* Compare given CRC against calculated one */
+                           621	#450:             if (crcTransferred == SEC_GET_BASE_CRC(crcParam->currentCRC))
+000000b0 c07f              622		se_lwz	r7, 0(r31)
+000000b2 4820              623		se_li	r0, 2
+000000b4 0d73              624		se_cmpl	r3, r7
+000000b6 e200              625		se_bne	.L147
+                           626	.L194:
+                           627	#451:             {
+                           628	#452:                /* CRC match */
+                           629	#453:                result = SECM_VER_OK;
+                           630	#line447
+                           631	..lin.6a987d4f..6df19b66.0_10::
+                           632	.LDWlin10:
+000000b8 4800              633		se_li	r0, 0
+                           634	.L147:
+                           635	#454:             }
+                           636	#455:             else
+                           637	#456:             {
+                           638	#457:                /* CRC mismatch */
+                           639	#458:                result = SECM_VER_CRC;
+                           640	#459:             }
+                           641	#460:          }
+                           642	#462:          break;
+                           643	#463:       }
+                           644	#464: # if defined( SEC_ENABLE_CRC_SERIALIZATION )
+                           645	#465:       case SEC_CRC_GET:
+                           646	#466:       {
+                           647	#467:          if (crcParam->crcByteCount >= SEC_SIZE_CHECKSUM_CRC_32)
+                           648	#468:          {
+                           649	#469:             SecM_SetInteger(SEC_SIZE_CHECKSUM_CRC_32, SEC_GET_BASE_CRC(crcParam->currentCRC), crcParam->crcOutputBuffer);
+                           650	#470:             /* Overwrite with actual CRC size */
+                           651	#471:             crcParam->crcByteCount = SEC_SIZE_CHECKSUM_CRC_32;
+                           652	#473:             result = SECM_OK;
+                           653	#474:          }
+                           654	#476:          break;
+                           655	#477:       }
+                           656	#478: # endif /* SEC_ENABLE_CRC_SERIALIZATION */
+                           657	#479:       default:
+                           658	#480:       {
+                           659	#481:          break;
+
+                                   Fri Apr 10 08:31:45 2020           Page 13
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           660	#482:       }
+                           661	#483:    }
+                           662	#485:    return result;
+000000ba 0103              663		se_mr	r3, r0
+                           664	#	    .ef
+                           665	.LDW51:
+000000bc c501              666		se_lwz	r0, 20(sp)
+000000be c3f1              667		se_lwz	r31, 12(sp)
+000000c0 20f1              668		se_addi	sp, 16
+000000c2 0090              669		se_mtlr	r0
+000000c4 0004              670		se_blr
+                           671		.global	__ghs_eofn_SecM_ComputeCrc32
+                           672	__ghs_eofn_SecM_ComputeCrc32:
+                           673		.type	SecM_ComputeCrc32,@function
+                           674		.size	SecM_ComputeCrc32,$-SecM_ComputeCrc32
+                           675		.align	1
+                           676	
+                           677	#function:			SecM_ComputeCrc32
+                           678	#stack frame size:		16
+                           679	#link area offset:		0
+                           680	#local storage area offset:	12
+                           681	#gpr save area offset:		12
+                           682	#
+                           683	#result	r0	local
+                           684	
+                           685	#crcParam	r31	param
+                           686	
+                           687		.data
+                           688		.section ".vletext", "vax"
+                           689		.vle
+                           690		.vle
+                           691	
+                           692	#486: }
+                           693	
+                           694		.align	1
+                           695		.align	1
+                           696	..gh.f.p.3.a.1.r.0.e.3:
+                           697		.type	..gh.f.p.3.a.1.r.0.e.3,@object
+                           698		.size	..gh.f.p.3.a.1.r.0.e.3,0
+                           699		.global	SecM_ComputeCRC
+                           700	SecM_ComputeCRC:
+                           701	#	    .bf
+                           702	.LDW61:
+                           703	#376: SecM_StatusType SecM_ComputeCRC( V_MEMRAM1 SecM_CRCParamType V_MEMRAM2 V_MEMRAM2 * crcParam )
+                           704	#377: {
+                           705	#378: #if ( SEC_CRC_TYPE == SEC_CRC16 )
+                           706	#379:    return SecM_ComputeCrc16(crcParam);
+                           707	#380: #elif ( SEC_CRC_TYPE == SEC_CRC32 )
+                           708	#381:    return SecM_ComputeCrc32(crcParam);
+000000c6 e800              709		se_b	SecM_ComputeCrc32
+                           710	#	    .ef
+                           711	.LDW71:
+                           712	..lin.6a987d4f..c191f421.0_11::
+                           713	.LDWlin11:
+                           714		.global	__ghs_eofn_SecM_ComputeCRC
+                           715	__ghs_eofn_SecM_ComputeCRC:
+
+                                   Fri Apr 10 08:31:45 2020           Page 14
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                           716		.type	SecM_ComputeCRC,@function
+                           717		.size	SecM_ComputeCRC,$-SecM_ComputeCRC
+                           718		.align	1
+                           719	
+                           720	#function:			SecM_ComputeCRC
+                           721	#stack frame size:		0
+                           722	#
+                           723	
+                           724	#crcParam	none	param
+                           725	
+                           726		.data
+                           727		.section ".vletext", "vax"
+                           728		.vle
+                           729		.vle
+                           730	
+                           731	#382: #else /* SEC_CRC_TYPE == SEC_CRC64 */
+                           732	#383:    return SecM_ComputeCrc64(crcParam);
+                           733	#384: #endif /* SEC_CRC_TYPE */
+                           734	#385: }
+                           735		.align	1
+                           736	#lookupCrc32	lookupCrc32	static
+                           737	
+                           738		.data
+                           739		.note ".PPC.EMB.apuinfo",""
+00000000 00000008          740		.long	0x00000008
+00000004 00000004          741		.long	4
+00000008 00000002          742		.long	0x00000002
+                           743		# "APUinfo\000"
+0000000c 41505569          744		.byte	65,80,85,105
+00000010 6e666f00          745		.byte	110,102,111,0
+00000014 01040001          746		.long	0x01040001
+                           747		.ghsnote version,20
+                           748		.ghsnote tools,3
+                           749		.ghsnote options,644
+                           750		.section ".vletext", "vax"
+                           751		.vle
+                           752		.vle
+                           753		.align	1
+                           754	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB061..0::
+                           755		.section	.debug_info
+                           756	.Ldw_begin:
+00000000 0000056f          757		.long	.Ldw_end-.Ldw_begin-4
+00000004 0002              758		.byte	0,2
+00000006 00000000          759		.long	.Ldw_abbr_begin
+0000000a 04                760		.byte	4
+                           761		.section	.debug_abbrev
+                           762	.Ldw_abbr_begin:
+                           763		.section	.debug_info
+0000000b 01                764		.byte	1
+0000000c 00000000          765		.long	..bof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB061..0
+00000010 00000000          766		.long	..eof.C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc...43.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl..5E8FB061..0
+00000014 2e2e2f2e2e2f2e2e  767		.strz	"../../../BSW/SecMod/Sec_Crc.c"
+0000001c 2f4253572f536563
+00000024 4d6f642f5365635f
+0000002c 4372632e6300    
+00000032 433a5c566563746f  768		.strz	"C:\\Vector\\CBD1800772_D00_Mpc57xx\\Demo\\DemoFbl\\Appl"
+0000003a 725c434244313830
+00000042 303737325f443030
+0000004a 5f4d706335377878
+00000052 5c44656d6f5c4465
+0000005a 6d6f46626c5c4170
+00000062 706c00          
+00000065 4748532043203230  769		.strz	"GHS C 2017.5.4 [dual]"
+0000006d 31372e352e34205b
+00000075 6475616c5d00    
+0000007b 0001              770		.byte	0,1
+0000007d 00000000          771		.long	.Ldw_line_begin
+
+                                   Fri Apr 10 08:31:45 2020           Page 15
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+00000081 00000000          772		.long	.Ldw_macinfo_begin
+00000085 00                773		.byte	0
+                           774	
+                           775		.section	.debug_abbrev
+00000000 01                776		.byte	1
+00000001 11                777		.byte	17
+00000002 01                778		.byte	1
+00000003 1101              779		.byte	17,1
+00000005 1201              780		.byte	18,1
+00000007 0308              781		.byte	3,8
+00000009 1b08              782		.byte	27,8
+0000000b 2508              783		.byte	37,8
+0000000d 1305              784		.byte	19,5
+0000000f 1006              785		.byte	16,6
+00000011 4306              786		.byte	67,6
+00000013 420b              787		.byte	66,11
+00000015 0000              788		.byte	0,0
+                           789	
+                           790		.section	.debug_line
+                           791	.Ldw_line_begin:
+00000000 000002d7          792		.long	.Ldw_line_end-.Ldw_line_begin-4
+00000004 0002              793		.byte	0,2
+00000006 0000019f          794		.long	.Ldw_lpro_end-.Ldw_lpro_begin
+                           795	.Ldw_lpro_begin:
+0000000a 01                796		.byte	1
+0000000b 00                797		.byte	0
+0000000c 00                798		.byte	0
+0000000d 04                799		.byte	4
+0000000e 0a                800		.byte	10
+0000000f 000101            801		.byte	0,1,1
+00000012 010100            802		.byte	1,1,0
+00000015 000001            803		.byte	0,0,1
+00000018 00                804		.byte	0
+00000019 2e2e2f2e2e2f2e2e  805		.strz	"../../../BSW/SecMod/Sec_Crc.c"
+00000021 2f4253572f536563
+00000029 4d6f642f5365635f
+00000031 4372632e6300    
+00000037 000000            806		.byte	0,0,0
+0000003a 2e2e2f2e2e2f2e2e  807		.strz	"../../../BSW/SecMod/Sec_Inc.h"
+00000042 2f4253572f536563
+0000004a 4d6f642f5365635f
+00000052 496e632e6800    
+00000058 000000            808		.byte	0,0,0
+0000005b 67656e646174615c  809		.strz	"gendata\\v_cfg.h"
+00000063 765f6366672e6800
+0000006b 000000            810		.byte	0,0,0
+0000006e 2e2e2f2e2e2f2e2e  811		.strz	"../../../bsw/_common/v_def.h"
+00000076 2f6273772f5f636f
+0000007e 6d6d6f6e2f765f64
+00000086 65662e6800      
+0000008b 000000            812		.byte	0,0,0
+0000008e 67656e646174615c  813		.strz	"gendata\\SecM_cfg.h"
+00000096 5365634d5f636667
+0000009e 2e6800          
+000000a1 000000            814		.byte	0,0,0
+000000a4 2e2e2f2e2e2f2e2e  815		.strz	"../../../BSW/SecMod/Sec_Types.h"
+000000ac 2f4253572f536563
+000000b4 4d6f642f5365635f
+000000bc 54797065732e6800
+000000c4 000000            816		.byte	0,0,0
+000000c7 67656e646174615c  817		.strz	"gendata\\SecMPar.h"
+000000cf 5365634d5061722e
+000000d7 6800            
+000000d9 000000            818		.byte	0,0,0
+000000dc 2e2e2f2e2e2f2e2e  819		.strz	"../../../bsw/secmod/SecM_inc.h"
+000000e4 2f6273772f736563
+000000ec 6d6f642f5365634d
+000000f4 5f696e632e6800  
+000000fb 000000            820		.byte	0,0,0
+000000fe 2e2e2f2e2e2f2e2e  821		.strz	"../../../BSW/SecMod/Sec.h"
+00000106 2f4253572f536563
+0000010e 4d6f642f5365632e
+00000116 6800            
+00000118 000000            822		.byte	0,0,0
+0000011b 2e2e2f2e2e2f2e2e  823		.strz	"../../../BSW/SecMod/Sec_Crc.h"
+00000123 2f4253572f536563
+0000012b 4d6f642f5365635f
+00000133 4372632e6800    
+00000139 000000            824		.byte	0,0,0
+0000013c 2e2e2f2e2e2f2e2e  825		.strz	"../../../BSW/SecMod/Sec_SeedKey.h"
+00000144 2f4253572f536563
+0000014c 4d6f642f5365635f
+00000154 536565644b65792e
+0000015c 6800            
+0000015e 000000            826		.byte	0,0,0
+00000161 696e636c7564655c  827		.strz	"include\\Sec_SeedKey_Cfg.h"
+00000169 5365635f53656564
+00000171 4b65795f4366672e
+00000179 6800            
+
+                                   Fri Apr 10 08:31:45 2020           Page 16
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000017b 000000            828		.byte	0,0,0
+0000017e 2e2e2f2e2e2f2e2e  829		.strz	"../../../BSW/SecMod/Sec_Verification.h"
+00000186 2f4253572f536563
+0000018e 4d6f642f5365635f
+00000196 5665726966696361
+0000019e 74696f6e2e6800  
+000001a5 000000            830		.byte	0,0,0
+000001a8 00                831		.byte	0
+                           832	.Ldw_lpro_end:
+                           833		.section	.debug_macinfo
+                           834	.Ldw_macinfo_begin:
+                           835		.section	.debug_frame
+                           836	.LDW_5bb8bf8:
+00000000 0000008c          837		.long	.LDW_unq_2-.LDW_unq_1
+                           838	.LDW_unq_1:
+00000004 ffffffff          839		.byte	255,255,255,255
+00000008 01                840		.byte	1
+00000009 00                841		.byte	0
+0000000a 01                842		.byte	1
+0000000b 01                843		.byte	1
+0000000c 6c                844		.byte	108
+0000000d 0c                845		.byte	12
+0000000e 01                846		.byte	1
+0000000f 00                847		.byte	0
+00000010 07                848		.byte	7
+00000011 00                849		.byte	0
+00000012 07                850		.byte	7
+00000013 01                851		.byte	1
+00000014 07                852		.byte	7
+00000015 02                853		.byte	2
+00000016 07                854		.byte	7
+00000017 03                855		.byte	3
+00000018 07                856		.byte	7
+00000019 04                857		.byte	4
+0000001a 07                858		.byte	7
+0000001b 05                859		.byte	5
+0000001c 07                860		.byte	7
+0000001d 06                861		.byte	6
+0000001e 07                862		.byte	7
+0000001f 07                863		.byte	7
+00000020 07                864		.byte	7
+00000021 08                865		.byte	8
+00000022 07                866		.byte	7
+00000023 09                867		.byte	9
+00000024 07                868		.byte	7
+00000025 0a                869		.byte	10
+00000026 07                870		.byte	7
+00000027 0b                871		.byte	11
+00000028 07                872		.byte	7
+00000029 0c                873		.byte	12
+0000002a 07                874		.byte	7
+0000002b 0d                875		.byte	13
+0000002c 07                876		.byte	7
+0000002d 0e                877		.byte	14
+0000002e 07                878		.byte	7
+0000002f 0f                879		.byte	15
+00000030 07                880		.byte	7
+00000031 10                881		.byte	16
+00000032 07                882		.byte	7
+00000033 11                883		.byte	17
+
+                                   Fri Apr 10 08:31:45 2020           Page 17
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+00000034 07                884		.byte	7
+00000035 12                885		.byte	18
+00000036 07                886		.byte	7
+00000037 13                887		.byte	19
+00000038 07                888		.byte	7
+00000039 14                889		.byte	20
+0000003a 07                890		.byte	7
+0000003b 15                891		.byte	21
+0000003c 07                892		.byte	7
+0000003d 16                893		.byte	22
+0000003e 07                894		.byte	7
+0000003f 17                895		.byte	23
+00000040 07                896		.byte	7
+00000041 18                897		.byte	24
+00000042 07                898		.byte	7
+00000043 19                899		.byte	25
+00000044 07                900		.byte	7
+00000045 1a                901		.byte	26
+00000046 07                902		.byte	7
+00000047 1b                903		.byte	27
+00000048 07                904		.byte	7
+00000049 1c                905		.byte	28
+0000004a 07                906		.byte	7
+0000004b 1d                907		.byte	29
+0000004c 07                908		.byte	7
+0000004d 1e                909		.byte	30
+0000004e 07                910		.byte	7
+0000004f 1f                911		.byte	31
+00000050 07                912		.byte	7
+00000051 20                913		.byte	32
+00000052 07                914		.byte	7
+00000053 21                915		.byte	33
+00000054 07                916		.byte	7
+00000055 22                917		.byte	34
+00000056 07                918		.byte	7
+00000057 23                919		.byte	35
+00000058 07                920		.byte	7
+00000059 24                921		.byte	36
+0000005a 07                922		.byte	7
+0000005b 25                923		.byte	37
+0000005c 07                924		.byte	7
+0000005d 26                925		.byte	38
+0000005e 07                926		.byte	7
+0000005f 27                927		.byte	39
+00000060 07                928		.byte	7
+00000061 28                929		.byte	40
+00000062 07                930		.byte	7
+00000063 29                931		.byte	41
+00000064 07                932		.byte	7
+00000065 2a                933		.byte	42
+00000066 07                934		.byte	7
+00000067 2b                935		.byte	43
+00000068 07                936		.byte	7
+00000069 2c                937		.byte	44
+0000006a 07                938		.byte	7
+0000006b 2d                939		.byte	45
+
+                                   Fri Apr 10 08:31:45 2020           Page 18
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000006c 07                940		.byte	7
+0000006d 2e                941		.byte	46
+0000006e 07                942		.byte	7
+0000006f 2f                943		.byte	47
+00000070 07                944		.byte	7
+00000071 30                945		.byte	48
+00000072 07                946		.byte	7
+00000073 31                947		.byte	49
+00000074 07                948		.byte	7
+00000075 32                949		.byte	50
+00000076 07                950		.byte	7
+00000077 33                951		.byte	51
+00000078 07                952		.byte	7
+00000079 34                953		.byte	52
+0000007a 07                954		.byte	7
+0000007b 35                955		.byte	53
+0000007c 07                956		.byte	7
+0000007d 36                957		.byte	54
+0000007e 07                958		.byte	7
+0000007f 37                959		.byte	55
+00000080 07                960		.byte	7
+00000081 38                961		.byte	56
+00000082 07                962		.byte	7
+00000083 39                963		.byte	57
+00000084 07                964		.byte	7
+00000085 3a                965		.byte	58
+00000086 07                966		.byte	7
+00000087 3b                967		.byte	59
+00000088 07                968		.byte	7
+00000089 3c                969		.byte	60
+0000008a 07                970		.byte	7
+0000008b 3d                971		.byte	61
+0000008c 07                972		.byte	7
+0000008d 3e                973		.byte	62
+0000008e 07                974		.byte	7
+0000008f 3f                975		.byte	63
+                           976	.LDW_unq_2:
+                           977		.section	.debug_info
+                           978	.LDW_498c4b8:
+00000086 31                979		.byte	49
+00000087 00000000          980		.long	.LDW_49cbc38
+                           981	
+                           982		.section	.debug_abbrev
+00000017 31                983		.byte	49
+00000018 0f                984		.byte	15
+00000019 00                985		.byte	0
+0000001a 4910              986		.byte	73,16
+0000001c 0000              987		.byte	0,0
+                           988	
+                           989		.section	.debug_info
+                           990	.LDW_498c598:
+0000008b 47                991		.byte	71
+0000008c 01                992		.byte	1
+                           993	
+                           994		.section	.debug_abbrev
+0000001e 47                995		.byte	71
+
+                                   Fri Apr 10 08:31:45 2020           Page 19
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000001f 15                996		.byte	21
+00000020 01                997		.byte	1
+00000021 270c              998		.byte	39,12
+00000023 0000              999		.byte	0,0
+                          1000	
+                          1001		.section	.debug_info
+                          1002	.LDW_4983350:
+0000008d 14               1003		.byte	20
+0000008e 00000000         1004		.long	.LDW_498c4b8
+00000092 00               1005		.byte	0
+                          1006	
+                          1007		.section	.debug_abbrev
+00000025 14               1008		.byte	20
+00000026 05               1009		.byte	5
+00000027 00               1010		.byte	0
+00000028 4910             1011		.byte	73,16
+0000002a 4b0c             1012		.byte	75,12
+0000002c 0000             1013		.byte	0,0
+                          1014	
+                          1015		.section	.debug_info
+00000093 00               1016		.byte	0
+                          1017	
+                          1018	.LDW_498c720:
+00000094 27               1019		.byte	39
+00000095 756e7369676e6564 1020		.strz	"unsigned long"
+0000009d 206c6f6e6700    
+000000a3 07               1021		.byte	7
+000000a4 04               1022		.byte	4
+                          1023	
+                          1024		.section	.debug_abbrev
+0000002e 27               1025		.byte	39
+0000002f 24               1026		.byte	36
+00000030 00               1027		.byte	0
+00000031 0308             1028		.byte	3,8
+00000033 3e0b             1029		.byte	62,11
+00000035 0b0b             1030		.byte	11,11
+00000037 0000             1031		.byte	0,0
+                          1032	
+                          1033		.section	.debug_info
+                          1034	.LDW_498c790:
+000000a5 27               1035		.byte	39
+000000a6 756e7369676e6564 1036		.strz	"unsigned char"
+000000ae 206368617200    
+000000b4 08               1037		.byte	8
+000000b5 01               1038		.byte	1
+                          1039	
+                          1040	.LDW_498c918:
+000000b6 47               1041		.byte	71
+000000b7 01               1042		.byte	1
+                          1043	
+000000b8 00               1044		.byte	0
+                          1045	
+                          1046	.LDW_498c4f0:
+000000b9 31               1047		.byte	49
+000000ba 00000000         1048		.long	.LDW_498c918
+                          1049	
+                          1050	.LDW_498ca68:
+000000be 47               1051		.byte	71
+
+                                   Fri Apr 10 08:31:45 2020           Page 20
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000000bf 01               1052		.byte	1
+                          1053	
+000000c0 00               1054		.byte	0
+                          1055	
+                          1056	.LDW_498c950:
+000000c1 46               1057		.byte	70
+000000c2 00000000         1058		.long	.LDW_5bfa8d8
+000000c6 01               1059		.byte	1
+                          1060	
+                          1061		.section	.debug_abbrev
+00000039 46               1062		.byte	70
+0000003a 15               1063		.byte	21
+0000003b 01               1064		.byte	1
+0000003c 4910             1065		.byte	73,16
+0000003e 270c             1066		.byte	39,12
+00000040 0000             1067		.byte	0,0
+                          1068	
+                          1069		.section	.debug_info
+                          1070	.LDW_4983200:
+000000c7 14               1071		.byte	20
+000000c8 00000000         1072		.long	.LDW_498c4b8
+000000cc 00               1073		.byte	0
+                          1074	
+000000cd 00               1075		.byte	0
+                          1076	
+                          1077	.LDW_498c448:
+000000ce 46               1078		.byte	70
+000000cf 00000000         1079		.long	.LDW_5bfa8d8
+000000d3 01               1080		.byte	1
+                          1081	
+                          1082	.LDW_4983500:
+000000d4 14               1083		.byte	20
+000000d5 00000000         1084		.long	.LDW_498c4b8
+000000d9 00               1085		.byte	0
+                          1086	
+000000da 00               1087		.byte	0
+                          1088	
+                          1089	.LDW_498c800:
+000000db 27               1090		.byte	39
+000000dc 756e7369676e6564 1091		.strz	"unsigned short"
+000000e4 2073686f727400  
+000000eb 07               1092		.byte	7
+000000ec 02               1093		.byte	2
+                          1094	
+                          1095	.LDW_5bfa930:
+000000ed 2b               1096		.byte	43
+000000ee 00000000         1097		.long	.LDW_49ac1c8
+                          1098	
+                          1099		.section	.debug_abbrev
+00000042 2b               1100		.byte	43
+00000043 26               1101		.byte	38
+00000044 00               1102		.byte	0
+00000045 4910             1103		.byte	73,16
+00000047 0000             1104		.byte	0,0
+                          1105	
+                          1106		.section	.debug_info
+                          1107	.LDW_498c560:
+
+                                   Fri Apr 10 08:31:45 2020           Page 21
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000000f2 31               1108		.byte	49
+000000f3 00000000         1109		.long	.LDW_5bfa930
+                          1110	
+                          1111	.LDW_498c5d0:
+000000f7 27               1112		.byte	39
+000000f8 696e7400         1113		.strz	"int"
+000000fc 05               1114		.byte	5
+000000fd 04               1115		.byte	4
+                          1116	
+                          1117	.LDW_5bd2118:
+000000fe 2b               1118		.byte	43
+000000ff 00000000         1119		.long	.LDW_5bfb4f0
+                          1120	
+                          1121	.LDW_5bd1c48:
+00000103 2b               1122		.byte	43
+00000104 00000000         1123		.long	.LDW_49ac0c0
+                          1124	
+                          1125	.LDW_5bfcdc8:
+00000108 3c               1126		.byte	60
+00000109 00               1127		.byte	0
+0000010a 40               1128		.byte	64
+0000010b 00000000         1129		.long	.LDW_5bd1c48
+                          1130	
+                          1131		.section	.debug_abbrev
+00000049 3c               1132		.byte	60
+0000004a 01               1133		.byte	1
+0000004b 01               1134		.byte	1
+0000004c 090b             1135		.byte	9,11
+0000004e 0b0f             1136		.byte	11,15
+00000050 4910             1137		.byte	73,16
+00000052 0000             1138		.byte	0,0
+                          1139	
+                          1140		.section	.debug_info
+0000010f 34               1141		.byte	52
+00000110 00000000         1142		.long	.LDW_498c5d0
+00000114 04               1143		.byte	4
+00000115 00               1144		.byte	0
+00000116 0f               1145		.byte	15
+                          1146	
+                          1147		.section	.debug_abbrev
+00000054 34               1148		.byte	52
+00000055 21               1149		.byte	33
+00000056 00               1150		.byte	0
+00000057 4910             1151		.byte	73,16
+00000059 0b0f             1152		.byte	11,15
+0000005b 220d             1153		.byte	34,13
+0000005d 2f0d             1154		.byte	47,13
+0000005f 0000             1155		.byte	0,0
+                          1156	
+                          1157		.section	.debug_info
+00000117 00               1158		.byte	0
+                          1159	
+                          1160	.LDW_5bd12a0:
+00000118 46               1161		.byte	70
+00000119 00000000         1162		.long	.LDW_49cbdd8
+0000011d 01               1163		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 22
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1164	
+                          1165	.LDW_5bd2ee0:
+0000011e 14               1166		.byte	20
+0000011f 00000000         1167		.long	.LDW_5bfb650
+00000123 00               1168		.byte	0
+                          1169	
+                          1170	.LDW_5bd2f10:
+00000124 14               1171		.byte	20
+00000125 00000000         1172		.long	.LDW_5bfa988
+00000129 00               1173		.byte	0
+                          1174	
+0000012a 00               1175		.byte	0
+                          1176	
+                          1177	.LDW_49ac170:
+0000012b 2a               1178		.byte	42
+0000012c 7675696e743800   1179		.strz	"vuint8"
+00000133 9b04             1180		.byte	155,4
+00000135 18               1181		.byte	24
+00000136 04               1182		.byte	4
+00000137 00000000         1183		.long	.LDW_498c790
+                          1184	
+                          1185		.section	.debug_abbrev
+00000061 2a               1186		.byte	42
+00000062 16               1187		.byte	22
+00000063 00               1188		.byte	0
+00000064 0308             1189		.byte	3,8
+00000066 3b0f             1190		.byte	59,15
+00000068 390f             1191		.byte	57,15
+0000006a 3a0f             1192		.byte	58,15
+0000006c 4910             1193		.byte	73,16
+0000006e 0000             1194		.byte	0,0
+                          1195	
+                          1196		.section	.debug_info
+                          1197	.LDW_5bfa6c8:
+0000013b 2a               1198		.byte	42
+0000013c 7675696e74313600 1199		.strz	"vuint16"
+00000144 a604             1200		.byte	166,4
+00000146 18               1201		.byte	24
+00000147 04               1202		.byte	4
+00000148 00000000         1203		.long	.LDW_498c800
+                          1204	
+                          1205	.LDW_49cbd80:
+0000014c 2a               1206		.byte	42
+0000014d 7675696e74333200 1207		.strz	"vuint32"
+00000155 b204             1208		.byte	178,4
+00000157 18               1209		.byte	24
+00000158 04               1210		.byte	4
+00000159 00000000         1211		.long	.LDW_498c720
+                          1212	
+                          1213	.LDW_49ac1c8:
+0000015d 2a               1214		.byte	42
+0000015e 5365634d5f427974 1215		.strz	"SecM_ByteType"
+00000166 655479706500    
+0000016c 9802             1216		.byte	152,2
+0000016e 11               1217		.byte	17
+0000016f 06               1218		.byte	6
+00000170 00000000         1219		.long	.LDW_49ac170
+
+                                   Fri Apr 10 08:31:45 2020           Page 23
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1220	
+                          1221	.LDW_5bfa880:
+00000174 2a               1222		.byte	42
+00000175 5365634d5f53686f 1223		.strz	"SecM_ShortType"
+0000017d 72745479706500  
+00000184 9a02             1224		.byte	154,2
+00000186 11               1225		.byte	17
+00000187 06               1226		.byte	6
+00000188 00000000         1227		.long	.LDW_5bfa6c8
+                          1228	
+                          1229	.LDW_5bfa988:
+0000018c 2a               1230		.byte	42
+0000018d 5365634d5f436f6e 1231		.strz	"SecM_ConstRamDataType"
+00000195 737452616d446174
+0000019d 615479706500    
+000001a3 9f02             1232		.byte	159,2
+000001a5 3d               1233		.byte	61
+000001a6 06               1234		.byte	6
+000001a7 00000000         1235		.long	.LDW_498c560
+                          1236	
+                          1237	.LDW_5bfa8d8:
+000001ab 2a               1238		.byte	42
+000001ac 5365634d5f537461 1239		.strz	"SecM_StatusType"
+000001b4 7475735479706500
+000001bc ac02             1240		.byte	172,2
+000001be 17               1241		.byte	23
+000001bf 06               1242		.byte	6
+000001c0 00000000         1243		.long	.LDW_49ac1c8
+                          1244	
+                          1245	.LDW_49cbdd8:
+000001c4 2a               1246		.byte	42
+000001c5 5365634d5f576f72 1247		.strz	"SecM_WordType"
+000001cd 645479706500    
+000001d3 ae02             1248		.byte	174,2
+000001d5 11               1249		.byte	17
+000001d6 06               1250		.byte	6
+000001d7 00000000         1251		.long	.LDW_49cbd80
+                          1252	
+                          1253	.LDW_5bfb230:
+000001db 2a               1254		.byte	42
+000001dc 5365634d5f4c656e 1255		.strz	"SecM_LengthType"
+000001e4 6774685479706500
+000001ec b002             1256		.byte	176,2
+000001ee 18               1257		.byte	24
+000001ef 06               1258		.byte	6
+000001f0 00000000         1259		.long	.LDW_5bfa880
+                          1260	
+                          1261	.LDW_5bfa9e0:
+000001f4 2a               1262		.byte	42
+000001f5 464c5f5744547269 1263		.strz	"FL_WDTriggerFctType"
+000001fd 6767657246637454
+00000205 79706500        
+00000209 ca02             1264		.byte	202,2
+0000020b 11               1265		.byte	17
+0000020c 06               1266		.byte	6
+0000020d 00000000         1267		.long	.LDW_498c4f0
+                          1268	
+                          1269	.LDW_5bfb650:
+00000211 2a               1270		.byte	42
+00000212 5365634d5f427974 1271		.strz	"SecM_ByteFastType"
+0000021a 6546617374547970
+00000222 6500            
+00000224 db02             1272		.byte	219,2
+00000226 19               1273		.byte	25
+00000227 06               1274		.byte	6
+00000228 00000000         1275		.long	.LDW_49cbdd8
+
+                                   Fri Apr 10 08:31:45 2020           Page 24
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1276	
+                          1277	.LDW_49cbe30:
+0000022c 2a               1278		.byte	42
+0000022d 5365634d5f53686f 1279		.strz	"SecM_ShortFastType"
+00000235 7274466173745479
+0000023d 706500          
+00000240 dc02             1280		.byte	220,2
+00000242 19               1281		.byte	25
+00000243 06               1282		.byte	6
+00000244 00000000         1283		.long	.LDW_49cbdd8
+                          1284	
+                          1285	.LDW_49abfb8:
+00000248 2a               1286		.byte	42
+00000249 5365634d5f4c656e 1287		.strz	"SecM_LengthFastType"
+00000251 6774684661737454
+00000259 79706500        
+0000025d e002             1288		.byte	224,2
+0000025f 1c               1289		.byte	28
+00000260 06               1290		.byte	6
+00000261 00000000         1291		.long	.LDW_49cbe30
+                          1292	
+                          1293	.LDW_49ac0c0:
+00000265 2a               1294		.byte	42
+00000266 5365634d5f437263 1295		.strz	"SecM_Crc32Type"
+0000026e 33325479706500  
+00000275 9201             1296		.byte	146,1
+00000277 19               1297		.byte	25
+00000278 0a               1298		.byte	10
+00000279 00000000         1299		.long	.LDW_49cbdd8
+                          1300	
+                          1301	.LDW_5bfb4f0:
+0000027d 2a               1302		.byte	42
+0000027e 5365634d5f435243 1303		.strz	"SecM_CRCType"
+00000286 5479706500      
+0000028b 9801             1304		.byte	152,1
+0000028d 19               1305		.byte	25
+0000028e 0a               1306		.byte	10
+0000028f 00000000         1307		.long	.LDW_49ac0c0
+                          1308	
+                          1309	.LDW_49cbbe0:
+00000293 43               1310		.byte	67
+00000294 9f01             1311		.byte	159,1
+00000296 01               1312		.byte	1
+00000297 0a               1313		.byte	10
+00000298 14               1314		.byte	20
+00000299 01               1315		.byte	1
+                          1316	
+                          1317		.section	.debug_abbrev
+00000070 43               1318		.byte	67
+00000071 13               1319		.byte	19
+00000072 01               1320		.byte	1
+00000073 3b0f             1321		.byte	59,15
+00000075 390f             1322		.byte	57,15
+00000077 3a0f             1323		.byte	58,15
+00000079 0b0f             1324		.byte	11,15
+0000007b 320b             1325		.byte	50,11
+0000007d 0000             1326		.byte	0,0
+                          1327	
+                          1328		.section	.debug_info
+                          1329	.LDW_5bfc5d8:
+0000029a 25               1330		.byte	37
+0000029b 63757272656e7443 1331		.strz	"currentCRC"
+000002a3 524300          
+
+                                   Fri Apr 10 08:31:45 2020           Page 25
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000002a6 a001             1332		.byte	160,1
+000002a8 1c               1333		.byte	28
+000002a9 0a               1334		.byte	10
+000002aa 00000000         1335		.long	.LDW_5bfb4f0
+000002ae 0223             1336		.byte	2,35
+000002b0 00               1337		.byte	0
+000002b1 01               1338		.byte	1
+                          1339	
+                          1340		.section	.debug_abbrev
+0000007f 25               1341		.byte	37
+00000080 0d               1342		.byte	13
+00000081 00               1343		.byte	0
+00000082 0308             1344		.byte	3,8
+00000084 3b0f             1345		.byte	59,15
+00000086 390f             1346		.byte	57,15
+00000088 3a0f             1347		.byte	58,15
+0000008a 4910             1348		.byte	73,16
+0000008c 380a             1349		.byte	56,10
+0000008e 320b             1350		.byte	50,11
+00000090 0000             1351		.byte	0,0
+                          1352	
+                          1353		.section	.debug_info
+                          1354	.LDW_5bfc470:
+000002b2 25               1355		.byte	37
+000002b3 6372635374617465 1356		.strz	"crcState"
+000002bb 00              
+000002bc a101             1357		.byte	161,1
+000002be 1c               1358		.byte	28
+000002bf 0a               1359		.byte	10
+000002c0 00000000         1360		.long	.LDW_49ac1c8
+000002c4 0223             1361		.byte	2,35
+000002c6 04               1362		.byte	4
+000002c7 01               1363		.byte	1
+                          1364	
+                          1365	.LDW_5bfbdf8:
+000002c8 25               1366		.byte	37
+000002c9 637263536f757263 1367		.strz	"crcSourceBuffer"
+000002d1 6542756666657200
+000002d9 a201             1368		.byte	162,1
+000002db 1c               1369		.byte	28
+000002dc 0a               1370		.byte	10
+000002dd 00000000         1371		.long	.LDW_5bfa988
+000002e1 0223             1372		.byte	2,35
+000002e3 08               1373		.byte	8
+000002e4 01               1374		.byte	1
+                          1375	
+                          1376	.LDW_5bfc158:
+000002e5 25               1377		.byte	37
+000002e6 6372634279746543 1378		.strz	"crcByteCount"
+000002ee 6f756e7400      
+000002f3 a601             1379		.byte	166,1
+000002f5 1c               1380		.byte	28
+000002f6 0a               1381		.byte	10
+000002f7 00000000         1382		.long	.LDW_5bfb230
+000002fb 0223             1383		.byte	2,35
+000002fd 0c               1384		.byte	12
+000002fe 01               1385		.byte	1
+                          1386	
+                          1387	.LDW_5bfc278:
+
+                                   Fri Apr 10 08:31:45 2020           Page 26
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000002ff 25               1388		.byte	37
+00000300 7764547269676765 1389		.strz	"wdTriggerFct"
+00000308 7246637400      
+0000030d a701             1390		.byte	167,1
+0000030f 1c               1391		.byte	28
+00000310 0a               1392		.byte	10
+00000311 00000000         1393		.long	.LDW_5bfa9e0
+00000315 0223             1394		.byte	2,35
+00000317 10               1395		.byte	16
+00000318 01               1396		.byte	1
+                          1397	
+00000319 00               1398		.byte	0
+                          1399	
+                          1400	.LDW_49cbc38:
+0000031a 2a               1401		.byte	42
+0000031b 5365634d5f435243 1402		.strz	"SecM_CRCParamType"
+00000323 506172616d547970
+0000032b 6500            
+0000032d a801             1403		.byte	168,1
+0000032f 03               1404		.byte	3
+00000330 0a               1405		.byte	10
+00000331 00000000         1406		.long	.LDW_49cbbe0
+                          1407	
+                          1408	.LDW_5bd18d8:
+00000335 06               1409		.byte	6
+00000336 6c6f6f6b75704372 1410		.strz	"lookupCrc32"
+0000033e 63333200        
+00000342 c301             1411		.byte	195,1
+00000344 35               1412		.byte	53
+00000345 01               1413		.byte	1
+00000346 00000000         1414		.long	.LDW_5bfcdc8
+0000034a 00               1415		.byte	0
+0000034b 00               1416		.byte	0
+0000034c 0503             1417		.byte	5,3
+0000034e 00000000         1418		.long	lookupCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+                          1419	
+                          1420		.section	.debug_abbrev
+00000092 06               1421		.byte	6
+00000093 34               1422		.byte	52
+00000094 00               1423		.byte	0
+00000095 0308             1424		.byte	3,8
+00000097 3b0f             1425		.byte	59,15
+00000099 390f             1426		.byte	57,15
+0000009b 3a0f             1427		.byte	58,15
+0000009d 4910             1428		.byte	73,16
+0000009f 3f0c             1429		.byte	63,12
+000000a1 3c0c             1430		.byte	60,12
+000000a3 020a             1431		.byte	2,10
+000000a5 0000             1432		.byte	0,0
+                          1433	
+                          1434		.section	.debug_info
+                          1435	.LDW_5bd2278:
+00000352 07               1436		.byte	7
+00000353 696e697469616c56 1437		.strz	"initialValueCrc32"
+0000035b 616c756543726333
+00000363 3200            
+00000365 d301             1438		.byte	211,1
+00000367 35               1439		.byte	53
+00000368 01               1440		.byte	1
+00000369 00000000         1441		.long	.LDW_5bd2118
+0000036d 00               1442		.byte	0
+0000036e 00               1443		.byte	0
+
+                                   Fri Apr 10 08:31:45 2020           Page 27
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1444	
+                          1445		.section	.debug_abbrev
+000000a7 07               1446		.byte	7
+000000a8 34               1447		.byte	52
+000000a9 00               1448		.byte	0
+000000aa 0308             1449		.byte	3,8
+000000ac 3b0f             1450		.byte	59,15
+000000ae 390f             1451		.byte	57,15
+000000b0 3a0f             1452		.byte	58,15
+000000b2 4910             1453		.byte	73,16
+000000b4 3f0c             1454		.byte	63,12
+000000b6 3c0c             1455		.byte	60,12
+000000b8 0000             1456		.byte	0,0
+                          1457	
+                          1458		.section	.debug_info
+                          1459	.LDW_5bd44a0:
+0000036f 18               1460		.byte	24
+00000370 5365634d5f476574 1461		.strz	"SecM_GetInteger"
+00000378 496e746567657200
+00000380 9401             1462		.byte	148,1
+00000382 16               1463		.byte	22
+00000383 09               1464		.byte	9
+00000384 00000000         1465		.long	.LDW_49cbdd8
+00000388 01               1466		.byte	1
+00000389 00               1467		.byte	0
+0000038a 01               1468		.byte	1
+0000038b 01               1469		.byte	1
+0000038c 00               1470		.byte	0
+0000038d 01               1471		.byte	1
+                          1472	
+                          1473		.section	.debug_abbrev
+000000ba 18               1474		.byte	24
+000000bb 2e               1475		.byte	46
+000000bc 01               1476		.byte	1
+000000bd 0308             1477		.byte	3,8
+000000bf 3b0f             1478		.byte	59,15
+000000c1 390f             1479		.byte	57,15
+000000c3 3a0f             1480		.byte	58,15
+000000c5 4910             1481		.byte	73,16
+000000c7 3c0c             1482		.byte	60,12
+000000c9 200b             1483		.byte	32,11
+000000cb 3f0c             1484		.byte	63,12
+000000cd 320b             1485		.byte	50,11
+000000cf 4c0b             1486		.byte	76,11
+000000d1 270c             1487		.byte	39,12
+000000d3 0000             1488		.byte	0,0
+                          1489	
+                          1490		.section	.debug_info
+0000038e 00               1491		.byte	0
+                          1492	
+                          1493	.LDW_49cbc90:
+0000038f 15               1494		.byte	21
+00000390 5365634d5f557064 1495		.strz	"SecM_UpdateCrc32"
+00000398 6174654372633332
+000003a0 00              
+000003a1 aa02             1496		.byte	170,2
+000003a3 0d               1497		.byte	13
+000003a4 01               1498		.byte	1
+000003a5 00000000         1499		.long	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+
+                                   Fri Apr 10 08:31:45 2020           Page 28
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000003a9 00000000         1500		.long	__ghs_eofn_SecM_UpdateCrc32
+000003ad 0151             1501		.byte	1,81
+000003af 808080c00f       1502		.byte	128,128,128,192,15
+000003b4 0c               1503		.byte	12
+000003b5 00               1504		.byte	0
+000003b6 20               1505		.byte	32
+000003b7 00               1506		.byte	0
+000003b8 00               1507		.byte	0
+000003b9 00               1508		.byte	0
+000003ba 00               1509		.byte	0
+000003bb 01               1510		.byte	1
+000003bc 00               1511		.byte	0
+000003bd 01               1512		.byte	1
+                          1513	
+                          1514		.section	.debug_abbrev
+000000d5 15               1515		.byte	21
+000000d6 2e               1516		.byte	46
+000000d7 01               1517		.byte	1
+000000d8 0308             1518		.byte	3,8
+000000da 3b0f             1519		.byte	59,15
+000000dc 390f             1520		.byte	57,15
+000000de 3a0f             1521		.byte	58,15
+000000e0 1101             1522		.byte	17,1
+000000e2 1201             1523		.byte	18,1
+000000e4 400a             1524		.byte	64,10
+000000e6 8341             1525		.byte	131,65
+000000e8 0f               1526		.byte	15
+000000e9 8741             1527		.byte	135,65
+000000eb 0d               1528		.byte	13
+000000ec 8541             1529		.byte	133,65
+000000ee 0f               1530		.byte	15
+000000ef 8641             1531		.byte	134,65
+000000f1 0d               1532		.byte	13
+000000f2 9241             1533		.byte	146,65
+000000f4 0f               1534		.byte	15
+000000f5 3c0c             1535		.byte	60,12
+000000f7 200b             1536		.byte	32,11
+000000f9 3f0c             1537		.byte	63,12
+000000fb 320b             1538		.byte	50,11
+000000fd 4c0b             1539		.byte	76,11
+000000ff 270c             1540		.byte	39,12
+00000101 0000             1541		.byte	0,0
+                          1542	
+                          1543		.section	.debug_frame
+                          1544	.LDW_498c2a0:
+00000090 00000014         1545		.long	.LDW_unq_4-.LDW_unq_3
+                          1546	.LDW_unq_3:
+00000094 00000000         1547		.long	.LDW_5bb8bf8
+00000098 00000000         1548		.long	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+0000009c 0000006e         1549		.long	__ghs_eofn_SecM_UpdateCrc32-SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+000000a0 01               1550		.byte	1
+000000a1 00000000         1551		.long	.LDW11
+000000a5 00               1552		.byte	0
+000000a6 00               1553		.byte	0
+000000a7 00               1554		.byte	0
+                          1555	.LDW_unq_4:
+
+                                   Fri Apr 10 08:31:45 2020           Page 29
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1556		.section	.debug_line
+000001a9 000502           1557		.byte	0,5,2
+000001ac 00000000         1558		.long	SecM_UpdateCrc32..C.3A.5CVector.5CCBD1800772_D00_Mpc57xx.5CDemo.5CDemoFbl.5CAppl.5Cobj.5CSec_Crc.
+000001b0 06               1559		.byte	6
+000001b1 03               1560		.byte	3
+000001b2 aa02             1561		.byte	170,2
+000001b4 02               1562		.byte	2
+000001b5 00               1563		.byte	0
+000001b6 01               1564		.byte	1
+000001b7 03               1565		.byte	3
+000001b8 09               1566		.byte	9
+000001b9 02               1567		.byte	2
+000001ba 0e               1568		.byte	14
+000001bb 01               1569		.byte	1
+000001bc 13               1570		.byte	19
+000001bd 13               1571		.byte	19
+000001be 15               1572		.byte	21
+000001bf 02               1573		.byte	2
+000001c0 02               1574		.byte	2
+000001c1 000502           1575		.byte	0,5,2
+000001c4 00000000         1576		.long	.LDWlin1
+000001c8 0d               1577		.byte	13
+000001c9 000502           1578		.byte	0,5,2
+000001cc 00000000         1579		.long	.LDWlin2
+000001d0 02               1580		.byte	2
+000001d1 00               1581		.byte	0
+000001d2 02               1582		.byte	2
+000001d3 00               1583		.byte	0
+000001d4 000502           1584		.byte	0,5,2
+000001d7 00000000         1585		.long	.LDWlin3
+000001db 02               1586		.byte	2
+000001dc 00               1587		.byte	0
+000001dd 02               1588		.byte	2
+000001de 04               1589		.byte	4
+000001df 02               1590		.byte	2
+000001e0 00               1591		.byte	0
+000001e1 02               1592		.byte	2
+000001e2 00               1593		.byte	0
+000001e3 02               1594		.byte	2
+000001e4 00               1595		.byte	0
+000001e5 0d               1596		.byte	13
+000001e6 03               1597		.byte	3
+000001e7 0d               1598		.byte	13
+000001e8 02               1599		.byte	2
+000001e9 06               1600		.byte	6
+000001ea 01               1601		.byte	1
+000001eb 1b               1602		.byte	27
+000001ec 03               1603		.byte	3
+000001ed 04               1604		.byte	4
+000001ee 02               1605		.byte	2
+000001ef 14               1606		.byte	20
+000001f0 01               1607		.byte	1
+000001f1 2b               1608		.byte	43
+000001f2 03               1609		.byte	3
+000001f3 67               1610		.byte	103
+000001f4 02               1611		.byte	2
+
+                                   Fri Apr 10 08:31:45 2020           Page 30
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000001f5 0c               1612		.byte	12
+000001f6 01               1613		.byte	1
+000001f7 000502           1614		.byte	0,5,2
+000001fa 00000000         1615		.long	.LDWlin4
+000001fe 03               1616		.byte	3
+000001ff 1c               1617		.byte	28
+00000200 02               1618		.byte	2
+00000201 00               1619		.byte	0
+00000202 01               1620		.byte	1
+00000203 0d               1621		.byte	13
+00000204 13               1622		.byte	19
+00000205 02               1623		.byte	2
+00000206 0c               1624		.byte	12
+00000207 000101           1625		.byte	0,1,1
+                          1626		.section	.debug_info
+                          1627	.LDW_49cbd28:
+000003be 11               1628		.byte	17
+000003bf 7043726350617261 1629		.strz	"pCrcParam"
+000003c7 6d00            
+000003c9 aa02             1630		.byte	170,2
+000003cb 51               1631		.byte	81
+000003cc 01               1632		.byte	1
+000003cd 00000000         1633		.long	.LDW_498c4b8
+000003d1 00               1634		.byte	0
+000003d2 016e             1635		.byte	1,110
+                          1636	
+                          1637		.section	.debug_abbrev
+00000103 11               1638		.byte	17
+00000104 05               1639		.byte	5
+00000105 00               1640		.byte	0
+00000106 0308             1641		.byte	3,8
+00000108 3b0f             1642		.byte	59,15
+0000010a 390f             1643		.byte	57,15
+0000010c 3a0f             1644		.byte	58,15
+0000010e 4910             1645		.byte	73,16
+00000110 4b0c             1646		.byte	75,12
+00000112 020a             1647		.byte	2,10
+00000114 0000             1648		.byte	0,0
+                          1649	
+                          1650		.section	.debug_info
+                          1651	.LDW_4983650:
+000003d4 1f               1652		.byte	31
+000003d5 00000000         1653		.long	.LDW01
+000003d9 00000000         1654		.long	.LDW11
+                          1655	
+                          1656		.section	.debug_abbrev
+00000116 1f               1657		.byte	31
+00000117 0b               1658		.byte	11
+00000118 01               1659		.byte	1
+00000119 1101             1660		.byte	17,1
+0000011b 1201             1661		.byte	18,1
+0000011d 0000             1662		.byte	0,0
+                          1663	
+                          1664		.section	.debug_info
+                          1665	.LDW_49cbe88:
+000003dd 07               1666		.byte	7
+000003de 7461626c65496e64 1667		.strz	"tableIndex"
+000003e6 657800          
+
+                                   Fri Apr 10 08:31:45 2020           Page 31
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000003e9 ac02             1668		.byte	172,2
+000003eb 1c               1669		.byte	28
+000003ec 01               1670		.byte	1
+000003ed 00000000         1671		.long	.LDW_49cbe30
+000003f1 00               1672		.byte	0
+000003f2 00               1673		.byte	0
+                          1674	
+                          1675	.LDW_49ac010:
+000003f3 06               1676		.byte	6
+000003f4 736f75726365496e 1677		.strz	"sourceIndex"
+000003fc 64657800        
+00000400 ad02             1678		.byte	173,2
+00000402 1c               1679		.byte	28
+00000403 01               1680		.byte	1
+00000404 00000000         1681		.long	.LDW_49abfb8
+00000408 00               1682		.byte	0
+00000409 00               1683		.byte	0
+0000040a 016d             1684		.byte	1,109
+                          1685	
+                          1686	.LDW_49ac068:
+0000040c 06               1687		.byte	6
+0000040d 62797465436f756e 1688		.strz	"byteCount"
+00000415 7400            
+00000417 ae02             1689		.byte	174,2
+00000419 1c               1690		.byte	28
+0000041a 01               1691		.byte	1
+0000041b 00000000         1692		.long	.LDW_49abfb8
+0000041f 00               1693		.byte	0
+00000420 00               1694		.byte	0
+00000421 016b             1695		.byte	1,107
+                          1696	
+                          1697	.LDW_49ac118:
+00000423 06               1698		.byte	6
+00000424 746d7043726300   1699		.strz	"tmpCrc"
+0000042b af02             1700		.byte	175,2
+0000042d 1c               1701		.byte	28
+0000042e 01               1702		.byte	1
+0000042f 00000000         1703		.long	.LDW_49ac0c0
+00000433 00               1704		.byte	0
+00000434 00               1705		.byte	0
+00000435 016f             1706		.byte	1,111
+                          1707	
+                          1708	.LDW_49ac220:
+00000437 06               1709		.byte	6
+00000438 63757272656e7444 1710		.strz	"currentData"
+00000440 61746100        
+00000444 b002             1711		.byte	176,2
+00000446 1c               1712		.byte	28
+00000447 01               1713		.byte	1
+00000448 00000000         1714		.long	.LDW_49ac1c8
+0000044c 00               1715		.byte	0
+0000044d 00               1716		.byte	0
+0000044e 0150             1717		.byte	1,80
+                          1718	
+                          1719	.LDW_5bfa510:
+00000450 06               1720		.byte	6
+00000451 705761746368646f 1721		.strz	"pWatchdog"
+00000459 6700            
+0000045b b102             1722		.byte	177,2
+0000045d 1c               1723		.byte	28
+
+                                   Fri Apr 10 08:31:45 2020           Page 32
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000045e 01               1724		.byte	1
+0000045f 00000000         1725		.long	.LDW_5bfa9e0
+00000463 00               1726		.byte	0
+00000464 00               1727		.byte	0
+00000465 016c             1728		.byte	1,108
+                          1729	
+00000467 00               1730		.byte	0
+                          1731	
+00000468 00               1732		.byte	0
+                          1733	
+                          1734	.LDW_49ac278:
+00000469 15               1735		.byte	21
+0000046a 5365634d5f496e69 1736		.strz	"SecM_InitPowerOnCRC"
+00000472 74506f7765724f6e
+0000047a 43524300        
+0000047e e602             1737		.byte	230,2
+00000480 06               1738		.byte	6
+00000481 01               1739		.byte	1
+00000482 00000000         1740		.long	SecM_InitPowerOnCRC
+00000486 00000000         1741		.long	__ghs_eofn_SecM_InitPowerOnCRC
+0000048a 0151             1742		.byte	1,81
+0000048c 03               1743		.byte	3
+0000048d 00               1744		.byte	0
+0000048e 00               1745		.byte	0
+0000048f 00               1746		.byte	0
+00000490 00               1747		.byte	0
+00000491 00               1748		.byte	0
+00000492 00               1749		.byte	0
+00000493 01               1750		.byte	1
+00000494 01               1751		.byte	1
+00000495 00               1752		.byte	0
+00000496 01               1753		.byte	1
+                          1754	
+                          1755		.section	.debug_frame
+                          1756	.LDW_498c2e0:
+000000a8 00000014         1757		.long	.LDW_unq_6-.LDW_unq_5
+                          1758	.LDW_unq_5:
+000000ac 00000000         1759		.long	.LDW_5bb8bf8
+000000b0 00000000         1760		.long	SecM_InitPowerOnCRC
+000000b4 00000002         1761		.long	__ghs_eofn_SecM_InitPowerOnCRC-SecM_InitPowerOnCRC
+000000b8 01               1762		.byte	1
+000000b9 00000000         1763		.long	.LDW31
+000000bd 00               1764		.byte	0
+000000be 00               1765		.byte	0
+000000bf 00               1766		.byte	0
+                          1767	.LDW_unq_6:
+                          1768		.section	.debug_line
+0000020a 000502           1769		.byte	0,5,2
+0000020d 00000000         1770		.long	SecM_InitPowerOnCRC
+00000211 06               1771		.byte	6
+00000212 03               1772		.byte	3
+00000213 ed02             1773		.byte	237,2
+00000215 02               1774		.byte	2
+00000216 00               1775		.byte	0
+00000217 01               1776		.byte	1
+00000218 02               1777		.byte	2
+00000219 02               1778		.byte	2
+0000021a 000101           1779		.byte	0,1,1
+
+                                   Fri Apr 10 08:31:45 2020           Page 33
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+                          1780		.section	.debug_info
+                          1781	.LDW_49834a0:
+00000497 1f               1782		.byte	31
+00000498 00000000         1783		.long	.LDW21
+0000049c 00000000         1784		.long	.LDW31
+                          1785	
+000004a0 00               1786		.byte	0
+                          1787	
+000004a1 00               1788		.byte	0
+                          1789	
+                          1790	.LDW_49ac310:
+000004a2 16               1791		.byte	22
+000004a3 5365634d5f436f6d 1792		.strz	"SecM_ComputeCRC"
+000004ab 7075746543524300
+000004b3 f802             1793		.byte	248,2
+000004b5 11               1794		.byte	17
+000004b6 01               1795		.byte	1
+000004b7 00000000         1796		.long	.LDW_5bfa8d8
+000004bb 00000000         1797		.long	SecM_ComputeCRC
+000004bf 00000000         1798		.long	__ghs_eofn_SecM_ComputeCRC
+000004c3 0151             1799		.byte	1,81
+000004c5 03               1800		.byte	3
+000004c6 00               1801		.byte	0
+000004c7 00               1802		.byte	0
+000004c8 00               1803		.byte	0
+000004c9 00               1804		.byte	0
+000004ca 00               1805		.byte	0
+000004cb 00               1806		.byte	0
+000004cc 01               1807		.byte	1
+000004cd 01               1808		.byte	1
+000004ce 00               1809		.byte	0
+000004cf 01               1810		.byte	1
+                          1811	
+                          1812		.section	.debug_abbrev
+0000011f 16               1813		.byte	22
+00000120 2e               1814		.byte	46
+00000121 01               1815		.byte	1
+00000122 0308             1816		.byte	3,8
+00000124 3b0f             1817		.byte	59,15
+00000126 390f             1818		.byte	57,15
+00000128 3a0f             1819		.byte	58,15
+0000012a 4910             1820		.byte	73,16
+0000012c 1101             1821		.byte	17,1
+0000012e 1201             1822		.byte	18,1
+00000130 400a             1823		.byte	64,10
+00000132 8341             1824		.byte	131,65
+00000134 0f               1825		.byte	15
+00000135 8741             1826		.byte	135,65
+00000137 0d               1827		.byte	13
+00000138 8541             1828		.byte	133,65
+0000013a 0f               1829		.byte	15
+0000013b 8641             1830		.byte	134,65
+0000013d 0d               1831		.byte	13
+0000013e 9241             1832		.byte	146,65
+00000140 0f               1833		.byte	15
+00000141 3c0c             1834		.byte	60,12
+00000143 200b             1835		.byte	32,11
+
+                                   Fri Apr 10 08:31:45 2020           Page 34
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+00000145 3f0c             1836		.byte	63,12
+00000147 320b             1837		.byte	50,11
+00000149 4c0b             1838		.byte	76,11
+0000014b 270c             1839		.byte	39,12
+0000014d 0000             1840		.byte	0,0
+                          1841	
+                          1842		.section	.debug_frame
+                          1843	.LDW_5bc9798:
+000000c0 00000014         1844		.long	.LDW_unq_8-.LDW_unq_7
+                          1845	.LDW_unq_7:
+000000c4 00000000         1846		.long	.LDW_5bb8bf8
+000000c8 00000000         1847		.long	SecM_ComputeCRC
+000000cc 00000002         1848		.long	__ghs_eofn_SecM_ComputeCRC-SecM_ComputeCRC
+000000d0 01               1849		.byte	1
+000000d1 00000000         1850		.long	.LDW71
+000000d5 00               1851		.byte	0
+000000d6 00               1852		.byte	0
+000000d7 00               1853		.byte	0
+                          1854	.LDW_unq_8:
+                          1855		.section	.debug_line
+0000021d 000502           1856		.byte	0,5,2
+00000220 00000000         1857		.long	SecM_ComputeCRC
+00000224 06               1858		.byte	6
+00000225 03               1859		.byte	3
+00000226 fc02             1860		.byte	252,2
+00000228 02               1861		.byte	2
+00000229 00               1862		.byte	0
+0000022a 01               1863		.byte	1
+0000022b 06               1864		.byte	6
+0000022c 000502           1865		.byte	0,5,2
+0000022f 00000000         1866		.long	__ghs_eofn_SecM_ComputeCRC
+00000233 02               1867		.byte	2
+00000234 00               1868		.byte	0
+00000235 000101           1869		.byte	0,1,1
+                          1870		.section	.debug_info
+                          1871	.LDW_5bfa568:
+000004d0 11               1872		.byte	17
+000004d1 637263506172616d 1873		.strz	"crcParam"
+000004d9 00              
+000004da f802             1874		.byte	248,2
+000004dc 54               1875		.byte	84
+000004dd 01               1876		.byte	1
+000004de 00000000         1877		.long	.LDW_498c4b8
+000004e2 00               1878		.byte	0
+000004e3 0153             1879		.byte	1,83
+                          1880	
+                          1881	.LDW_4983170:
+000004e5 1f               1882		.byte	31
+000004e6 00000000         1883		.long	.LDW61
+000004ea 00000000         1884		.long	.LDW71
+                          1885	
+000004ee 00               1886		.byte	0
+                          1887	
+000004ef 00               1888		.byte	0
+                          1889	
+                          1890	.LDW_5bfac98:
+000004f0 16               1891		.byte	22
+
+                                   Fri Apr 10 08:31:45 2020           Page 35
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000004f1 5365634d5f436f6d 1892		.strz	"SecM_ComputeCrc32"
+000004f9 7075746543726333
+00000501 3200            
+00000503 8d03             1893		.byte	141,3
+00000505 11               1894		.byte	17
+00000506 01               1895		.byte	1
+00000507 00000000         1896		.long	.LDW_5bfa8d8
+0000050b 00000000         1897		.long	SecM_ComputeCrc32
+0000050f 00000000         1898		.long	__ghs_eofn_SecM_ComputeCrc32
+00000513 0151             1899		.byte	1,81
+00000515 8080808008       1900		.byte	128,128,128,128,8
+0000051a 0c               1901		.byte	12
+0000051b 00               1902		.byte	0
+0000051c 10               1903		.byte	16
+0000051d 00               1904		.byte	0
+0000051e 00               1905		.byte	0
+0000051f 00               1906		.byte	0
+00000520 01               1907		.byte	1
+00000521 01               1908		.byte	1
+00000522 00               1909		.byte	0
+00000523 01               1910		.byte	1
+                          1911	
+                          1912		.section	.debug_frame
+                          1913	.LDW_5bd6680:
+000000d8 00000014         1914		.long	.LDW_unq_a-.LDW_unq_9
+                          1915	.LDW_unq_9:
+000000dc 00000000         1916		.long	.LDW_5bb8bf8
+000000e0 00000000         1917		.long	SecM_ComputeCrc32
+000000e4 00000056         1918		.long	__ghs_eofn_SecM_ComputeCrc32-SecM_ComputeCrc32
+000000e8 01               1919		.byte	1
+000000e9 00000000         1920		.long	.LDW51
+000000ed 00               1921		.byte	0
+000000ee 00               1922		.byte	0
+000000ef 00               1923		.byte	0
+                          1924	.LDW_unq_a:
+                          1925		.section	.debug_line
+00000238 000502           1926		.byte	0,5,2
+0000023b 00000000         1927		.long	SecM_ComputeCrc32
+0000023f 06               1928		.byte	6
+00000240 03               1929		.byte	3
+00000241 8d03             1930		.byte	141,3
+00000243 02               1931		.byte	2
+00000244 00               1932		.byte	0
+00000245 01               1933		.byte	1
+00000246 03               1934		.byte	3
+00000247 04               1935		.byte	4
+00000248 02               1936		.byte	2
+00000249 0c               1937		.byte	12
+0000024a 01               1938		.byte	1
+0000024b 14               1939		.byte	20
+0000024c 000502           1940		.byte	0,5,2
+0000024f 00000000         1941		.long	.LDWlin5
+00000253 0d               1942		.byte	13
+00000254 03               1943		.byte	3
+00000255 0b               1944		.byte	11
+00000256 02               1945		.byte	2
+00000257 00               1946		.byte	0
+00000258 01               1947		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 36
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+00000259 000502           1948		.byte	0,5,2
+0000025c 00000000         1949		.long	.LDWlin6
+00000260 03               1950		.byte	3
+00000261 0f               1951		.byte	15
+00000262 02               1952		.byte	2
+00000263 00               1953		.byte	0
+00000264 01               1954		.byte	1
+00000265 0b               1955		.byte	11
+00000266 0c               1956		.byte	12
+00000267 000502           1957		.byte	0,5,2
+0000026a 00000000         1958		.long	.LDWlin7
+0000026e 03               1959		.byte	3
+0000026f 74               1960		.byte	116
+00000270 02               1961		.byte	2
+00000271 00               1962		.byte	0
+00000272 01               1963		.byte	1
+00000273 0b               1964		.byte	11
+00000274 0c               1965		.byte	12
+00000275 000502           1966		.byte	0,5,2
+00000278 00000000         1967		.long	.LDWlin8
+0000027c 03               1968		.byte	3
+0000027d 0f               1969		.byte	15
+0000027e 02               1970		.byte	2
+0000027f 00               1971		.byte	0
+00000280 01               1972		.byte	1
+00000281 0b               1973		.byte	11
+00000282 0b               1974		.byte	11
+00000283 000502           1975		.byte	0,5,2
+00000286 00000000         1976		.long	.LDWlin9
+0000028a 0b               1977		.byte	11
+0000028b 0c               1978		.byte	12
+0000028c 2d               1979		.byte	45
+0000028d 06               1980		.byte	6
+0000028e 000502           1981		.byte	0,5,2
+00000291 00000000         1982		.long	.LDWlin10
+00000295 0d               1983		.byte	13
+00000296 03               1984		.byte	3
+00000297 71               1985		.byte	113
+00000298 02               1986		.byte	2
+00000299 00               1987		.byte	0
+0000029a 01               1988		.byte	1
+0000029b 03               1989		.byte	3
+0000029c 77               1990		.byte	119
+0000029d 02               1991		.byte	2
+0000029e 00               1992		.byte	0
+0000029f 01               1993		.byte	1
+000002a0 03               1994		.byte	3
+000002a1 77               1995		.byte	119
+000002a2 02               1996		.byte	2
+000002a3 00               1997		.byte	0
+000002a4 01               1998		.byte	1
+000002a5 03               1999		.byte	3
+000002a6 1e               2000		.byte	30
+000002a7 02               2001		.byte	2
+000002a8 00               2002		.byte	0
+000002a9 01               2003		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 37
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+000002aa 03               2004		.byte	3
+000002ab 76               2005		.byte	118
+000002ac 02               2006		.byte	2
+000002ad 02               2007		.byte	2
+000002ae 01               2008		.byte	1
+000002af 03               2009		.byte	3
+000002b0 77               2010		.byte	119
+000002b1 02               2011		.byte	2
+000002b2 00               2012		.byte	0
+000002b3 01               2013		.byte	1
+000002b4 03               2014		.byte	3
+000002b5 77               2015		.byte	119
+000002b6 02               2016		.byte	2
+000002b7 00               2017		.byte	0
+000002b8 01               2018		.byte	1
+000002b9 06               2019		.byte	6
+000002ba 03               2020		.byte	3
+000002bb 25               2021		.byte	37
+000002bc 02               2022		.byte	2
+000002bd 00               2023		.byte	0
+000002be 01               2024		.byte	1
+000002bf 02               2025		.byte	2
+000002c0 00               2026		.byte	0
+000002c1 0b               2027		.byte	11
+000002c2 02               2028		.byte	2
+000002c3 00               2029		.byte	0
+000002c4 03               2030		.byte	3
+000002c5 13               2031		.byte	19
+000002c6 02               2032		.byte	2
+000002c7 00               2033		.byte	0
+000002c8 01               2034		.byte	1
+000002c9 02               2035		.byte	2
+000002ca 00               2036		.byte	0
+000002cb 03               2037		.byte	3
+000002cc 04               2038		.byte	4
+000002cd 02               2039		.byte	2
+000002ce 00               2040		.byte	0
+000002cf 01               2041		.byte	1
+000002d0 02               2042		.byte	2
+000002d1 00               2043		.byte	0
+000002d2 0c               2044		.byte	12
+000002d3 06               2045		.byte	6
+000002d4 02               2046		.byte	2
+000002d5 02               2047		.byte	2
+000002d6 02               2048		.byte	2
+000002d7 0a               2049		.byte	10
+000002d8 000101           2050		.byte	0,1,1
+                          2051		.section	.debug_info
+                          2052	.LDW_5bfab40:
+00000524 11               2053		.byte	17
+00000525 637263506172616d 2054		.strz	"crcParam"
+0000052d 00              
+0000052e 8d03             2055		.byte	141,3
+00000530 56               2056		.byte	86
+00000531 01               2057		.byte	1
+00000532 00000000         2058		.long	.LDW_498c4b8
+00000536 00               2059		.byte	0
+
+                                   Fri Apr 10 08:31:45 2020           Page 38
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+00000537 016f             2060		.byte	1,111
+                          2061	
+                          2062	.LDW_4983590:
+00000539 1f               2063		.byte	31
+0000053a 00000000         2064		.long	.LDW41
+0000053e 00000000         2065		.long	.LDW51
+                          2066	
+                          2067	.LDW_5bfa7d0:
+00000542 06               2068		.byte	6
+00000543 726573756c7400   2069		.strz	"result"
+0000054a 8f03             2070		.byte	143,3
+0000054c 14               2071		.byte	20
+0000054d 01               2072		.byte	1
+0000054e 00000000         2073		.long	.LDW_5bfa8d8
+00000552 00               2074		.byte	0
+00000553 00               2075		.byte	0
+00000554 0150             2076		.byte	1,80
+                          2077	
+                          2078	.LDW_5bfa828:
+00000556 07               2079		.byte	7
+00000557 6372635472616e73 2080		.strz	"crcTransferred"
+0000055f 66657272656400  
+00000566 9003             2081		.byte	144,3
+00000568 14               2082		.byte	20
+00000569 01               2083		.byte	1
+0000056a 00000000         2084		.long	.LDW_49ac0c0
+0000056e 00               2085		.byte	0
+0000056f 00               2086		.byte	0
+                          2087	
+00000570 00               2088		.byte	0
+                          2089	
+00000571 00               2090		.byte	0
+                          2091	
+00000572 00               2092		.byte	0
+                          2093	
+                          2094		.section	.debug_line
+                          2095	.Ldw_line_end:
+                          2096		.section	.debug_macinfo
+00000000 03               2097		.byte	3
+00000001 00               2098		.byte	0
+00000002 01               2099		.byte	1
+00000003 03               2100		.byte	3
+00000004 38               2101		.byte	56
+00000005 02               2102		.byte	2
+00000006 01               2103		.byte	1
+00000007 45               2104		.byte	69
+00000008 5f5f5345435f494e 2105		.strz	"__SEC_INC_H__ "
+00000010 435f485f5f2000  
+00000017 03               2106		.byte	3
+00000018 4c               2107		.byte	76
+00000019 03               2108		.byte	3
+0000001a 01               2109		.byte	1
+0000001b 4a               2110		.byte	74
+0000001c 435f435055545950 2111		.strz	"C_CPUTYPE_32BIT "
+00000024 455f333242495420
+0000002c 00              
+0000002d 01               2112		.byte	1
+0000002e 59               2113		.byte	89
+0000002f 435f435055545950 2114		.strz	"C_CPUTYPE_BITORDER_MSB2LSB "
+00000037 455f4249544f5244
+0000003f 45525f4d5342324c
+00000047 53422000        
+0000004b 01               2115		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 39
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000004c 8901             2116		.byte	137,1
+0000004e 5647454e5f454e41 2117		.strz	"VGEN_ENABLE_CANFBL "
+00000056 424c455f43414e46
+0000005e 424c2000        
+00000062 01               2118		.byte	1
+00000063 be01             2119		.byte	190,1
+00000065 565f434f4d505f47 2120		.strz	"V_COMP_GHS_MPC5700 "
+0000006d 48535f4d50433537
+00000075 30302000        
+00000079 01               2121		.byte	1
+0000007a ca01             2122		.byte	202,1
+0000007c 4d414749435f4e55 2123		.strz	"MAGIC_NUMBER 312540478"
+00000084 4d42455220333132
+0000008c 35343034373800  
+00000093 04               2124		.byte	4
+00000094 03               2125		.byte	3
+00000095 52               2126		.byte	82
+00000096 04               2127		.byte	4
+00000097 01               2128		.byte	1
+00000098 8704             2129		.byte	135,4
+0000009a 565f4445465f5355 2130		.strz	"V_DEF_SUPPORTED_PLATFORM "
+000000a2 50504f525445445f
+000000aa 504c4154464f524d
+000000b2 2000            
+000000b4 01               2131		.byte	1
+000000b5 da06             2132		.byte	218,6
+000000b7 4c4f43414c5f494e 2133		.strz	"LOCAL_INLINE static inline"
+000000bf 4c494e4520737461
+000000c7 74696320696e6c69
+000000cf 6e6500          
+000000d2 01               2134		.byte	1
+000000d3 e406             2135		.byte	228,6
+000000d5 565f4d454d524f4d 2136		.strz	"V_MEMROM0 "
+000000dd 302000          
+000000e0 01               2137		.byte	1
+000000e1 ec06             2138		.byte	236,6
+000000e3 565f4d454d524f4d 2139		.strz	"V_MEMROM1 "
+000000eb 312000          
+000000ee 01               2140		.byte	1
+000000ef 8007             2141		.byte	128,7
+000000f1 565f4d454d524f4d 2142		.strz	"V_MEMROM2 const"
+000000f9 3220636f6e737400
+00000101 01               2143		.byte	1
+00000102 9307             2144		.byte	147,7
+00000104 565f4d454d524f4d 2145		.strz	"V_MEMROM3 "
+0000010c 332000          
+0000010f 01               2146		.byte	1
+00000110 a107             2147		.byte	161,7
+00000112 565f4d454d52414d 2148		.strz	"V_MEMRAM1 "
+0000011a 312000          
+0000011d 01               2149		.byte	1
+0000011e b507             2150		.byte	181,7
+00000120 565f4d454d52414d 2151		.strz	"V_MEMRAM2 "
+00000128 322000          
+0000012b 01               2152		.byte	1
+0000012c cc07             2153		.byte	204,7
+0000012e 565f4d454d52414d 2154		.strz	"V_MEMRAM3 "
+00000136 332000          
+00000139 04               2155		.byte	4
+0000013a 03               2156		.byte	3
+0000013b 56               2157		.byte	86
+0000013c 05               2158		.byte	5
+0000013d 01               2159		.byte	1
+0000013e 2f               2160		.byte	47
+0000013f 5345435f434c4153 2161		.strz	"SEC_CLASS_DDD 0"
+00000147 535f444444203000
+0000014f 01               2162		.byte	1
+00000150 32               2163		.byte	50
+00000151 5345435f434c4153 2164		.strz	"SEC_CLASS_VENDOR 3"
+00000159 535f56454e444f52
+00000161 203300          
+00000164 01               2165		.byte	1
+00000165 37               2166		.byte	55
+00000166 5345435f4352435f 2167		.strz	"SEC_CRC_SPEED_OPTIMIZED 0"
+0000016e 53504545445f4f50
+00000176 54494d495a454420
+0000017e 3000            
+00000180 01               2168		.byte	1
+00000181 38               2169		.byte	56
+00000182 5345435f4352435f 2170		.strz	"SEC_CRC_SIZE_OPTIMIZED 1"
+0000018a 53495a455f4f5054
+00000192 494d495a45442031
+0000019a 00              
+0000019b 01               2171		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 40
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000019c 39               2172		.byte	57
+0000019d 5345435f52495045 2173		.strz	"SEC_RIPEMD160 0"
+000001a5 4d44313630203000
+000001ad 01               2174		.byte	1
+000001ae 3a               2175		.byte	58
+000001af 5345435f53484131 2176		.strz	"SEC_SHA1 1"
+000001b7 203100          
+000001ba 01               2177		.byte	1
+000001bb 3b               2178		.byte	59
+000001bc 5345435f53484132 2179		.strz	"SEC_SHA256 2"
+000001c4 3536203200      
+000001c9 01               2180		.byte	1
+000001ca 3e               2181		.byte	62
+000001cb 5345435f4352435f 2182		.strz	"SEC_CRC_OPT SEC_CRC_SIZE_OPTIMIZED"
+000001d3 4f5054205345435f
+000001db 4352435f53495a45
+000001e3 5f4f5054494d495a
+000001eb 454400          
+000001ee 01               2183		.byte	1
+000001ef 44               2184		.byte	68
+000001f0 5345435f4b45595f 2185		.strz	"SEC_KEY_TIMEOUT 0"
+000001f8 54494d454f555420
+00000200 3000            
+00000202 01               2186		.byte	1
+00000203 48               2187		.byte	72
+00000204 5345435f48415348 2188		.strz	"SEC_HASH_ALGORITHM SEC_SHA1"
+0000020c 5f414c474f524954
+00000214 484d205345435f53
+0000021c 48413100        
+00000220 01               2189		.byte	1
+00000221 49               2190		.byte	73
+00000222 5345435f53454355 2191		.strz	"SEC_SECURITY_CLASS SEC_CLASS_DDD"
+0000022a 524954595f434c41
+00000232 5353205345435f43
+0000023a 4c4153535f444444
+00000242 00              
+00000243 01               2192		.byte	1
+00000244 4f               2193		.byte	79
+00000245 5345435f454e4142 2194		.strz	"SEC_ENABLE_VERIFICATION_KEY_INTERNAL "
+0000024d 4c455f5645524946
+00000255 49434154494f4e5f
+0000025d 4b45595f494e5445
+00000265 524e414c2000    
+0000026b 01               2195		.byte	1
+0000026c 50               2196		.byte	80
+0000026d 5345435f53495a45 2197		.strz	"SEC_SIZE_CHECKSUM_VENDOR 0"
+00000275 5f434845434b5355
+0000027d 4d5f56454e444f52
+00000285 203000          
+00000288 01               2198		.byte	1
+00000289 52               2199		.byte	82
+0000028a 5345435f56455249 2200		.strz	"SEC_VERIFY_BYTES 64"
+00000292 46595f4259544553
+0000029a 20363400        
+0000029e 01               2201		.byte	1
+0000029f 53               2202		.byte	83
+000002a0 5345435f454e4142 2203		.strz	"SEC_ENABLE_VERIFICATION_ADDRESS_LENGTH "
+000002a8 4c455f5645524946
+000002b0 49434154494f4e5f
+000002b8 414444524553535f
+000002c0 4c454e4754482000
+000002c8 01               2204		.byte	1
+000002c9 54               2205		.byte	84
+000002ca 5345435f454e4142 2206		.strz	"SEC_ENABLE_CRC_TOTAL "
+000002d2 4c455f4352435f54
+000002da 4f54414c2000    
+000002e0 01               2207		.byte	1
+000002e1 57               2208		.byte	87
+000002e2 5345435f5645525f 2209		.strz	"SEC_VER_SIG_OFFSET 0"
+000002ea 5349475f4f464653
+000002f2 4554203000      
+000002f7 01               2210		.byte	1
+000002f8 58               2211		.byte	88
+000002f9 5345435f5645525f 2212		.strz	"SEC_VER_CRC_OFFSET 0"
+00000301 4352435f4f464653
+00000309 4554203000      
+0000030e 04               2213		.byte	4
+0000030f 03               2214		.byte	3
+00000310 59               2215		.byte	89
+00000311 06               2216		.byte	6
+00000312 03               2217		.byte	3
+00000313 4d               2218		.byte	77
+00000314 02               2219		.byte	2
+00000315 04               2220		.byte	4
+00000316 01               2221		.byte	1
+00000317 59               2222		.byte	89
+00000318 5345435f57415443 2223		.strz	"SEC_WATCHDOG_CYCLE_COUNT (0x20u)"
+00000320 48444f475f435943
+00000328 4c455f434f554e54
+00000330 2028307832307529
+00000338 00              
+00000339 01               2224		.byte	1
+0000033a 60               2225		.byte	96
+0000033b 5345435f454e4142 2226		.strz	"SEC_ENABLE_WORKSPACE_INTERNAL "
+00000343 4c455f574f524b53
+0000034b 504143455f494e54
+00000353 45524e414c2000  
+0000035a 01               2227		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 41
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000035b 66               2228		.byte	102
+0000035c 5345435f43484543 2229		.strz	"SEC_CHECKSUM_TYPE_CRC 0u"
+00000364 4b53554d5f545950
+0000036c 455f435243203075
+00000374 00              
+00000375 01               2230		.byte	1
+00000376 6b               2231		.byte	107
+00000377 5345435f43484543 2232		.strz	"SEC_CHECKSUM_TYPE_HASH (SEC_CHECKSUM_TYPE_CRC + 1u)"
+0000037f 4b53554d5f545950
+00000387 455f484153482028
+0000038f 5345435f43484543
+00000397 4b53554d5f545950
+0000039f 455f435243202b20
+000003a7 31752900        
+000003ab 01               2233		.byte	1
+000003ac 71               2234		.byte	113
+000003ad 5345435f4d41435f 2235		.strz	"SEC_MAC_TYPE_HMAC 0u"
+000003b5 545950455f484d41
+000003bd 4320307500      
+000003c2 01               2236		.byte	1
+000003c3 8601             2237		.byte	134,1
+000003c5 5345435f43524333 2238		.strz	"SEC_CRC32 0u"
+000003cd 3220307500      
+000003d2 01               2239		.byte	1
+000003d3 8e01             2240		.byte	142,1
+000003d5 5345435f43524331 2241		.strz	"SEC_CRC16 (SEC_CRC32 + 1u)"
+000003dd 3620285345435f43
+000003e5 52433332202b2031
+000003ed 752900          
+000003f0 01               2242		.byte	1
+000003f1 ca01             2243		.byte	202,1
+000003f3 5345435f5349474e 2244		.strz	"SEC_SIGNATURE_SCHEME_RSA_V15 0u"
+000003fb 41545552455f5343
+00000403 48454d455f525341
+0000040b 5f56313520307500
+00000413 01               2245		.byte	1
+00000414 dc01             2246		.byte	220,1
+00000416 5345434d5f4f4b20 2247		.strz	"SECM_OK 0x00u"
+0000041e 307830307500    
+00000424 01               2248		.byte	1
+00000425 de01             2249		.byte	222,1
+00000427 5345434d5f4e4f54 2250		.strz	"SECM_NOT_OK 0xFFu"
+0000042f 5f4f4b2030784646
+00000437 7500            
+00000439 01               2251		.byte	1
+0000043a e301             2252		.byte	227,1
+0000043c 5345435f43414c4c 2253		.strz	"SEC_CALL_TYPE "
+00000444 5f545950452000  
+0000044b 01               2254		.byte	1
+0000044c f401             2255		.byte	244,1
+0000044e 5345435f57415443 2256		.strz	"SEC_WATCHDOG_NONE ((FL_WDTriggerFctType)0u)"
+00000456 48444f475f4e4f4e
+0000045e 45202828464c5f57
+00000466 4454726967676572
+0000046e 4663745479706529
+00000476 30752900        
+0000047a 01               2257		.byte	1
+0000047b f901             2258		.byte	249,1
+0000047d 5345435f57415443 2259		.strz	"SEC_WATCHDOG_TRIGGER(function) if ((SEC_WATCHDOG_NONE) != (function)) { (function)(); }"
+00000485 48444f475f545249
+0000048d 474745522866756e
+00000495 6374696f6e292069
+0000049d 662028285345435f
+000004a5 5741544348444f47
+000004ad 5f4e4f4e45292021
+000004b5 3d202866756e6374
+000004bd 696f6e2929207b20
+000004c5 2866756e6374696f
+000004cd 6e2928293b207d00
+000004d5 01               2260		.byte	1
+000004d6 8002             2261		.byte	128,2
+000004d8 5345435f57415443 2262		.strz	"SEC_WATCHDOG_CYCLE_TRIGGER(function,cycle) if (((cycle) & (SEC_WATCHDOG_CYCLE_COUNT - 1u)) == 0x00u) { SEC_WATCHDOG_TRIGGER(function); }"
+000004e0 48444f475f435943
+000004e8 4c455f5452494747
+000004f0 45522866756e6374
+000004f8 696f6e2c6379636c
+00000500 6529206966202828
+00000508 286379636c652920
+00000510 2620285345435f57
+00000518 41544348444f475f
+00000520 4359434c455f434f
+00000528 554e54202d203175
+00000530 2929203d3d203078
+00000538 30307529207b2053
+00000540 45435f5741544348
+00000548 444f475f54524947
+00000550 4745522866756e63
+00000558 74696f6e293b207d
+00000560 00              
+00000561 04               2263		.byte	4
+00000562 03               2264		.byte	3
+00000563 5c               2265		.byte	92
+00000564 07               2266		.byte	7
+00000565 03               2267		.byte	3
+00000566 2f               2268		.byte	47
+00000567 08               2269		.byte	8
+00000568 04               2270		.byte	4
+00000569 04               2271		.byte	4
+0000056a 04               2272		.byte	4
+0000056b 03               2273		.byte	3
+0000056c 3e               2274		.byte	62
+0000056d 09               2275		.byte	9
+0000056e 03               2276		.byte	3
+0000056f 58               2277		.byte	88
+00000570 0a               2278		.byte	10
+00000571 01               2279		.byte	1
+00000572 3c               2280		.byte	60
+00000573 5359535345525649 2281		.strz	"SYSSERVICE_SECMODHIS_CRC_VERSION 0x0204u"
+0000057b 43455f5345434d4f
+00000583 444849535f435243
+0000058b 5f56455253494f4e
+00000593 2030783032303475
+0000059b 00              
+0000059c 01               2282		.byte	1
+0000059d 3d               2283		.byte	61
+
+                                   Fri Apr 10 08:31:45 2020           Page 42
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000059e 5359535345525649 2284		.strz	"SYSSERVICE_SECMODHIS_CRC_RELEASE_VERSION 0x02u"
+000005a6 43455f5345434d4f
+000005ae 444849535f435243
+000005b6 5f52454c45415345
+000005be 5f56455253494f4e
+000005c6 20307830327500  
+000005cd 01               2285		.byte	1
+000005ce 4b               2286		.byte	75
+000005cf 6b435243496e6974 2287		.strz	"kCRCInit 0x01u"
+000005d7 20307830317500  
+000005de 01               2288		.byte	1
+000005df 4d               2289		.byte	77
+000005e0 6b435243436f6d70 2290		.strz	"kCRCCompute 0x02u"
+000005e8 7574652030783032
+000005f0 7500            
+000005f2 01               2291		.byte	1
+000005f3 4f               2292		.byte	79
+000005f4 6b43524346696e61 2293		.strz	"kCRCFinalize 0x03u"
+000005fc 6c697a6520307830
+00000604 337500          
+00000607 01               2294		.byte	1
+00000608 53               2295		.byte	83
+00000609 5345435f4352435f 2296		.strz	"SEC_CRC_INIT kCRCInit"
+00000611 494e4954206b4352
+00000619 43496e697400    
+0000061f 01               2297		.byte	1
+00000620 54               2298		.byte	84
+00000621 5345435f4352435f 2299		.strz	"SEC_CRC_COMPUTE kCRCCompute"
+00000629 434f4d5055544520
+00000631 6b435243436f6d70
+00000639 75746500        
+0000063d 01               2300		.byte	1
+0000063e 55               2301		.byte	85
+0000063f 5345435f4352435f 2302		.strz	"SEC_CRC_FINALIZE kCRCFinalize"
+00000647 46494e414c495a45
+0000064f 206b43524346696e
+00000657 616c697a6500    
+0000065d 01               2303		.byte	1
+0000065e 56               2304		.byte	86
+0000065f 5345435f4352435f 2305		.strz	"SEC_CRC_VERIFY 0x04u"
+00000667 5645524946592030
+0000066f 7830347500      
+00000674 01               2306		.byte	1
+00000675 5d               2307		.byte	93
+00000676 5345435f53495a45 2308		.strz	"SEC_SIZE_CHECKSUM_CRC_32 4u"
+0000067e 5f434845434b5355
+00000686 4d5f4352435f3332
+0000068e 20347500        
+00000692 01               2309		.byte	1
+00000693 63               2310		.byte	99
+00000694 5345435f4352435f 2311		.strz	"SEC_CRC_MODE_NON_REFLECTED 0x00u"
+0000069c 4d4f44455f4e4f4e
+000006a4 5f5245464c454354
+000006ac 4544203078303075
+000006b4 00              
+000006b5 01               2312		.byte	1
+000006b6 65               2313		.byte	101
+000006b7 5345435f4352435f 2314		.strz	"SEC_CRC_MODE_REFLECTED 0x01u"
+000006bf 4d4f44455f524546
+000006c7 4c45435445442030
+000006cf 7830317500      
+000006d4 01               2315		.byte	1
+000006d5 6d               2316		.byte	109
+000006d6 5345435f4352435f 2317		.strz	"SEC_CRC_TYPE SEC_CRC32"
+000006de 5459504520534543
+000006e6 5f435243333200  
+000006ed 01               2318		.byte	1
+000006ee 78               2319		.byte	120
+000006ef 5345435f454e4142 2320		.strz	"SEC_ENABLE_CRC_TYPE_CRC32 "
+000006f7 4c455f4352435f54
+000006ff 5950455f43524333
+00000707 322000          
+0000070a 01               2321		.byte	1
+0000070b 8501             2322		.byte	133,1
+0000070d 5345435f494e4954 2323		.strz	"SEC_INITIAL_VAL(val) (val)"
+00000715 49414c5f56414c28
+0000071d 76616c2920287661
+00000725 6c2900          
+00000728 04               2324		.byte	4
+00000729 03               2325		.byte	3
+0000072a 59               2326		.byte	89
+0000072b 0b               2327		.byte	11
+0000072c 03               2328		.byte	3
+0000072d 55               2329		.byte	85
+0000072e 0c               2330		.byte	12
+0000072f 01               2331		.byte	1
+00000730 3e               2332		.byte	62
+00000731 5345435f53454544 2333		.strz	"SEC_SEED_LENGTH 8u"
+00000739 5f4c454e47544820
+00000741 387500          
+00000744 01               2334		.byte	1
+00000745 40               2335		.byte	64
+00000746 5345435f4b45595f 2336		.strz	"SEC_KEY_LENGTH 4u"
+0000074e 4c454e4754482034
+00000756 7500            
+00000758 04               2337		.byte	4
+00000759 01               2338		.byte	1
+0000075a 7e               2339		.byte	126
+
+                                   Fri Apr 10 08:31:45 2020           Page 43
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000075b 5345435f50524e47 2340		.strz	"SEC_PRNG_LCG 0u"
+00000763 5f4c434720307500
+0000076b 01               2341		.byte	1
+0000076c 8301             2342		.byte	131,1
+0000076e 5345435f50524e47 2343		.strz	"SEC_PRNG_FIPS186 (SEC_PRNG_LCG + 1u)"
+00000776 5f46495053313836
+0000077e 20285345435f5052
+00000786 4e475f4c4347202b
+0000078e 2031752900      
+00000793 01               2344		.byte	1
+00000794 8901             2345		.byte	137,1
+00000796 5345435f50524e47 2346		.strz	"SEC_PRNG SEC_PRNG_LCG"
+0000079e 205345435f50524e
+000007a6 475f4c434700    
+000007ac 04               2347		.byte	4
+000007ad 03               2348		.byte	3
+000007ae 5a               2349		.byte	90
+000007af 0d               2350		.byte	13
+000007b0 01               2351		.byte	1
+000007b1 64               2352		.byte	100
+000007b2 5345434d5f564552 2353		.strz	"SECM_VER_OK 0x00u"
+000007ba 5f4f4b2030783030
+000007c2 7500            
+000007c4 01               2354		.byte	1
+000007c5 66               2355		.byte	102
+000007c6 5345434d5f564552 2356		.strz	"SECM_VER_CRC 0x02u"
+000007ce 5f43524320307830
+000007d6 327500          
+000007d9 01               2357		.byte	1
+000007da ba01             2358		.byte	186,1
+000007dc 5345435f53454355 2359		.strz	"SEC_SECURITY_CLASS_VERIFY SEC_SECURITY_CLASS"
+000007e4 524954595f434c41
+000007ec 53535f5645524946
+000007f4 59205345435f5345
+000007fc 4355524954595f43
+00000804 4c41535300      
+00000809 01               2360		.byte	1
+0000080a c001             2361		.byte	192,1
+0000080c 5345435f53454355 2362		.strz	"SEC_SECURITY_CLASS_VERIFICATION SEC_SECURITY_CLASS"
+00000814 524954595f434c41
+0000081c 53535f5645524946
+00000824 49434154494f4e20
+0000082c 5345435f53454355
+00000834 524954595f434c41
+0000083c 535300          
+0000083f 01               2363		.byte	1
+00000840 c701             2364		.byte	199,1
+00000842 5345435f43484543 2365		.strz	"SEC_CHECKSUM_TYPE SEC_CHECKSUM_TYPE_CRC"
+0000084a 4b53554d5f545950
+00000852 45205345435f4348
+0000085a 45434b53554d5f54
+00000862 5950455f43524300
+0000086a 01               2366		.byte	1
+0000086b cd01             2367		.byte	205,1
+0000086d 5345435f4d41435f 2368		.strz	"SEC_MAC_TYPE SEC_MAC_TYPE_HMAC"
+00000875 5459504520534543
+0000087d 5f4d41435f545950
+00000885 455f484d414300  
+0000088c 01               2369		.byte	1
+0000088d d301             2370		.byte	211,1
+0000088f 5345435f5349474e 2371		.strz	"SEC_SIGNATURE_SCHEME SEC_SIGNATURE_SCHEME_RSA_V15"
+00000897 41545552455f5343
+0000089f 48454d4520534543
+000008a7 5f5349474e415455
+000008af 52455f534348454d
+000008b7 455f5253415f5631
+000008bf 3500            
+000008c1 01               2372		.byte	1
+000008c2 fd01             2373		.byte	253,1
+000008c4 5345435f454e4142 2374		.strz	"SEC_ENABLE_SECURITY_CLASS_DDD "
+000008cc 4c455f5345435552
+000008d4 4954595f434c4153
+000008dc 535f4444442000  
+000008e3 01               2375		.byte	1
+000008e4 8f02             2376		.byte	143,2
+000008e6 5345435f454e4142 2377		.strz	"SEC_ENABLE_CHECKSUM_TYPE_CRC "
+000008ee 4c455f434845434b
+000008f6 53554d5f54595045
+000008fe 5f4352432000    
+00000904 01               2378		.byte	1
+00000905 db02             2379		.byte	219,2
+00000907 5345435f454e4142 2380		.strz	"SEC_ENABLE_VERIFY_CHECKSUM_CRC "
+0000090f 4c455f5645524946
+00000917 595f434845434b53
+0000091f 554d5f4352432000
+00000927 04               2381		.byte	4
+00000928 04               2382		.byte	4
+00000929 01               2383		.byte	1
+0000092a 5a               2384		.byte	90
+0000092b 4352435f494e4445 2385		.strz	"CRC_INDEX_BITS 4u"
+00000933 585f424954532034
+0000093b 7500            
+0000093d 01               2386		.byte	1
+0000093e 5c               2387		.byte	92
+0000093f 4352435f494e4445 2388		.strz	"CRC_INDEX_MASK 0x0Ful"
+00000947 585f4d41534b2030
+0000094f 783046756c00    
+00000955 01               2389		.byte	1
+00000956 5e               2390		.byte	94
+00000957 4352435f5441424c 2391		.strz	"CRC_TABLE_SIZE 16u"
+0000095f 455f53495a452031
+00000967 367500          
+0000096a 01               2392		.byte	1
+0000096b 67               2393		.byte	103
+0000096c 5345435f4352435f 2394		.strz	"SEC_CRC_32_INITIAL 0xFFFFFFFFul"
+00000974 33325f494e495449
+0000097c 414c203078464646
+00000984 4646464646756c00
+0000098c 01               2395		.byte	1
+
+                                   Fri Apr 10 08:31:45 2020           Page 44
+                                   Fri Apr 10 08:31:45 2020   gh_000090k1.si
+0000098d 6c               2396		.byte	108
+0000098e 5345435f4352435f 2397		.strz	"SEC_CRC_32_POLYNOMIAL 0xEDB88320ul"
+00000996 33325f504f4c594e
+0000099e 4f4d49414c203078
+000009a6 4544423838333230
+000009ae 756c00          
+000009b1 01               2398		.byte	1
+000009b2 71               2399		.byte	113
+000009b3 5345435f4352435f 2400		.strz	"SEC_CRC_32_MODE SEC_CRC_MODE_REFLECTED"
+000009bb 33325f4d4f444520
+000009c3 5345435f4352435f
+000009cb 4d4f44455f524546
+000009d3 4c454354454400  
+000009da 01               2401		.byte	1
+000009db 76               2402		.byte	118
+000009dc 5345435f4352435f 2403		.strz	"SEC_CRC_32_FINAL 0xFFFFFFFFul"
+000009e4 33325f46494e414c
+000009ec 2030784646464646
+000009f4 464646756c00    
+000009fa 01               2404		.byte	1
+000009fb 8301             2405		.byte	131,1
+000009fd 5345435f4745545f 2406		.strz	"SEC_GET_BASE_CRC(crc) (crc)"
+00000a05 424153455f435243
+00000a0d 2863726329202863
+00000a15 72632900        
+00000a19 01               2407		.byte	1
+00000a1a 9101             2408		.byte	145,1
+00000a1c 4352435f33325f42 2409		.strz	"CRC_32_BIT(in) (((in) >> 1u) ^ (((in) & 0x01u) * SEC_CRC_32_POLYNOMIAL))"
+00000a24 495428696e292028
+00000a2c 2828696e29203e3e
+00000a34 20317529205e2028
+00000a3c 2828696e29202620
+00000a44 307830317529202a
+00000a4c 205345435f435243
+00000a54 5f33325f504f4c59
+00000a5c 4e4f4d49414c2929
+00000a64 00              
+00000a65 01               2410		.byte	1
+00000a66 9301             2411		.byte	147,1
+00000a68 4352435f33325f43 2412		.strz	"CRC_32_CALC(in) CRC_32_NIBBLE((in))"
+00000a70 414c4328696e2920
+00000a78 4352435f33325f4e
+00000a80 4942424c45282869
+00000a88 6e292900        
+00000a8c 01               2413		.byte	1
+00000a8d 9701             2414		.byte	151,1
+00000a8f 4352435f33325f4e 2415		.strz	"CRC_32_NIBBLE(in) (CRC_32_BIT(CRC_32_BIT(CRC_32_BIT(CRC_32_BIT(in)))))"
+00000a97 4942424c4528696e
+00000a9f 2920284352435f33
+00000aa7 325f424954284352
+00000aaf 435f33325f424954
+00000ab7 284352435f33325f
+00000abf 424954284352435f
+00000ac7 33325f4249542869
+00000acf 6e292929292900  
+00000ad6 01               2416		.byte	1
+00000ad7 9a01             2417		.byte	154,1
+00000ad9 4352435f33325f45 2418		.strz	"CRC_32_ENTRIES_4(i) CRC_32_CALC((i)), CRC_32_CALC((i) + 1u), CRC_32_CALC((i) + 2u), CRC_32_CALC((i) + 3u)"
+00000ae1 4e54524945535f34
+00000ae9 286929204352435f
+00000af1 33325f43414c4328
+00000af9 286929292c204352
+00000b01 435f33325f43414c
+00000b09 4328286929202b20
+00000b11 3175292c20435243
+00000b19 5f33325f43414c43
+00000b21 28286929202b2032
+00000b29 75292c204352435f
+00000b31 33325f43414c4328
+00000b39 286929202b203375
+00000b41 2900            
+00000b43 01               2419		.byte	1
+00000b44 a101             2420		.byte	161,1
+00000b46 4352435f33325f45 2421		.strz	"CRC_32_ENTRIES_16(i) CRC_32_ENTRIES_4((i)), CRC_32_ENTRIES_4((i) + 4u), CRC_32_ENTRIES_4((i) + 8u), CRC_32_ENTRIES_4((i) + 12u)"
+00000b4e 4e54524945535f31
+00000b56 3628692920435243
+00000b5e 5f33325f454e5452
+00000b66 4945535f34282869
+00000b6e 29292c204352435f
+00000b76 33325f454e545249
+00000b7e 45535f3428286929
+00000b86 202b203475292c20
+00000b8e 4352435f33325f45
+00000b96 4e54524945535f34
+00000b9e 28286929202b2038
+00000ba6 75292c204352435f
+00000bae 33325f454e545249
+00000bb6 45535f3428286929
+00000bbe 202b203132752900
+00000bc6 04               2422		.byte	4
+00000bc7 00               2423		.byte	0
+                          2424		.section	.debug_abbrev
+0000014f 00               2425		.byte	0
+                          2426		.section	.debug_info
+                          2427	.Ldw_end:
