@@ -1,11 +1,11 @@
-** 3kW LDC DC-DC Converter for EV/HEV Vehicles Software **
+# 3kW LDC DC-DC Converter for EV/HEV Vehicles Software
 
 
-My software application:
+# My software application:
 
 This application software provides comprehensive software from BSW to ASW to control a DC/DC converter using SPC570S MCU. The low-level basic software configures the peripheral driver like PWM, ADC, Timer and CAN protocol. The application software provides the operation mode, control module, and diagnostic failure to help the converter operate safely. In addition, UDS services are also designed to upgrade the software via the CAN bus protocol.
 
-What was Done:
+# What was Done:
 
 - Create bar-metal software for the PWM module to operate the phase-shift full bridge topology
 
